@@ -1,4 +1,4 @@
-2. Social Network
+## 2. Social Network
 
 André Filipe Pinto Esteves up201606673@fe.up.pt
 
