@@ -26,7 +26,6 @@
     function draw_footer()
     {
 ?>
-    <h1>Hey</h1>
             <footer>
             
             </footer>
