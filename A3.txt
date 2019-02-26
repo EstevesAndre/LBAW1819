@@ -1,0 +1,31 @@
+oauth API - specify API (like Google, Facebook)
+
+home page/about page - specify presentation/description
+
+helpdesk - specify form
+
+Sign up story add definition of requirements, requeired info
+
+Registered User - add feed page user story
+		- specify share post in story name
+		- multilevel comment - change to low; one level identation
+		- search - others->other users; medium-> users only; others searches with different levels of priority
+		- add see user profile story
+		- add all so that
+		- make friend request story after search and see profile story
+		- add show notifications story
+
+Clan member - add see other clan members story
+
+Admin - add revoke admin permission
+
+Add buisness rule for auto avatars
+
+restrictions - the first account must be an administrator
+		- clan must have an administrator
+		- post must have an author
+		- comment must have an author
+
+technical requirments - edit description to show why this is important to our site
+
+overall priority reduction (ex. edit comment, delete comment, like comment)
