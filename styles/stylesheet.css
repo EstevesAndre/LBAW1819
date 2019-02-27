@@ -1,3 +1,20 @@
 body, html {
     height: 100%;
 }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body.bg-color {
+    background-color: #e3f3f0;
+}
+
+div.left-color {
+    background-color: rgb(87, 153, 153);
+}
+
+.halfscreen {
+    height: 50%;
+    width: 100%;
+}
