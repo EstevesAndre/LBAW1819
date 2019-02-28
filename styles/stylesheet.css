@@ -3,18 +3,51 @@ body, html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace, Arial, Helvetica, sans-serif;
 }
 
 body.bg-color {
-    background-color: #e3f3f0;
+    background-color: #581cc7;
 }
 
 div.left-color {
     background-color: rgb(87, 153, 153);
 }
 
-.halfscreen {
-    height: 50%;
+.fullscreen {
+    height: 100%;
+}
+
+.index-nav {
+    color: rgb(235, 230, 230);
+    font-size: 15px;
+}
+
+.index-nav:hover {
+    color: rgb(12, 145, 34);
+}
+
+input:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.fullsize {
     width: 100%;
+}
+
+.vertical-center {
+    min-height: 100%; 
+    min-height: 100vh;    
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    div.sign-up-r {
+        text-align: right;
+    }
+
+    div.sign-up-l {
+        text-align: left;
+    }
 }
