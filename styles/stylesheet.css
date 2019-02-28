@@ -7,7 +7,7 @@ body {
 }
 
 body.bg-color {
-    background-color: #581cc7;
+    background-color: #41206d;
 }
 
 div.left-color {
@@ -15,11 +15,19 @@ div.left-color {
 }
 
 .fullscreen {
-    height: 100%;
+    min-height: 100%;
+}
+
+.fullscreen-3-4 {
+    min-height: 75%;
+}
+
+.fullscreen-1-2 {
+    min-height: 50%;
 }
 
 .index-nav {
-    color: rgb(235, 230, 230);
+    color: rgb(234, 230, 235);
     font-size: 15px;
 }
 
@@ -42,6 +50,31 @@ input:hover {
     align-items: center;
 }
 
+.items-centered-vertical {
+    display: flex;
+    align-items: center;
+}
+
+.min-width-75 {
+    min-width: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+}
+
+@media (min-width: 576px) {
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /* bring your own prefixes */
+        transform: translate(-50%, -50%);
+    }
+
+}
+
 @media (min-width: 768px) {
     div.sign-up-r {
         text-align: right;
@@ -51,3 +84,4 @@ input:hover {
         text-align: left;
     }
 }
+

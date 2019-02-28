@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home</title>
+        <title>Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
@@ -21,7 +21,7 @@
                 <img src="/assets/logo.png" width="30" height="30" alt="icon">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">Help</span>
+                <img src="/assets/Hamburger_icon.png" width="30" height="30" alt="burger">
             </button>
     
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -41,66 +41,43 @@
                 </ul>
             </div>
         </nav>
-<!--
-        <div class="ml-3 mr-3 text-center text-white fullscreen">
-            <div>
+        <div class="ml-4 mr-4 h-75">
+            <div class="centered text-center">
                 <img src="/assets/logo.png" width="25%" alt="icon">
                 <h2><b>AlterEgo</b></h2>
-            </div>
-            <div class="row mb-4">
-                <div class="sign-up-r col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
-                    <button type="button" class="btn btn-outline-success">Sign up with Google</button>
-                </div>
-                <div class="sign-up-l col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
-                    <button type="button" class="btn btn-outline-danger">Sign up with Facebook</button>
-                </div>
-            </div>
-            <form class="mb-3 ml-5 mr-5 text-left">
-                <div class="form-group align-self-center">
-                    <label for="email">Email or Username</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email or Username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary fullsize">Sign Up</button>
-            </form>
-            <span class="text-center">Already have an account? <a href="/pages/signIn.html">Sign In!</a></span>
-        </div>-->
-
-        <div class="container vertical-center">
-            <div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-                <img src="/assets/logo.png" width="25%" alt="icon">
-                <h2><b>AlterEgo</b></h2>
-                <!--<div class="row mb-4">
-                    <div class=" col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
-                        <button type="button" class="btn btn-outline-success">Sign up with Google</button>
+                <div class="row mb-4">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
+                        <button type="button" class="btn btn-outline-success w-100 h-100">Login with Google</button>
                     </div>
-                    <div class="sign-up-l col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
-                        <button type="button" class="btn btn-outline-danger">Sign up with Facebook</button>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
+                        <button type="button" class="btn btn-outline-danger w-100 h-100">Login with Facebook</button>
                     </div>
                 </div>
-                <form class="mb-3 ml-5 mr-5 text-left">
-                    <div class="form-group align-self-center">
-                        <label for="email">Email or Username</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email or Username">
+                <form class="text-left mb-3">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="username" class="form-control" id="username" placeholder="e.g., BadApe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="e.g., example@gmail.com">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" placeholder="e.g., *****************">
                     </div>
-                    <button type="submit" class="btn btn-primary fullsize">Sign Up</button>
+                    <div class="form-group mb-4">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="confirm-password" class="form-control" id="confirm-password" placeholder="Make sure it's the same password!">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Join AlterEgo</button>
                 </form>
-                <span class="text-center">Already have an account? <a href="/pages/signIn.html">Sign In!</a></span>-->
+                <span class="text-center">Already have an AlterEgo account? <a href="/pages/login.html">Login</a></span>
             </div>
-        </div>
-        <div id="about" class="ml-3 mr-3 mt-5 text-center text-white">
-            <h2>AlterEgo</h2>
         </div>
     </body>
 
-    <footer class="w-100 text-center">
+    <footer class="w-100 text-center footer">
         <span class="text-success">Copyrights</span>
         <span class="text-danger">reserved</span>
     </footer>
