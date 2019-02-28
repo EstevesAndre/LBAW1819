@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
+        <link rel="icon" type="image/x-icon" href="/assets/logo.png"/>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
+        <script src="/scripts/bootstrap/bootstrap.min.js" defer></script>
+        <script src="/scripts/main.js" defer></script>
+    </head>
+
+    <body class="bg-color">
+        <nav class="navbar navbar-expand-sm m-4">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/assets/logo.png" width="30" height="30" alt="icon">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">Help</span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link index-nav" href="/index.html">AlterEgo</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link index-nav" href="#">Get Started!</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link index-nav" href="#">Learn More</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link index-nav" href="#">FAQs</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="ml-3 mr-3 text-center text-white fullscreen">
+            <div class="row mr-2 ml-2 h-75 align-bottom">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4 align-self-center">
+                    <h2>Motivate yourself to achieve your goals</h2>
+                    <img src="/assets/logo.png" width="50%" alt="icon">
+                    <h5>Welcome to AlterEgo!!</h5>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 align-self-center">
+                    <h4>Sign Up For Free</h4>
+                    <div class="row mb-4">
+                        <div class="col-sm-6 col-md-12 col-lg-6 mt-3 mb-3">
+                            <button type="button" class="btn btn-outline-success">Sign up with Google</button>
+                        </div>
+                        <div class="col-sm-6 col-md-12 col-lg-6 mt-3 mb-3">
+                            <button type="button" class="btn btn-outline-danger">Sign up with Facebook</button>
+                        </div>
+                    </div>
+                    <p class="text-justify">Username must be 1 to 20 characters, containing only letters a to z, numbers 0 to 9, hyphens, or underscores, and cannot include any inappropriate terms.</p>
+                    <form class="mb-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary fullsize">Sign Up</button>
+                    </form>
+                    <span class="text-center">Already have an account? <a href="pages/signIn.html">Sign In!</a></span>
+                </div>
+            </div>
+        </div>
+        <div id="about" class="ml-3 mr-3 mt-5 text-center text-white">
+            <h2>AlterEgo</h2>
+        </div>
+    </body>
+
+    <footer class="w-100 text-center">
+        <span class="text-success">Copyrights</span>
+        <span class="text-danger">reserved</span>
+    </footer>
+</html>
