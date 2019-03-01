@@ -5,38 +5,47 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="../styles/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="../styles/stylesheet.css" />
-        <script src="../scripts/bootstrap/bootstrap.min.js" defer></script>
-        <script src="../scripts/main.js" defer></script>
+        <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
+        <link rel="icon" type="image/x-icon" href="/assets/logo.png"/>
 
-        <link rel="icon" type="image/x-icon" href="../assets/logo.png"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
+        <script src="/scripts/bootstrap/bootstrap.min.js" defer></script>
+        <script src="/scripts/main.js" defer></script>
     </head>
 
     <body class="bg-color">
-        <nav class="navbar navbar-expand-lg fixed-top solid navbar-dark bg-dark">
-            <a class="navbar-brand" href="../index.php">
-                <img src="../assets/logo.png" width="30" height="30" alt="icon">
+        <nav class="navbar navbar-expand-sm m-4">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/assets/logo.png" width="30" height="30" alt="icon">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="dark-blue-text"><i class="fas fa-bars fa-1x"></i></span>
+                <img src="/assets/Hamburger_icon.png" width="30" height="30" alt="burger">
             </button>
     
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ml-2">
-                        <a class="nav-link text-warning" href="http://github.com/EstevesAndre/" target="_blank">Github</a>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link index-nav" href="#">Tasks</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link index-nav" href="">Shops</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link index-nav" href="#">Clan</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link index-nav" href="#">Help</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <br />
-        <br />
 
-        
     </body>
 
-    <footer>
-            
+    <footer class="w-100 text-center footer">
+        <span class="text-success">Copyrights</span>
+        <span class="text-danger">reserved</span>
     </footer>
 </html>
