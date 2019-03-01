@@ -64,6 +64,14 @@ input:hover {
     bottom: 0;
 }
 
+.txt {
+    cursor: pointer;
+}
+
+.txt:hover {
+    text-decoration: underline;
+}
+
 @media (min-width: 576px) {
     .centered {
         position: absolute;
@@ -72,7 +80,6 @@ input:hover {
         /* bring your own prefixes */
         transform: translate(-50%, -50%);
     }
-
 }
 
 @media (min-width: 768px) {
