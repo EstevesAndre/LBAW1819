@@ -136,6 +136,11 @@ input:hover {
     background-color: rgb(162, 156, 175);
 }
 
+#send-button {
+    background-color: #41206d;
+    border-color:rgb(162, 156, 175);
+}
+
 input#message-box {
     border: 20px;
 }

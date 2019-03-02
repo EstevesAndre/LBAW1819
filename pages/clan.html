@@ -1,126 +1,147 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
-        <link rel="icon" type="image/x-icon" href="/assets/logo.png"/>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
-        <script src="/scripts/bootstrap/bootstrap.min.js" defer></script>
-        <script src="/scripts/main.js" defer></script>
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/logo.png" />
 
-    <body class="bg-color">
-        <nav class="navbar navbar-expand-lg fixed-top fixed-nav">
-            <a class="navbar-brand" href="/index.html">
-                <img src="/assets/logo.png" width="30" height="30" alt="icon">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="/assets/Hamburger_icon.png" width="30" height="30" alt="burger">
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="#">Tasks</a>
-                    </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="">Shops</a>
-                    </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="#">Clan</a>
-                    </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="#">Help</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="mt-5 row text-center fullscreen text-white">
-            <div class="col-md-3 bg-light border-right">
-                <div class="h-100">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"
+        defer></script>
+    <script src="/scripts/bootstrap/bootstrap.min.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
+</head>
 
-                </div>
+<body class="bg-color">
+    <nav class="navbar navbar-expand-lg fixed-top fixed-nav">
+        <a class="navbar-brand" href="/index.html">
+            <img src="/assets/logo.png" width="30" height="30" alt="icon">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="/assets/Hamburger_icon.png" width="30" height="30" alt="burger">
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="#">Tasks</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="">Shops</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="#">Clan</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="#">Help</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="mt-5 row text-center fullscreen text-white">
+        <div class="col-md-2 bg-light border-right">
+            <div class="h-100">
+
             </div>
-            <div class="col-md-6 bg-light">
-                <div class="mt-3 height-20" id="clan-header">
-                    <img src="/assets/logo.png" alt="logo" width="100" class="rounded float-left m-2 bg-light">
-                </div>
+        </div>
+        <div class="col-md-7 bg-light">
+            <div class="mt-3 height-20" id="clan-header">
+                <img src="/assets/logo.png" alt="logo" width="100" class="rounded float-left m-2 bg-light">
             </div>
-            <div class="col-md-3 bg-light side-bar">
-                <div class="height-55 scroolable">
-                    <div class="list-group">
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            André Esteves
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Francisco Filipe
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Luís Diogo Silva
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            João Miguel
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            André Esteves
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Francisco Filipe
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Luís Diogo Silva
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            João Miguel
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            André Esteves
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Francisco Filipe
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Luís Diogo Silva
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            João Miguel
-                        </button>
-                    </div>
-                </div>
-                <div class="height-45">
-                    <div class="border-bottom text-left" id="active-chat-header">
-                        <img src="/assets/logo.png" alt="logo" width="25" class="m-2 border bg-warning img-fluid rounded-circle">
+        </div>
+        <div class="col-md-3 bg-light side-bar">
+            <div class="height-55 scroolable">
+                <div class="list-group">
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
                         André Esteves
-                        <small class="m-2">Student</small>
-                    </div>
-                    <div class="border-top w-100 bottom-contained">
-                        <input type="text" class="m-2 border rounded" id="message-box" placeholder="Write a message here!" required>
-                    </div>
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        André Esteves
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        André Esteves
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </button>
+                </div>
+            </div>
+            <div class="height-45">
+                <div class="border-bottom text-left" id="active-chat-header">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="m-2 border bg-warning img-fluid rounded-circle">
+                    André Esteves
+                    <small class="m-2">Student</small>
+                </div>
+                <div class="border-top w-100 bottom-contained">
+                    <input type="text" class="m-2 border float-left rounded w-75" id="message-box"placeholder="Write a message here!" required>
+                    <button type="submit" disabled class="btn btn-primary m-1" id="send-button">&#9993;</button>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 
-    <footer class="w-100 text-center footer">
-        <span class="text-success">Copyrights</span>
-        <span class="text-danger">reserved</span>
-    </footer>
+<footer class="w-100 text-center footer">
+    <span class="text-success">Copyrights</span>
+    <span class="text-danger">reserved</span>
+</footer>
+
 </html>
