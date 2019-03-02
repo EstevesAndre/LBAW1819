@@ -68,7 +68,12 @@ input:hover {
     min-width: 100%;
 }
 
-.footer {
+.footer-r {
+    position: relative;
+    bottom: 0;
+}
+
+.footer-a {
     position: absolute;
     bottom: 0;
 }
@@ -89,17 +94,6 @@ input:hover {
 
 .fixed-nav {
     background-color: rgb(112, 112, 150);
-}
-
-.side-bar {
-    position: fixed;
-    width: 25%;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    padding: 55px 0 0 0;
 }
 
 .scroolable {
@@ -125,6 +119,17 @@ input:hover {
 
     div.sign-up-l {
         text-align: left;
+    }
+
+    .side-bar {
+        position: fixed;
+        width: 25%;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        padding: 55px 0 0 0;
     }
 }
 
