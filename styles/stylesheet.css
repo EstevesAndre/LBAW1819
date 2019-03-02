@@ -128,3 +128,28 @@ input:hover {
     }
 }
 
+/**********/
+/* COMMON */
+/**********/
+
+#active-chat-header {
+    background-color: rgb(162, 156, 175);
+}
+
+input#message-box {
+    border: 20px;
+}
+
+/*************/
+/* CLAN PAGE */
+/*************/
+
+#clan-header {
+    background-color: rgb(162, 156, 175);
+    border-radius: 10px;
+}
+
+.height-20 {
+    height: 20%;
+}
+
