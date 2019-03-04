@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
     <link rel="icon" type="image/x-icon" href="/assets/logo.png" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -77,7 +78,7 @@
             <div class="clan-page-info">
                 <ul class="mt-5 nav nav-tabs" id="clan-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="tab-title nav-link" id="forum-tab" data-toggle="tab" href="#forum" role="tab"
+                        <a class="tab-title nav-link active" id="forum-tab" data-toggle="tab" href="#forum" role="tab"
                             aria-controls="forum" aria-selected="true">Forum</a>
                     </li>
                     <li class="nav-item">
@@ -91,15 +92,12 @@
                 </ul>
 
                 <div class="mt-4 tab-content" id="content">
-                    <div class="text-left tab-pane fade" id="forum" role="tabpanel" aria-labelledby="forum-tab">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim id est laborum.</p>
+                    <div class="text-left tab-pane fade active show" id="forum" role="tabpanel"
+                        aria-labelledby="forum-tab">
+                        <p>Vai ter publicações do género da home. O André está a tratar disso na home e depois copio
+                            para aqui.</p>
                     </div>
-                    <div class="tab-pane fade active show" id="members" role="tabpanel" aria-labelledby="members-tab">
+                    <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
                         <div class="list-group">
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
@@ -213,7 +211,56 @@
                             </button>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="leaderboard" role="tabpanel" aria-labelledby="leaderboard-tab">WTF
+                    <div class="tab-pane fade" id="leaderboard" role="tabpanel" aria-labelledby="leaderboard-tab">
+                        <ol class="pl-0">
+                            <button type="button" class="text-left list-group-item list-group-item-action">
+                                <li>
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-md-1">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-md-10 text-left">André Esteves</div>
+                                        <img src="/assets/first.png" alt="logo" class="col-md-1">
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item list-group-item-action">
+                                <li>
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-md-1">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-md-10 text-left">André Esteves</div>
+                                        <img src="/assets/second.png" alt="logo" class="col-md-1">
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item list-group-item-action">
+                                <li>
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-md-1">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-md-10 text-left">André Esteves</div>
+                                        <img src="/assets/third.png" alt="logo" class="col-md-1">
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item list-group-item-action">
+                                <li>
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-md-1">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-md-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                        </ol>
                     </div>
                 </div>
             </div>
