@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
         <link rel="icon" type="image/x-icon" href="/assets/logo.png"/>
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
@@ -17,7 +18,7 @@
     </head>
 
     <body class="bg-color">
-        <nav class="navbar navbar-expand-lg fixed-top fixed-nav">
+        <nav class="bg-secondary fixed-top navbar navbar-expand-lg fixed-nav">
             <a class="navbar-brand" href="/index.html">
                 <img src="/assets/logo.png" width="30" height="30" alt="icon">
             </a>
@@ -34,12 +35,18 @@
                         <a class="nav-link index-nav" href="">Shops</a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="#">Clan</a>
+                        <a class="nav-link index-nav" href="/pages/clan.html">Clan</a>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link index-nav" href="#">Help</a>
                     </li>
                 </ul>
+            </div>
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="" placeholder="Search...">
+                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
             </div>
         </nav>
         <div class="mt-5 row text-center fullscreen standar-text">
@@ -58,21 +65,61 @@
                         <textarea class="text-left col-md-7 mt-3 mb-3 border rounded" placeholder="Write your publication here..."></textarea>
                     </div>
                 </div>
-                <div class="mt-4">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="true">Newest</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="category-tab" data-toggle="tab" href="#category" role="tab" aria-controls="category" aria-selected="false">Categories</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
-                            <h3 class="bg-dark">OLA</h3>
-                        </div>
-                        <div class="tab-pane fade" id="category" role="tabpanel" aria-labelledby="category-tab">
-                            <h3 class="bg-dark">ADEUS</h3>
+                <div class="container mt-4 bg-dark h-100 rounded">
+                    <div class="row">	 
+                        <div class="col-lg-10 offset-lg-1">                            
+			                <div class="cardbox shadow-lg bg-white">
+                                <div class="cardbox-heading">
+                                    <div class="dropdown float-right">
+                                        <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            <em class="fa fa-ellipsis-h"></em>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style="position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                            <a class="dropdown-item" href="#">Hide post</a>
+                                            <a class="dropdown-item" href="#">Stop following</a>
+                                            <a class="dropdown-item" href="#">Report</a>
+                                        </div>
+                                    </div>
+                                    <div class="media m-0">
+                                        <div class="d-flex mr-3">
+                                            <a href=""><img class="img-fluid rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/4.jpg" alt="User"></a>
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="m-0">Benjamin Robinson</p>
+                                            <small><span><i class="icon ion-md-pin"></i> Nairobi, Kenya</span></small>
+                                            <small><span><i class="icon ion-md-time"></i> 10 hours ago</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cardbox-item">
+                                    <img class="img-fluid" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/1.jpg" alt="Image">
+                                </div><!--/ cardbox-item -->
+                                <div class="cardbox-base">
+                                    <ul class="float-right">
+                                        <li><a><i class="fa fa-comments"></i></a></li>
+                                        <li><a><em class="mr-5">12</em></a></li>
+                                        <li><a><i class="fa fa-share-alt"></i></a></li>
+                                        <li><a><em class="mr-3">03</em></a></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                                        <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/3.jpeg" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/1.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/5.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/2.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a><span>242 Likes</span></a></li>
+                                    </ul>			   
+                                </div>
+                                <div class="cardbox-comments">
+                                    <span class="comment-avatar float-left">
+                                        <a href=""><img class="rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg" alt="..."></a>                            
+                                    </span>
+                                    <div class="search">
+                                        <input placeholder="Write a comment" type="text">
+                                        <button><i class="fa fa-camera"></i></button>
+                                    </div>
+                                </div>                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +127,7 @@
             <div class="col-sm-12 col-md-2 bg-light side-bar">
                 <div class="height-55 scroolable">
                     <div class="list-group">
-                        <button type="button" class="text-left list-group-item list-group-item-action active">
+                        <button type="button" class="text-left list-group-item list-group-item-action">
                             <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                             André Esteves
                         </button>
@@ -130,14 +177,17 @@
                         </button>
                     </div>
                 </div>
-                <div class="bg-info height-45">
-                    <div class="border-bottom text-left">
-                        <img src="/assets/logo.png" alt="logo" width="25" class="m-2 border bg-warning img-fluid rounded-circle">
+                <div class="border-left height-45">
+                    <div class="border-bottom text-left" id="active-chat-header">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="m-2 border bg-warning img-fluid rounded-circle">
                         André Esteves
                         <small class="m-2">Student</small>
                     </div>
                     <div class="border-top w-100 bottom-contained">
-                        <input type="text" class="m-2 border rounded" placeholder="Write a message here!" required>
+                        <input type="text" class="m-2 border float-left rounded w-75" id="message-box"
+                            placeholder="Write a message here!" required>
+                        <button type="submit" disabled class="btn btn-primary m-1" id="send-button">&#9993;</button>
                     </div>
                 </div>
             </div>
