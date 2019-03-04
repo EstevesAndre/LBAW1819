@@ -217,7 +217,7 @@ input#message-box {
 }
 
 .height-20 {
-    height: 20%;
+    max-height: 20%;
 }
 
 .clan-page-info .tab-title {
