@@ -35,6 +35,10 @@ div.left-color {
     height: 45%;
 }
 
+.height-30 {
+    height: 30%;
+}
+
 .index-nav {
     color: rgb(234, 230, 235);
     font-size: 15px;
@@ -100,6 +104,10 @@ input:hover {
     overflow-y: scroll;
     top: 0;
     bottom: 0;
+}
+
+textarea {
+    resize: none;
 }
 
 @media (min-width: 576px) {
