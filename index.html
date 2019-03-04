@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
         <link rel="icon" type="image/x-icon" href="/assets/logo.png"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
@@ -16,7 +17,7 @@
     </head>
 
     <body class="bg-color">
-        <nav class="navbar navbar-expand-sm m-4">
+        <nav class="fixed-top bg-secondary navbar navbar-expand-sm">
             <a class="navbar-brand" href="/index.html">
                 <img src="/assets/logo.png" width="30" height="30" alt="icon">
             </a>
@@ -25,7 +26,7 @@
             </button>
     
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class=" navbar-nav mr-auto">
                     <li class="nav-item align-self-center">
                         <a class="nav-link index-nav" href="/index.html">AlterEgo</a>
                     </li>
@@ -41,8 +42,9 @@
                 </ul>
             </div>
         </nav>
-
-        <div class="ml-4 mr-4 text-center text-white items-centered-vertical fullscreen-3-4">
+        <br />
+        <br />
+        <div class="ml-4 mr-4 mt-5 text-center standar-text items-centered-vertical fullscreen-3-4">
             <div class="row align-bottom">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4 align-self-center">
                     <h2>Motivate yourself to achieve your goals</h2>
@@ -53,10 +55,10 @@
                     <h4>Sign Up For Free</h4>
                     <div class="row mb-4 ml-4 mr-4">
                         <div class="col-sm-6 col-md-12 col-lg-6 mt-3 mb-3">
-                            <button type="button" class="btn btn-outline-success w-100 h-100">Sign up with Google</button>
+                            <button type="button" class="btn btn-outline-danger w-100 h-100">Sign up with Google</button>
                         </div>
                         <div class="col-sm-6 col-md-12 col-lg-6 mt-3 mb-3">
-                            <button type="button" class="btn btn-outline-danger w-100">Sign up with Facebook</button>
+                            <button type="button" class="btn btn-outline-primary w-100">Sign up with Facebook</button>
                         </div>
                     </div>
                     <p class="text-justify mr-4 ml-4">Username must be 1 to 20 characters, containing only letters a to z, numbers 0 to 9, hyphens, or underscores, and cannot include any inappropriate terms.</p>
@@ -73,19 +75,18 @@
                         <div class="form-group">
                             <input type="text" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary fullsize">Sign Up</button>
+                        <button type="submit" class="btn btn-dark fullsize">Sign Up</button>
                     </form>
                     <span class="text-center">Already have an AlterEgo account? <a href="pages/login.html">Login</a></span>
                 </div>
             </div>
         </div>
-        <div id="about" class="ml-4 mr-4 mt-5 text-center text-white">
+        <div id="about" class="ml-4 mr-4 mt-5 text-center standar-text">
             <h2>AlterEgo</h2>
         </div>
     </body>
 
     <footer class="w-100 text-center footer-r">
-        <span class="text-success">Copyrights</span>
-        <span class="text-danger">reserved</span>
+        <span class="text-primary">Copyrights reserved</span>
     </footer>
 </html>
