@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
         <link rel="icon" type="image/x-icon" href="/assets/logo.png"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
@@ -16,7 +17,7 @@
     </head>
 
     <body class="bg-color">
-        <nav class="navbar navbar-expand-sm m-4">
+        <nav class="bg-secondary fixed-top navbar navbar-expand-sm">
             <a class="navbar-brand" href="/index.html">
                 <img src="/assets/logo.png" width="30" height="30" alt="icon">
             </a>
@@ -41,17 +42,20 @@
                 </ul>
             </div>
         </nav>
-
-        <div class="ml-4 mr-4 h-75">
-            <div class="centered text-center">
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="ml-4 mr-4 fullscreen-3-4">
+            <div class="col-md-6 offset-md-3 text-center">
                 <img src="/assets/logo.png" width="25%" alt="icon">
                 <h2><b>AlterEgo</b></h2>
                 <div class="row mb-4">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
-                        <button type="button" class="btn btn-outline-success w-100 h-100">Login with Google</button>
+                        <button type="button" class="btn btn-outline-danger w-100 h-100">Login with Google</button>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
-                        <button type="button" class="btn btn-outline-danger w-100 h-100">Login with Facebook</button>
+                        <button type="button" class="btn btn-outline-primary w-100 h-100">Login with Facebook</button>
                     </div>
                 </div>
                 <form class="text-left mb-3">
@@ -66,14 +70,14 @@
                             <a href="#" hh="/pages/passwordRequest.html"><span>Forgot Password?</span></a>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+                    <button type="submit" class="btn btn-dark w-100 mt-3">Login</button>
                 </form>
                 <span class="text-center text-warning">Don't have an AlterEgo account? <a href="/pages/signUp.html">Sign Up!</a></span>
             </div>
         </div>
     </body>
 
-    <footer class="w-100 text-center footer-a">
+    <footer class="mt-4 w-100 text-center footer-r">
         <span class="text-success">Copyrights</span>
         <span class="text-danger">reserved</span>
     </footer>
