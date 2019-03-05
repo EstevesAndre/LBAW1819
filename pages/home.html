@@ -1,331 +1,370 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
-        <link rel="icon" type="image/x-icon" href="/assets/logo.png"/>
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
-        <script src="/scripts/bootstrap/bootstrap.min.js" defer></script>
-        <script src="/scripts/main.js" defer></script>
-    </head>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles/stylesheet.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-    <body class="bg-color">
-        <nav class="bg-secondary fixed-top navbar navbar-expand-lg fixed-nav">
-            <a class="navbar-brand" href="/index.html">
-                <img src="/assets/logo.png" width="30" height="30" alt="icon">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="/assets/Hamburger_icon.png" width="30" height="30" alt="burger">
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="#">Tasks</a>
-                    </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="">Shops</a>
-                    </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="/pages/clan.html">Clan</a>
-                    </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link index-nav" href="#">Help</a>
-                    </li>
-                </ul>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"
+        defer></script>
+    <script src="/scripts/bootstrap/bootstrap.min.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
+</head>
+
+<body class="bg-color">
+    <nav class="bg-secondary fixed-top navbar navbar-expand-lg fixed-nav">
+        <a class="navbar-brand" href="/index.html">
+            <img src="/assets/logo.png" width="30" height="30" alt="icon">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="/assets/Hamburger_icon.png" width="30" height="30" alt="burger">
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="#">Tasks</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="">Shops</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="/pages/clan.html">Clan</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="#">Help</a>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex justify-content-center h-100">
+            <div class="searchbar">
+                <input class="search_input" type="text" name="" placeholder="Search...">
+                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
             </div>
-            <div class="d-flex justify-content-center h-100">
-                <div class="searchbar">
-                    <input class="search_input" type="text" name="" placeholder="Search...">
-                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                </div>
-            </div>
-        </nav>
-        <div class="mt-5 row text-center fullscreen standar-text">
-            <div class="col-sm-12 col-md-3 bg-light border-right">
-                <div class="h-100">
-
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-7 bg-light">
-                <div class="border bg-dark rounded mt-4 h-25">
-                    <div class="text-left row h-100">
-                        <div class="col-md-4 text-center align-self-center">
-                            <a href="#"><img width="75" class="img-fluid border rounded-circle mb-3" src="/assets/logo.png" alt="User"></a>
-                            <p>André Esteves</p>
-                        </div>
-                        <textarea class="text-left col-md-7 mt-3 mb-3 border rounded" placeholder="Write your publication here..."></textarea>
+        </div>
+    </nav>
+    <div class="mt-5 row text-center fullscreen standar-text">
+        <div class="col-sm-12 col-md-3 bg-light border-right">
+        </div>
+        <div class="col-sm-12 col-md-7 bg-light">
+            <div class="border bg-white rounded mt-4 h-25">
+                <div class="text-left row">
+                    <div class="col-md-4 mt-5 text-center align-self-center">
+                        <a href="#"><img width="75" class="img-fluid border rounded-circle mb-3" src="/assets/logo.png"
+                                alt="User"></a>
+                        <p>André Esteves</p>
                     </div>
-                </div>
-                <div class="post container text-left mt-4 rounded">
-                    <div class="cardbox shadow-lg bg-white">
-                        <div class="cardbox-heading">
-                            <div class="dropdown float-right mt-3 mr-3">
-                                <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
-                                    <em class="fa fa-ellipsis-h"></em>
-                                </button>
-                                <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                                    <a class="dropdown-item" href="#">Hide post</a>
-                                    <a class="dropdown-item" href="#">Stop following</a>
-                                    <a class="dropdown-item" href="#">Report</a>
-                                </div>
-                            </div>
-                            <div class="media m-0">
-                                <div class="d-flex m-3">
-                                    <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <p class="m-0">André Esteves</p>
-                                    <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
-                                    <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardbox-item ml-3 mr-3">
-                            <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
-                        </div>
-                        <div class="cardbox-base">
-                            <ul class="float-right">
-                                <li>
-                                    <a><i class="fa fa-comments"></i></a>
-                                </li>
-                                <li>
-                                    <a><em class="mr-5">12</em></a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-share-alt"></i></a>
-                                </li>
-                                <li>
-                                    <a><em class="mr-3">03</em></a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a><span>12 Likes</span></a></li>
-                            </ul>			   
-                        </div>
-                        <div class="cardbox-comments">
-                            <span class="comment-avatar float-left">
-                                <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>                            
-                            </span>
-                            <div class="search">
-                                <input placeholder="Write a comment" type="text">
-                                <button><i class="fas fa-share-square"></i></button>
-                            </div>
-                        </div>                                
-                    </div>
-                </div>
+                    <div class="col-md-7">
+                        <textarea class="text-left mt-4 h-100 w-100 border rounded"
+                            placeholder="Write your publication here..."></textarea>
+                        <button type="button" class="float-right btn btn-dark mt-3">Post</button>
+                        <button type="button" class="float-right btn btn-secondary m-3">Add Image</button>
 
-                <div class="post container text-left mt-4 rounded">
-                    <div class="cardbox shadow-lg bg-white">
-                        <div class="cardbox-heading">
-                            <div class="dropdown float-right mt-3 mr-3">
-                                <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
-                                    <em class="fa fa-ellipsis-h"></em>
-                                </button>
-                                <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                                    <a class="dropdown-item" href="#">Hide post</a>
-                                    <a class="dropdown-item" href="#">Stop following</a>
-                                    <a class="dropdown-item" href="#">Report</a>
-                                </div>
-                            </div>
-                            <div class="media m-0">
-                                <div class="d-flex m-3">
-                                    <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <p class="m-0">André Esteves</p>
-                                    <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
-                                    <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardbox-item ml-3 mr-3">
-                            <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
-                        </div>
-                        <div class="cardbox-base">
-                            <ul class="float-right">
-                                <li>
-                                    <a><i class="fa fa-comments"></i></a>
-                                </li>
-                                <li>
-                                    <a><em class="mr-5">12</em></a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-share-alt"></i></a>
-                                </li>
-                                <li>
-                                    <a><em class="mr-3">03</em></a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a><span>12 Likes</span></a></li>
-                            </ul>			   
-                        </div>
-                        <div class="cardbox-comments">
-                            <span class="comment-avatar float-left">
-                                <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>                            
-                            </span>
-                            <div class="search">
-                                <input placeholder="Write a comment" type="text">
-                                <button><i class="fas fa-share-square"></i></button>
-                            </div>
-                        </div>                                
-                    </div>
-                </div>
-
-                <div class="post container text-left mt-4 rounded">
-                    <div class="cardbox shadow-lg bg-white">
-                        <div class="cardbox-heading">
-                            <div class="dropdown float-right mt-3 mr-3">
-                                <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
-                                    <em class="fa fa-ellipsis-h"></em>
-                                </button>
-                                <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                                    <a class="dropdown-item" href="#">Hide post</a>
-                                    <a class="dropdown-item" href="#">Stop following</a>
-                                    <a class="dropdown-item" href="#">Report</a>
-                                </div>
-                            </div>
-                            <div class="media m-0">
-                                <div class="d-flex m-3">
-                                    <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <p class="m-0">André Esteves</p>
-                                    <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
-                                    <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardbox-item ml-3 mr-3">
-                            <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
-                        </div>
-                        <div class="cardbox-base">
-                            <ul class="float-right">
-                                <li>
-                                    <a><i class="fa fa-comments"></i></a>
-                                </li>
-                                <li>
-                                    <a><em class="mr-5">12</em></a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-share-alt"></i></a>
-                                </li>
-                                <li>
-                                    <a><em class="mr-3">03</em></a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
-                                <li><a><span>12 Likes</span></a></li>
-                            </ul>			   
-                        </div>
-                        <div class="cardbox-comments">
-                            <span class="comment-avatar float-left">
-                                <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>                            
-                            </span>
-                            <div class="search">
-                                <input placeholder="Write a comment" type="text">
-                                <button><i class="fas fa-share-square"></i></button>
-                            </div>
-                        </div>                                
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-2 bg-light side-bar">
-                <div class="height-55 scroolable">
-                    <div class="list-group">
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            André Esteves
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Francisco Filipe
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Luís Diogo Silva
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            João Miguel
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            André Esteves
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Francisco Filipe
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Luís Diogo Silva
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            João Miguel
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            André Esteves
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Francisco Filipe
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            Luís Diogo Silva
-                        </button>
-                        <button type="button" class="text-left list-group-item list-group-item-action">
-                            <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
-                            João Miguel
-                        </button>
+            <div class="post container text-left mt-4 rounded">
+                <div class="cardbox shadow-lg bg-white">
+                    <div class="cardbox-heading">
+                        <div class="dropdown float-right mt-3 mr-3">
+                            <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <em class="fa fa-ellipsis-h"></em>
+                            </button>
+                            <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                <a class="dropdown-item" href="#">Hide post</a>
+                                <a class="dropdown-item" href="#">Stop following</a>
+                                <a class="dropdown-item" href="#">Report</a>
+                            </div>
+                        </div>
+                        <div class="media m-0">
+                            <div class="d-flex m-3">
+                                <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                            </div>
+                            <div class="media-body align-self-center">
+                                <p class="m-0">André Esteves</p>
+                                <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
+                                <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardbox-item ml-3 mr-3">
+                        <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                    </div>
+                    <div class="cardbox-base">
+                        <ul class="float-right">
+                            <li>
+                                <a><i class="fa fa-comments"></i></a>
+                            </li>
+                            <li>
+                                <a><em class="mr-5">12</em></a>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-share-alt"></i></a>
+                            </li>
+                            <li>
+                                <a><em class="mr-3">03</em></a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a><span>12 Likes</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="cardbox-comments">
+                        <span class="comment-avatar float-left">
+                            <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>
+                        </span>
+                        <div class="search">
+                            <input placeholder="Write a comment" type="text">
+                            <button><i class="fas fa-share-square"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="border-left height-45">
-                    <div class="border-bottom text-left" id="active-chat-header">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="m-2 border bg-warning img-fluid rounded-circle">
-                        André Esteves
-                        <small class="m-2">Student</small>
+            </div>
+
+            <div class="post container text-left mt-4 rounded">
+                <div class="cardbox shadow-lg bg-white">
+                    <div class="cardbox-heading">
+                        <div class="dropdown float-right mt-3 mr-3">
+                            <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <em class="fa fa-ellipsis-h"></em>
+                            </button>
+                            <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                <a class="dropdown-item" href="#">Hide post</a>
+                                <a class="dropdown-item" href="#">Stop following</a>
+                                <a class="dropdown-item" href="#">Report</a>
+                            </div>
+                        </div>
+                        <div class="media m-0">
+                            <div class="d-flex m-3">
+                                <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                            </div>
+                            <div class="media-body align-self-center">
+                                <p class="m-0">André Esteves</p>
+                                <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
+                                <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
+                            </div>
+                        </div>
                     </div>
-                    <div class="border-top w-100 bottom-contained">
-                        <input type="text" class="m-2 border float-left rounded w-75" id="message-box"
-                            placeholder="Write a message here!" required>
-                        <button type="submit" disabled class="btn btn-primary m-1" id="send-button">&#9993;</button>
+                    <div class="cardbox-item ml-3 mr-3">
+                        <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                    </div>
+                    <div class="cardbox-base">
+                        <ul class="float-right">
+                            <li>
+                                <a><i class="fa fa-comments"></i></a>
+                            </li>
+                            <li>
+                                <a><em class="mr-5">12</em></a>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-share-alt"></i></a>
+                            </li>
+                            <li>
+                                <a><em class="mr-3">03</em></a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a><span>12 Likes</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="cardbox-comments">
+                        <span class="comment-avatar float-left">
+                            <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>
+                        </span>
+                        <div class="search">
+                            <input placeholder="Write a comment" type="text">
+                            <button><i class="fas fa-share-square"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post container text-left mt-4 rounded">
+                <div class="cardbox shadow-lg bg-white">
+                    <div class="cardbox-heading">
+                        <div class="dropdown float-right mt-3 mr-3">
+                            <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <em class="fa fa-ellipsis-h"></em>
+                            </button>
+                            <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                <a class="dropdown-item" href="#">Hide post</a>
+                                <a class="dropdown-item" href="#">Stop following</a>
+                                <a class="dropdown-item" href="#">Report</a>
+                            </div>
+                        </div>
+                        <div class="media m-0">
+                            <div class="d-flex m-3">
+                                <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                            </div>
+                            <div class="media-body align-self-center">
+                                <p class="m-0">André Esteves</p>
+                                <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
+                                <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardbox-item ml-3 mr-3">
+                        <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                    </div>
+                    <div class="cardbox-base">
+                        <ul class="float-right">
+                            <li>
+                                <a><i class="fa fa-comments"></i></a>
+                            </li>
+                            <li>
+                                <a><em class="mr-5">12</em></a>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-share-alt"></i></a>
+                            </li>
+                            <li>
+                                <a><em class="mr-3">03</em></a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a><span>12 Likes</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="cardbox-comments">
+                        <span class="comment-avatar float-left">
+                            <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>
+                        </span>
+                        <div class="search">
+                            <input placeholder="Write a comment" type="text">
+                            <button><i class="fas fa-share-square"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+        <div class="col-sm-12 col-md-2 bg-light side-bar">
+            <div class="height-55 scroolable">
+                <div class="list-group">
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        André Esteves
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        André Esteves
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        André Esteves
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </button>
+                    <button type="button" class="text-left list-group-item list-group-item-action">
+                        <img src="/assets/logo.png" alt="logo" width="25"
+                            class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </button>
+                </div>
+            </div>
+            <div class="border-left height-45">
+                <div class="border-bottom text-left" id="active-chat-header">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="m-2 border bg-warning img-fluid rounded-circle">
+                    André Esteves
+                    <small class="m-2">Student</small>
+                </div>
+                <div class="border-top w-100 bottom-contained">
+                    <input type="text" class="m-2 border float-left rounded w-75" id="message-box"
+                        placeholder="Write a message here!" required>
+                    <button type="submit" disabled class="btn btn-primary m-1" id="send-button">&#9993;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
-    <footer class="w-100 text-center footer">
-        <span class="text-success">Copyrights</span>
-        <span class="text-danger">reserved</span>
-    </footer>
+<footer class="w-100 text-center footer">
+    <span class="text-success">Copyrights</span>
+    <span class="text-danger">reserved</span>
+</footer>
+
 </html>
