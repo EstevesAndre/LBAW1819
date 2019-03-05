@@ -14,6 +14,15 @@
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
         defer></script>
@@ -72,8 +81,9 @@
                     <div class="text-left">
                         LVL 16
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                style="width: 75%">
                             </div>
                             1074 XP
                         </div>
@@ -88,88 +98,330 @@
                 </div>
             </div>
 
-        </div>
+            <div class="profile-page-info">
+                <ul class="mt-5 nav nav-tabs" id="profile-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="tab-title nav-link active" id="activity-tab" data-toggle="tab" href="#activity"
+                            role="tab" aria-controls="activity" aria-selected="true">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="tab-title nav-link" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab"
+                            aria-controls="gallery" aria-selected="false">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="tab-title nav-link" id="friends-tab" data-toggle="tab" href="#friends" role="tab"
+                            aria-controls="friends" aria-selected="false">Friends List</a>
+                    </li>
+                </ul>
 
+                <div class="mt-4 tab-content" id="content">
+                    <div class="text-left tab-pane fade active show" id="activity" role="tabpanel"
+                        aria-labelledby="actibity-tab">
+                        <div class="post container text-left mt-4 rounded">
+                            <div class="cardbox shadow-lg bg-white">
+                                <div class="cardbox-heading">
+                                    <div class="dropdown float-right mt-3 mr-3">
+                                        <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <em class="fa fa-ellipsis-h"></em>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                            <a class="dropdown-item" href="#">Hide post</a>
+                                            <a class="dropdown-item" href="#">Stop following</a>
+                                            <a class="dropdown-item" href="#">Report</a>
+                                        </div>
+                                    </div>
+                                    <div class="media m-0">
+                                        <div class="d-flex m-3">
+                                            <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png"
+                                                    alt="User"></a>
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <p class="m-0">André Esteves</p>
+                                            <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
+                                            <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cardbox-item ml-3 mr-3">
+                                    <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time.
+                                        Okokok</p>
+                                </div>
+                                <div class="cardbox-base">
+                                    <ul class="float-right">
+                                        <li>
+                                            <a><i class="fa fa-comments"></i></a>
+                                        </li>
+                                        <li>
+                                            <a><em class="mr-5">12</em></a>
+                                        </li>
+                                        <li>
+                                            <a><i class="fa fa-share-alt"></i></a>
+                                        </li>
+                                        <li>
+                                            <a><em class="mr-3">03</em></a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle"
+                                                    alt="User"></a>
+                                        </li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle"
+                                                    alt="User"></a>
+                                        </li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle"
+                                                    alt="User"></a>
+                                        </li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle"
+                                                    alt="User"></a>
+                                        </li>
+                                        <li><a><span>12 Likes</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="cardbox-comments">
+                                    <span class="comment-avatar float-left">
+                                        <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>
+                                    </span>
+                                    <div class="search">
+                                        <input placeholder="Write a comment" type="text">
+                                        <button><i class="fas fa-share-square"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade shadow-lg" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
+                        <div class="align-items-center container page-top">
+                            <div class="row">
+                                <div class="shadow-lg col-md-4 gallery">
+                                    <a href="/assets/logo.png" class="fancybox" rel="ligthbox">
+                                        <img src="/assets/logo.png" class="zoom img-fluid" alt="">
+                                    </a>
+                                </div>
 
+                                <div class="shadow-lg col-md-4 gallery">
+                                    <a href="/assets/logo.png" class="fancybox" rel="ligthbox">
+                                        <img src="/assets/logo.png" class="zoom img-fluid" alt="">
+                                    </a>
+                                </div>
 
-        <div class="col-md-2 side-bar">
-            <div class="height-55 scroolable">
-                <div class="list-group">
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        André Esteves
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Francisco Filipe
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Luís Diogo Silva
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        João Miguel
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        André Esteves
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Francisco Filipe
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Luís Diogo Silva
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        João Miguel
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        André Esteves
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Francisco Filipe
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Luís Diogo Silva
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        João Miguel
-                    </button>
+                                <div class="shadow-lg col-md-4 gallery">
+                                    <a href="/assets/logo.png" class="fancybox" rel="ligthbox">
+                                        <img src="/assets/logo.png" class="zoom img-fluid" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="shadow-lg p-2 col-md-4 gallery">
+                                    <a href="/assets/logo.png" class="fancybox" rel="ligthbox">
+                                        <img src="/assets/logo.png" class="zoom img-fluid" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="shadow-lg p-2 col-lg-3 gallery">
+                                    <a href="/assets/logo.png" class="fancybox" rel="ligthbox">
+                                        <img src="/assets/logo.png" class="zoom img-fluid" alt="">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade shadow-lg" id="friends" role="tabpanel" aria-labelledby="friends-tab">
+                    <div class="list-group">
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                        <button type="button" class="text-left list-group-item list-group-item-action">
+                            <div class="d-flex align-items-center row">
+                                <div class="col-md-1">
+                                    <img src="/assets/logo.png" alt="logo"
+                                        class="border bg-warning img-fluid rounded-circle">
+                                </div>
+                                <div class="col-md-6 text-left">André Esteves</div>
+                                <div class="col-md-5 text-right">Friends since 2016</div>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="height-45">
-                <div class="border-bottom text-left" id="active-chat-header">
+        </div>
+    </div>
+
+    <div class="col-md-2 side-bar">
+        <div class="height-55 scroolable">
+            <div class="list-group">
+                <button type="button" class="text-left list-group-item list-group-item-action">
                     <img src="/assets/logo.png" alt="logo" width="25"
-                        class="m-2 border bg-warning img-fluid rounded-circle">
+                        class="border bg-warning img-fluid rounded-circle">
                     André Esteves
-                </div>
-                <div class="border-top w-100 bottom-contained">
-                    <input type="text" class="m-2 border float-left rounded w-75" id="message-box"
-                        placeholder="Write a message here!" required>
-                    <button type="submit" disabled class="btn btn-primary m-1" id="send-button">&#9993;</button>
-                </div>
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    Francisco Filipe
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    Luís Diogo Silva
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    João Miguel
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    André Esteves
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    Francisco Filipe
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    Luís Diogo Silva
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    João Miguel
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    André Esteves
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    Francisco Filipe
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    Luís Diogo Silva
+                </button>
+                <button type="button" class="text-left list-group-item list-group-item-action">
+                    <img src="/assets/logo.png" alt="logo" width="25"
+                        class="border bg-warning img-fluid rounded-circle">
+                    João Miguel
+                </button>
             </div>
         </div>
+        <div class="height-45">
+            <div class="border-bottom text-left" id="active-chat-header">
+                <img src="/assets/logo.png" alt="logo" width="25"
+                    class="m-2 border bg-warning img-fluid rounded-circle">
+                André Esteves
+            </div>
+            <div class="border-top w-100 bottom-contained">
+                <input type="text" class="m-2 border float-left rounded w-75" id="message-box"
+                    placeholder="Write a message here!" required>
+                <button type="submit" disabled class="btn btn-primary m-1" id="send-button">&#9993;</button>
+            </div>
+        </div>
+    </div>
 
     </div>
 </body>
