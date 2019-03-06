@@ -6,7 +6,7 @@ body {
     font-family: 'Montserrat', Courier, monospace, Arial, Helvetica, sans-serif;
 }
 
-.standard-text {
+.standard-text, .standard-text:hover {
     color:black;
 }
 
@@ -25,6 +25,10 @@ div.left-color {
 
 .fullscreen-3-4 {
     min-height: 75%;
+}
+
+.fullscreen-1-4 {
+    min-height: 25%;
 }
 
 .fullscreen-1-2 {
@@ -82,8 +86,7 @@ input:hover {
 }
 
 .footer-a {
-    position: absolute;
-    bottom: 0;
+    padding: 10px 0;
 }
 
 .bottom-contained {
@@ -424,8 +427,20 @@ text-align: center;
 }
 
 .post:hover {   
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1); 
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05); 
+}
+
+b {
+    font-size: 1.6rem;
+}
+
+.panel-collapse {
+    height: 40px;
+}
+
+.min-height-auto {
+    min-height: auto;
 }
 
 @media (min-width: 576px) {
@@ -436,7 +451,18 @@ text-align: center;
         /* bring your own prefixes */
         transform: translate(-50%, -50%);
     }
+
+    b {
+        font-size: 2.2rem;
+    }
 }
+
+@media (max-width: 768px) {
+    .side {
+        display: none;
+    }
+}
+
 
 @media (min-width: 768px) {
     div.sign-up-r {
