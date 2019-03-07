@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
         defer></script>
@@ -27,31 +26,41 @@
 <body class="bg-color">
     <nav class="bg-secondary navbar navbar-expand-lg fixed-top fixed-nav">
         <a class="navbar-brand" href="/index.html">
-            <img src="/assets/logo.png" width="30" height="30" alt="icon">
+            <img src="/assets/logo.png" width="40" height="40" alt="icon">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <img src="/assets/Hamburger_icon.png" width="30" height="30" alt="burger">
+            <img src="/assets/Hamburger_icon.png" width="40" height="40" alt="burger">
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item align-self-center">
-                    <a class="nav-link index-nav" href="#">Tasks</a>
+                    <a class="nav-link index-nav" href="/index.html">AlterEgo</a>
                 </li>
                 <li class="nav-item align-self-center">
-                    <a class="nav-link index-nav" href="">Shops</a>
+                    <a class="nav-link index-nav" href="/pages/home.html">Home Page</a>
                 </li>
                 <li class="nav-item align-self-center">
-                    <a class="nav-link index-nav" href="#">Clan</a>
+                    <a class="nav-link index-nav" href="/pages/profile.html">Profile</a>
                 </li>
                 <li class="nav-item align-self-center">
-                    <a class="nav-link index-nav" href="#">Help</a>
+                    <a class="nav-link index-nav" href="/pages/clan.html">Clan</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="/pages/faqs.html">FAQs</a>
                 </li>
             </ul>
+            <div class="d-flex justify-content-center mr-2">
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="" placeholder="Search...">
+                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
+            </div>
         </div>
     </nav>
-    <div class="mt-5 row text-center fullscreen standar-text">
+    <br />
+    <div class="mt-5 row text-center fullscreen standard-text">
 
         <div class="col-md-2 border-right">
             <div class="h-100">
@@ -59,12 +68,11 @@
         </div>
 
         <div class="col-md-8">
-
             <div class="row align-items-center mt-4 height-20 m-1" id="clan-header">
                 <div class="col-md-2 mt-2 mb-2">
                     <img src="/assets/logo.png" alt="logo" width="100" class="rounded float-left bg-light">
                 </div>
-                <div class="col-md-7 mt-2 mb-2 text-left clan-bio">
+                <div class="col-md-7 mt-2 mb-2 text-left clan-bio bg-grey">
                     <h2>Clan Name</h2>
                     <p>Clan bio, briefly describing the clan.</p>
                 </div>
@@ -331,7 +339,7 @@
             </div>
         </div>
 
-        <div class="col-md-2 side-bar">
+        <div class="col-md-2 mt-2 side-bar">
             <div class="height-55 scroolable">
                 <div class="list-group">
                     <button type="button" class="text-left list-group-item list-group-item-action">
@@ -399,7 +407,7 @@
             <div class="height-45">
                 <div class="border-bottom text-left" id="active-chat-header">
                     <img src="/assets/logo.png" alt="logo" width="25"
-                        class="m-2 border bg-warning img-fluid rounded-circle">
+                        class="m-3 border bg-warning img-fluid rounded-circle">
                     André Esteves
                 </div>
                 <div class="border-top w-100 bottom-contained">
