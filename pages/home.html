@@ -26,56 +26,156 @@
 <body class="bg-color">
     <nav class="bg-secondary fixed-top navbar navbar-expand-lg fixed-nav">
         <a class="navbar-brand" href="/index.html">
-            <img src="/assets/logo.png" width="30" height="30" alt="icon">
+            <img src="/assets/logo.png" class="border rounded-circle bg-white" width="40" height="40" alt="icon">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <img src="/assets/Hamburger_icon.png" width="30" height="30" alt="burger">
+            <img src="/assets/Hamburger_icon.png" width="40" height="40" alt="burger">
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item align-self-center">
-                    <a class="nav-link index-nav" href="#">Tasks</a>
+                    <a class="nav-link index-nav" href="/index.html">AlterEgo</a>
                 </li>
                 <li class="nav-item align-self-center">
-                    <a class="nav-link index-nav" href="">Shops</a>
+                    <a class="nav-link index-nav" href="/pages/home.html">Home Page</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="/pages/profile.html">Profile</a>
                 </li>
                 <li class="nav-item align-self-center">
                     <a class="nav-link index-nav" href="/pages/clan.html">Clan</a>
                 </li>
                 <li class="nav-item align-self-center">
-                    <a class="nav-link index-nav" href="#">Help</a>
+                    <a class="nav-link index-nav" href="/pages/faqs.html">FAQs</a>
                 </li>
             </ul>
-        </div>
-        <div class="d-flex justify-content-center h-100">
-            <div class="searchbar">
-                <input class="search_input" type="text" name="" placeholder="Search...">
-                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+            <div class="d-flex justify-content-center mr-2">
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="" placeholder="Search...">
+                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
             </div>
-        </div>
+        </div>        
     </nav>
     <br />
     <div class="mt-5 row text-center fullscreen standar-text">
-        <div class="col-sm-12 col-md-12 col-lg-3 bg-light border-right side">
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-7 bg-light">
-            <div class="border row bg-white rounded mt-2 fullscreen-1-4 align-items-center">
-                <div class="col-sm-12 col-md-4 text-center">
-                    <a href="#"><img width="75" class="img-fluid border rounded-circle mb-3" src="/assets/logo.png" alt="User"></a>
-                    <p>André Esteves</p>
-                </div>
-                <div class="col-sm-12 col-md-8 text-center">
-                    <textarea class="text-left border rounded mr-3" placeholder="Write your publication here..."></textarea>
-                    <button type="button" class="ml-3 btn btn-dark">Post</button>
+        <div class="col-sm-12 col-md-12 col-lg-8 offset-lg-1">
+            <div class="container mt-2 fullscreen-1-4 border rounded bg-white d-flex ">
+                <div class="row align-items-center w-100 ml-0">
+                    <div class="col-sm-12 col-md-4 mt-2">
+                        <a href="#"><img width="75" class="img-fluid border rounded-circle mb-3" src="/assets/logo.png" alt="User"></a>
+                        <p>André Esteves</p>
+                    </div>
+                    <div class="col-sm-12 col-md-8 p-0 m-0 form-group">
+                        <textarea class="form-control text-left mt-3 w-100 border rounded" rows="6" placeholder="Write your publication here..."></textarea>
+                        <button type="button" class="float-right btn btn-dark mb-2 mt-2">Post</button>
+                        <button type="button" class="float-right btn btn-secondary mb-2 mt-2 mr-3 ml-3">Add Image</button>
+                    </div>
                 </div>
             </div>
+            <div class="container post mt-4 p-0">
+                <div class="cardbox shadow-lg bg-white">
+                    <div class="cardbox-heading">
+                        <div class="dropdown float-right mt-3 mr-3">
+                            <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <em class="fa fa-ellipsis-h"></em>
+                            </button>
+                            <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                <a class="dropdown-item" href="#">Hide post</a>
+                                <a class="dropdown-item" href="#">Stop following</a>
+                                <a class="dropdown-item" href="#">Report</a>
+                            </div>
+                        </div>
+                        <div class="media m-0">
+                            <div class="d-flex m-3">
+                                <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                            </div>
+                            <div class="media-body align-self-center">
+                                <p class="m-0">André Esteves</p>
+                                <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
+                                <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+
+            </div>
+            <!--
+            <div class="post container text-left mt-4 rounded">
+                <div class="cardbox shadow-lg bg-white">
+                    <div class="cardbox-heading">
+                        <div class="dropdown float-right mt-3 mr-3">
+                            <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <em class="fa fa-ellipsis-h"></em>
+                            </button>
+                            <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                <a class="dropdown-item" href="#">Hide post</a>
+                                <a class="dropdown-item" href="#">Stop following</a>
+                                <a class="dropdown-item" href="#">Report</a>
+                            </div>
+                        </div>
+                        <div class="media m-0">
+                            <div class="d-flex m-3">
+                                <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                            </div>
+                            <div class="media-body align-self-center">
+                                <p class="m-0">André Esteves</p>
+                                <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
+                                <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardbox-item ml-3 mr-3">
+                        <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                    </div>
+                    <div class="cardbox-base">
+                        <ul class="float-right">
+                            <li>
+                                <a><i class="fa fa-comments"></i></a>
+                            </li>
+                            <li>
+                                <a><em class="mr-5">12</em></a>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-share-alt"></i></a>
+                            </li>
+                            <li>
+                                <a><em class="mr-3">03</em></a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
+                            </li>
+                            <li><a><span>12 Likes</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="cardbox-comments">
+                        <span class="comment-avatar float-left">
+                            <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>
+                        </span>
+                        <div class="search">
+                            <input placeholder="Write a comment" type="text">
+                            <button><i class="fas fa-share-square"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        -->
         </div>
     </div>
-
-    <!--
+<!--
     <div class="mt-5 row text-center fullscreen standar-text">
         <div class="col-sm-12 col-md-3 bg-light border-right side">
         </div>
