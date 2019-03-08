@@ -399,6 +399,10 @@ b {
     .searchbar:hover > .search_input{
         width: 200px;
     }
+
+    .friend-img {
+        padding-right: 0%;
+    }
 }
 
 
@@ -509,7 +513,3 @@ input#message-box {
     background-color: rgb(228, 226, 222);
 }
 
-.gallery:hover {   
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1); 
-}
