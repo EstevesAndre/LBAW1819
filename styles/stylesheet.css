@@ -299,22 +299,18 @@ textarea {
     color: white;
 }
 
-a.friend-list {
-    border-radius: 20px;
-}
-
 .chat-content {
     border-radius: 20px;
-    background-color: #a9cec4; 
-    border-color: #00421e;
+    color: whitesmoke;
+    background-color: #6c757d;
 }
 
 a.friend-list.active {
     outline-offset: 0px !important;
     outline: none !important;
     color: black;
-    background-color: #a9cec4; 
-    border-color: #00421e;
+    background-color: rgb(228, 226, 222);
+    border-color: #9da3a0;
 }
 
 textarea.form-control {
