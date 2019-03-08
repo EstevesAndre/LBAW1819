@@ -376,6 +376,11 @@ b {
 .min-height-auto {
     min-height: auto;
 }
+@media (max-width: 576px) {
+    .clan-bio, .clan-info {
+        margin-left: 10px;
+    }
+}
 
 @media (min-width: 576px) {
     .centered {

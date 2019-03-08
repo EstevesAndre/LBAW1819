@@ -61,28 +61,35 @@
     </nav>
     <br />
     <div class="mt-5 row text-center fullscreen standard-text">
-
-        <div class="col-md-2 border-right">
-            <div class="h-100">
+        <div class="col-sm-12 col-md-8 col-lg-9 mb-4 activity">
+            <div class="container mt-3 bg-white rounded shadow-lg">
+                <div class="row align-items-center py-5" id="clan-header">
+                    <div class="col-sm-12 col-lg-2 align-self-center">
+                        <a href="#"><img width="200" class="img-fluid border rounded-circle" src="/assets/logo.png" alt="Clan"></a>
+                    </div>
+                    <div class="col-sm-12 col-lg-7 my-2 text-left clan-bio">
+                        <div class=" text-left basic-info mt-2">
+                            <h2>Clan Name</h2>
+                            <p>Clan bio, briefly describing the clan.</p>
+                        </div>
+                        <div class="text-left">
+                            LVL 16
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                    role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                    style="width: 75%">
+                                </div>
+                                1074 XP
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-3 my-2 text-left clan-info">
+                        <div class="my-2"><i class="fas fa-globe"></i> Rank: 52</div>
+                        <div class="my-2"><i class="fas fa-user-cog"></i> Owner: André</div>
+                        <div class="my-2"><i class="fas fa-users"></i> Members: 574</div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="col-md-8">
-            <div class="row align-items-center mt-4 height-20 m-1 shadow-lg rounded bg-white" id="clan-header">
-                <div class="col-md-2 mt-2 mb-2">
-                    <img src="/assets/logo.png" alt="logo" width="100" class="rounded float-left bg-light">
-                </div>
-                <div class="col-md-7 mt-2 mb-2 text-left clan-bio">
-                    <h2>Clan Name</h2>
-                    <p>Clan bio, briefly describing the clan.</p>
-                </div>
-                <div class="text-left col-md-3 clan-info">
-                    <div><i class="fas fa-globe"></i> Rank: 52</div>
-                    <div><i class="fas fa-user-cog"></i> Owner: André</div>
-                    <div><i class="fas fa-users"></i> Members: 574</div>
-                </div>
-            </div>
-
             <div class="clan-page-info">
                 <ul class="mt-5 nav nav-tabs" id="clan-tabs" role="tablist">
                     <li class="nav-item">
@@ -102,184 +109,382 @@
                 <div class="mt-4 tab-content" id="content">
                     <div class="text-left tab-pane fade active show" id="forum" role="tabpanel"
                         aria-labelledby="forum-tab">
-                        <div class="post container text-left mt-4 rounded">
-                                <div class="cardbox shadow-lg bg-white">
-                                    <div class="cardbox-heading">
-                                        <div class="dropdown float-right mt-3 mr-3">
-                                            <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
-                                                aria-expanded="false">
-                                                <em class="fa fa-ellipsis-h"></em>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                                                <a class="dropdown-item" href="#">Hide post</a>
-                                                <a class="dropdown-item" href="#">Stop following</a>
-                                                <a class="dropdown-item" href="#">Report</a>
-                                            </div>
-                                        </div>
-                                        <div class="media m-0">
-                                            <div class="d-flex m-3">
-                                                <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
-                                            </div>
-                                            <div class="media-body align-self-center">
-                                                <p class="m-0">André Esteves</p>
-                                                <small><span><i class="icon ion-md-pin"></i>Porto, Portugal</span></small>
-                                                <small><span><i class="icon ion-md-time"></i>10 hours ago</span></small>
-                                            </div>
+                        <div class="container post mt-4 mb-2 p-0">
+                            <div class="cardbox text-left shadow-lg bg-white">
+                                <div class="cardbox-heading">
+                                    <div class="dropdown float-right mt-3 mr-3">
+                                        <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+                                        <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                            <a class="dropdown-item" href="#">Hide post</a>
+                                            <a class="dropdown-item" href="#">Report</a>
                                         </div>
                                     </div>
-                                    <div class="cardbox-item ml-3 mr-3">
-                                        <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
-                                    </div>
-                                    <div class="cardbox-base">
-                                        <ul class="float-right">
-                                            <li>
-                                                <a><i class="fa fa-comments"></i></a>
-                                            </li>
-                                            <li>
-                                                <a><em class="mr-5">12</em></a>
-                                            </li>
-                                            <li>
-                                                <a><i class="fa fa-share-alt"></i></a>
-                                            </li>
-                                            <li>
-                                                <a><em class="mr-3">03</em></a>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
-                                            </li>
-                                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
-                                            </li>
-                                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
-                                            </li>
-                                            <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a>
-                                            </li>
-                                            <li><a><span>12 Likes</span></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="cardbox-comments">
-                                        <span class="comment-avatar float-left">
-                                            <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="..."></a>
-                                        </span>
-                                        <div class="search">
-                                            <input placeholder="Write a comment" type="text">
-                                            <button><i class="fas fa-share-square"></i></button>
+                                    <div class="media m-0">
+                                        <div class="d-flex m-3">
+                                            <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                                        </div>
+                                        <div class="media-body ml-1 align-self-center">
+                                            <p class="m-0">André Esteves</p>
+                                            <small><span><i class="icon ion-md-pin mb-0"></i>Porto, Portugal</span></small>
+                                            <small><span><i class="icon ion-md-time mt-0"></i>10 hours ago</span></small>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="cardbox-item mx-3">
+                                    <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                                </div>
+                                <div class="cardbox-base">
+                                    <ul class="mx-3 mb-1">
+                                        <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a><span>12 Likes</span></a></li>
+                                    </ul>
+                                    <ul class="mx-3 mt-2">
+                                        <li><a href=""><i class="fa fa-comments"></i></a></li>
+                                        <li><a><em class="mr-5">12</em></a></li>
+                                        <li><a href=""><i class="fa fa-share-alt"></i></a></li>
+                                        <li><a><em class="mr-3">03</em></a></li>
+                                    </ul>
+                                </div>
+                                <div class="cardbox-comments d-flex align-items-center">
+                                    <span class="comment-avatar float-left mr-2">
+                                        <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="Avatar"></a>
+                                    </span>
+                                    <div class="search-comment">
+                                        <input placeholder="Write a comment..." type="text">
+                                        <button><i class="fas fa-share-square"></i></button>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="container post mt-4 mb-2 p-0">
+                            <div class="cardbox text-left shadow-lg bg-white">
+                                <div class="cardbox-heading">
+                                    <div class="dropdown float-right mt-3 mr-3">
+                                        <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+                                        <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                            <a class="dropdown-item" href="#">Hide post</a>
+                                            <a class="dropdown-item" href="#">Report</a>
+                                        </div>
+                                    </div>
+                                    <div class="media m-0">
+                                        <div class="d-flex m-3">
+                                            <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                                        </div>
+                                        <div class="media-body ml-1 align-self-center">
+                                            <p class="m-0">André Esteves</p>
+                                            <small><span><i class="icon ion-md-pin mb-0"></i>Porto, Portugal</span></small>
+                                            <small><span><i class="icon ion-md-time mt-0"></i>10 hours ago</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cardbox-item mx-3">
+                                    <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                                </div>
+                                <div class="cardbox-base">
+                                    <ul class="mx-3 mb-1">
+                                        <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a><span>12 Likes</span></a></li>
+                                    </ul>
+                                    <ul class="mx-3 mt-2">
+                                        <li><a href=""><i class="fa fa-comments"></i></a></li>
+                                        <li><a><em class="mr-5">12</em></a></li>
+                                        <li><a href=""><i class="fa fa-share-alt"></i></a></li>
+                                        <li><a><em class="mr-3">03</em></a></li>
+                                    </ul>
+                                </div>
+                                <div class="cardbox-comments d-flex align-items-center">
+                                    <span class="comment-avatar float-left mr-2">
+                                        <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="Avatar"></a>
+                                    </span>
+                                    <div class="search-comment">
+                                        <input placeholder="Write a comment..." type="text">
+                                        <button><i class="fas fa-share-square"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container post mt-4 mb-2 p-0">
+                            <div class="cardbox text-left shadow-lg bg-white">
+                                <div class="cardbox-heading">
+                                    <div class="dropdown float-right mt-3 mr-3">
+                                        <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+                                        <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                            <a class="dropdown-item" href="#">Hide post</a>
+                                            <a class="dropdown-item" href="#">Report</a>
+                                        </div>
+                                    </div>
+                                    <div class="media m-0">
+                                        <div class="d-flex m-3">
+                                            <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                                        </div>
+                                        <div class="media-body ml-1 align-self-center">
+                                            <p class="m-0">André Esteves</p>
+                                            <small><span><i class="icon ion-md-pin mb-0"></i>Porto, Portugal</span></small>
+                                            <small><span><i class="icon ion-md-time mt-0"></i>10 hours ago</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cardbox-item mx-3">
+                                    <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                                </div>
+                                <div class="cardbox-base">
+                                    <ul class="mx-3 mb-1">
+                                        <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a><span>12 Likes</span></a></li>
+                                    </ul>
+                                    <ul class="mx-3 mt-2">
+                                        <li><a href=""><i class="fa fa-comments"></i></a></li>
+                                        <li><a><em class="mr-5">12</em></a></li>
+                                        <li><a href=""><i class="fa fa-share-alt"></i></a></li>
+                                        <li><a><em class="mr-3">03</em></a></li>
+                                    </ul>
+                                </div>
+                                <div class="cardbox-comments d-flex align-items-center">
+                                    <span class="comment-avatar float-left mr-2">
+                                        <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="Avatar"></a>
+                                    </span>
+                                    <div class="search-comment">
+                                        <input placeholder="Write a comment..." type="text">
+                                        <button><i class="fas fa-share-square"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container post mt-4 mb-2 p-0">
+                            <div class="cardbox text-left shadow-lg bg-white">
+                                <div class="cardbox-heading">
+                                    <div class="dropdown float-right mt-3 mr-3">
+                                        <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+                                        <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                            <a class="dropdown-item" href="#">Hide post</a>
+                                            <a class="dropdown-item" href="#">Report</a>
+                                        </div>
+                                    </div>
+                                    <div class="media m-0">
+                                        <div class="d-flex m-3">
+                                            <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                                        </div>
+                                        <div class="media-body ml-1 align-self-center">
+                                            <p class="m-0">André Esteves</p>
+                                            <small><span><i class="icon ion-md-pin mb-0"></i>Porto, Portugal</span></small>
+                                            <small><span><i class="icon ion-md-time mt-0"></i>10 hours ago</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cardbox-item mx-3">
+                                    <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                                </div>
+                                <div class="cardbox-base">
+                                    <ul class="mx-3 mb-1">
+                                        <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a><span>12 Likes</span></a></li>
+                                    </ul>
+                                    <ul class="mx-3 mt-2">
+                                        <li><a href=""><i class="fa fa-comments"></i></a></li>
+                                        <li><a><em class="mr-5">12</em></a></li>
+                                        <li><a href=""><i class="fa fa-share-alt"></i></a></li>
+                                        <li><a><em class="mr-3">03</em></a></li>
+                                    </ul>
+                                </div>
+                                <div class="cardbox-comments d-flex align-items-center">
+                                    <span class="comment-avatar float-left mr-2">
+                                        <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="Avatar"></a>
+                                    </span>
+                                    <div class="search-comment">
+                                        <input placeholder="Write a comment..." type="text">
+                                        <button><i class="fas fa-share-square"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container post mt-4 mb-2 p-0">
+                            <div class="cardbox text-left shadow-lg bg-white">
+                                <div class="cardbox-heading">
+                                    <div class="dropdown float-right mt-3 mr-3">
+                                        <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
+                                        <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
+                                            <a class="dropdown-item" href="#">Hide post</a>
+                                            <a class="dropdown-item" href="#">Report</a>
+                                        </div>
+                                    </div>
+                                    <div class="media m-0">
+                                        <div class="d-flex m-3">
+                                            <a href=""><img class="img-fluid rounded-circle" src="/assets/logo.png" alt="User"></a>
+                                        </div>
+                                        <div class="media-body ml-1 align-self-center">
+                                            <p class="m-0">André Esteves</p>
+                                            <small><span><i class="icon ion-md-pin mb-0"></i>Porto, Portugal</span></small>
+                                            <small><span><i class="icon ion-md-time mt-0"></i>10 hours ago</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cardbox-item mx-3">
+                                    <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time. Okokok</p>
+                                </div>
+                                <div class="cardbox-base">
+                                    <ul class="mx-3 mb-1">
+                                        <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a href="#"><img src="/assets/logo.png" class="img-fluid rounded-circle" alt="User"></a></li>
+                                        <li><a><span>12 Likes</span></a></li>
+                                    </ul>
+                                    <ul class="mx-3 mt-2">
+                                        <li><a href=""><i class="fa fa-comments"></i></a></li>
+                                        <li><a><em class="mr-5">12</em></a></li>
+                                        <li><a href=""><i class="fa fa-share-alt"></i></a></li>
+                                        <li><a><em class="mr-3">03</em></a></li>
+                                    </ul>
+                                </div>
+                                <div class="cardbox-comments d-flex align-items-center">
+                                    <span class="comment-avatar float-left mr-2">
+                                        <a href=""><img class="rounded-circle" src="/assets/logo.png" alt="Avatar"></a>
+                                    </span>
+                                    <div class="search-comment">
+                                        <input placeholder="Write a comment..." type="text">
+                                        <button><i class="fas fa-share-square"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade shadow-lg" id="members" role="tabpanel" aria-labelledby="members-tab">
                         <div class="list-group">
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-md-1">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="/assets/logo.png" alt="logo"
                                             class="border bg-warning img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-md-6 text-left">André Esteves</div>
-                                    <div class="col-md-5 text-right">Member since 2016</div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
+                                </div>
+                            </button>
+                            <button type="button" class="text-left list-group-item list-group-item-action">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-2 col-sm-1 friend-img">
+                                        <img src="/assets/logo.png" alt="logo"
+                                            class="border bg-warning img-fluid rounded-circle">
+                                    </div>
+                                    <div class="col-5 col-sm-6 pr-1">André Esteves</div>
+                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2016</div>
                                 </div>
                             </button>
                         </div>
@@ -289,47 +494,141 @@
                             <button type="button" class="text-left list-group-item border-0 list-group-item-action">
                                 <li class="ml-3">
                                     <div class="d-flex align-items-center row">
-                                        <div class="col-md-1">
+                                        <div class="col-2 col-sm-1 friend-img">
                                             <img src="/assets/logo.png" alt="logo"
                                                 class="border bg-warning img-fluid rounded-circle">
                                         </div>
-                                        <div class="col-md-10 text-left">André Esteves</div>
-                                        <img src="/assets/first.png" alt="logo" class="col-md-1">
+                                        <div class="col-7 col-sm-6 text-left">André Esteves</div>
+                                        <div class="col-3 col-sm-5 text-right">
+                                            <img src="/assets/first.png" alt="logo">
+                                        </div>
                                     </div>
                                 </li>
                             </button>
                             <button type="button" class="text-left list-group-item border-0 list-group-item-action">
                                 <li class="ml-3">
                                     <div class="d-flex align-items-center row">
-                                        <div class="col-md-1">
+                                        <div class="col-2 col-sm-1 friend-img">
                                             <img src="/assets/logo.png" alt="logo"
                                                 class="border bg-warning img-fluid rounded-circle">
                                         </div>
-                                        <div class="col-md-10 text-left">André Esteves</div>
-                                        <img src="/assets/second.png" alt="logo" class="col-md-1">
+                                        <div class="col-7 col-sm-6 text-left">André Esteves</div>
+                                        <div class="col-3 col-sm-5 text-right">
+                                            <img src="/assets/second.png" alt="logo">
+                                        </div>
                                     </div>
                                 </li>
                             </button>
                             <button type="button" class="text-left list-group-item border-0 list-group-item-action">
                                 <li class="ml-3">
                                     <div class="d-flex align-items-center row">
-                                        <div class="col-md-1">
+                                        <div class="col-2 col-sm-1 friend-img">
                                             <img src="/assets/logo.png" alt="logo"
                                                 class="border bg-warning img-fluid rounded-circle">
                                         </div>
-                                        <div class="col-md-10 text-left">André Esteves</div>
-                                        <img src="/assets/third.png" alt="logo" class="col-md-1">
+                                        <div class="col-7 col-sm-6 text-left">André Esteves</div>
+                                        <div class="col-3 col-sm-5 text-right">
+                                            <img src="/assets/third.png" alt="logo">
+                                        </div>
                                     </div>
                                 </li>
                             </button>
                             <button type="button" class="text-left list-group-item border-0 list-group-item-action">
                                 <li class="ml-3">
                                     <div class="d-flex align-items-center row">
-                                        <div class="col-md-1">
+                                        <div class="col-2 col-sm-1 friend-img">
                                             <img src="/assets/logo.png" alt="logo"
                                                 class="border bg-warning img-fluid rounded-circle">
                                         </div>
-                                        <div class="col-md-11 text-left">André Esteves</div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
+                                    </div>
+                                </li>
+                            </button>
+                            <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="/assets/logo.png" alt="logo"
+                                                class="border bg-warning img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-10 col-sm-11 text-left">André Esteves</div>
                                     </div>
                                 </li>
                             </button>
@@ -338,92 +637,121 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-2 mt-2 side-bar">
+        <div class="col-sm-12 col-md-4 col-lg-3 bg-light side-bar side">
             <div class="height-55 scroolable">
-                <div class="list-group" id="chat-friends">
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                <div class="list-group text-left" id="list-tab" role="tablist">
+                    <a class="friend-list list-group-item list-group-item-action active" id="list-1-list" data-toggle="list" href="#list-1" role="tab" aria-controls="1">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         André Esteves
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Francisco Filipe
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-2-list" data-toggle="list" href="#list-2" role="tab" aria-controls="2">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         Luís Diogo Silva
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-3-list" data-toggle="list" href="#list-3" role="tab" aria-controls="3">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-4-list" data-toggle="list" href="#list-4" role="tab" aria-controls="3">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         João Miguel
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-5-list" data-toggle="list" href="#list-5" role="tab" aria-controls="5">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         André Esteves
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Francisco Filipe
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-6-list" data-toggle="list" href="#list-6" role="tab" aria-controls="6">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         Luís Diogo Silva
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-7-list" data-toggle="list" href="#list-7" role="tab" aria-controls="7">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-8-list" data-toggle="list" href="#list-8" role="tab" aria-controls="8">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         João Miguel
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-9-list" data-toggle="list" href="#list-9" role="tab" aria-controls="9">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         André Esteves
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
-                        Francisco Filipe
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-10-list" data-toggle="list" href="#list-10" role="tab" aria-controls="10">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         Luís Diogo Silva
-                    </button>
-                    <button type="button" class="text-left list-group-item list-group-item-action">
-                        <img src="/assets/logo.png" alt="logo" width="25"
-                            class="border bg-warning img-fluid rounded-circle">
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-11-list" data-toggle="list" href="#list-11" role="tab" aria-controls="11">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </a>
+                    <a class="friend-list list-group-item list-group-item-action" id="list-12-list" data-toggle="list" href="#list-12" role="tab" aria-controls="12">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                         João Miguel
-                    </button>
+                    </a>
                 </div>
             </div>
-            <div class="height-45">
-                <div class="py-2 px-3 border-bottom text-left" id="active-chat-header">
-                    <img src="/assets/logo.png" alt="logo" width="25"
-                        class="border bg-warning img-fluid rounded-circle">
-                    André Esteves
+            <div class="border-left height-45">
+                <div class="py-2 px-3 border rounded text-left tab-content chat-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-1-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        André Esteves
+                    </div>
+                    <div class="tab-pane fade" id="list-2" role="tabpanel" aria-labelledby="list-2-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </div>
+                    <div class="tab-pane fade" id="list-3" role="tabpanel" aria-labelledby="list-3-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </div>
+                    <div class="tab-pane fade" id="list-4" role="tabpanel" aria-labelledby="list-4-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </div>
+                    <div class="tab-pane fade" id="list-5" role="tabpanel" aria-labelledby="list-5-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        André Esteves
+                    </div>
+                    <div class="tab-pane fade" id="list-6" role="tabpanel" aria-labelledby="list-6-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </div>
+                    <div class="tab-pane fade" id="list-7" role="tabpanel" aria-labelledby="list-7-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </div>
+                    <div class="tab-pane fade" id="list-8" role="tabpanel" aria-labelledby="list-8-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </div>
+                    <div class="tab-pane fade" id="list-9" role="tabpanel" aria-labelledby="list-9-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        André Esteves
+                    </div>
+                    <div class="tab-pane fade" id="list-10" role="tabpanel" aria-labelledby="list-19-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Luís Diogo Silva
+                    </div>
+                    <div class="tab-pane fade" id="list-11" role="tabpanel" aria-labelledby="list-11-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        Francisco Filipe
+                    </div>
+                    <div class="tab-pane fade" id="list-12" role="tabpanel" aria-labelledby="list-12-list">
+                        <img src="/assets/logo.png" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
+                        João Miguel
+                    </div>
                 </div>
                 <div class="border-top w-100 bottom-contained">
                     <input type="text" class="m-2 border float-left rounded w-75" id="message-box"
                         placeholder="Write a message here!" required>
                     <button type="submit" disabled class="btn btn-primary m-1" id="send-button">&#9993;</button>
                 </div>
-            </div>
+            </div>       
         </div>
-
     </div>
 </body>
-
-<footer class="w-100 text-center footer">
-    <span class="text-success">Copyrights</span>
-    <span class="text-danger">reserved</span>
+<footer class="mt-4 w-100 text-center footer-r">
+    <span class="text-primary">Copyrights reserved</span>
 </footer>
 
 </html>
