@@ -295,6 +295,10 @@ textarea {
     outline: none !important;
 }
 
+.hamburger-icon {
+    color: white;
+}
+
 a.friend-list {
     border-radius: 20px;
 }
