@@ -148,7 +148,6 @@ textarea {
 .searchbar:hover > .search_input{
     padding: 0 10px;
     margin-top: 5px;
-    width: 350px;
     caret-color:white;
     background: none;
     transition: width 0.4s linear;
@@ -296,6 +295,32 @@ textarea {
     outline: none !important;
 }
 
+a.friend-list {
+    border-radius: 20px;
+}
+
+.chat-content {
+    border-radius: 20px;
+    background-color: #a9cec4; 
+    border-color: #00421e;
+}
+
+a.friend-list.active {
+    outline-offset: 0px !important;
+    outline: none !important;
+    color: black;
+    background-color: #a9cec4; 
+    border-color: #00421e;
+}
+
+textarea.form-control {
+    border-radius: 20px;
+}
+
+textarea.form-control:focus {
+    background-color: #eeeeee;    
+}
+
 .search-comment button:focus {
     outline-offset: 0px !important;
     outline: none !important;
@@ -315,7 +340,7 @@ textarea {
     width: 10%;
     border: none;
     background-color: transparent;
-    color: #bbbbbb;
+    color: #eeeeee;
     padding: 10px 0px;
     cursor: pointer;
 }
@@ -332,8 +357,8 @@ textarea {
 }
 
 .post:hover {   
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05); 
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03); 
 }
 
 b {
@@ -366,6 +391,10 @@ b {
     .side {
         display: none;
     }
+
+    .searchbar:hover > .search_input{
+        width: 200px;
+    }
 }
 
 
@@ -380,12 +409,20 @@ b {
 
     .side-bar {
         position: fixed;
-        z-index: -1;
+        z-index: 1;
         top: 0;
         right: 0;
         bottom: 0;
         overflow-x: hidden;
-        padding: 67px 0 0 30px;
+        padding: 67px 0 0 0;
+    }
+
+    .searchbar:hover > .search_input{
+        width: 350px;
+    }
+
+    .activity {
+        padding: 0 30px 0 30px;
     }
 }
 
