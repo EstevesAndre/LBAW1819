@@ -440,11 +440,6 @@ input#message-box {
 /* CLAN PAGE */
 /*************/
 
-#clan-header {
-    background-color: rgb(228, 226, 222);
-    border-radius: 10px;
-}
-
 .height-20 {
     max-height: 20%;
 }
@@ -467,6 +462,10 @@ input#message-box {
 
 .profile-page-info .tab-title {
     color: black;   
+}
+
+.profile-page-info .tab-title.active {
+    background-color: rgb(228, 226, 222);
 }
 
 .gallery:hover {   
