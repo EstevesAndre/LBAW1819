@@ -514,3 +514,21 @@ input#message-box {
     background-color: rgb(228, 226, 222);
 }
 
+/***************/
+/* Leaderboard */
+/***************/
+
+#leaderboard-content .row {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .first-place, .second-place, .third-place {
+    display: table-cell;
+    text-align:center;
+  }
+  .first-place img, .second-place img, .third-place img {
+    width: 100%;
+    height: auto;
+  }
+
