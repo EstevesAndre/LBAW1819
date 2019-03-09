@@ -55,6 +55,7 @@ div.left-color {
     height: 30%;
 }
 
+
 .index-nav {
     color: rgb(234, 230, 235);
     font-size: 15px;
@@ -62,6 +63,15 @@ div.left-color {
 
 .index-nav:hover {
     color: rgb(255, 255, 255);
+}
+
+.index-nav.active {
+    color: rgb(130, 192, 151);
+    font-size: 15px;
+}
+
+.index-nav.active:hover {
+    color: rgb(134, 255, 155);
 }
 
 input:hover {
