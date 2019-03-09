@@ -370,6 +370,10 @@ b {
     font-size: 1.6rem;
 }
 
+a.friend-list {	
+    border-radius: 20px;
+}
+
 .panel-collapse {
     height: 40px;
 }
@@ -526,7 +530,6 @@ input#message-box {
 #leaderboard-content .row {
     display: table;
     border-collapse: collapse;
-    width: 100%;
   }
 
   .first-place, .second-place, .third-place {
