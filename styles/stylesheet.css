@@ -55,13 +55,16 @@ div.left-color {
     height: 30%;
 }
 
+.dropdown-navbar:hover {
+    background-color: #6c757d!important;
+}
 
-.index-nav {
+.index-nav, .dropdown-navbar {
     color: rgb(234, 230, 235);
     font-size: 15px;
 }
 
-.index-nav:hover {
+.index-nav:hover, .dropdown-navbar:hover {
     color: rgb(255, 255, 255);
 }
 
@@ -184,7 +187,7 @@ textarea {
     color:white;
 }
 
-.search_icon:hover {
+.search_icon:hover, .no-hover:hover {
     text-decoration: none;
 }
 
