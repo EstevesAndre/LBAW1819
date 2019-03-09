@@ -558,3 +558,7 @@ input#message-box {
       margin:5%;
   }
 
+.chat-content a {
+    color:white;
+}
+
