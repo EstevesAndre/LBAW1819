@@ -370,6 +370,10 @@ b {
     font-size: 1.6rem;
 }
 
+a.friend-list {	
+    border-radius: 20px;
+}
+
 .panel-collapse {
     height: 40px;
 }
