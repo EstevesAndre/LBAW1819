@@ -115,6 +115,11 @@ input:hover {
     text-decoration: underline;
 }
 
+.send-message>input {
+    border-radius: 20px;
+    font-size: 14px;
+}
+
 .scroolable {
     overflow-y: scroll;
     top: 0;
