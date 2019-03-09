@@ -530,7 +530,6 @@ input#message-box {
 #leaderboard-content .row {
     display: table;
     border-collapse: collapse;
-    width: 100%;
   }
 
   .first-place, .second-place, .third-place {
