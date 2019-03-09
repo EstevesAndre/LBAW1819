@@ -398,6 +398,10 @@ a.friend-list {
     .clan-bio, .clan-info {
         margin-left: 10px;
     }
+
+    .footer-width {
+        width: 100%;
+    }
 }
 
 @media (min-width: 576px) {
@@ -454,6 +458,10 @@ a.friend-list {
 
     .activity {
         padding: 0 30px 0 30px;
+    }
+
+    .footer-width {
+        width: 75%;
     }
 }
 
