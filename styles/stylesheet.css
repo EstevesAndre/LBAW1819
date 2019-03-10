@@ -290,6 +290,10 @@ textarea {
     height: 30px;
 }
 
+.comment-avatar {
+    width: 30px !important;
+}
+
 .search-comment {
     position: relative;
     width: 100%;
