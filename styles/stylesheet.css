@@ -167,6 +167,15 @@ textarea {
     color: #343A40;
 }
 
+.searchbar-friends:hover > .search_input {
+    width: auto !important;
+}
+
+.searchbar-friends {
+    width: 450px !important;
+    border-radius: 5px 0 0 5px;
+}
+
 .search_icon {
     height: 30px;
     width: 30px;
@@ -390,7 +399,7 @@ b {
 }
 
 a.friend-list {	
-    border-radius: 20px;
+    border-radius: 5px 0 0 5px;
 }
 
 .panel-collapse {
