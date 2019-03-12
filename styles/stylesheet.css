@@ -342,7 +342,7 @@ a.friend-list.active {
     outline-offset: 0px !important;
     outline: none !important;
     color: black;
-    background-color: rgb(228, 226, 222);
+    background-color: #f8f9fa;
     border-color: #9da3a0;
 }
 
