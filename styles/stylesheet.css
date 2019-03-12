@@ -346,12 +346,12 @@ a.friend-list.active {
     border-color: #9da3a0;
 }
 
-textarea.form-control {
-    border-radius: 20px;
-}
-
 textarea.form-control:focus {
     background-color: #eeeeee;    
+}
+
+.input-file {
+    font-size: 14px;
 }
 
 .search-comment button:focus {
