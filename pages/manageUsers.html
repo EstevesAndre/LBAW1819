@@ -119,10 +119,20 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger">Ban!</button>
+                        <button class="btn btn-primary w-50 dropdown-toggle" type="button" id="dropdownBanButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ban Duration
+                        </button>
+                        <div class="dropdown-menu mr-4 w-50 text-center" aria-labelledby="dropdownBanButton">
+                            <a class="dropdown-item " href="#">7 days</a>
+                            <a class="dropdown-item" href="#">2 weeks</a>
+                            <a class="dropdown-item" href="#">1 month</a>
+                            <a class="dropdown-item" href="#">3 months</a>
+                            <a class="dropdown-item" href="#">6 months</a>
+                            <a class="dropdown-item" href="#">1 year</a>
+                            <a class="dropdown-item" href="#">Forever</a>
+                        </div>
+                        <button type="button" class="btn btn-danger float-right">Ban!</button>
                     </div>
                 </div>
             </div>
@@ -132,11 +142,11 @@
             <div class="text-left tab-pane fade border-0 active show" id="active" role="tabpanel"
                 aria-labelledby="active-tab">
                 <div class="d-flex justify-content-center mb-3 mr-3">
-                        <div class="searchbar">
-                            <input class="search_input" type="text" name="" placeholder="Search...">
-                            <a href="" class="search_icon"><i class="fas fa-search"></i></a>
-                        </div>
+                    <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+                        <a href="" class="search_icon"><i class="fas fa-search"></i></a>
                     </div>
+                </div>
                 <ul class="pl-0 shadow-lg admin-users-list">
                     <li class="p-2 ml-3">
                         <div class="d-flex align-items-center row">
@@ -217,7 +227,7 @@
                             <div class="col-9 pr-1 text-left">André Esteves</div>
                             <div class="pr-1 col-2">
                                 <button type="button" class=" btn btn-success">
-                                    <i class="fas fa-user-plus"></i> Ban User
+                                    <i class="fas fa-user-plus"></i> Unban User
                                 </button>
                             </div>
                         </div>
@@ -231,7 +241,7 @@
                             <div class="col-9 pr-1 text-left">André Esteves</div>
                             <div class="pr-1 col-2">
                                 <button type="button" class=" btn btn-success">
-                                    <i class="fas fa-user-plus"></i> Ban User
+                                    <i class="fas fa-user-plus"></i> Unban User
                                 </button>
                             </div>
                         </div>
@@ -245,7 +255,7 @@
                             <div class="col-9 pr-1 text-left">André Esteves</div>
                             <div class="pr-1 col-2">
                                 <button type="button" class=" btn btn-success">
-                                    <i class="fas fa-user-plus"></i> Ban User
+                                    <i class="fas fa-user-plus"></i> Unban User
                                 </button>
                             </div>
                         </div>
@@ -259,7 +269,7 @@
                             <div class="col-9 pr-1 text-left">André Esteves</div>
                             <div class="pr-1 col-2">
                                 <button type="button" class=" btn btn-success">
-                                    <i class="fas fa-user-plus"></i> Ban User
+                                    <i class="fas fa-user-plus"></i> Unban User
                                 </button>
                             </div>
                         </div>
@@ -271,8 +281,7 @@
 
     <footer class="bg-secondary py-2">
         <div class="footer-copyright text-center text-white text-white">Copyright <i class="fas fa-copyright"></i>
-            AlterEgo lbaw1843
-        </div>
+            AlterEgo lbaw1843</div>
     </footer>
 </body>
 

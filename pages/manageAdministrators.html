@@ -54,30 +54,36 @@
             </div>
             <div class="d-flex justify-content-center mx-2 align-items-center">
                 <div class="btn-group mx-1 my-2">
-                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-friends"></i></button>
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="fas fa-user-friends"></i></button>
                     <div class="dropdown-menu dropdown-menu-right bg-secondary">
                         <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
                     </div>
                 </div>
                 <div class="btn-group mx-1 my-2">
-                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-envelope"></i></button>
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="far fa-envelope"></i></button>
                     <div class="dropdown-menu dropdown-menu-right bg-secondary">
                         <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
                     </div>
                 </div>
                 <div class="btn-group ml-1 mr-3 my-2">
-                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-bell"></i></button>
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="far fa-bell"></i></button>
                     <div class="dropdown-menu dropdown-menu-right bg-secondary">
                         <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
                     </div>
                 </div>
 
-                <a href="../pages/profile.html"><img width="40" class="img-fluid border rounded-circle mr-2" src="../assets/logo.png" alt="User"></a>
+                <a href="../pages/profile.html"><img width="40" class="img-fluid border rounded-circle mr-2"
+                        src="../assets/logo.png" alt="User"></a>
                 <a href="../pages/profile.html" class="m-0 no-hover index-nav">André Esteves</a>
                 <div class="btn-group ml-2 my-2">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"></button>
                     <div class="dropdown-menu dropdown-menu-right bg-secondary">
-                        <button class="dropdown-item dropdown-navbar" type="button"><a class="no-hover index-nav" href="../pages/createClan.html">Create Clan</a></button>
+                        <button class="dropdown-item dropdown-navbar" type="button"><a class="no-hover index-nav"
+                                href="../pages/createClan.html">Create Clan</a></button>
                         <button class="dropdown-item dropdown-navbar" type="button">Settings</button>
                         <div class="dropdown-divider"></div>
                         <button class="dropdown-item dropdown-navbar" type="button">Log out</button>
@@ -86,31 +92,172 @@
             </div>
         </div>
     </nav>
-
     <br />
     <br />
     <div class="container justify-content-center fullscreen-3-4 my-5">
-        <h1>Create Your Clan</h1>
-        <div class="text-left">
-            <form method="POST">
-                <div class="form-group mx-auto my-5">
-                    <label for="clanName">Character Name</label>
-                    <input type="username" class="form-control mb-3" id="clanName" placeholder="Name">
-                    <label for="description">Brief Description</label>
-                    <textarea class="form-control mb-3" id="description" rows="8" placeholder="Description..." ></textarea>
-                    <label for="clanImage">Insert a clan Image</label>
-                    <input type="file" class="form-control-file input-file" id="clanImage">
+        <h1>Manage Administrator</h1>
+
+        <div class="text-left tab-pane fade border-0 active show" id="active" role="tabpanel"
+            aria-labelledby="active-tab">
+
+            <div class="d-flex justify-content-center mb-3 mr-3">
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="" placeholder="Search...">
+                    <a href="" class="search_icon"><i class="fas fa-search"></i></a>
                 </div>
-                <div class="mx-auto mt-5">
-                    <button type="submit" class="btn btn-secondary w-100">Create</button>
+            </div>
+
+            <ul class="pl-0 shadow-lg admin-users-list">
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="col-1 friend-img">
+                            <img width="75" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="Clan">
+                        </div>
+                        <div class="col-8 pr-1 text-left">André Esteves</div>
+                        <div class="pr-1 col-3">
+                            <button type="button" class=" btn btn-danger">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="col-1 friend-img">
+                            <img width="75" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="Clan">
+                        </div>
+                        <div class="col-8 pr-1 text-left">André Esteves</div>
+                        <div class="pr-1 col-3">
+                            <button type="button" class=" btn btn-danger">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="col-1 friend-img">
+                            <img width="75" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="Clan">
+                        </div>
+                        <div class="col-8 pr-1 text-left">André Esteves</div>
+                        <div class="pr-1 col-3">
+                            <button type="button" class=" btn btn-danger">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="col-1 friend-img">
+                            <img width="75" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="Clan">
+                        </div>
+                        <div class="col-8 pr-1 text-left">André Esteves</div>
+                        <div class="pr-1 col-3">
+                            <button type="button" class=" btn btn-danger">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <button type="button" class="btn btn-success float-right mt-4" data-toggle="modal" data-target="#addModal">
+            <i class="fas fa-user-plus"></i> Add Administrator
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Add Administrator</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center mb-3 mr-3">
+                            <div class="searchbar">
+                                <input class="search_input" type="text" name="" placeholder="Search...">
+                                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                            </div>
+                        </div>
+                        <ul class="pl-0 shadow-lg admin-users-list">
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-1 friend-img">
+                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="Clan">
+                                    </div>
+                                    <div class="col-10 pr-1 text-left">André Esteves</div>
+                                    <div class="pr-1 col-1 container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-1 friend-img">
+                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="Clan">
+                                    </div>
+                                    <div class="col-10 pr-1 text-left">André Esteves</div>
+                                    <div class="pr-1 col-1 container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-1 friend-img">
+                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="Clan">
+                                    </div>
+                                    <div class="col-10 pr-1 text-left">André Esteves</div>
+                                    <div class="pr-1 col-1 container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-1 friend-img">
+                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="Clan">
+                                    </div>
+                                    <div class="col-10 pr-1 text-left">André Esteves</div>
+                                    <div class="pr-1 col-1 container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success"><i class="fas fa-user-plus"></i> Add</button>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-    
+
     <footer class="bg-secondary py-2">
-        <div class="footer-copyright text-center text-white text-white">Copyright <i class="fas fa-copyright"></i> AlterEgo lbaw1843</div>
+        <div class="footer-copyright text-center text-white text-white">Copyright <i class="fas fa-copyright"></i>
+            AlterEgo lbaw1843</div>
     </footer>
+
+
 </body>
 
 </html>
