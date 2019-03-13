@@ -90,21 +90,333 @@
     <br />
     <br />
     <div class="container justify-content-center fullscreen-3-4 my-5">
-        <h1>Create Your Clan</h1>
-        <div class="text-left">
-            <form method="POST">
-                <div class="form-group mx-auto my-5">
-                    <label for="clanName">Character Name</label>
-                    <input type="username" class="form-control mb-3" id="clanName" placeholder="Name">
-                    <label for="description">Brief Description</label>
-                    <textarea class="form-control mb-3" id="description" rows="8" placeholder="Description..." ></textarea>
-                    <label for="clanImage">Insert a clan Image</label>
-                    <input type="file" class="form-control-file input-file" id="clanImage">
+        <h1>Clan Settings</h1>
+        <div class="row my-4">
+            <div class="col-12 col-sm-12 col-md-4 bt-border">
+                <div class="nav flex-column nav-pills mb-3" id="v-pills-tab" role="tablist">
+                    <a class="nav-link bg-secondary text-white text-center my-2" id="v-pills-geral-tab" data-toggle="pill" href="#v-pills-geral" role="tab" aria-controls="v-pills-geral" aria-selected="true">General</a>
+                    <a class="nav-link bg-secondary text-white text-center my-2 active" id="v-pills-activity-tab" data-toggle="pill" href="#v-pills-activity" role="tab" aria-controls="v-pills-activity" aria-selected="false">Activity Regist</a>
+                    <a class="nav-link bg-secondary text-white text-center my-2" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false">Manage Users</a>
                 </div>
-                <div class="mx-auto mt-5">
-                    <button type="submit" class="btn btn-secondary w-100">Create</button>
+            </div>
+            <div class="col-12 col-sm-12 col-md-8">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade" id="v-pills-geral" role="tabpanel" aria-labelledby="v-pills-geral-tab">
+                        <!-- Change Name ; Change Brief ; Change Clan Image -->
+                        <div class="card card-body mt-3">
+                            <div>
+                                <div class="p-2 float-left">Edit clan name</div>
+                                <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Edit
+                                </button>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <form class="form-inline px-4 py-2">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">New Name</label>
+                                        <input class="form-control ml-2" type="text" id="exampleFormControlInput1" placeholder="">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card card-body">
+                            <div>
+                                <div class="p-2 float-left">Change Brief</div>
+                                <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                                    Edit
+                                </button>
+                            </div>
+                            <div class="collapse" id="collapseExample2">
+                                <form class="form-inline px-4 py-2">
+                                    <div class="form-group w-100">
+                                        <textarea class="form-control ml-2 w-100" rows="4" type="text" placeholder="Write the new brief here..."></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card card-body">
+                            <div>
+                                <div class="p-2 float-left">Change Clan Image</div>
+                                <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+                                    Edit
+                                </button>
+                            </div>
+                            <div class="collapse" id="collapseExample3">
+                                <form class="form-inline px-4 py-2">
+                                    <div class="form-group w-100">
+                                        <label for="clanImage">Insert a new clan Image</label>
+                                        <input type="file" class="form-control-file input-file mt-2" id="clanImage">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="text-center my-4">
+                            <button type="submit" class="btn btn-secondary">Save Changes</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show active" id="v-pills-activity" role="tabpanel" aria-labelledby="v-pills-activity-tab">
+                        <!-- User; Post Date ; Number Likes ; Number Comments ; Number of sharings -->
+                        <div class="card card-body activity mt-3">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Francisco Filipe</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>29/03/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>12 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>6 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>5 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Ricardo Jorge</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>2/03/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>1 Like</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>3 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>0 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Bruno Sousa</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>1/03/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>212 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>68 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>16 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Francisco Filipe</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>29/02/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>31 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>12 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>5 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Antero Santos</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>19/02/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>98 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>35 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>17 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Pedro Fernandes</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>19/01/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>56 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>10 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>2 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Pedro Silva</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>10/01/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>12 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>56 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>3 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Luís Diogo Silva</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>1/01/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>123 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>45 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>17 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center my-2">
+                                <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">João Gonçalves</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>24/12/2018</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>67 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>12 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>20 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapse" id="more-posts">
+                            <div class="card card-body activity">
+                                <div class="row align-items-center my-2">
+                                    <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                        <div class="row">
+                                            <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">André Esteves</a></div>
+                                            <div class="col-5 col-sm-4 col-md-12"><span><small>23/12/2018</small></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                        <small><span>98 Likes</span></small>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                        <small><span>35 Comments</span></small>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                        <small><span>17 Shares</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-body activity">
+                                <div class="row align-items-center my-2">
+                                    <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                        <div class="row">
+                                            <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Antero Santos</a></div>
+                                            <div class="col-5 col-sm-4 col-md-12"><span><small>15/12/2018</small></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                        <small><span>12 Likes</span></small>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                        <small><span>54 Comments</span></small>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                        <small><span>9 Shares</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-body activity">
+                                <div class="row align-items-center my-2">
+                                    <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                        <div class="row">
+                                            <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Miguel Barraca</a></div>
+                                            <div class="col-5 col-sm-4 col-md-12"><span><small>1/12/2018</small></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                        <small><span>39 Likes</span></small>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                        <small><span>5 Comments</span></small>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                        <small><span>2 Shares</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-body activity">
+                                <div class="row align-items-center my-2">
+                                    <div class="col-12 col-sm-12 col-md-5 mb-1">
+                                        <div class="row">
+                                            <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Simão Silva</a></div>
+                                            <div class="col-5 col-sm-4 col-md-12"><span><small>19/11/2018</small></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                        <small><span>12 Likes</span></small>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                        <small><span>19 Comments</span></small>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                        <small><span>7 Shares</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center my-3">
+                            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#more-posts" aria-expanded="false" aria-controls="more-posts">
+                                See more
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
+                        
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     
