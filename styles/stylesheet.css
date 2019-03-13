@@ -73,6 +73,10 @@ div.left-color {
     font-size: 15px;
 }
 
+.nav-link.active.bg-secondary {
+    background-color: #353b48 !important;
+}
+
 .index-nav.active:hover {
     color: rgb(134, 255, 155);
 }
@@ -328,6 +332,10 @@ textarea {
     outline: none !important;
 }
 
+.activity:hover {
+    border-color: grey;
+}
+
 .hamburger-icon {
     color: white;
 }
@@ -444,6 +452,10 @@ a.friend-list {
 
     .friend-img {
         padding-right: 0%;
+    }
+
+    .bt-border {
+        border-bottom: 4px solid #f4f4f4;
     }
 }
 

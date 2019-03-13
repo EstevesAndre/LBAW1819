@@ -90,21 +90,20 @@
     <br />
     <br />
     <div class="container justify-content-center fullscreen-3-4 my-5">
-        <h1>Settings</h1>
+        <h1>Clan Settings</h1>
         <div class="row my-4">
-            <div class="col-md-4">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-geral-tab" data-toggle="pill" href="#v-pills-geral" role="tab" aria-controls="v-pills-geral" aria-selected="true">Geral</a>
-                    <a class="nav-link" id="v-pills-activity-tab" data-toggle="pill" href="#v-pills-activity" role="tab" aria-controls="v-pills-activity" aria-selected="false">Activity Regist</a>
-                    <a class="nav-link" id="v-pills-users-tab" data-toggle="pill" href="#v-pills-users" role="tab" aria-controls="v-pills-users" aria-selected="false">Manage Users</a>
-                    <a class="nav-link" id="v-pills-privileges-tab" data-toggle="pill" href="#v-pills-privileges" role="tab" aria-controls="v-pills-privileges" aria-selected="false">Give Privileges</a>
+            <div class="col-12 col-sm-12 col-md-4 bt-border">
+                <div class="nav flex-column nav-pills mb-3" id="v-pills-tab" role="tablist">
+                    <a class="nav-link bg-secondary text-white text-center my-2" id="v-pills-geral-tab" data-toggle="pill" href="#v-pills-geral" role="tab" aria-controls="v-pills-geral" aria-selected="true">General</a>
+                    <a class="nav-link bg-secondary text-white text-center my-2 active" id="v-pills-activity-tab" data-toggle="pill" href="#v-pills-activity" role="tab" aria-controls="v-pills-activity" aria-selected="false">Activity Regist</a>
+                    <a class="nav-link bg-secondary text-white text-center my-2" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false">Manage Users</a>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-12 col-sm-12 col-md-8">
                 <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-geral" role="tabpanel" aria-labelledby="v-pills-geral-tab">
+                    <div class="tab-pane fade" id="v-pills-geral" role="tabpanel" aria-labelledby="v-pills-geral-tab">
                         <!-- Change Name ; Change Brief ; Change Clan Image -->
-                        <div class="card card-body">
+                        <div class="card card-body mt-3">
                             <div>
                                 <div class="p-2 float-left">Edit clan name</div>
                                 <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -153,16 +152,51 @@
                         </div>
 
                         <div class="text-center my-4">
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="submit" class="btn btn-secondary">Save Changes</button>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-activity" role="tabpanel" aria-labelledby="v-pills-activity-tab">
-
+                    <div class="tab-pane fade show active" id="v-pills-activity" role="tabpanel" aria-labelledby="v-pills-activity-tab">
+                        <!-- User; Post Date ; Number Likes ; Number Comments ; Number of sharings -->
+                        <div class="card card-body activity mt-3">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-sm-12 col-md-5">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Francisco Filipe</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>29/03/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>12 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>6 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>5 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-body activity">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-sm-12 col-md-5">
+                                    <div class="row">
+                                        <div class="col-7 col-sm-8 col-md-12"><a href="../pages/profile.html" class="no-hover">Francisco Filipe</a></div>
+                                        <div class="col-5 col-sm-4 col-md-12"><span><small>29/03/2019</small></span></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 pr-0 text-center">
+                                    <small><span>12 Likes</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-3 p-0 text-center">
+                                    <small><span>6 Comments</span></small>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-2 p-0 text-center">
+                                    <small><span>5 Shares</span></small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
-
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-privileges" role="tabpanel" aria-labelledby="v-pills-privileges-tab">
+                    <div class="tab-pane fade" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
 
                     </div>
                 </div>
