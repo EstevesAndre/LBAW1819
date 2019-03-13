@@ -613,3 +613,33 @@ input#message-box {
     color:white;
 }
 
+/*****************/
+/* Administrator */
+/*****************/
+
+ul.report-list {
+    list-style-type: none;
+}
+
+.report-tag {
+    border-radius:15px;
+    background-color: purple;
+    color:white;
+    padding:5px 10px 5px 10px;
+    margin: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.admin-sidebar li a {
+    text-decoration: none;
+    color:dimgray;
+}
+
+/* .admin-sidebar li {
+    border-bottom: solid grey;
+} */
+
+.admin-users-list {
+    list-style-type: none;
+}
+
