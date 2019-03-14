@@ -648,3 +648,9 @@ ul.report-list {
         display: none;
     }
 }
+
+@media (max-width: 576px) {
+    .btn-request > span {
+        display: none;
+    }
+}
