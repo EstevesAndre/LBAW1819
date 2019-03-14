@@ -643,4 +643,8 @@ ul.report-list {
     list-style-type: none;
 }
 
-
+@media (max-width: 576px) {
+    .btn-ban > span {
+        display: none;
+    }
+}
