@@ -655,4 +655,20 @@ ul.report-list {
     list-style-type: none;
 }
 
+@media (max-width: 576px) {
+    .btn-ban > span {
+        display: none;
+    }
+}
 
+@media (max-width: 576px) {
+    .btn-request > span {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .search-info span {
+        display: none;
+    }
+}
