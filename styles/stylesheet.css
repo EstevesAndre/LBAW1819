@@ -654,3 +654,9 @@ ul.report-list {
         display: none;
     }
 }
+
+@media (max-width: 576px) {
+    .search-info span {
+        display: none;
+    }
+}
