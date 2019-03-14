@@ -85,6 +85,10 @@ input:hover, textarea:hover {
     background-color: rgb(235, 235, 235);
 }
 
+.color-black {
+    color: #5a6268;
+}
+
 .fullsize {
     width: 100%;
 }
@@ -490,6 +494,10 @@ a.friend-list {
     .footer-width {
         width: 75%;
     }
+
+    .rt-border {
+        border-right: 4px solid #f4f4f4;
+    }
 }
 
 /**********/
@@ -633,6 +641,10 @@ ul.report-list {
 .admin-sidebar li a {
     text-decoration: none;
     color:dimgray;
+}
+
+.admin-sidebar li a:hover {
+    color: black;
 }
 
 /* .admin-sidebar li {
