@@ -6,8 +6,16 @@ body {
     font-family: 'Montserrat', Courier, monospace, Arial, Helvetica, sans-serif;
 }
 
-.standard-text, .standard-text:hover {
-    color:black;
+.standard-text {
+    color:rgb(26, 26, 26);
+}
+
+.standard-text:hover {
+    color: black;
+}
+
+.text-overflow {
+    overflow: hidden;
 }
 
 .bg-grey {
@@ -429,6 +437,12 @@ a.friend-list {
     .footer-width {
         width: 100%;
     }
+
+    .search_input_fixed {
+        padding: 0 10px !important;
+        margin-top: 5px !important;
+        width: 200px !important;
+    }
 }
 
 @media (min-width: 576px) {
@@ -442,6 +456,12 @@ a.friend-list {
 
     b {
         font-size: 2.2rem;
+    }
+
+    .search_input_fixed {
+        padding: 0 10px !important;
+        margin-top: 5px !important;
+        width: 300px !important;
     }
 }
 
@@ -484,7 +504,7 @@ a.friend-list {
     }
 
     .searchbar:hover > .search_input{
-        width: 350px;
+        width: 150px;
     }
 
     .activity {
@@ -651,7 +671,7 @@ ul.report-list {
     border-bottom: solid grey;
 } */
 
-.admin-users-list {
+.users-list {
     list-style-type: none;
 }
 
