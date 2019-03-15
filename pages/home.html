@@ -60,18 +60,11 @@
                         <a class="no-hover index-nav" href="../pages/friends.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Friend Requests</button></a>
                     </div>
                 </div>
-                <div class="btn-group mx-1 my-2">
-                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"><i class="far fa-envelope"></i></button>
-                    <div class="dropdown-menu dropdown-menu-right bg-secondary">
-                        <a class="no-hover index-nav" href="../pages/messages.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Messages</button></a>
-                    </div>
-                </div>
-                <div class="btn-group ml-1 mr-3 my-2">
+                <div class="btn-group mr-3 my-2">
                     <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"><i class="far fa-bell"></i></button>
                     <div class="dropdown-menu dropdown-menu-right bg-secondary">
-                        <a class="no-hover index-nav" href="../pages/notifications.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Notifications</button></a>
+                        <a class="no-hover index-nav" href="../pages/home.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Notifications</button></a>
                     </div>
                 </div>
 
@@ -101,9 +94,14 @@
     <br />
     <div class="mt-5 pt-3 row text-center fullscreen standard-text">
         <div class="col-sm-12 col-md-8 col-lg-9 activity">
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#postModal">
-                Create Post
-            </button>
+            <div class="cardbox-comments d-flex align-items-center">
+                <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#postModal">
+                    Create a new Post
+                </button>
+                <div class="search-comment">
+                    <input placeholder="New publication..." type="text">
+                </div>
+            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel"
@@ -538,8 +536,8 @@
                         <a href="../profile.html">João Miguel</a>
                     </div>
                 </div>
-                <div class="border-top w-100 bottom-contained send-message p-1">
-                    <input type="text" class="my-2 border w-75" id="message-box" placeholder="Write a message here..."
+                <div class="border-top border-left w-100 bottom-contained send-message p-1">
+                    <input type="text" class="my-2 border w-75" rows="4" id="message-box" placeholder="Write a message here..."
                         required>
                     <button type="submit" class="btn btn-primary m-1 float-right" id="send-button">&#9993;</button>
                 </div>
