@@ -24,7 +24,7 @@
 </head>
 
 <body class="bg-color">
-    <nav class="bg-secondary navbar navbar-expand-lg fixed-top fixed-nav">
+    <nav class="bg-secondary fixed-top navbar navbar-expand-lg fixed-nav">
         <a class="navbar-brand" href="../pages/home.html">
             <img src="../assets/logoWhite.png" width="40" height="40" alt="icon">
             <a class="nav-link index-nav" href="../pages/home.html">AlterEgo</a>
@@ -40,7 +40,7 @@
                     <a class="nav-link index-nav" href="../pages/profile.html">Profile</a>
                 </li>
                 <li class="nav-item align-self-center">
-                    <a class="nav-link index-nav active" href="../pages/clan.html">Clan</a>
+                    <a class="nav-link index-nav" href="../pages/clan.html">Clan</a>
                 </li>
                 <li class="nav-item align-self-center">
                     <a class="nav-link index-nav" href="../pages/leaderboard.html">Leaderboards</a>
@@ -49,10 +49,32 @@
             <div class="d-flex justify-content-center mr-2">
                 <div class="searchbar">
                     <input class="search_input" type="text" name="" placeholder="Search...">
-                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    <a href="" class="search_icon"><i class="fas fa-search"></i></a>
                 </div>
             </div>
             <div class="d-flex justify-content-center mx-2 align-items-center">
+                <div class="btn-group mx-1 my-2">
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="fas fa-user-friends active"></i></button>
+                    <div class="dropdown-menu dropdown-menu-right bg-secondary">
+                        <a class="no-hover index-nav" href="../pages/friends.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Friend Requests</button></a>
+                    </div>
+                </div>
+                <div class="btn-group mx-1 my-2">
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="far fa-envelope"></i></button>
+                    <div class="dropdown-menu dropdown-menu-right bg-secondary">
+                        <a class="no-hover index-nav" href="../pages/messages.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Messages</button></a>
+                    </div>
+                </div>
+                <div class="btn-group ml-1 mr-3 my-2">
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="far fa-bell"></i></button>
+                    <div class="dropdown-menu dropdown-menu-right bg-secondary">
+                        <a class="no-hover index-nav" href="../pages/notifications.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Notifications</button></a>
+                    </div>
+                </div>
+
                 <a href="../pages/profile.html"><img width="40" class="img-fluid border rounded-circle mr-2"
                         src="../assets/logo.png" alt="User"></a>
                 <a href="../pages/profile.html" class="m-0 no-hover index-nav">André Esteves</a>
@@ -60,10 +82,17 @@
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"></button>
                     <div class="dropdown-menu dropdown-menu-right bg-secondary">
-                        <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
-                        <button class="dropdown-item dropdown-navbar" type="button">Settings</button>
+                        <a class="no-hover index-nav" href="../pages/createClan.html">
+                            <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <button class="dropdown-item dropdown-navbar" type="button">Log out</button>
+                        <a class="no-hover index-nav" href="../pages/administrator.html">
+                            <button class="dropdown-item dropdown-navbar" type="button">Administrator</button>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="no-hover index-nav" href="../index.html">
+                            <button class="dropdown-item dropdown-navbar" type="button">Log out</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -72,10 +101,10 @@
     <br />
     <div class="mt-5 row text-center fullscreen standard-text">
         
-        <div class="col-sm-12 col-md-8 col-lg-9 mb-4 activity">
-               <h1 class="text-left mt-5"><b>Friend Requests</b></h1>
+        <div class="col-sm-12 col-md-8 col-lg-9 my-3 activity">
+            <h1 class="text-left"><b>Friend Requests</b></h1>
             <div class="clan-page-info">
-                <ul class="mt-5 nav nav-tabs justify-content-center" id="clan-tabs" role="tablist">
+                <ul class="mt-4 nav nav-tabs justify-content-center" id="clan-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="tab-title nav-link active" id="sent-tab" data-toggle="tab" href="#sent" role="tab"
                             aria-controls="sent" aria-selected="true">Requests Sent</a>
@@ -90,98 +119,167 @@
                     </li>
                 </ul>
 
+                <div class="modal fade" id="removeFriendModal" tabindex="-1" role="dialog" aria-labelledby="removeFriendModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="removeFriendModalLabel">Cancel Friend Request</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure that you want to cancel?</p>
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-success">Yes</button>
+                                    <button type="button" class="btn btn-danger">No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mt-4 tab-content" id="content">
                     <div class="text-left tab-pane fade active show" id="sent" role="tabpanel"
                         aria-labelledby="sent-tab">
                         <div class="d-flex justify-content-center mb-3 mr-3">
                             <div class="searchbar">
-                                <input class="search_input" type="text" name="" placeholder="Search...">
+                                <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
                                 <a href="" class="search_icon"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
 
-                        <ul class="pl-0 shadow-lg users-list">
+                        <ul class="pl-0 shadow-lg py-3 mt-3 users-list">
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="pl-3 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-8 col-sm-6 col-md-5 col-lg-8 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-3 col-sm-5 col-md-6 col-lg-3">
-                                        <button type="button" class="btn btn-danger btn-request">
-                                            <i class="fas fa-times"></i> <span>Remove Request</span>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Arthur Morgan</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-danger btn-request" data-toggle="modal" data-target="#removeFriendModal">
+                                            <i class="fas fa-times"></i> <span>Cancel Request</span>
                                         </button>
                                     </div>
                                 </div>
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="pl-3 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-8 col-sm-6 col-md-5 col-lg-8 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-3 col-sm-5 col-md-6 col-lg-3">
-                                        <button type="button" class="btn btn-danger btn-request">
-                                            <i class="fas fa-times"></i> <span>Remove Request</span>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Dutch Van der Linde</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-danger btn-request" data-toggle="modal" data-target="#removeFriendModal">
+                                            <i class="fas fa-times"></i> <span>Cancel Request</span>
                                         </button>
                                     </div>
                                 </div>
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="pl-3 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-8 col-sm-6 col-md-5 col-lg-8 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-3 col-sm-5 col-md-6 col-lg-3">
-                                        <button type="button" class="btn btn-danger btn-request">
-                                            <i class="fas fa-times"></i> <span>Remove Request</span>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Sadie Adler</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-danger btn-request" data-toggle="modal" data-target="#removeFriendModal">
+                                            <i class="fas fa-times"></i> <span>Cancel Request</span>
                                         </button>
                                     </div>
                                 </div>
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="pl-3 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-8 col-sm-6 col-md-5 col-lg-8 pr-1 text-left">André Esteves
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">John Marston</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-danger btn-request" data-toggle="modal" data-target="#removeFriendModal">
+                                            <i class="fas fa-times"></i> <span>Cancel Request</span>
+                                        </button>
                                     </div>
-                                    <div class="pr-1 col-3 col-sm-5 col-md-6 col-lg-3">
-                                        <button type="button" class="btn btn-danger btn-request">
-                                            <i class="fas fa-times"></i> <span>Remove Request</span>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-3 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Vin Diesel</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-danger btn-request" data-toggle="modal" data-target="#removeFriendModal">
+                                            <i class="fas fa-times"></i> <span>Cancel Request</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-3 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Angelina Joli</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-danger btn-request" data-toggle="modal" data-target="#removeFriendModal">
+                                            <i class="fas fa-times"></i> <span>Cancel Request</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-3 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Mariana Dias</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-danger btn-request" data-toggle="modal" data-target="#removeFriendModal">
+                                            <i class="fas fa-times"></i> <span>Cancel Request</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-3 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Antero Santos</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-danger btn-request" data-toggle="modal" data-target="#removeFriendModal">
+                                            <i class="fas fa-times"></i> <span>Cancel Request</span>
                                         </button>
                                     </div>
                                 </div>
                             </li>
                         </ul>
-
                     </div>
                     <div class="tab-pane fade" id="received" role="tabpanel" aria-labelledby="received-tab">
                         <div class="d-flex justify-content-center mb-3 mr-3">
                             <div class="searchbar">
-                                <input class="search_input" type="text" name="" placeholder="Search...">
+                                <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
                                 <a href="" class="search_icon"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
-
-                        <ul class="pl-0 shadow-lg users-list">
+                        <ul class="pl-0 shadow-lg py-3 mt-3 users-list">
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-6 col-sm-6 col-md-5 col-lg-7 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-5 col-sm-5 col-md-6 col-lg-4">
+                                    <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Margarida</a></div>
+                                    <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
                                         <button type="button" class="btn btn-success btn-request">
                                             <i class="fas fa-check"></i> <span>Accept</span>
                                         </button>
@@ -193,13 +291,12 @@
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-6 col-sm-6 col-md-5 col-lg-7 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-5 col-sm-5 col-md-6 col-lg-4">
+                                    <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Joana Maria</a></div>
+                                    <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
                                         <button type="button" class="btn btn-success btn-request">
                                             <i class="fas fa-check"></i> <span>Accept</span>
                                         </button>
@@ -211,13 +308,12 @@
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-6 col-sm-6 col-md-5 col-lg-7 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-5 col-sm-5 col-md-6 col-lg-4">
+                                    <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Antero Santos</a></div>
+                                    <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
                                         <button type="button" class="btn btn-success btn-request">
                                             <i class="fas fa-check"></i> <span>Accept</span>
                                         </button>
@@ -229,13 +325,46 @@
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-6 col-sm-6 col-md-5 col-lg-7 pr-1 text-left">André Esteves
+                                    <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">João Miguel</a></div>
+                                    <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-success btn-request">
+                                            <i class="fas fa-check"></i> <span>Accept</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-request">
+                                            <i class="fas fa-times"></i> <span>Decline</span>
+                                        </button>
                                     </div>
-                                    <div class="pr-1 col-5 col-sm-5 col-md-6 col-lg-4">
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Luís Diogo</a></div>
+                                    <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-success btn-request">
+                                            <i class="fas fa-check"></i> <span>Accept</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-request">
+                                            <i class="fas fa-times"></i> <span>Decline</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Francisco Papa</a></div>
+                                    <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
                                         <button type="button" class="btn btn-success btn-request">
                                             <i class="fas fa-check"></i> <span>Accept</span>
                                         </button>
@@ -250,21 +379,19 @@
                     <div class="tab-pane fade shadow-lg" id="rejected" role="tabpanel" aria-labelledby="rejected-tab">
                         <div class="d-flex justify-content-center mb-3 mr-3">
                             <div class="searchbar">
-                                <input class="search_input" type="text" name="" placeholder="Search...">
+                                <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
                                 <a href="" class="search_icon"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
-
-                        <ul class="pl-0 shadow-lg users-list">
+                        <ul class="pl-0 shadow-lg py-3 mt-3 users-list">
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-6 col-sm-5 col-md-4 col-lg-6 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-5 col-sm-6 col-md-7 col-lg-5">
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Luís Ricardo</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
                                         <button type="button" class="btn btn-primary btn-request">
                                             <i class="fas fa-redo"></i> <span>Send another Request</span>
                                         </button>
@@ -273,13 +400,12 @@
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-6 col-sm-5 col-md-4 col-lg-6 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-5 col-sm-6 col-md-7 col-lg-5">
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Ana Maria</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
                                         <button type="button" class="btn btn-primary btn-request">
                                             <i class="fas fa-redo"></i> <span>Send another Request</span>
                                         </button>
@@ -288,13 +414,12 @@
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-6 col-sm-5 col-md-4 col-lg-6 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-5 col-sm-6 col-md-7 col-lg-5">
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Joana Nunes</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
                                         <button type="button" class="btn btn-primary btn-request">
                                             <i class="fas fa-redo"></i> <span>Send another Request</span>
                                         </button>
@@ -303,22 +428,47 @@
                             </li>
                             <li class="p-2 ml-3">
                                 <div class="d-flex align-items-center row">
-                                    <div class="col-1 friend-img">
-                                        <img width="75" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
                                     </div>
-                                    <div class="col-6 col-sm-5 col-md-4 col-lg-6 pr-1 text-left">André Esteves
-                                    </div>
-                                    <div class="pr-1 col-5 col-sm-6 col-md-7 col-lg-5">
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Francisca Almeida</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
                                         <button type="button" class="btn btn-primary btn-request">
                                             <i class="fas fa-redo"></i> <span>Send another Request</span>
                                         </button>
                                     </div>
                                 </div>
                             </li>
-
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Mariana Guedes</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-primary btn-request">
+                                            <i class="fas fa-redo"></i> <span>Send another Request</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Joaquina Manuela</a></div>
+                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
+                                        <button type="button" class="btn btn-primary btn-request">
+                                            <i class="fas fa-redo"></i> <span>Send another Request</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
