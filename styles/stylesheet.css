@@ -481,6 +481,7 @@ a.friend-list {
     .bt-border {
         border-bottom: 4px solid #f4f4f4;
     }
+
 }
 
 
@@ -508,7 +509,7 @@ a.friend-list {
     }
 
     .activity {
-        padding: 0 30px 0 30px;
+        padding: 5px 30px 5px 30px;
     }
 
     .ali-right {
