@@ -159,6 +159,11 @@ textarea {
     padding: 5px;
 }
 
+.searchbar-fixed {
+    width: 100%;
+    border-radius: 0px !important;
+}
+
 .search_input {
     color: white;
     border: 0;
@@ -168,6 +173,12 @@ textarea {
     caret-color:transparent;
     line-height: 20px;
     transition: width 0.4s linear;
+}
+
+.search_fixed {
+    padding: 0 10px !important;
+    margin-top: 5px !important;
+    width: 85% !important;
 }
 
 .searchbar:hover > .search_input{
@@ -181,15 +192,6 @@ textarea {
 .searchbar:hover > .search_icon{
     background: white;
     color: #343A40;
-}
-
-.searchbar-friends:hover > .search_input {
-    width: auto !important;
-}
-
-.searchbar-friends {
-    width: 450px !important;
-    border-radius: 5px 0 0 5px;
 }
 
 .search_icon {
@@ -429,6 +431,8 @@ a.friend-list {
 .min-height-auto {
     min-height: auto;
 }
+
+
 @media (max-width: 576px) {
     .clan-bio, .clan-info {
         margin-left: 10px;
@@ -443,6 +447,7 @@ a.friend-list {
         margin-top: 5px !important;
         width: 200px !important;
     }
+    
 }
 
 @media (min-width: 576px) {
