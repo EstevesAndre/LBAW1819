@@ -6,12 +6,16 @@ body {
     font-family: 'Montserrat', Courier, monospace, Arial, Helvetica, sans-serif;
 }
 
-.standard-text {
+.standard-text, .icon {
     color:rgb(26, 26, 26);
 }
 
-.standard-text:hover {
+.standard-text:hover{
     color: black;
+}
+
+.icon:hover {
+    color: rgb(36, 36, 37);
 }
 
 .text-overflow {
@@ -39,6 +43,10 @@ div.left-color {
     margin: 0;
 }
 
+.fullscreen-90 {
+    min-height: 90.9%;
+}
+
 .fullscreen-3-4 {
     min-height: 75%;
 }
@@ -61,6 +69,18 @@ div.left-color {
 
 .height-30 {
     height: 30%;
+}
+
+.height-90 {
+    height: 90.9%;
+}
+
+.height-85 {
+    height: 85%;
+}
+
+.height-5 {
+    height: 5%;;
 }
 
 .dropdown-navbar:hover {
@@ -113,8 +133,16 @@ input:hover, textarea:hover {
     align-items: center;
 }
 
+.w-80 {
+    width: 70%;
+}
+
 .w-85 {
     width: 85%;
+}
+
+.w-90 {
+    width: 94%;
 }
 
 .min-width-75 {
@@ -448,6 +476,17 @@ a.friend-list {
         width: 200px !important;
     }
     
+    .left-desktop {
+        display: none;
+    }
+
+    .mobile-height {
+        height: 80% !important;
+    }
+
+    .hgt {
+        height: 90%;
+    }
 }
 
 @media (min-width: 576px) {
@@ -467,6 +506,14 @@ a.friend-list {
         padding: 0 10px !important;
         margin-top: 5px !important;
         width: 300px !important;
+    }
+
+    .just-mobile {
+        display: none !important;
+    }
+
+    .hgt {
+        height: 100%;
     }
 }
 
@@ -546,6 +593,16 @@ a.friend-list {
 input#message-box {
     border: 20px;
     padding: 10px 0px 10px 10px;
+}
+
+.search-box {
+    border: 20px;
+    padding: 10px 0px 10px 10px;
+    border-radius: 20px;
+}
+
+.left {
+    margin-left: -40px;
 }
 
 .form-control::-webkit-input-placeholder {
