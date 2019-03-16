@@ -341,7 +341,7 @@ textarea {
     font-size: 0.9em;
 }
 
-.search-comment input:focus {
+.search-comment input:focus, .no-outline {
     outline-offset: 0px !important;
     outline: none !important;
 }
@@ -545,6 +545,7 @@ a.friend-list {
 
 input#message-box {
     border: 20px;
+    padding: 10px 0px 10px 10px;
 }
 
 .form-control::-webkit-input-placeholder {
