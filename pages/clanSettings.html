@@ -333,6 +333,26 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="modal fade" id="removeClanModal" tabindex="-1" role="dialog" aria-labelledby="removeClanModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="removeClanModalLabel">Delete Clan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure that you want to remove your Clan?</p>
+                                        <div class="float-right">
+                                            <button type="button" class="btn btn-success">Yes</button>
+                                            <button type="button" class="btn btn-danger">No</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="modal fade" id="addMembersModal" tabindex="-1" role="dialog" aria-labelledby="addMembersModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -584,10 +604,14 @@
                             </li>
                         </ul>
         
-                        <div class="text-right">
-                            <button type="button" class="btn btn-success float-right mt-4" data-toggle="modal"
+                        <div class="mt-4">
+                            <button type="button" class="btn btn-success float-right" data-toggle="modal"
                                 data-target="#addMembersModal">
                                 <i class="fas fa-envelope"></i> Invite User
+                            </button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#removeClanModal">
+                                <i class="fas fa-ban"></i> Delete Clan
                             </button>
                         </div>
                     </div>
