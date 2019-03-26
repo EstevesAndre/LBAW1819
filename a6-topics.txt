@@ -1,0 +1,86 @@
+QUERIES
+    login.html
+        login
+
+    home.html
+        posts dos amigos order by date
+            likes
+            comments
+            shares
+        amigos para a side bar
+        mensagens para o amigo selecionado no chat
+        search
+            users
+            clans
+            posts
+        notifications
+        search
+    
+    administrator.html
+        newest reports filtered by user or clan
+        bans
+        search
+            
+    manageUsers.html
+        all users
+            banned users
+            active users
+        search
+    
+    manageClans.html
+        all clans
+            banned clans
+            active clans
+        search
+
+    manageAdministrator.html
+        all admins
+        add administrator
+        search
+
+    overall
+        chat list
+        messages selected friend
+
+    profile.html
+        user posts
+            likes
+            comments
+            shares
+        shared posts
+        friends list
+        search
+
+    clan.html
+        clan posts
+            likes
+            comments
+            shares
+        members
+        leaderboard - members ordered by xP
+        search
+
+    leaderboard.html
+        global
+        clan
+        friends
+            users ordered by xP
+        search
+    
+    friendRequests.html
+        sent
+        received
+        rejected
+            ordered by time
+        search
+
+    chat.html
+        friends list on chat
+        selected friend
+            user messages 
+            friend messages
+
+UPDATES
+
+TRIGGERS
+
