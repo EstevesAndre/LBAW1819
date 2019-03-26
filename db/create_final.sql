@@ -2,6 +2,7 @@ DROP TYPE IF EXISTS classEnum;
 DROP TYPE IF EXISTS raceEnum;
 DROP TYPE IF EXISTS motiveEnum;
 DROP TYPE IF EXISTS notificationEnum;
+DROP TYPE IF EXISTS requestEnum;
 
 DROP TABLE IF EXISTS "user";
 DROP TABLE IF EXISTS regular;
@@ -31,14 +32,15 @@ CREATE TYPE classEnum AS ENUM ('Fighter', 'Wizard', 'Rogue', 'Healer');
 CREATE TYPE raceEnum AS ENUM ('Human', 'Elf', 'Dwarf');
 CREATE TYPE motiveEnum AS ENUM ('Inappropriate behaviour', 'Abusive content', 'Racism');
 CREATE TYPE notificationEnum AS ENUM ('clanInvite', 'message', 'friendRequest', 'like', 'comment', 'share');
+CREATE TYPE requestEnum AS ENUM ('friendRequest', 'clanRequest');
 
 -- Tables
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
-    email text NOT NULL UNIQUE, 
-    username text UNIQUE,
-    password text,
-    name text NOT NULL,
+    email VARCHAR(30) NOT NULL UNIQUE, 
+    username VARCHAR(20) UNIQUE,
+    password VARCHAR(20),
+    name VARCHAR(30) NOT NULL,
     birthdate DATE NOT NULL,
     race raceEnum NOT NULL,
     class classEnum NOT NULL,
@@ -49,7 +51,7 @@ CREATE TABLE "user" (
  
 CREATE TABLE clan (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL,
+    name VARCHAR(20) NOT NULL UNIQUE,
     description VARCHAR(250),
     ownerID INTEGER NOT NULL REFERENCES "user" (id)
 );
@@ -57,7 +59,7 @@ CREATE TABLE clan (
 CREATE TABLE post (
     id SERIAL PRIMARY KEY,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    text VARCHAR(500) NOT NULL,
+    content VARCHAR(500) NOT NULL,
     hasImg BOOLEAN NOT NULL,
     userID INTEGER NOT NULL REFERENCES "user" (id)
 );  
@@ -72,7 +74,7 @@ CREATE TABLE "like" (
 CREATE TABLE share (
     postID INTEGER NOT NULL REFERENCES post (id),
     userID INTEGER NOT NULL REFERENCES "user" (id),
-    content text,
+    content VARCHAR(500),
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     PRIMARY KEY (postID, userID)
 );
@@ -94,21 +96,14 @@ CREATE TABLE message (
     hasBeenSeen BOOLEAN NOT NULL DEFAULT FALSE
 );
  
-CREATE TABLE friendRequest (
+CREATE TABLE request (
+    id SERIAL PRIMARY KEY,
     sender INTEGER NOT NULL REFERENCES "user" (id),
     receiver INTEGER NOT NULL REFERENCES "user" (id),
+    clanID INTEGER REFERENCES clan (id),
+    type requestEnum,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    hasAccepted BOOLEAN,
-    PRIMARY KEY (sender, receiver)
-);
- 
-CREATE TABLE clanRequest (
-    sender INTEGER NOT NULL REFERENCES "user" (id),
-    receiver INTEGER NOT NULL REFERENCES "user" (id),
-    clan INTEGER NOT NULL REFERENCES clan (id),
-    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    hasAccepted BOOLEAN,
-    PRIMARY KEY (sender, receiver, clan)
+    hasAccepted BOOLEAN
 );  
  
 CREATE TABLE blocked (
@@ -119,29 +114,24 @@ CREATE TABLE blocked (
 );
  
 CREATE TABLE report (
-    id SERIAL,
+    id SERIAL PRIMARY KEY,
     sender INTEGER NOT NULL REFERENCES "user" (id),
     admin INTEGER  NOT NULL REFERENCES "user" (id),
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     reportText VARCHAR(250),
-    motive motiveEnum NOT NULL,
-    PRIMARY KEY (id, admin)
+    motive motiveEnum NOT NULL
 );
 
 CREATE TABLE commentReport (
-    reportID INTEGER NOT NULL,
-    adminID INTEGER NOT NULL,
+    reportID INTEGER PRIMARY KEY,
     commentID INTEGER NOT NULL REFERENCES comment (id),
-    FOREIGN KEY (reportID, adminID) REFERENCES report (id, admin) ON UPDATE CASCADE,
-    PRIMARY KEY(reportID, adminID)
+    FOREIGN KEY (reportID) REFERENCES report (id),
 );
 
 CREATE TABLE postReport (
-    reportID INTEGER NOT NULL,
-    adminID INTEGER NOT NULL,
+    reportID INTEGER PRIMARY KEY,
     postID INTEGER NOT NULL REFERENCES post (id),
-    FOREIGN KEY (reportID, adminID) REFERENCES report (id, admin) ON UPDATE CASCADE,
-    PRIMARY KEY(reportID, adminID)
+    FOREIGN KEY (reportID) REFERENCES report (id),
 );
 
 CREATE TABLE notification (
@@ -153,43 +143,36 @@ CREATE TABLE notification (
 
 CREATE TABLE clanInviteNotification (
     notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    requestSender INTEGER NOT NULL,
-    requestReceiver INTEGER NOT NULL,
-    requestClan INTEGER NOT NULL,
-    FOREIGN KEY (requestSender, requestReceiver, requestClan) REFERENCES clanRequest (sender, receiver, clan)
+    requestID REFERENCES request (id)
 );
 
 CREATE TABLE messageNotification (
     notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    messageID INTEGER NOT NULL
-    FOREIGN KEY (messageID) REFERENCES message (id)
+    messageID INTEGER NOT NULL REFERENCES message (id)
 );
 
 CREATE TABLE friendRequestNotification (
     notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    requestSender INTEGER NOT NULL,
-    requestReceiver INTEGER NOT NULL,
-    requestClan INTEGER NOT NULL,
-    FOREIGN KEY (requestSender, requestReceiver, requestClan) REFERENCES clanRequest (sender, receiver, clan)
+    requestID REFERENCES request (id)
 );
 
 CREATE TABLE likeNotification (
     notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
     likePostID INTEGER NOT NULL,
     likeUserID INTEGER NOT NULL,
-    FOREIGN KEY (likePostID, likeUserID) REFERENCES "like" (postID, userID) ON UPDATE CASCADE
+    FOREIGN KEY (likePostID, likeUserID) REFERENCES "like" (postID, userID)
 );
 
 CREATE TABLE commentNotification (
     notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    commentID INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE
+    commentID INTEGER NOT NULL REFERENCES comment (id)   
 );
 
 CREATE TABLE shareNotification (
     notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
     sharePostID INTEGER NOT NULL,
     shareUserID INTEGER NOT NULL,
-    FOREIGN KEY (sharePostID, shareUserID) REFERENCES share(postID, userID) ON UPDATE CASCADE
+    FOREIGN KEY (sharePostID, shareUserID) REFERENCES share(postID, userID)
 );
 
 ALTER TABLE "user" 
