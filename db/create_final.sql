@@ -125,13 +125,13 @@ CREATE TABLE report (
 CREATE TABLE commentReport (
     reportID INTEGER PRIMARY KEY,
     commentID INTEGER NOT NULL REFERENCES comment (id),
-    FOREIGN KEY (reportID) REFERENCES report (id),
+    FOREIGN KEY (reportID) REFERENCES report (id)
 );
 
 CREATE TABLE postReport (
     reportID INTEGER PRIMARY KEY,
     postID INTEGER NOT NULL REFERENCES post (id),
-    FOREIGN KEY (reportID) REFERENCES report (id),
+    FOREIGN KEY (reportID) REFERENCES report (id)
 );
 
 CREATE TABLE notification (
@@ -143,7 +143,7 @@ CREATE TABLE notification (
 
 CREATE TABLE clanInviteNotification (
     notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    requestID REFERENCES request (id)
+    requestID INTEGER NOT NULL REFERENCES request (id)
 );
 
 CREATE TABLE messageNotification (
@@ -153,7 +153,7 @@ CREATE TABLE messageNotification (
 
 CREATE TABLE friendRequestNotification (
     notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    requestID REFERENCES request (id)
+    requestID INTEGER NOT NULL REFERENCES request (id)
 );
 
 CREATE TABLE likeNotification (
