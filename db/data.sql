@@ -26,6 +26,22 @@ INSERT INTO clan(id, name, description, ownerID) VALUES();
 INSERT INTO clan(id, name, description, ownerID) VALUES();
 INSERT INTO clan(id, name, description, ownerID) VALUES();
 
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-04-01 09:40:30', 'Good morning.', FALSE, 1);
+
 INSERT INTO "like"(postID, userID, "date") VALUES();
 INSERT INTO "like"(postID, userID, "date") VALUES();
 INSERT INTO "like"(postID, userID, "date") VALUES();
@@ -46,6 +62,13 @@ INSERT INTO "like"(postID, userID, "date") VALUES();
 INSERT INTO "like"(postID, userID, "date") VALUES();
 INSERT INTO "like"(postID, userID, "date") VALUES();
 INSERT INTO "like"(postID, userID, "date") VALUES();
+
+INSERT INTO share(postID, userID, content, "date") VALUES (1, 1, "this posts is so nice!", '2019-04-01 09:42:00');
+INSERT INTO share(postID, userID, content, "date") VALUES (1, 1, "this posts is so nice!", '2019-04-01 09:42:00');
+INSERT INTO share(postID, userID, content, "date") VALUES (1, 1, "this posts is so nice!", '2019-04-01 09:42:00');
+INSERT INTO share(postID, userID, content, "date") VALUES (1, 1, "this posts is so nice!", '2019-04-01 09:42:00');
+INSERT INTO share(postID, userID, content, "date") VALUES (1, 1, "this posts is so nice!", '2019-04-01 09:42:00');
+INSERT INTO share(postID, userID, content, "date") VALUES (1, 1, "this posts is so nice!", '2019-04-01 09:42:00');
 
 INSERT INTO comment(id, postID, userID, "date",commentText) VALUES();
 INSERT INTO comment(id, postID, userID, "date",commentText) VALUES();
@@ -108,6 +131,23 @@ INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALU
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALUES();
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALUES();
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALUES();
+
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-01 09:42:00', TRUE);
+
+INSERT INTO blocked(userID, admin, "date", motive) VALUES (1, 2, '2019-04-01 09:42:00', 'Abusive content');
+INSERT INTO blocked(userID, admin, "date", motive) VALUES (1, 2, '2019-04-01 09:42:00', 'Abusive content');
+INSERT INTO blocked(userID, admin, "date", motive) VALUES (1, 2, '2019-04-01 09:42:00', 'Abusive content');
+INSERT INTO blocked(userID, admin, "date", motive) VALUES (1, 2, '2019-04-01 09:42:00', 'Abusive content');
+INSERT INTO blocked(userID, admin, "date", motive) VALUES (1, 2, '2019-04-01 09:42:00', 'Abusive content');
 
 INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES();
 INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES();
@@ -163,6 +203,38 @@ INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES();
 INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES();
 INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES();
 
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (1, 1);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (1, 1);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (1, 1);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (1, 1);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (1, 1);
 
+INSERT INTO messageNotification(notificationID, messageID) VALUES (1, 1);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (1, 1);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (1, 1);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (1, 1);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (1, 1);
 
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(1, 1);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(1, 1);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(1, 1);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(1, 1);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(1, 1);
 
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 1);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 1);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 1);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 1);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 1);
+
+INSERT INTO commentNotification(notificationID, commentID) VALUES (1, 1);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (1, 1);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (1, 1);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (1, 1);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (1, 1);
+
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(1, 1, 1);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(1, 1, 1);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(1, 1, 1);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(1, 1, 1);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(1, 1, 1);

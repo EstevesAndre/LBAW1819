@@ -1,4 +1,8 @@
 QUERIES
+    overall
+        chat list
+        messages selected friend
+
     login.html
         login
 
@@ -38,10 +42,6 @@ QUERIES
         add administrator
         search
 
-    overall
-        chat list
-        messages selected friend
-
     profile.html
         user posts
             likes
@@ -80,7 +80,40 @@ QUERIES
             user messages 
             friend messages
 
+    post.html  
+        post
+        post comments
+    
+
+
+INSERTS
+    createClan.html
+        new clan
+    createCharacter.html
+        new user
+    
+    overall chat, chat.html
+        send messages
+    
+    posts
+        likes
+        comments
+        share
+
 UPDATES
+
+    friendRequests.html
+        update status
+
+REMOVES
+    friendRequests.html
+        cancel friend request
+    
+    posts
+        delete my post
+        remove like
+        remove share
+
 
 TRIGGERS
 
