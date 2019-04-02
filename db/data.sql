@@ -168,9 +168,9 @@ INSERT INTO commentReport(reportID, commentID) VALUES(7, );
 INSERT INTO postReport(reportID, postID) VALUES(1, 2);
 INSERT INTO postReport(reportID, postID) VALUES(4, 3);
 INSERT INTO postReport(reportID, postID) VALUES(6, 1);
-INSERT INTO postReport(reportID, postID) VALUES(8, );
-INSERT INTO postReport(reportID, postID) VALUES(9, );
-INSERT INTO postReport(reportID, postID) VALUES(10, );
+INSERT INTO postReport(reportID, postID) VALUES(8, 2);
+INSERT INTO postReport(reportID, postID) VALUES(9, 3);
+INSERT INTO postReport(reportID, postID) VALUES(10, 1);
 
 INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(1, 'like', '2019-04-04 04:12:10', FALSE);
 INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(2, 'like', '2019-03-27 12:22:02', TRUE);
