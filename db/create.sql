@@ -101,7 +101,7 @@ CREATE TABLE request (
     sender INTEGER NOT NULL REFERENCES "user" (id),
     receiver INTEGER NOT NULL REFERENCES "user" (id),
     clanID INTEGER REFERENCES clan (id),
-    type requestEnum,
+    "type" requestEnum,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     hasAccepted BOOLEAN
 );  
