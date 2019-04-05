@@ -131,16 +131,16 @@ INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALU
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALUES();
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALUES();
 
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-16 23:23:59', TRUE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (2, 1, 1, 1, 'friendRequest', '2019-03-11 09:37:20', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (3, 1, 1, 1, 'friendRequest', '2019-04-12 19:45:56', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (4, 1, 1, 1, 'friendRequest', '2019-03-16 13:25:26', TRUE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (5, 1, 1, 1, 'friendRequest', '2019-04-02 09:18:01', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (6, 1, 1, 1, 'friendRequest', '2019-02-06 14:27:16', TRUE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (7, 1, 1, 1, 'friendRequest', '2019-03-16 16:21:17', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (8, 1, 1, 1, 'friendRequest', '2019-02-19 10:32:39', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (9, 1, 1, 1, 'friendRequest', '2019-02-23 06:12:20', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (10, 1, 1, 1, 'friendRequest', '2019-01-29 05:31:40', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 3, 12, NULL, 'friendRequest', '2019-04-16 23:23:59', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (2, 11, 14, 1, 'clanRequest', '2019-03-11 09:37:20', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (3, 7, 20, 2, 'clanRequest', '2019-04-12 19:45:56', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (4, 8, 11, NULL, 'friendRequest', '2019-03-16 13:25:26', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (5, 4, 2, NULL, 'friendRequest', '2019-04-02 09:18:01', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (6, 12, 20, 2, 'clanRequest', '2019-02-06 14:27:16', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (7, 8, 1, NULL, 'friendRequest', '2019-03-16 16:21:17', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (8, 5, 11, 4, 'clanRequest', '2019-02-19 10:32:39', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (9, 4, 4, 3, 'clanRequest', '2019-02-23 06:12:20', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (10, 2, 16, NULL, 'friendRequest', '2019-01-29 05:31:40', TRUE);
 
 INSERT INTO blocked(userID, admin, "date", motive) VALUES (13, 1, '2019-03-21 07:22:16', 'Racism');
 INSERT INTO blocked(userID, admin, "date", motive) VALUES (15, 2, '2019-04-01 21:42:32', 'Inappropriate behaviour');
@@ -148,16 +148,16 @@ INSERT INTO blocked(userID, admin, "date", motive) VALUES (7, 1, '2019-03-27 19:
 INSERT INTO blocked(userID, admin, "date", motive) VALUES (9, 1, '2019-03-23 12:13:20', 'Inappropriate behaviour');
 INSERT INTO blocked(userID, admin, "date", motive) VALUES (18, 2, '2019-03-31 05:16:33', 'Inappropriate behaviour');
 
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(1, 1, 1, '2019-03-21 07:22:16', 'This user used abusive content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(2, 1, 1, '2019-02-09 23:02:30', 'Abusive user', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(3, 1, 1, '2019-03-04 13:22:03', 'color skin', 'Racism');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(4, 1, 1, '2019-04-02 13:23:18', 'He/She sent me abusive content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(5, 1, 1, '2019-03-19 13:07:04', 'This user must be banned!', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(6, 1, 1, '2019-03-27 12:22:02', 'Abusive user!!', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(7, 1, 1, '2019-02-09 23:02:30', 'He said abusive words', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(8, 1, 1, '2019-02-22 23:02:20', 'Soooo inappropriate', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(9, 1, 1, '2019-03-27 12:22:02', 'Inappropriate content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(10, 1, 1, '2019-03-13 15:07:02', 'Content not permited', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(1, 13, 14, '2019-03-21 07:22:16', 'This user used abusive content', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(2, 15, 4, '2019-02-09 23:02:30', 'Abusive user', 'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(3, 13, 14, '2019-03-04 13:22:03', 'color skin', 'Racism');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(4, 2, 14, '2019-04-02 13:23:18', 'He/She sent me abusive content', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(5, 8, 14, '2019-03-19 13:07:04', 'This user must be banned!', 'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(6, 5, 4, '2019-03-27 12:22:02', 'Abusive user!!', 'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(7, 12, 4, '2019-02-09 23:02:30', 'He said abusive words', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(8, 16, 4, '2019-02-22 23:02:20', 'Soooo inappropriate', 'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(9, 3, 14, '2019-03-27 12:22:02', 'Inappropriate content', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(10, 2, 14, '2019-03-13 15:07:02', 'Content not permited', 'Abusive content');
 
 INSERT INTO commentReport(reportID, commentID) VALUES(2, );
 INSERT INTO commentReport(reportID, commentID) VALUES(3, );
@@ -202,38 +202,38 @@ INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(28, 'share', '2
 INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(29, 'clanInvite', '2019-03-23 16:12:16', TRUE);
 INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(30, 'share', '2019-04-02 13:23:18', FALSE);
 
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (8, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (9, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (6, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (10, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (11, 1);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (8, 2);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (9, 3);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (6, 6);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (10, 8);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (11, 9);
 
-INSERT INTO messageNotification(notificationID, messageID) VALUES (3, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (4, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (21, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (22, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (25, 1);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (3, 2);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (4, 10);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (21, 15);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (22, 3);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (25, 9);
 
 INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(14, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(16, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(20, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(23, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(26, 1);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(16, 4);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(20, 5);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(23, 7);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(26, 10);
 
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 1);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (2, 1, 1);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (5, 1, 1);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (7, 1, 1);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (24, 1, 1);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 7);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (2, 4, 13);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (5, 3, 7);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (7, 11, 1);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (24, 13, 17);
 
-INSERT INTO commentNotification(notificationID, commentID) VALUES (13, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (15, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (21, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (22, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (25, 1);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (13, 14);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (15, 9);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (21, 18);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (22, 4);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (25, 12);
 
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(18, 1, 1);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(19, 1, 1);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(27, 1, 1);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(28, 1, 1);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(30, 1, 1);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(18, 2, 10);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(19, 10, 4);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(27, 3, 6);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(28, 2, 10);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(30, 12, 3);
