@@ -116,4 +116,6 @@ REMOVES
 
 
 TRIGGERS
+    check if a comment, share or like has a more recent date than the correspondent post (3 triggers, one for each)
+    
 
