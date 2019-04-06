@@ -36,10 +36,12 @@ DROP TYPE IF EXISTS requestEnum;
 DROP FUNCTION IF EXISTS verifyReportAdmin() CASCADE;
 DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
 DROP FUNCTION IF EXISTS userAcceptClanInvite() CASCADE;
+DROP FUNCTION IF EXISTS userStillBlocked() CASCADE;
 
 DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
 DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
 DROP TRIGGER IF EXISTS userAcceptClanInvite ON report;
+DROP TRIGGER IF EXISTS userStillBlocked ON blocked;
 
 
 -----------------------------------------
@@ -271,3 +273,23 @@ CREATE TRIGGER userAcceptClanInvite
     BEFORE UPDATE ON request
     FOR EACH ROW
     EXECUTE PROCEDURE userAcceptClanInvite();
+
+CREATE FUNCTION userStillBlocked() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM blocked
+        WHERE userID = New.userID AND "date" > now()
+    ) 
+    THEN RAISE EXCEPTION 'User is already blocked.';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER userStillBlocked
+    BEFORE INSERT ON blocked
+    FOR EACH ROW
+    EXECUTE PROCEDURE userStillBlocked();
