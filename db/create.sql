@@ -35,9 +35,11 @@ DROP TYPE IF EXISTS requestEnum;
 
 DROP FUNCTION IF EXISTS verifyReportAdmin() CASCADE;
 DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
+DROP FUNCTION IF EXISTS userAcceptClanInvite() CASCADE;
 
 DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
 DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
+DROP TRIGGER IF EXISTS userAcceptClanInvite ON report;
 
 
 -----------------------------------------
@@ -249,3 +251,23 @@ CREATE TRIGGER verifyBlockingAdmin
     BEFORE INSERT OR UPDATE ON blocked
     FOR EACH ROW
     EXECUTE PROCEDURE verifyBlockingAdmin();
+
+CREATE FUNCTION userAcceptClanInvite() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM userClan
+        WHERE userID = Old.receiver AND Old."type" = 'clanRequest' AND New.hasAccepted = TRUE
+    )
+    THEN RAISE EXCEPTION 'User cannot join a clan while is already a member of another clan.';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER userAcceptClanInvite
+    BEFORE UPDATE ON request
+    FOR EACH ROW
+    EXECUTE PROCEDURE userAcceptClanInvite();
