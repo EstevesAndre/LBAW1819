@@ -45,8 +45,7 @@ CREATE TABLE "user" (
     race raceEnum,
     class classEnum,
     xp INTEGER NOT NULL DEFAULT 0 CHECK (xp >= 0),
-    isAdmin BOOLEAN NOT NULL DEFAULT FALSE,
-    clanID INTEGER
+    isAdmin BOOLEAN NOT NULL DEFAULT FALSE
 );
  
 CREATE TABLE clan (
@@ -54,6 +53,11 @@ CREATE TABLE clan (
     name VARCHAR(20) NOT NULL UNIQUE,
     description VARCHAR(250),
     ownerID INTEGER NOT NULL REFERENCES "user" (id)
+);
+
+CREATE TABLE userClan (
+    userID INTEGER NOT NULL REFERENCES "user" PRIMARY KEY,
+    clanID INTEGER NOT NULL REFERENCES clan
 );
  
 CREATE TABLE post (
@@ -107,7 +111,8 @@ CREATE TABLE request (
 );  
  
 CREATE TABLE blocked (
-    userID INTEGER NOT NULL REFERENCES "user" (id) PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    userID INTEGER NOT NULL REFERENCES "user" (id),
     admin INTEGER  NOT NULL REFERENCES "user" (id),
     "date" TIMESTAMP WITH TIME zone NOT NULL,
     motive motiveEnum NOT NULL
@@ -174,6 +179,3 @@ CREATE TABLE shareNotification (
     shareUserID INTEGER NOT NULL,
     FOREIGN KEY (sharePostID, shareUserID) REFERENCES share(postID, userID)
 );
-
-ALTER TABLE "user" 
-ADD FOREIGN KEY (clanID) REFERENCES clan (id);
