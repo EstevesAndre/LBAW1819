@@ -5,23 +5,23 @@ INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, 
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(5, 'zecafontes@gmail.com', 'Fontes', 'V~n8`5$*', 'Pedro Silva', '1997-03-18','Human', 'Fighter', 6074, FALSE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(6, 'guerreiro.def@gmail.com', 'Guerreiro_do_BVB', 'Z;-8g^Wc', 'Simão Silva', '1998-01-20', 'Dwarf', 'Rogue', 681, FALSE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(7, 'cancelo.juve@hotmail.com', 'CanceloSLB', '?\H=jB3\', 'Pedro Fernandes', '1997-03-18', 'Elf', 'Rogue', 112, FALSE);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(8, 'dias_ruben@gmail.com', 'GOATdaDefesa', 'e7Gh/s-K', 'Bruno Sousa', '1997-03-18', 'Human', 'Elf', 'Healer', 967, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(8, 'dias_ruben@gmail.com', 'GOATdaDefesa', 'e7Gh/s-K', 'Bruno Sousa', '1997-03-18', 'Elf', 'Healer', 967, FALSE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(9, 'mario_rui@gmail.com', 'Ruizinho', ':YG^n9^z', 'Antero Santos', '1997-03-18', 'Human', 'Fighter', 420, FALSE);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(10, 'nelson_semedo.goat@gmail.com', 'M10better_thanCR7', ')K:9Bu^*', 'João Angélico', '1997-03-18', 'Elf''Wizard', 2304, FALSE);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(11, 'joao_moutinho@gmail.com', 'MaçãPodre', 'Xy>qz9;M', 'Mariana Costa', '1997-03-18', 'Dwarf', 'Rogue', 437, FALSE);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(12, 'carvalho.william@gmail.com', 'William_Carvalhospeare', '^7kNr;~N', 'Catarina Almeida', '1997-03-18', 'Human''Wizard', 892, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(10, 'nelson_semedo.goat@gmail.com', 'M10better_thanCR7', ')K:9Bu^*', 'João Angélico', '1997-03-18', 'Elf', 'Wizard', 2304, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(11, 'joao_moutinho@gmail.com', 'MaçãPodre', 'Xy>qz9M', 'Mariana Costa', '1997-03-18', 'Dwarf', 'Rogue', 437, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(12, 'carvalho.william@gmail.com', 'William_Carvalho', '^7kNr~N', 'Catarina Almeida', '1997-03-18', 'Human', 'Wizard', 892, FALSE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(13, 'mario_joao@gmail.com', 'OMeuAmoréoSporting', 'q3NTt6.C', 'Miguel Barraca', '1997-03-18', 'Elf', 'Rogue', 1423, FALSE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(14, 'danilo.fcp@gmail.com', 'ItzDanilo', 'k3M~4&./', 'António Costa', '1997-03-18','Dwarf', 'Healer', 3048, TRUE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(15, 'pizzi@gmail.com', 'PizziOficial', '`7vJ4aHw', 'Marcelo Sousa', '1997-03-18', 'Human', 'Fighter', 1024, FALSE);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(16, 'bruno_nandes@gmail.com', 'AMinhaVidaéoSporting', '[Yw?J5XP', 'Pedro Coelho', '1997-03-18', 'Human''Wizard',1312, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(16, 'bruno_nandes@gmail.com', 'AMinhaVidaéoSport', '[Yw?J5XP', 'Pedro Coelho', '1997-03-18', 'Human', 'Wizard',1312, FALSE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(17, 'neves_ruben@gmail.com', 'SóGolaceiras', 'W]d89up]', 'Luís Vieira', '1997-03-18','Dwarf', 'Healer', 430, FALSE);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(18, 'feliz.joao@gmail.com', 'NextCR7', '6@9Hz\V', 'Alexandre Santos', '1997-03-18','Dwarf''Wizard', 20, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(18, 'feliz.joao@gmail.com', 'NextCR7', '6@9Hz\V', 'Alexandre Santos', '1997-03-18','Dwarf', 'Wizard', 20, FALSE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(19, 'bernas.silva@gmail.com', 'EuSouOBernas', 'BVy%8y8f', 'Fernando Rocha', '1997-03-18', 'Human', 'Rogue', 4512, FALSE);
 INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(20, 'rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 960, FALSE);
 
 INSERT INTO clan(id, name, description, ownerID) VALUES(1,'Default Clan','Na busca do primeiro lugar da leaderboard de clans',14);
 INSERT INTO clan(id, name, description, ownerID) VALUES(2,'Seleção das Quinas','Enquanto seleção decidimos criar um clan para mostrar a união desta equipa',20);
-INSERT INTO clan(id, name, description, ownerID) VALUES(3,'Rumo à Liga das Nações','Clan de apoio aos nossos guerreiros para a Liga das Nações',4);
+INSERT INTO clan(id, name, description, ownerID) VALUES(3,'Liga das Nações','Clan de apoio aos nossos guerreiros para a Liga das Nações',4);
 INSERT INTO clan(id, name, description, ownerID) VALUES(4,'EURO 2016','Relembrar os velhos tempos com os nossos amigos franceses',11);
 INSERT INTO clan(id, name, description, ownerID) VALUES(5,'Falta o Éder','Uma pequena homenagem ao herói português Ederzito. Juntem-se à nossa causa',17);
 
@@ -87,7 +87,7 @@ INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(3, 2, 6, '20
 INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(4, 4, 4, '2019-03-16 02:31:27', 'Concordo completamente!');
 INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(5, 3, 3, '2019-01-14 12:22:20', 'Não sei se é um bom plano');
 INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(6, 5, 2, '2019-02-19 04:16:04', 'Amanhã veremos');
-INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(7, 3, 1, '2019-01-14 13:22:20', 'Sim...claro ;)');
+INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(7, 3, 1, '2019-01-14 13:22:20', 'Sim...claro');
 INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(8, 6, 19, '2019-03-14 07:05:17', 'Não acredito :o !!!');
 INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(9, 7, 14, '2019-01-22 12:12:19', 'És o maior!');
 INSERT INTO comment(id, postID, userID, "date", commentText) VALUES(10, 8, 13, '2019-01-28 15:18:06', 'Isto é fake news! Não acreditem nisto pessoal');
@@ -154,11 +154,11 @@ INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) V
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (9, 1, 1, 1, 'friendRequest', '2019-02-23 06:12:20', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (10, 1, 1, 1, 'friendRequest', '2019-01-29 05:31:40', TRUE);
 
-INSERT INTO blocked(userID, admin, "date", motive) VALUES (13, 1, '2019-03-21 07:22:16', 'Racism');
-INSERT INTO blocked(userID, admin, "date", motive) VALUES (15, 2, '2019-04-01 21:42:32', 'Inappropriate behaviour');
-INSERT INTO blocked(userID, admin, "date", motive) VALUES (7, 1, '2019-03-27 19:32:15', 'Abusive content');
-INSERT INTO blocked(userID, admin, "date", motive) VALUES (9, 1, '2019-03-23 12:13:20', 'Inappropriate behaviour');
-INSERT INTO blocked(userID, admin, "date", motive) VALUES (18, 2, '2019-03-31 05:16:33', 'Inappropriate behaviour');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (1, 13, 1, '2019-03-21 07:22:16', 'Racism');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (2, 15, 2, '2019-04-01 21:42:32', 'Inappropriate behaviour');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (3, 7, 1, '2019-03-27 19:32:15', 'Abusive content');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (4, 9, 1, '2019-03-23 12:13:20', 'Inappropriate behaviour');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (5, 18, 2, '2019-03-31 05:16:33', 'Inappropriate behaviour');
 
 INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(1, 1, 1, '2019-03-21 07:22:16', 'This user used abusive content', 'Abusive content');
 INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(2, 1, 1, '2019-02-09 23:02:30', 'Abusive user', 'Inappropriate behaviour');
@@ -215,37 +215,37 @@ INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(29, 'clanInvite
 INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(30, 'share', '2019-04-02 13:23:18', FALSE);
 
 INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (8, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (9, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (6, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (10, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (11, 1);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (9, 2);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (6, 3);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (10, 4);
+INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (11, 5);
 
 INSERT INTO messageNotification(notificationID, messageID) VALUES (3, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (4, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (21, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (22, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (25, 1);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (4, 2);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (21,3);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (22, 4);
+INSERT INTO messageNotification(notificationID, messageID) VALUES (25, 5);
 
 INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(14, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(16, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(20, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(23, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(26, 1);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(16, 2);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(20, 3);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(23, 4);
+INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(26, 5);
 
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 1);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (2, 1, 1);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (5, 1, 1);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (7, 1, 1);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (24, 1, 1);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 4);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (2, 1, 7);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (5, 1, 17);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (7, 2, 4);
+INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (24, 2, 11);
 
 INSERT INTO commentNotification(notificationID, commentID) VALUES (13, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (15, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (21, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (22, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (25, 1);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (15, 2);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (21, 3);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (22, 4);
+INSERT INTO commentNotification(notificationID, commentID) VALUES (25, 5);
 
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(18, 1, 1);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(19, 1, 1);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(27, 1, 1);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(28, 1, 1);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(30, 1, 1);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(18, 9, 5);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(19, 2, 10);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(27, 3, 6);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(28, 12, 3);
+INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(30, 5, 19);
