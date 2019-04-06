@@ -249,3 +249,14 @@ INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(1
 INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(27, 3, 6);
 INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(28, 12, 3);
 INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(30, 5, 19);
+
+
+SELECT setval('user_id_seq', (SELECT MAX(id) from "user"));
+SELECT setval('blocked_id_seq', (SELECT MAX(id) from blocked));
+SELECT setval('clan_id_seq', (SELECT MAX(id) from clan));
+SELECT setval('comment_id_seq', (SELECT MAX(id) from comment));
+SELECT setval('message_id_seq', (SELECT MAX(id) from message));
+SELECT setval('notification_id_seq', (SELECT MAX(id) from notification));
+SELECT setval('post_id_seq', (SELECT MAX(id) from post));
+SELECT setval('report_id_seq', (SELECT MAX(id) from report));
+SELECT setval('request_id_seq', (SELECT MAX(id) from request));
