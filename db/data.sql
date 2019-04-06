@@ -143,16 +143,16 @@ INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALU
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALUES(34, 19, 18, '2019-03-27 19:28:55', 'Só dei a ideia a ver se alinhavas', TRUE);
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) VALUES(35, 18, 19, '2019-03-27 19:30:15', 'Já alinhei! xD', FALSE);
 
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 1, 1, 1, 'friendRequest', '2019-04-16 23:23:59', TRUE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (2, 1, 1, 1, 'friendRequest', '2019-03-11 09:37:20', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (3, 1, 1, 1, 'friendRequest', '2019-04-12 19:45:56', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (4, 1, 1, 1, 'friendRequest', '2019-03-16 13:25:26', TRUE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (5, 1, 1, 1, 'friendRequest', '2019-04-02 09:18:01', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (6, 1, 1, 1, 'friendRequest', '2019-02-06 14:27:16', TRUE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (7, 1, 1, 1, 'friendRequest', '2019-03-16 16:21:17', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (8, 1, 1, 1, 'friendRequest', '2019-02-19 10:32:39', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (9, 1, 1, 1, 'friendRequest', '2019-02-23 06:12:20', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (10, 1, 1, 1, 'friendRequest', '2019-01-29 05:31:40', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (1, 3, 12, NULL, 'friendRequest', '2019-04-16 23:23:59', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (2, 11, 14, 1, 'clanRequest', '2019-03-11 09:37:20', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (3, 7, 20, 2, 'clanRequest', '2019-04-12 19:45:56', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (4, 8, 11, NULL, 'friendRequest', '2019-03-16 13:25:26', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (5, 4, 2, NULL, 'friendRequest', '2019-04-02 09:18:01', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (6, 12, 20, 2, 'clanRequest', '2019-02-06 14:27:16', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (7, 8, 1, NULL, 'friendRequest', '2019-03-16 16:21:17', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (8, 5, 11, 4, 'clanRequest', '2019-02-19 10:32:39', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (9, 4, 4, 3, 'clanRequest', '2019-02-23 06:12:20', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (10, 2, 16, NULL, 'friendRequest', '2019-01-29 05:31:40', TRUE);
 
 INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (1, 13, 1, '2019-03-21 07:22:16', 'Racism');
 INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (2, 15, 2, '2019-04-01 21:42:32', 'Inappropriate behaviour');
