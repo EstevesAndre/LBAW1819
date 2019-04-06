@@ -159,10 +159,10 @@ INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(8, 16, 
 INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(9, 3, 14, '2019-03-27 12:22:02', 'Inappropriate content', 'Abusive content');
 INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(10, 2, 14, '2019-03-13 15:07:02', 'Content not permited', 'Abusive content');
 
-INSERT INTO commentReport(reportID, commentID) VALUES(2, );
-INSERT INTO commentReport(reportID, commentID) VALUES(3, );
-INSERT INTO commentReport(reportID, commentID) VALUES(5, );
-INSERT INTO commentReport(reportID, commentID) VALUES(7, );
+INSERT INTO commentReport(reportID, commentID) VALUES(2, 16);
+INSERT INTO commentReport(reportID, commentID) VALUES(3, 10);
+INSERT INTO commentReport(reportID, commentID) VALUES(5, 14);
+INSERT INTO commentReport(reportID, commentID) VALUES(7, 3);
 
 INSERT INTO postReport(reportID, postID) VALUES(1, 2);
 INSERT INTO postReport(reportID, postID) VALUES(4, 3);
