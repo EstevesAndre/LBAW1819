@@ -3,12 +3,14 @@ DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
 DROP FUNCTION IF EXISTS verifyCommentDate() CASCADE;
 DROP FUNCTION IF EXISTS verifyShareDate() CASCADE;
 DROP FUNCTION IF EXISTS verifyLikeDate() CASCADE;
+DROP FUNCTION IF EXISTS userAcceptClanInvite() CASCADE;
 
 DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
 DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
 DROP TRIGGER IF EXISTS verifyCommentDate ON comment;
 DROP TRIGGER IF EXISTS verifyShareDate ON share;
 DROP TRIGGER IF EXISTS verifyLikeDate ON "like";
+DROP TRIGGER IF EXISTS userAcceptClanInvite ON report;
 
 
 --VERIFY IF USER REPORT IS HANDLED BY AN ADMIN
@@ -119,3 +121,26 @@ CREATE TRIGGER verifyCommentDate
     BEFORE INSERT OR UPDATE ON "like"
     FOR EACH ROW
     EXECUTE PROCEDURE verifyLikeDate();
+
+
+--VERIFY IF USER CAN ACCEPT CLAN INVITE
+CREATE FUNCTION userAcceptClanInvite() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM clan, "user"
+        WHERE "user".id = Old.receiver AND clan.id = "user".clanID AND 
+                Old."type" = 'clanRequest' AND New.hasAccepted = TRUE
+    )
+    THEN RAISE EXCEPTION 'User cannot join a clan while is already a member of another clan.';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER userAcceptClanInvite
+    BEFORE UPDATE ON request
+    FOR EACH ROW
+    EXECUTE PROCEDURE userAcceptClanInvite();
