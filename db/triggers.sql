@@ -1,10 +1,58 @@
+DROP FUNCTION IF EXISTS verifyReportAdmin() CASCADE;
+DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
 DROP FUNCTION IF EXISTS verifyCommentDate() CASCADE;
 DROP FUNCTION IF EXISTS verifyShareDate() CASCADE;
 DROP FUNCTION IF EXISTS verifyLikeDate() CASCADE;
 
+DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
+DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
 DROP TRIGGER IF EXISTS verifyCommentDate ON comment;
 DROP TRIGGER IF EXISTS verifyShareDate ON share;
 DROP TRIGGER IF EXISTS verifyLikeDate ON "like";
+
+
+--VERIFY IF USER REPORT IS HANDLED BY AN ADMIN
+CREATE FUNCTION verifyReportAdmin() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM "user"
+        WHERE "user".id = New.admin AND "user".isAdmin = FALSE
+    ) 
+    THEN RAISE EXCEPTION 'Only an Admin (with permissions) can handle an user report.';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER verifyReportAdmin
+    BEFORE INSERT OR UPDATE ON report
+    FOR EACH ROW
+    EXECUTE PROCEDURE verifyReportAdmin();
+
+
+--VERIFY IF USER WAS BANNED BY AN ADMIN
+CREATE FUNCTION verifyBlockingAdmin() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM "user"
+        WHERE "user".id = New.admin AND "user".isAdmin = FALSE
+    ) 
+    THEN RAISE EXCEPTION 'Only an Admin (with permissions) can block an user.';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER verifyBlockingAdmin
+    BEFORE INSERT OR UPDATE ON blocked
+    FOR EACH ROW
+    EXECUTE PROCEDURE verifyBlockingAdmin();
 
 
 --VERIFY COMMENT DATE
