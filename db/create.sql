@@ -1,3 +1,7 @@
+-----------------------------------------
+-- Drop old schmema
+-----------------------------------------
+
 DROP TABLE IF EXISTS "user" CASCADE;
 DROP TABLE IF EXISTS regular CASCADE;
 DROP TABLE IF EXISTS api_user CASCADE;
@@ -29,15 +33,28 @@ DROP TYPE IF EXISTS motiveEnum;
 DROP TYPE IF EXISTS notificationEnum;
 DROP TYPE IF EXISTS requestEnum;
 
+DROP FUNCTION IF EXISTS verifyReportAdmin() CASCADE;
+DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
 
+DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
+DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
+
+
+-----------------------------------------
 -- Types
+-----------------------------------------
+
 CREATE TYPE classEnum AS ENUM ('Fighter', 'Wizard', 'Rogue', 'Healer');
 CREATE TYPE raceEnum AS ENUM ('Human', 'Elf', 'Dwarf');
 CREATE TYPE motiveEnum AS ENUM ('Inappropriate behaviour', 'Abusive content', 'Racism');
 CREATE TYPE notificationEnum AS ENUM ('clanInvite', 'message', 'friendRequest', 'like', 'comment', 'share');
 CREATE TYPE requestEnum AS ENUM ('friendRequest', 'clanRequest');
 
+
+-----------------------------------------
 -- Tables
+-----------------------------------------
+
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     email VARCHAR(30) NOT NULL UNIQUE, 
@@ -182,3 +199,53 @@ CREATE TABLE shareNotification (
     shareUserID INTEGER NOT NULL,
     FOREIGN KEY (sharePostID, shareUserID) REFERENCES share(postID, userID)
 );
+
+
+-----------------------------------------
+-- INDEXES
+-----------------------------------------
+
+
+-----------------------------------------
+-- TRIGGERS and UDFs
+-----------------------------------------
+
+CREATE FUNCTION verifyReportAdmin() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM "user"
+        WHERE "user".id = New.admin AND "user".isAdmin = FALSE
+    ) 
+    THEN RAISE EXCEPTION 'Only an Admin (with permissions) can handle an user report.';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER verifyReportAdmin
+    BEFORE INSERT OR UPDATE ON report
+    FOR EACH ROW
+    EXECUTE PROCEDURE verifyReportAdmin();
+
+CREATE FUNCTION verifyBlockingAdmin() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM "user"
+        WHERE "user".id = New.admin AND "user".isAdmin = FALSE
+    ) 
+    THEN RAISE EXCEPTION 'Only an Admin (with permissions) can block an user.';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER verifyBlockingAdmin
+    BEFORE INSERT OR UPDATE ON blocked
+    FOR EACH ROW
+    EXECUTE PROCEDURE verifyBlockingAdmin();

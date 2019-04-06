@@ -154,22 +154,22 @@ INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) V
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (9, 4, 4, 3, 'clanRequest', '2019-02-23 06:12:20', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (10, 2, 16, NULL, 'friendRequest', '2019-01-29 05:31:40', TRUE);
 
-INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (1, 13, 1, '2019-03-21 07:22:16', 'Racism');
-INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (2, 15, 2, '2019-04-01 21:42:32', 'Inappropriate behaviour');
-INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (3, 7, 1, '2019-03-27 19:32:15', 'Abusive content');
-INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (4, 9, 1, '2019-03-23 12:13:20', 'Inappropriate behaviour');
-INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (5, 18, 2, '2019-03-31 05:16:33', 'Inappropriate behaviour');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (1, 13, 4, '2019-03-21 07:22:16', 'Racism');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (2, 15, 4, '2019-04-01 21:42:32', 'Inappropriate behaviour');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (3, 7, 4, '2019-03-27 19:32:15', 'Abusive content');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (4, 9, 4, '2019-03-23 12:13:20', 'Inappropriate behaviour');
+INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (5, 18, 4, '2019-03-31 05:16:33', 'Inappropriate behaviour');
 
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(1, 1, 1, '2019-03-21 07:22:16', 'This user used abusive content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(2, 1, 1, '2019-02-09 23:02:30', 'Abusive user', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(3, 1, 1, '2019-03-04 13:22:03', 'color skin', 'Racism');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(4, 1, 1, '2019-04-02 13:23:18', 'He/She sent me abusive content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(5, 1, 1, '2019-03-19 13:07:04', 'This user must be banned!', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(6, 1, 1, '2019-03-27 12:22:02', 'Abusive user!!', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(7, 1, 1, '2019-02-09 23:02:30', 'He said abusive words', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(8, 1, 1, '2019-02-22 23:02:20', 'Soooo inappropriate', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(9, 1, 1, '2019-03-27 12:22:02', 'Inappropriate content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(10, 1, 1, '2019-03-13 15:07:02', 'Content not permited', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(1, 1, 4, '2019-03-21 07:22:16', 'This user used abusive content', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(2, 1, 4, '2019-02-09 23:02:30', 'Abusive user', 'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(3, 1, 4, '2019-03-04 13:22:03', 'color skin', 'Racism');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(4, 1, 4, '2019-04-02 13:23:18', 'He/She sent me abusive content', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(5, 1, 4, '2019-03-19 13:07:04', 'This user must be banned!', 'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(6, 1, 4, '2019-03-27 12:22:02', 'Abusive user!!', 'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(7, 1, 4, '2019-02-09 23:02:30', 'He said abusive words', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(8, 1, 4, '2019-02-22 23:02:20', 'Soooo inappropriate', 'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(9, 1, 4, '2019-03-27 12:22:02', 'Inappropriate content', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(10, 1, 4, '2019-03-13 15:07:02', 'Content not permited', 'Abusive content');
 
 INSERT INTO commentReport(reportID, commentID) VALUES(2, 21);
 INSERT INTO commentReport(reportID, commentID) VALUES(3, 21);
