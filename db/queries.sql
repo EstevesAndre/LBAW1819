@@ -57,26 +57,40 @@ WHERE isAdmin = TRUE;
 --user posts(likes, comments, shares)
 SELECT *
 FROM post
-WHERE post.userID = $userID
+WHERE post.userID = $userID;
 
 SELECT *
 FROM "like"
-WHERE postID = $postID -- <- este postID vem da query anterior 
+WHERE postID = $postID; -- <- este postID vem da query anterior 
 
 SELECT *
 FROM share 
-WHERE postID = $postID -- <- este postID vem da query anterior 
+WHERE postID = $postID; -- <- este postID vem da query anterior 
 
 SELECT *
 FROM comment
-WHERE postID = $postID -- <- este postID vem da query anterior 
+WHERE postID = $postID; -- <- este postID vem da query anterior 
 
 
 --clan posts(likes, comments, shares)
+//TODO
 
+--shared user posts(likes, comments, shares)
+SELECT *
+FROM post, share
+WHERE post.postID = share.postID AND share.userID = $user;
 
---shared posts(likes, comments, shares)
+SELECT *
+FROM "like"
+WHERE postID = $postID;
 
+SELECT *
+FROM share 
+WHERE postID = $postID;
+
+SELECT *
+FROM comment
+WHERE postID = $postID; 
     
 --clan members
 SELECT *
@@ -125,27 +139,47 @@ WHERE receiver = $userID;
 
 
 --login (verificar login)	 
+SELECT password
+FROM user
+WHERE user.username = $user;
 
 
 --posts dos amigos order by date (para cada post é preciso saber likes comments e shares)
+SELECT *
+FROM post, request
+WHERE (post.userID = request.sender AND request.receiver = $user AND request.type = 'friendRequest' AND request.hasAccepted = true) OR
+      (post.userID = request.receiver AND request.sender = $user AND request.type = 'friendRequest' AND request.hasAccepted = true)
+ORDER BY request."date" DESC
+LIMIT 20;
 
+SELECT *
+FROM "like"
+WHERE postID = $postID;
+
+SELECT *
+FROM share 
+WHERE postID = $postID;
+
+SELECT *
+FROM comment
+WHERE postID = $postID;
 
 --post (with comments, likes and shares)
 SELECT *
 FROM post
-WHERE post.id = $postID
+WHERE post.id = $postID;
 
 SELECT *
 FROM "like"
-WHERE postID = $postID
+WHERE postID = $postID;
 
 SELECT *
 FROM share 
-WHERE postID = $postID
+WHERE postID = $postID;
 
 SELECT *
 FROM comment
-WHERE postID = $postID  
+WHERE postID = $postID;  
 
   
 --search users
