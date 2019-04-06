@@ -117,5 +117,7 @@ REMOVES
 
 TRIGGERS
     check if a comment, share or like has a more recent date than the correspondent post (3 triggers, one for each)
-    
+    verify if report and blocked admin key points to an user with isAdmin = TRUE (2 triggers)
+    verify if user that accepts a clan invite is not already a member of another clan
+    when a blocked is added verify if user doesn't have a current block
 

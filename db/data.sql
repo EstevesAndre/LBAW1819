@@ -1,29 +1,41 @@
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(1, rui.patricio@gmail.com, 'ruiWolves', '_n@6EEs6','João Miguel', 'Elf', 'Fighter',  205, FALSE, 1);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(2, beto.gr@gmail.com, 'Bebeto', 'K8c4)-Tx' , 'André Esteves', 'Human', 'Wizard', 124, FALSE, 2);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(3, sa.ze@hotmail.com,'Zezocas', '!8Y,yZ^', 'Francisco Filipe','Human', 'Fighter', 2030, FALSE, 1);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(4, pepe.oficial@gmail.com, 'Pepe123', '`/Fsa2g%', 'Luís Silva', 'Elf''Wizard', 1540, TRUE, 3);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(5, zecafontes@gmail.com, 'Fontes', 'V~n8`5$*', 'Pedro Silva', 'Human', 'Fighter', 6074, FALSE, 4);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(6, guerreiro.def@gmail.com, 'Guerreiro_do_BVB', 'Z;-8g^Wc', 'Simão Silva', 'Dwarf', 'Rogue', 681, FALSE, 1);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(7, cancelo.juve@hotmail.com, 'CanceloSLB', '?\H=jB3\', 'Pedro Fernandes', 'Elf', 'Rogue', 112, FALSE, 5);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(8, dias_ruben@gmail.com, 'GOATdaDefesa', 'e7Gh/s-K', 'Bruno Sousa', 'Human', 'Elf', 'Healer', 967, FALSE, 2);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(9, mario_rui@gmail.com, 'Ruizinho', ':YG^n9^z', 'Antero Santos', 'Human', 'Fighter', 420, FALSE, 3);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(10, nelson_semedo.goat@gmail.com, 'M10better_thanCR7', ')K:9Bu^*', 'João Angélico', 'Elf''Wizard', 2304, FALSE, 3);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(11, joao_moutinho@gmail.com, 'MaçãPodre', 'Xy>q;z9M', 'Mariana Costa', 'Dwarf', 'Rogue', 437, FALSE, 4);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(12, carvalho.william@gmail.com, 'William_Carvalhospeare', '^7kN;r~N', 'Catarina Almeida', 'Human''Wizard', 892, FALSE, 5);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(13, mario_joao@gmail.com, 'OMeuAmoréoSporting', 'q3NTt6.C', 'Miguel Barraca', 'Elf', 'Rogue', 1423, FALSE, 2);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(14, danilo.fcp@gmail.com, 'ItzDanilo', 'k3M~4&./', 'António Costa','Dwarf', 'Healer', 3048, TRUE, 1);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(15, pizzi@gmail.com, 'PizziOficial', '`7vJ4aHw', 'Marcelo Sousa', 'Human', 'Fighter', 1024, FALSE, 4);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(16, bruno_nandes@gmail.com, 'AMinhaVidaéoSporting', '[Yw?J5XP', 'Pedro Coelho', 'Human''Wizard',1312, FALSE, 5);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(17, neves_ruben@gmail.com, 'SóGolaceiras', 'W]d89up]', 'Luís Vieira','Dwarf', 'Healer', 430, FALSE, 5);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(18, feliz.joao@gmail.com, 'NextCR7', '6@9Hz\V', 'Alexandre Santos','Dwarf''Wizard', 20, FALSE, 3);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(19, bernas.silva@gmail.com, 'EuSouOBernas', 'BVy%8y8f', 'Fernando Rocha', 'Human', 'Rogue', 4512, FALSE, 4);
-INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin, clanID) VALUES(20, rafa_slb@gmail.com, 'JustRafa', '#9sYEtAg', 'Leonel Silva', 'Elf', 'Fighter', 960, FALSE, 2);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(1, 'rui.patricio@gmail.com', 'ruiWolves', '_n@6EEs6', 'João Miguel', '1998-05-16', 'Elf', 'Fighter',  205, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(2, 'beto.gr@gmail.com', 'Bebeto', 'K8c4)-Tx' , 'André Esteves', '1997-03-18', 'Human', 'Wizard', 124, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(3, 'sa.ze@hotmail.com', 'Zezocas', '!8Y,yZ^', 'Francisco Filipe', '1997-03-18', 'Human', 'Fighter', 2030, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(4, 'pepe.oficial@gmail.com', 'Pepe123', '`/Fsa2g%', 'Luís Silva', '1997-03-18', 'Elf', 'Wizard', 1540, TRUE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(5, 'zecafontes@gmail.com', 'Fontes', 'V~n8`5$*', 'Pedro Silva', '1997-03-18','Human', 'Fighter', 6074, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(6, 'guerreiro.def@gmail.com', 'Guerreiro_do_BVB', 'Z;-8g^Wc', 'Simão Silva', '1998-01-20', 'Dwarf', 'Rogue', 681, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(7, 'cancelo.juve@hotmail.com', 'CanceloSLB', '?\H=jB3\', 'Pedro Fernandes', '1997-03-18', 'Elf', 'Rogue', 112, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(8, 'dias_ruben@gmail.com', 'GOATdaDefesa', 'e7Gh/s-K', 'Bruno Sousa', '1997-03-18', 'Human', 'Elf', 'Healer', 967, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(9, 'mario_rui@gmail.com', 'Ruizinho', ':YG^n9^z', 'Antero Santos', '1997-03-18', 'Human', 'Fighter', 420, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(10, 'nelson_semedo.goat@gmail.com', 'M10better_thanCR7', ')K:9Bu^*', 'João Angélico', '1997-03-18', 'Elf''Wizard', 2304, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(11, 'joao_moutinho@gmail.com', 'MaçãPodre', 'Xy>qz9;M', 'Mariana Costa', '1997-03-18', 'Dwarf', 'Rogue', 437, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(12, 'carvalho.william@gmail.com', 'William_Carvalhospeare', '^7kNr;~N', 'Catarina Almeida', '1997-03-18', 'Human''Wizard', 892, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(13, 'mario_joao@gmail.com', 'OMeuAmoréoSporting', 'q3NTt6.C', 'Miguel Barraca', '1997-03-18', 'Elf', 'Rogue', 1423, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(14, 'danilo.fcp@gmail.com', 'ItzDanilo', 'k3M~4&./', 'António Costa', '1997-03-18','Dwarf', 'Healer', 3048, TRUE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(15, 'pizzi@gmail.com', 'PizziOficial', '`7vJ4aHw', 'Marcelo Sousa', '1997-03-18', 'Human', 'Fighter', 1024, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(16, 'bruno_nandes@gmail.com', 'AMinhaVidaéoSporting', '[Yw?J5XP', 'Pedro Coelho', '1997-03-18', 'Human''Wizard',1312, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(17, 'neves_ruben@gmail.com', 'SóGolaceiras', 'W]d89up]', 'Luís Vieira', '1997-03-18','Dwarf', 'Healer', 430, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(18, 'feliz.joao@gmail.com', 'NextCR7', '6@9Hz\V', 'Alexandre Santos', '1997-03-18','Dwarf''Wizard', 20, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(19, 'bernas.silva@gmail.com', 'EuSouOBernas', 'BVy%8y8f', 'Fernando Rocha', '1997-03-18', 'Human', 'Rogue', 4512, FALSE);
+INSERT INTO "user"(id, email, username, password, name, birthdate, race, class, xp, isAdmin) VALUES(20, 'rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 960, FALSE);
 
 INSERT INTO clan(id, name, description, ownerID) VALUES(1,'Default Clan','Na busca do primeiro lugar da leaderboard de clans',14);
 INSERT INTO clan(id, name, description, ownerID) VALUES(2,'Seleção das Quinas','Enquanto seleção decidimos criar um clan para mostrar a união desta equipa',20);
 INSERT INTO clan(id, name, description, ownerID) VALUES(3,'Rumo à Liga das Nações','Clan de apoio aos nossos guerreiros para a Liga das Nações',4);
 INSERT INTO clan(id, name, description, ownerID) VALUES(4,'EURO 2016','Relembrar os velhos tempos com os nossos amigos franceses',11);
 INSERT INTO clan(id, name, description, ownerID) VALUES(5,'Falta o Éder','Uma pequena homenagem ao herói português Ederzito. Juntem-se à nossa causa',17);
+
+INSERT INTO userClan(userID, clanID) VALUES(1, 1);
+INSERT INTO userClan(userID, clanID) VALUES(2, 2);
+INSERT INTO userClan(userID, clanID) VALUES(3, 1);
+INSERT INTO userClan(userID, clanID) VALUES(4, 3);
+INSERT INTO userClan(userID, clanID) VALUES(5, 4);
+INSERT INTO userClan(userID, clanID) VALUES(6, 1);
+INSERT INTO userClan(userID, clanID) VALUES(7, 5);
+INSERT INTO userClan(userID, clanID) VALUES(8, 2);
+INSERT INTO userClan(userID, clanID) VALUES(9, 3);
+INSERT INTO userClan(userID, clanID) VALUES(10, 3);
+
 
 INSERT INTO post (id, "date", content, hasImg, userID) VALUES (1, '2019-02-11 13:41:32', 'Novidades no clan amanhã', TRUE, 1);
 INSERT INTO post (id, "date", content, hasImg, userID) VALUES (2, '2019-03-21 17:30:31', 'O meu clan está demasiado forte. Orgulho em ser Default!', FALSE, 3);
@@ -159,10 +171,10 @@ INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(8, 1, 1
 INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(9, 1, 1, '2019-03-27 12:22:02', 'Inappropriate content', 'Abusive content');
 INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(10, 1, 1, '2019-03-13 15:07:02', 'Content not permited', 'Abusive content');
 
-INSERT INTO commentReport(reportID, commentID) VALUES(2, );
-INSERT INTO commentReport(reportID, commentID) VALUES(3, );
-INSERT INTO commentReport(reportID, commentID) VALUES(5, );
-INSERT INTO commentReport(reportID, commentID) VALUES(7, );
+INSERT INTO commentReport(reportID, commentID) VALUES(2, 21);
+INSERT INTO commentReport(reportID, commentID) VALUES(3, 21);
+INSERT INTO commentReport(reportID, commentID) VALUES(5, 21);
+INSERT INTO commentReport(reportID, commentID) VALUES(7, 21);
 
 INSERT INTO postReport(reportID, postID) VALUES(1, 2);
 INSERT INTO postReport(reportID, postID) VALUES(4, 3);
