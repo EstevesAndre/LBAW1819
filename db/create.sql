@@ -37,11 +37,14 @@ DROP FUNCTION IF EXISTS verifyReportAdmin() CASCADE;
 DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
 DROP FUNCTION IF EXISTS userAcceptClanInvite() CASCADE;
 DROP FUNCTION IF EXISTS userStillBlocked() CASCADE;
+DROP FUNCTION IF EXISTS userCanRequestFriend() CASCADE;
 
 DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
 DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
 DROP TRIGGER IF EXISTS userAcceptClanInvite ON report;
 DROP TRIGGER IF EXISTS userStillBlocked ON blocked;
+DROP TRIGGER IF EXISTS userCanRequestFriend ON request;
+
 
 
 -----------------------------------------
@@ -131,9 +134,10 @@ CREATE TABLE request (
     clanID INTEGER REFERENCES clan (id),
     "type" requestEnum,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    hasAccepted BOOLEAN
+    hasAccepted BOOLEAN,
+    UNIQUE (sender, receiver, "type")
 );  
- 
+
 CREATE TABLE blocked (
     id SERIAL PRIMARY KEY,
     userID INTEGER NOT NULL REFERENCES "user" (id),
@@ -293,3 +297,30 @@ CREATE TRIGGER userStillBlocked
     BEFORE INSERT ON blocked
     FOR EACH ROW
     EXECUTE PROCEDURE userStillBlocked();
+
+CREATE FUNCTION userCanRequestFriend() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM request
+        WHERE "type" = 'friendRequest' AND sender = New.receiver AND receiver = New.sender AND hasAccepted IS NULL
+    )
+    THEN RAISE EXCEPTION 'User already has a suspend friend request from that user.';
+    END IF;
+    IF EXISTS (
+        SELECT *
+        FROM request
+        WHERE "type" = 'friendRequest' AND sender = New.receiver AND receiver = New.sender AND hasAccepted = TRUE
+    )
+    THEN RAISE EXCEPTION 'Users are already friends.';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER userCanRequestFriend
+    BEFORE INSERT ON request
+    FOR EACH ROW
+    EXECUTE PROCEDURE userCanRequestFriend();

@@ -2,6 +2,7 @@ DROP FUNCTION IF EXISTS verifyReportAdmin() CASCADE;
 DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
 DROP FUNCTION IF EXISTS userAcceptClanInvite() CASCADE;
 DROP FUNCTION IF EXISTS userStillBlocked() CASCADE;
+DROP FUNCTION IF EXISTS userCanRequestFriend() CASCADE;
 DROP FUNCTION IF EXISTS verifyCommentDate() CASCADE;
 DROP FUNCTION IF EXISTS verifyShareDate() CASCADE;
 DROP FUNCTION IF EXISTS verifyLikeDate() CASCADE;
@@ -10,6 +11,7 @@ DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
 DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
 DROP TRIGGER IF EXISTS userAcceptClanInvite ON report;
 DROP TRIGGER IF EXISTS userStillBlocked ON blocked;
+DROP TRIGGER IF EXISTS userCanRequestFriend ON request;
 DROP TRIGGER IF EXISTS verifyCommentDate ON comment;
 DROP TRIGGER IF EXISTS verifyShareDate ON share;
 DROP TRIGGER IF EXISTS verifyLikeDate ON "like";
@@ -100,6 +102,37 @@ CREATE TRIGGER userStillBlocked
     BEFORE INSERT ON blocked
     FOR EACH ROW
     EXECUTE PROCEDURE userStillBlocked();
+
+
+--USER CAN'T SEND A FRIEND REQUEST TO AN USER THAT ALREADY SENT HIM FRIEND REQUEST THAT WAS NOT ANSWERED YET OR ALREADY ACCEPTED
+CREATE FUNCTION userCanRequestFriend() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM friendRequest
+        WHERE sender = New.receiver AND receiver = New.sender AND hasAccepted = null
+    )
+    THEN RAISE EXCEPTION 'User already has a suspend friend request from that user.';
+    END IF;
+
+    IF EXISTS (
+        SELECT *
+        FROM friendRequest
+        WHERE sender = New.receiver AND 
+    )
+    THEN RAISE EXCEPTION '';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER userCanRequestFriend
+    BEFORE INSERT ON friendRequest
+    FOR EACH ROW
+    EXECUTE PROCEDURE userCanRequestFriend();
+
 
 
 --VERIFY COMMENT DATE
