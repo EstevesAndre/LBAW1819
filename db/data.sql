@@ -148,7 +148,7 @@ INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) V
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (3, 7, 20, 2, 'clanRequest', '2019-04-12 19:45:56', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (4, 8, 11, NULL, 'friendRequest', '2019-03-16 13:25:26', TRUE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (5, 4, 2, NULL, 'friendRequest', '2019-04-02 09:18:01', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (6, 12, 20, 2, 'clanRequest', '2019-02-06 14:27:16', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (6, 11, 3, 2, 'clanRequest', '2019-02-06 14:27:16', TRUE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (7, 8, 1, NULL, 'friendRequest', '2019-03-16 16:21:17', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (8, 5, 11, 4, 'clanRequest', '2019-02-19 10:32:39', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (9, 4, 4, 3, 'clanRequest', '2019-02-23 06:12:20', FALSE);
