@@ -3,6 +3,7 @@ DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
 DROP FUNCTION IF EXISTS userAcceptClanInvite() CASCADE;
 DROP FUNCTION IF EXISTS userStillBlocked() CASCADE;
 DROP FUNCTION IF EXISTS userCanRequestFriend() CASCADE;
+DROP FUNCTION IF EXISTS repeatedClanInvite() CASCADE;
 DROP FUNCTION IF EXISTS verifyCommentDate() CASCADE;
 DROP FUNCTION IF EXISTS verifyShareDate() CASCADE;
 DROP FUNCTION IF EXISTS verifyLikeDate() CASCADE;
@@ -12,6 +13,7 @@ DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
 DROP TRIGGER IF EXISTS userAcceptClanInvite ON report;
 DROP TRIGGER IF EXISTS userStillBlocked ON blocked;
 DROP TRIGGER IF EXISTS userCanRequestFriend ON request;
+DROP TRIGGER IF EXISTS repeatedClanInvite ON request;
 DROP TRIGGER IF EXISTS verifyCommentDate ON comment;
 DROP TRIGGER IF EXISTS verifyShareDate ON share;
 DROP TRIGGER IF EXISTS verifyLikeDate ON "like";
@@ -110,18 +112,17 @@ $BODY$
 BEGIN
     IF EXISTS (
         SELECT *
-        FROM friendRequest
-        WHERE sender = New.receiver AND receiver = New.sender AND hasAccepted = null
+        FROM request
+        WHERE "type" = 'friendRequest' AND sender = New.receiver AND receiver = New.sender AND hasAccepted IS NULL
     )
     THEN RAISE EXCEPTION 'User already has a suspend friend request from that user.';
     END IF;
-
     IF EXISTS (
         SELECT *
-        FROM friendRequest
-        WHERE sender = New.receiver AND 
+        FROM request
+        WHERE "type" = 'friendRequest' AND sender = New.receiver AND receiver = New.sender AND hasAccepted = TRUE
     )
-    THEN RAISE EXCEPTION '';
+    THEN RAISE EXCEPTION 'Users are already friends.';
     END IF;
     RETURN New;
 END
@@ -129,9 +130,30 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER userCanRequestFriend
-    BEFORE INSERT ON friendRequest
+    BEFORE INSERT ON request
     FOR EACH ROW
     EXECUTE PROCEDURE userCanRequestFriend();
+
+--CLAN CAN ONLY SEND ONE INVITE TO AN USER
+CREATE FUNCTION repeatedClanInvite() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM request
+        WHERE "type" = 'clanRequest' AND receiver = New.receiver AND clanID = New.clanID
+    ) 
+    THEN RAISE EXCEPTION 'User already received an invite from that clan (suspend or already answered).';
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER repeatedClanInvite
+    BEFORE INSERT OR UPDATE ON request
+    FOR EACH ROW
+    EXECUTE PROCEDURE repeatedClanInvite();
 
 
 
