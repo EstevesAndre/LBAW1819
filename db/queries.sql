@@ -16,13 +16,6 @@ WHERE (sender = $activeID AND receiver =$userID) OR
        sender = $userID AND receiver =$activeID;
 
 
---notifications
-SELECT * 
-FROM notification
-ORDER BY "date" DESC,"type" ASC
-LIMIT 20;
-
-
 --reports
 SELECT *
 FROM report
@@ -72,25 +65,11 @@ FROM comment
 WHERE postID = $postID; -- <- este postID vem da query anterior 
 
 
---clan posts(likes, comments, shares)
-//TODO
-
---shared user posts(likes, comments, shares)
+--shared user posts(likes, comments, shares done above)
 SELECT *
 FROM post, share
 WHERE post.postID = share.postID AND share.userID = $user;
 
-SELECT *
-FROM "like"
-WHERE postID = $postID;
-
-SELECT *
-FROM share 
-WHERE postID = $postID;
-
-SELECT *
-FROM comment
-WHERE postID = $postID; 
     
 --clan members
 SELECT *
@@ -144,7 +123,7 @@ FROM user
 WHERE user.username = $user;
 
 
---posts dos amigos order by date (para cada post é preciso saber likes comments e shares)
+--posts dos amigos order by date (likes comments and shares done above)
 SELECT *
 FROM post, request
 WHERE (post.userID = request.sender AND request.receiver = $user AND request.type = 'friendRequest' AND request.hasAccepted = true) OR
@@ -152,19 +131,8 @@ WHERE (post.userID = request.sender AND request.receiver = $user AND request.typ
 ORDER BY request."date" DESC
 LIMIT 20;
 
-SELECT *
-FROM "like"
-WHERE postID = $postID;
 
-SELECT *
-FROM share 
-WHERE postID = $postID;
-
-SELECT *
-FROM comment
-WHERE postID = $postID;
-
---post (with comments, likes and shares)
+--post (comments, likes and shares done above)
 SELECT *
 FROM post
 WHERE post.id = $postID;
@@ -205,4 +173,4 @@ WHERE clan.name LIKE %$input%;
 --search posts
 SELECT *
 FROM post
-WHERE post.name LIKE %$input%;
+WHERE post.content LIKE %$input%;
