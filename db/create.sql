@@ -214,7 +214,21 @@ CREATE TABLE shareNotification (
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
-
+CREATE INDEX user_id ON "user" USING hash(id);
+CREATE INDEX request_sender ON "request" USING hash(sender);
+CREATE INDEX request_receiver ON "request" USING hash(receiver);
+CREATE INDEX message_sender ON "message" USING hash(sender);
+CREATE INDEX message_receiver ON "message" USING hash(receiver);
+CREATE INDEX post_user ON "post" USING hash(userID);
+CREATE INDEX post_id ON "post" USING hash(postID);
+CREATE INDEX share_post ON "share" USING hash(postID);
+CREATE INDEX share_user ON "share" USING hash(userID);
+CREATE INDEX userClan_user ON "userClan" USING hash(userID);
+CREATE INDEX userClan_clan ON "userClan" USING hash(clanID);
+CREATE INDEX user_username ON "user" USING hash(username);
+CREATE INDEX user_username_search ON "user" USING GIN (to_tsvector('english', username));
+CREATE INDEX user_email_search ON "user" USING GIN (to_tsvector('english', email));
+CREATE INDEX post_content_search ON "post" USING GIN (to_tsvector('english', content));
 
 -----------------------------------------
 -- TRIGGERS and UDFs
