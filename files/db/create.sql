@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS userClan CASCADE;
 DROP TYPE IF EXISTS classEnum;
 DROP TYPE IF EXISTS raceEnum;
 DROP TYPE IF EXISTS motiveEnum;
+DROP TYPE IF EXISTS requestEnum;
 
 DROP FUNCTION IF EXISTS verifyReportAdmin() CASCADE;
 DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
@@ -29,6 +30,7 @@ DROP FUNCTION IF EXISTS userAcceptClanInvite() CASCADE;
 DROP FUNCTION IF EXISTS userStillBlocked() CASCADE;
 DROP FUNCTION IF EXISTS userCanRequestFriend() CASCADE;
 DROP FUNCTION IF EXISTS repeatedClanInvite() CASCADE;
+DROP FUNCTION IF EXISTS addPostXP() CASCADE;
 
 DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
 DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
@@ -36,6 +38,7 @@ DROP TRIGGER IF EXISTS userAcceptClanInvite ON report;
 DROP TRIGGER IF EXISTS userStillBlocked ON blocked;
 DROP TRIGGER IF EXISTS userCanRequestFriend ON request;
 DROP TRIGGER IF EXISTS repeatedClanInvite ON request;
+DROP TRIGGER IF EXISTS addPostXP ON post;
 
 -----------------------------------------
 -- Types
@@ -44,6 +47,7 @@ DROP TRIGGER IF EXISTS repeatedClanInvite ON request;
 CREATE TYPE classEnum AS ENUM ('Fighter', 'Wizard', 'Rogue', 'Healer');
 CREATE TYPE raceEnum AS ENUM ('Human', 'Elf', 'Dwarf');
 CREATE TYPE motiveEnum AS ENUM ('Inappropriate behaviour', 'Abusive content', 'Racism');
+CREATE TYPE requestEnum AS ENUM ('friendRequest', 'clanRequest');
 
 -----------------------------------------
 -- Tables
@@ -120,6 +124,7 @@ CREATE TABLE request (
     sender INTEGER NOT NULL REFERENCES "user" (id),
     receiver INTEGER NOT NULL REFERENCES "user" (id),
     clanID INTEGER REFERENCES clan (id),
+    "type" requestEnum,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     hasAccepted BOOLEAN,
     UNIQUE (sender, receiver, "type")
@@ -308,3 +313,27 @@ CREATE TRIGGER repeatedClanInvite
     BEFORE INSERT OR UPDATE ON request
     FOR EACH ROW
     EXECUTE PROCEDURE repeatedClanInvite();
+
+CREATE FUNCTION addPostXP() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
+    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
+    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+    END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addPostXP
+    AFTER INSERT ON post
+    FOR EACH ROW
+    EXECUTE PROCEDURE addPostXP();
