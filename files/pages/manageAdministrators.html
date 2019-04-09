@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../styles/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/stylesheet.css" />
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"
+        defer></script>
+    <script src="../scripts/bootstrap/bootstrap.min.js" defer></script>
+    <script src="../scripts/main.js" defer></script>
+</head>
+
+<body class="bg-color">
+    <nav class="bg-secondary fixed-top navbar navbar-expand-lg fixed-nav">
+        <a class="navbar-brand" href="../pages/home.html">
+            <img src="../assets/logoWhite.png" width="40" height="40" alt="icon">
+            <a class="nav-link index-nav" href="../pages/home.html">AlterEgo</a>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars hamburger-icon"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="../pages/profile.html">Profile</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="../pages/clan.html">Clan</a>
+                </li>
+                <li class="nav-item align-self-center">
+                    <a class="nav-link index-nav" href="../pages/leaderboard.html">Leaderboards</a>
+                </li>
+            </ul>
+            <div class="d-flex justify-content-center mr-2">
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="" placeholder="Search...">
+                    <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mx-2 align-items-center">
+                <div class="btn-group my-2">
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="fas fa-user-friends"></i></button>
+                    <div class="dropdown-menu bg-secondary">
+                        <a class="no-hover index-nav" href="../pages/friends.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Friend Requests</button></a>
+                    </div>
+                </div>
+                <div class="btn-group mr-1">
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="far fa-envelope"></i></button>
+                    <div class="dropdown-menu bg-secondary">
+                        <a class="no-hover index-nav" href="../pages/chat.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Chat</button></a>
+                    </div>
+                </div>
+                <div class="btn-group mr-3 my-2">
+                    <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="far fa-bell"></i></button>
+                    <div class="dropdown-menu bg-secondary">
+                        <a class="no-hover index-nav" href="../pages/home.html"><button class="dropdown-item dropdown-navbar" type="button">Go to Notifications</button></a>
+                    </div>
+                </div>
+
+                <a href="../pages/profile.html"><img width="40" class="img-fluid border rounded-circle mr-2"
+                        src="../assets/logo.png" alt="User"></a>
+                <a href="../pages/profile.html" class="m-0 no-hover index-nav">André Esteves</a>
+                <div class="btn-group ml-2 my-2">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu dropdown-menu-right bg-secondary">
+                        <a class="no-hover index-nav" href="../pages/createClan.html">
+                            <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="no-hover index-nav" href="../pages/administrator.html">
+                            <button class="dropdown-item dropdown-navbar" type="button">Administrator</button>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="no-hover index-nav" href="../index.html">
+                            <button class="dropdown-item dropdown-navbar" type="button">Log out</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <div class="container justify-content-center fullscreen-3-4 my-5">
+        <h1 class="mb-3"><b>Manage Administrators</b></h1>
+
+        <div class="modal fade" id="saveChangesModal" tabindex="-1" role="dialog" aria-labelledby="saveChangesModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="saveChangesModalLabel">Save Changes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure that you want to save?</p>
+                        <div class="float-right">
+                            <button type="button" class="btn btn-success">Yes</button>
+                            <button type="button" class="btn btn-danger">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="removePermModal" tabindex="-1" role="dialog" aria-labelledby="removePermModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="removePermModalLabel">Remove Permissions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure that you want to remove admin permissions?</p>
+                        <div class="float-right">
+                            <button type="button" class="btn btn-success">Yes</button>
+                            <button type="button" class="btn btn-danger">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Add Administrator</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center mb-3 mr-3">
+                            <div class="searchbar">
+                                <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
+                                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                            </div>
+                        </div>
+                        <ul class="pl-0 shadow-lg users-list">
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-7 col-sm-6 col-md-7 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Sara Santos</a></div>
+                                    <div class="col-2 col-sm-3 col-md-3 px-0 text-right">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-7 col-sm-6 col-md-7 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Diana Soares</a></div>
+                                    <div class="col-2 col-sm-3 col-md-3 px-0 text-right">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-7 col-sm-6 col-md-7 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Cláudia Pinto</a></div>
+                                    <div class="col-2 col-sm-3 col-md-3 px-0 text-right">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-7 col-sm-6 col-md-7 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Cristiano Amorim</a></div>
+                                    <div class="col-2 col-sm-3 col-md-3 px-0 text-right">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="p-2 ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
+                                            src="../assets/logo.png" alt="User">
+                                    </div>
+                                    <div class="col-7 col-sm-6 col-md-7 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">António Teixeira</a></div>
+                                    <div class="col-2 col-sm-3 col-md-3 px-0 text-right">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success"><i class="fas fa-user-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-left tab-pane fade border-0 active show" id="active" role="tabpanel"
+            aria-labelledby="active-tab">
+
+            <div class="d-flex justify-content-center mb-3 mr-3">
+                <div class="searchbar">
+                    <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
+                    <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-secondary my-4" data-toggle="modal" data-target="#addModal">
+                    <i class="fas fa-user-plus"></i> Add Administrator
+                </button>
+            </div>
+
+            <ul class="pl-0 shadow-lg users-list">
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                            <img width="50" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="User">
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Rafael Almeida</a></div>
+                        <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#removePermModal">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                            <img width="50" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="User">
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Daniel Silva</a></div>
+                        <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#removePermModal">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                            <img width="50" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="User">
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Bárbara Canilhas</a></div>
+                        <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#removePermModal">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                            <img width="50" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="User">
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Antero Santos</a></div>
+                        <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#removePermModal">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                            <img width="50" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="User">
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Rita Monteiro</a></div>
+                        <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#removePermModal">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                            <img width="50" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="User">
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Ivo Marante</a></div>
+                        <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#removePermModal">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                            <img width="50" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="User">
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Rafael Miranda</a></div>
+                        <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#removePermModal">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-2 ml-3">
+                    <div class="d-flex align-items-center row">
+                        <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
+                            <img width="50" class="border bg-warning img-fluid rounded-circle border"
+                                src="../assets/logo.png" alt="User">
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Bárbara Valente</a></div>
+                        <div class="col-4 col-sm-4 col-md-4 px-0 text-right">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#removePermModal">
+                                <i class="fas fa-user-times"></i> Remove Permissions
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+            </ul>
+        </div>
+  
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 mt-4">
+                <a class="no-hover index-nav" href="../pages/administrator.html">
+                    <button type="button" class="btn btn-secondary"><i class="fas fa-undo"></i> Back to Administrator</button>
+                </a>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 mt-4 ali-right">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#saveChangesModal">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="bg-secondary py-2">
+        <div class="footer-copyright text-center text-white text-white">Copyright <i class="fas fa-copyright"></i>
+            AlterEgo lbaw1843</div>
+    </footer>
+
+
+</body>
+
+</html>
