@@ -16,22 +16,12 @@ DROP TABLE IF EXISTS friendRequest CASCADE;
 DROP TABLE IF EXISTS clanRequest CASCADE;
 DROP TABLE IF EXISTS blocked CASCADE;
 DROP TABLE IF EXISTS report CASCADE;
-DROP TABLE IF EXISTS commentReport CASCADE;
-DROP TABLE IF EXISTS postReport CASCADE;
 DROP TABLE IF EXISTS notification CASCADE;
-DROP TABLE IF EXISTS clanInviteNotification CASCADE;
-DROP TABLE IF EXISTS messageNotification CASCADE;
-DROP TABLE IF EXISTS friendRequestNotification CASCADE;
-DROP TABLE IF EXISTS likeNotification CASCADE;
-DROP TABLE IF EXISTS commentNotification CASCADE;
-DROP TABLE IF EXISTS shareNotification CASCADE;
 DROP TABLE IF EXISTS userClan CASCADE;
 
 DROP TYPE IF EXISTS classEnum;
 DROP TYPE IF EXISTS raceEnum;
 DROP TYPE IF EXISTS motiveEnum;
-DROP TYPE IF EXISTS notificationEnum;
-DROP TYPE IF EXISTS requestEnum;
 
 DROP FUNCTION IF EXISTS verifyReportAdmin() CASCADE;
 DROP FUNCTION IF EXISTS verifyBlockingAdmin() CASCADE;
@@ -47,8 +37,6 @@ DROP TRIGGER IF EXISTS userStillBlocked ON blocked;
 DROP TRIGGER IF EXISTS userCanRequestFriend ON request;
 DROP TRIGGER IF EXISTS repeatedClanInvite ON request;
 
-
-
 -----------------------------------------
 -- Types
 -----------------------------------------
@@ -56,9 +44,6 @@ DROP TRIGGER IF EXISTS repeatedClanInvite ON request;
 CREATE TYPE classEnum AS ENUM ('Fighter', 'Wizard', 'Rogue', 'Healer');
 CREATE TYPE raceEnum AS ENUM ('Human', 'Elf', 'Dwarf');
 CREATE TYPE motiveEnum AS ENUM ('Inappropriate behaviour', 'Abusive content', 'Racism');
-CREATE TYPE notificationEnum AS ENUM ('clanInvite', 'message', 'friendRequest', 'like', 'comment', 'share');
-CREATE TYPE requestEnum AS ENUM ('friendRequest', 'clanRequest');
-
 
 -----------------------------------------
 -- Tables
@@ -94,7 +79,8 @@ CREATE TABLE post (
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     content VARCHAR(500) NOT NULL,
     hasImg BOOLEAN NOT NULL,
-    userID INTEGER NOT NULL REFERENCES "user" (id)
+    userID INTEGER NOT NULL REFERENCES "user" (id),
+    clanID INTEGER REFERENCES clan (id)
 );  
  
 CREATE TABLE "like" (
@@ -134,7 +120,6 @@ CREATE TABLE request (
     sender INTEGER NOT NULL REFERENCES "user" (id),
     receiver INTEGER NOT NULL REFERENCES "user" (id),
     clanID INTEGER REFERENCES clan (id),
-    "type" requestEnum,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     hasAccepted BOOLEAN,
     UNIQUE (sender, receiver, "type")
@@ -154,81 +139,44 @@ CREATE TABLE report (
     admin INTEGER  NOT NULL REFERENCES "user" (id),
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     reportText VARCHAR(250),
+    commentID INTEGER REFERENCES comment (id),
+    postID INTEGER REFERENCES post (id),
     motive motiveEnum NOT NULL
 );
 
-CREATE TABLE commentReport (
-    reportID INTEGER PRIMARY KEY,
-    commentID INTEGER NOT NULL REFERENCES comment (id),
-    FOREIGN KEY (reportID) REFERENCES report (id)
-);
-
-CREATE TABLE postReport (
-    reportID INTEGER PRIMARY KEY,
-    postID INTEGER NOT NULL REFERENCES post (id),
-    FOREIGN KEY (reportID) REFERENCES report (id)
-);
-
 CREATE TABLE notification (
-   id SERIAL PRIMARY KEY,
-   "type" notificationEnum NOT NULL,
-   "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-   hasBeenSeen BOOLEAN NOT NULL DEFAULT FALSE
+    id SERIAL PRIMARY KEY,
+    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    requestID INTEGER REFERENCES request (id),
+    messageID INTEGER REFERENCES message (id),
+    commentID INTEGER REFERENCES comment (id),
+    likePostID INTEGER,
+    likeUserID INTEGER,
+    sharePostID INTEGER,
+    shareUserID INTEGER,
+    FOREIGN KEY (likePostID, likeUserID) REFERENCES "like"(postID, userID),
+    FOREIGN KEY (sharePostID, shareUserID) REFERENCES share(postID, userID),
+    hasBeenSeen BOOLEAN DEFAULT FALSE
 );
-
-CREATE TABLE clanInviteNotification (
-    notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    requestID INTEGER NOT NULL REFERENCES request (id)
-);
-
-CREATE TABLE messageNotification (
-    notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    messageID INTEGER NOT NULL REFERENCES message (id)
-);
-
-CREATE TABLE friendRequestNotification (
-    notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    requestID INTEGER NOT NULL REFERENCES request (id)
-);
-
-CREATE TABLE likeNotification (
-    notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    likePostID INTEGER NOT NULL,
-    likeUserID INTEGER NOT NULL,
-    FOREIGN KEY (likePostID, likeUserID) REFERENCES "like" (postID, userID)
-);
-
-CREATE TABLE commentNotification (
-    notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    commentID INTEGER NOT NULL REFERENCES comment (id)   
-);
-
-CREATE TABLE shareNotification (
-    notificationID INTEGER NOT NULL REFERENCES notification (id) PRIMARY KEY,
-    sharePostID INTEGER NOT NULL,
-    shareUserID INTEGER NOT NULL,
-    FOREIGN KEY (sharePostID, shareUserID) REFERENCES share(postID, userID)
-);
-
 
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
 CREATE INDEX user_id ON "user" USING hash(id);
-CREATE INDEX request_sender ON "request" USING hash(sender);
-CREATE INDEX request_receiver ON "request" USING hash(receiver);
-CREATE INDEX message_sender ON "message" USING hash(sender);
-CREATE INDEX message_receiver ON "message" USING hash(receiver);
-CREATE INDEX post_user ON "post" USING hash(userID);
-CREATE INDEX post_id ON "post" USING hash(postID);
-CREATE INDEX share_post ON "share" USING hash(postID);
-CREATE INDEX share_user ON "share" USING hash(userID);
-CREATE INDEX userClan_user ON "userClan" USING hash(userID);
-CREATE INDEX userClan_clan ON "userClan" USING hash(clanID);
+CREATE INDEX request_sender ON request USING hash(sender);
+CREATE INDEX request_receiver ON request USING hash(receiver);
+CREATE INDEX message_sender ON message USING hash(sender);
+CREATE INDEX message_receiver ON message USING hash(receiver);
+CREATE INDEX post_user ON post USING hash(userID);
+CREATE INDEX post_id ON post USING hash(id);
+CREATE INDEX share_post ON share USING hash(postID);
+CREATE INDEX share_user ON share USING hash(userID);
+CREATE INDEX userClan_user ON userClan USING hash(userID);
+CREATE INDEX userClan_clan ON userClan USING hash(clanID);
 CREATE INDEX user_username ON "user" USING hash(username);
 CREATE INDEX user_username_search ON "user" USING GIN (to_tsvector('english', username));
 CREATE INDEX user_email_search ON "user" USING GIN (to_tsvector('english', email));
-CREATE INDEX post_content_search ON "post" USING GIN (to_tsvector('english', content));
+CREATE INDEX post_content_search ON post USING GIN (to_tsvector('english', content));
 
 -----------------------------------------
 -- TRIGGERS and UDFs
