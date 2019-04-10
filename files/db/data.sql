@@ -149,7 +149,7 @@ VALUES(10, 8, 13, '2019-01-28 15:18:06', 'This is fake news guys');
 INSERT INTO comment(id, postID, userID, "date", commentText) 
 VALUES(11, 9, 11, '2019-02-27 19:34:41', 'I sugest a tiny change perhaps');
 INSERT INTO comment(id, postID, userID, "date", commentText) 
-VALUES(12, 10, 8, '2019-03-06 12:47:45', ' I smell esturro');
+VALUES(12, 10, 8, '2019-03-06 12:47:45', 'I smell esturro');
 INSERT INTO comment(id, postID, userID, "date", commentText) 
 VALUES(13, 11, 5, '2019-04-09 17:16:04', 'To be or not to be');
 INSERT INTO comment(id, postID, userID, "date", commentText) 
@@ -195,7 +195,7 @@ VALUES(7, 4, 14, '2019-02-11 13:49:12', 'See you tomorrow!', TRUE);
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) 
 VALUES(8, 14, 4, '2019-02-11 13:49:32', 'Yeah bye!', TRUE);
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) 
-VALUES(9, 5, 16, '2019-01-27 19:34:41', ' Im just letting you know that im NOT the goalkeeper tomorrow', FALSE);
+VALUES(9, 5, 16, '2019-01-27 19:34:41', 'Im just letting you know that im NOT the goalkeeper tomorrow', FALSE);
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) 
 VALUES(10, 17, 2, '2019-03-04 12:43:45', 'We had a good session today', TRUE);
 INSERT INTO message(id, sender, receiver, "date", messageText, hasBeenSeen) 
