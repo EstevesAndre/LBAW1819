@@ -160,95 +160,78 @@ INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (3, 7, 4, '2019-03
 INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (4, 9, 4, '2019-03-23 12:13:20', 'Inappropriate behaviour');
 INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (5, 18, 4, '2019-03-31 05:16:33', 'Inappropriate behaviour');
 
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(1, 1, 4, '2019-03-21 07:22:16', 'This user used abusive content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(2, 1, 4, '2019-02-09 23:02:30', 'Abusive user', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(3, 1, 4, '2019-03-04 13:22:03', 'color skin', 'Racism');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(4, 1, 4, '2019-04-02 13:23:18', 'He/She sent me abusive content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(5, 1, 4, '2019-03-19 13:07:04', 'This user must be banned!', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(6, 1, 4, '2019-03-27 12:22:02', 'Abusive user!!', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(7, 1, 4, '2019-02-09 23:02:30', 'He said abusive words', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(8, 1, 4, '2019-02-22 23:02:20', 'Soooo inappropriate', 'Inappropriate behaviour');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(9, 1, 4, '2019-03-27 12:22:02', 'Inappropriate content', 'Abusive content');
-INSERT INTO report(id, sender, admin, "date", reportText, motive) VALUES(10, 1, 4, '2019-03-13 15:07:02', 'Content not permited', 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(1, 1, 4, '2019-03-21 07:22:16', 'This user used abusive content', NULL, 2, 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(2, 1, 4, '2019-02-09 23:02:30', 'Abusive user', 21, NULL,'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(3, 1, 4, '2019-03-04 13:22:03', 'color skin', 21, NULL, 'Racism');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(4, 1, 4, '2019-04-02 13:23:18', 'He/She sent me abusive content', NULL, 3, 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(5, 1, 4, '2019-03-19 13:07:04', 'This user must be banned!', 21, NULL,'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(6, 1, 4, '2019-03-27 12:22:02', 'Abusive user!!', NULL, 1,'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(7, 1, 4, '2019-02-09 23:02:30', 'He said abusive words', 21, NULL, 'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(8, 1, 4, '2019-02-22 23:02:20', 'Soooo inappropriate', NULL, 2,'Inappropriate behaviour');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(9, 1, 4, '2019-03-27 12:22:02', 'Inappropriate content', NULL, 3,'Abusive content');
+INSERT INTO report(id, sender, admin, "date", reportText, commentID, postID, motive) VALUES(10, 1, 4, '2019-03-13 15:07:02', 'Content not permited', NULL, 1,'Abusive content');
 
-INSERT INTO commentReport(reportID, commentID) VALUES(2, 21);
-INSERT INTO commentReport(reportID, commentID) VALUES(3, 21);
-INSERT INTO commentReport(reportID, commentID) VALUES(5, 21);
-INSERT INTO commentReport(reportID, commentID) VALUES(7, 21);
 
-INSERT INTO postReport(reportID, postID) VALUES(1, 2);
-INSERT INTO postReport(reportID, postID) VALUES(4, 3);
-INSERT INTO postReport(reportID, postID) VALUES(6, 1);
-INSERT INTO postReport(reportID, postID) VALUES(8, 2);
-INSERT INTO postReport(reportID, postID) VALUES(9, 3);
-INSERT INTO postReport(reportID, postID) VALUES(10, 1);
-
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(1, 'like', '2019-04-04 04:12:10', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(2, 'like', '2019-03-27 12:22:02', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(3, 'message', '2019-03-23 13:42:20', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(4, 'message', '2019-02-03 12:02:43', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(5, 'like', '2019-04-3 17:22:16', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(6, 'message', '2019-03-22 18:02:04', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(7, 'like', '2019-03-02 21:12:30', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(8, 'clanInvite', '2019-02-09 23:02:30', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(9, 'clanInvite', '2019-02-01 05:23:26', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(10, 'message', '2019-02-07 12:52:20', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(11, 'message', '2019-03-04 13:22:03', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(12, 'clanInvite', '2019-03-16 01:32:50', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(13, 'comment', '2019-01-07 12:02:27', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(14, 'friendRequest', '2019-03-05 11:02:26', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(15, 'comment', '2019-03-26 11:23:25', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(16, 'friendRequest', '2019-01-02 16:52:50', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(17, 'clanInvite', '2019-03-19 13:07:04', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(18, 'share', '2019-03-13 15:07:02', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(19, 'share', '2019-03-27 16:32:20', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(20, 'friendRequest', '2019-03-12 16:32:30', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(21, 'comment', '2019-04-01 17:52:30', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(22, 'comment', '2019-03-24 14:22:23', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(23, 'friendRequest', '2019-04-01 19:02:40', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(24, 'like', '2019-03-16 23:23:59', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(25, 'comment', '2019-02-22 23:02:20', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(26, 'friendRequest', '2019-02-02 16:22:40', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(27, 'share', '2019-02-12 16:21:50', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(28, 'share', '2019-03-15 12:23:56', FALSE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(29, 'clanInvite', '2019-03-23 16:12:16', TRUE);
-INSERT INTO notification(id, "type", "date", hasBeenSeen) VALUES(30, 'share', '2019-04-02 13:23:18', FALSE);
-
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (8, 1);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (9, 2);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (6, 3);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (10, 4);
-INSERT INTO clanInviteNotification(notificationID, requestID) VALUES (11, 5);
-
-INSERT INTO messageNotification(notificationID, messageID) VALUES (3, 1);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (4, 2);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (21,3);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (22, 4);
-INSERT INTO messageNotification(notificationID, messageID) VALUES (25, 5);
-
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(14, 1);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(16, 2);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(20, 3);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(23, 4);
-INSERT INTO friendRequestNotification(notificationID, requestID) VALUES(26, 5);
-
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (1, 1, 4);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (2, 1, 7);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (5, 1, 17);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (7, 2, 4);
-INSERT INTO likeNotification(notificationID, likePostID, likeUserID) VALUES (24, 2, 11);
-
-INSERT INTO commentNotification(notificationID, commentID) VALUES (13, 1);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (15, 2);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (21, 3);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (22, 4);
-INSERT INTO commentNotification(notificationID, commentID) VALUES (25, 5);
-
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(18, 9, 5);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(19, 2, 10);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(27, 3, 6);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(28, 12, 3);
-INSERT INTO shareNotification(notificationID, sharePostID, shareUserID) VALUES(30, 5, 19);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(1, '2019-04-04 04:12:10', NULL, NULL, NULL, 1, 4, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(2, '2019-03-27 12:22:02', NULL, NULL, NULL, 1, 7, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(3, '2019-03-23 13:42:20', NULL, 1, NULL, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(4, '2019-02-03 12:02:43', NULL, 2, NULL, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(5, '2019-04-3 17:22:16', NULL, NULL, NULL, 1, 17, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(6, '2019-03-22 18:02:04', 6, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(7, '2019-03-02 21:12:30', NULL, NULL, NULL, 2, 4, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(8, '2019-02-09 23:02:30', 2, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(9, '2019-02-01 05:23:26', 3, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(10, '2019-02-07 12:52:20', 8, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(11, '2019-03-04 13:22:03', 9, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(12, '2019-03-16 01:32:50', NULL, NULL, 4, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(13, '2019-01-07 12:02:27', NULL, NULL, 1, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(14, '2019-03-05 11:02:26', 1, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(15, '2019-03-26 11:23:25', NULL, NULL, 2, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(16, '2019-01-02 16:52:50', 4, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(17, '2019-03-19 13:07:04', NULL, NULL, 3, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(18, '2019-03-13 15:07:02', NULL, NULL, NULL, NULL, NULL, 9, 5, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(19, '2019-03-27 16:32:20', NULL, NULL, NULL, NULL, NULL, 2, 10, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(20, '2019-03-12 16:32:30', 5, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(21, '2019-04-01 17:52:30', NULL, 3, NULL, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(22, '2019-03-24 14:22:23', NULL, 4, NULL, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(23, '2019-04-01 19:02:40', 7, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(24, '2019-03-16 23:23:59', NULL, NULL, NULL, 2, 11, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(25, '2019-02-22 23:02:20', NULL, 5, NULL, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(26, '2019-02-02 16:22:40', 10, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(27, '2019-02-12 16:21:50', NULL, NULL, NULL, NULL, NULL, 3, 6, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(28, '2019-03-15 12:23:56', NULL, NULL, NULL, NULL, NULL, 12, 3, FALSE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(29, '2019-03-23 16:12:16', NULL, NULL, 5, NULL, NULL, NULL, NULL, TRUE);
+INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
+VALUES(30, '2019-04-02 13:23:18', NULL, NULL, NULL, NULL, NULL, 5, 19, FALSE);
 
 
 SELECT setval('user_id_seq', (SELECT MAX(id) from "user"));
