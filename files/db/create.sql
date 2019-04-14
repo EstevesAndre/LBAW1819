@@ -314,26 +314,27 @@ CREATE TRIGGER repeatedClanInvite
     FOR EACH ROW
     EXECUTE PROCEDURE repeatedClanInvite();
 
--- CREATE FUNCTION addPostXP() RETURNS TRIGGER AS
--- $BODY$
--- BEGIN
---     IF EXISTS (
---         SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
---     )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
---     END IF;
---     IF EXISTS (
---         SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
---     )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
---     END IF;
---     IF EXISTS (
---         SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
---     )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
---     END IF;
--- END
--- $BODY$
--- LANGUAGE plpgsql;
+CREATE FUNCTION addPostXP() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
+    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
+    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
 
--- CREATE TRIGGER addPostXP
---     AFTER INSERT ON post
---     FOR EACH ROW
---     EXECUTE PROCEDURE addPostXP();
+CREATE TRIGGER addPostXP
+    AFTER INSERT ON post
+    FOR EACH ROW
+    EXECUTE PROCEDURE addPostXP();
