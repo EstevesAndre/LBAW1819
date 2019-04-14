@@ -182,9 +182,8 @@ CREATE INDEX share_user ON share USING hash(userID);
 CREATE INDEX userClan_user ON userClan USING hash(userID);
 CREATE INDEX userClan_clan ON userClan USING hash(clanID);
 CREATE INDEX user_username ON "user" USING hash(username);
-CREATE INDEX user_username_search ON "user" USING GIN (to_tsvector('english', username));
-CREATE INDEX user_email_search ON "user" USING GIN (to_tsvector('english', email));
 CREATE INDEX post_content_search ON post USING GIN (to_tsvector('english', content));
+CREATE INDEX clan_description_search ON "clan" USING GIN (to_tsvector('english', description));
 
 -----------------------------------------
 -- TRIGGERS and UDFs

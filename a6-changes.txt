@@ -15,9 +15,10 @@ X   substitui o update 5 por trigger (xp)
 X   insert 01 update
 X    Eliminar indices mais chaves primarias
 X    adicionar multicoluma btree para as mensagens e requests
-    eliminar indices texto e acrescentar o search da descriçao do clan e posts
+X    eliminar indices texto e acrescentar o search da descriçao do clan 
     criar indices para pesquisar mensagens
 X   inserts em ingles
     e adicionar mais inserts para ver as paginaçoes
     queries para notificacoes e comnetarios
 X    chaves estrangeiras no post para clan
+    verificar referências de índices
