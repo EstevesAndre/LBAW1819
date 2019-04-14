@@ -3,10 +3,10 @@ DONE
     create.sql changed, desnormalization of notification and request
 
 TODO
-    Paginaçao
-    descriçao mais explicita nas queries
-    Select 8 juntar as queries, (POST) usar o Count
-    Juntar os shared e os posts para o feed do user (Paginaçao)
+X  Paginaçao
+X    descriçao mais explicita nas queries
+-  Select 8 juntar as queries, (POST) usar o Count //estes dois fazem-se juntos
+-    Juntar os shared e os posts para o feed do user (Paginaçao)
 X   Select 15 -> received
 X   select 17, codigo cortado
 X   Update01 <- tirar o update e adicionar no insert

@@ -1,12 +1,15 @@
 QUERIES
 
 -- friends list
+
 SELECT * 
 FROM request, "user"
 WHERE sender = "user".id AND 
       hasAccepted = TRUE AND 
       clanID IS NULL AND
-      (sender=$userID OR receiver=$userID);
+      (sender=$userID OR receiver=$userID)
+LIMIT 15
+OFFSET $offset;
 
 
 -- messages with a  friend
@@ -20,55 +23,39 @@ WHERE (sender = $activeID AND receiver =$userID) OR
 SELECT *
 FROM report
 ORDER by "date" DESC
-LIMIT 20;
+LIMIT 10
+OFFSET $offset;
+
     
     
---select all users
+--select all active users
 SELECT *
 FROM "user"
-ORDER BY id ASC;
+WHERE id NOT IN (SELECT "user".id
+                FROM "user", blocked
+                WHERE "user".id = blocked.userID AND
+                blocked."date" > Now())
+ORDER BY id ASC
+LIMIT 15
+OFFSET $offset;
  
  
 --select banned users
 SELECT "user".email, "user".username
 FROM "user", blocked
 WHERE "user".id = blocked.userID AND
-      blocked."date" > Now();
+      blocked."date" > Now()
+LIMIT 15
+OFFSET $offset;
 
-
---select clans
-SELECT *
-FROM clan;
 
 
 --select all admins
 SELECT *
 FROM "user"
-WHERE isAdmin = TRUE;
-
-
---user posts(likes, comments, shares)
-SELECT *
-FROM post
-WHERE post.userID = $userID;
-
-SELECT *
-FROM "like"
-WHERE postID = $postID; -- <- este postID vem da query anterior 
-
-SELECT *
-FROM share 
-WHERE postID = $postID; -- <- este postID vem da query anterior 
-
-SELECT *
-FROM comment
-WHERE postID = $postID; -- <- este postID vem da query anterior 
-
-
---shared user posts(likes, comments, shares done above)
-SELECT *
-FROM post, share
-WHERE post.postID = share.postID AND share.userID = $user;
+WHERE isAdmin = TRUE
+LIMIT 15
+OFFSET $offset;
 
     
 --clan members
@@ -76,14 +63,16 @@ SELECT *
 FROM "user", userClan
 WHERE "user".id = userClan.userID AND
       userClan.clanID = $currUserClanID
-LIMIT 20; 
+LIMIT 15
+OFFSET $offset; 
   
   
 --global leaderboard - ordered by xP
 SELECT *
 FROM "user"
 ORDER BY xP DESC
-LIMIT 20;
+LIMIT 15
+OFFSET $offset;
 
 
 --clan leaderboard - ordered by xP
@@ -92,7 +81,8 @@ FROM "user", userClan
 WHERE "user".id = userClan.userID AND
       userClan.clanID = $currUserClanID
 ORDER BY xP DESC
-LIMIT 20;
+LIMIT 15
+OFFSET $offset;
 
 
 --friends leaderboard - ordered by xP
@@ -102,19 +92,24 @@ WHERE sender = "user".id AND
       hasAccepted = TRUE AND 
       clanID IS NULL AND
       (sender=$userID OR receiver=$userID)
-ORDER BY xP DESC;
+ORDER BY xP DESC
+LIMIT 15
+OFFSET $offset;
 
 
 --sent friend request(order by date)
 SELECT *
 FROM request
-WHERE sender = $userID;
-
+WHERE sender = $userID
+LIMIT 15
+OFFSET $offset;
 
 --received friend request(order by date)
 SELECT *
 FROM request
-WHERE receiver = $userID;
+WHERE receiver = $userID
+LIMIT 15
+OFFSET $offset;
 
 
 --login (verificar login)	 
@@ -126,51 +121,49 @@ WHERE user.username = $user;
 --posts dos amigos order by date (likes comments and shares done above)
 SELECT *
 FROM post, request
-WHERE (post.userID = request.sender AND request.receiver = $user AND request.type = 'friendRequest' AND request.hasAccepted = true) OR
-      (post.userID = request.receiver AND request.sender = $user AND request.type = 'friendRequest' AND request.hasAccepted = true)
+WHERE (post.userID = request.sender AND request.receiver = $user AND
+       request.type = 'friendRequest' AND request.hasAccepted = true) 
+       OR
+      (post.userID = request.receiver AND request.sender = $user AND
+       request.type = 'friendRequest' AND request.hasAccepted = true)
 ORDER BY request."date" DESC
-LIMIT 20;
+LIMIT 15
+OFFSET $offset;
 
 
 --post (comments, likes and shares done above)
 SELECT *
 FROM post
 WHERE post.id = $postID;
-
-SELECT *
-FROM "like"
-WHERE postID = $postID;
-
-SELECT *
-FROM share 
-WHERE postID = $postID;
-
-SELECT *
-FROM comment
-WHERE postID = $postID;  
-
   
 --search users
 SELECT * 
 FROM user
 WHERE "user".email LIKE %$input% OR
-      "user".username LIKE %$input%;
+      "user".username LIKE %$input%
+LIMIT 15
+OFFSET $offset;
 
 
 --search admin
 SELECT * 
 FROM user
 WHERE ("user".email LIKE %$input% OR "user".username LIKE %$input%) AND
-       isAdmin = TRUE;
-
+       isAdmin = TRUE
+LIMIT 15
+OFFSET $offset;
 
 --search clans
 SELECT *
 FROM clan
-WHERE clan.name LIKE %$input%;
+WHERE clan.name LIKE %$input%
+LIMIT 15
+OFFSET $offset;
 
 
 --search posts
 SELECT *
 FROM post
-WHERE post.content LIKE %$input%;
+WHERE post.content LIKE %$input%
+LIMIT 15
+OFFSET $offset;
