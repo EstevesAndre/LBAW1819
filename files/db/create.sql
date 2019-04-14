@@ -173,7 +173,6 @@ CREATE TABLE notification (
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
-CREATE INDEX user_id ON "user" USING hash(id);
 CREATE INDEX request_sender ON request USING hash(sender);
 CREATE INDEX request_receiver ON request USING hash(receiver);
 CREATE INDEX message_sender ON message USING hash(sender);

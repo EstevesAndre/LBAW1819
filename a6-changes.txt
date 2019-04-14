@@ -13,7 +13,7 @@ X   Update01 <- tirar o update e adicionar no insert
 X   substitui o update 5 por trigger (xp)
     criar o trigger de xp
 X   insert 01 update
-    Eliminar indices mais chaves primarias
+X    Eliminar indices mais chaves primarias
     adicionar multicoluma btree para as mensagens e requests
     eliminar indices texto e acrescentar o search da descriçao do clan e posts
     criar indices para pesquisar mensagens
