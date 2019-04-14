@@ -8,11 +8,11 @@ TODO
     Select 8 juntar as queries, (POST) usar o Count
     Juntar os shared e os posts para o feed do user (Paginaçao)
 X    Select 15 -> received
-    select 17, codigo cortado
-    Update01 <- tirar o update e adicionar no insert
+X    select 17, codigo cortado
+X    Update01 <- tirar o update e adicionar no insert
 X    substitui o update 5 por trigger (xp)
     criar o trigger de xp
-    insert 01 update
+X    insert 01 update
     Eliminar indices mais chaves primarias
     adicionar multicoluma btree para as mensagens e requests
     eliminar indices texto e acrescentar o search da descriçao do clan e posts
