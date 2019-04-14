@@ -31,6 +31,9 @@ DROP FUNCTION IF EXISTS userStillBlocked() CASCADE;
 DROP FUNCTION IF EXISTS userCanRequestFriend() CASCADE;
 DROP FUNCTION IF EXISTS repeatedClanInvite() CASCADE;
 DROP FUNCTION IF EXISTS addPostXP() CASCADE;
+DROP FUNCTION IF EXISTS addCommentXP() CASCADE;
+DROP FUNCTION IF EXISTS addShareXP() CASCADE;
+DROP FUNCTION IF EXISTS addLikeXP() CASCADE;
 
 DROP TRIGGER IF EXISTS verifyReportAdmin ON report;
 DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked;
@@ -39,6 +42,9 @@ DROP TRIGGER IF EXISTS userStillBlocked ON blocked;
 DROP TRIGGER IF EXISTS userCanRequestFriend ON request;
 DROP TRIGGER IF EXISTS repeatedClanInvite ON request;
 DROP TRIGGER IF EXISTS addPostXP ON post;
+DROP TRIGGER IF EXISTS addCommentXP ON comment;
+DROP TRIGGER IF EXISTS addShareXP ON comment;
+DROP TRIGGER IF EXISTS addLikeXP ON comment;
 
 -----------------------------------------
 -- Types
@@ -323,11 +329,11 @@ BEGIN
     END IF;
     IF EXISTS (
         SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
-    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
     END IF;
     IF EXISTS (
         SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
-    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
     END IF;
     RETURN New;
 END
@@ -338,3 +344,78 @@ CREATE TRIGGER addPostXP
     AFTER INSERT ON post
     FOR EACH ROW
     EXECUTE PROCEDURE addPostXP();
+
+CREATE FUNCTION addCommentXP() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
+    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
+    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addCommentXP
+    AFTER INSERT ON comment
+    FOR EACH ROW
+    EXECUTE PROCEDURE addCommentXP();
+
+CREATE FUNCTION addShareXP() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
+    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
+    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addShareXP
+    AFTER INSERT ON share
+    FOR EACH ROW
+    EXECUTE PROCEDURE addShareXP();
+
+CREATE FUNCTION addLikeXP() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
+    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
+    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+    END IF;
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addLikeXP
+    AFTER INSERT ON "like"
+    FOR EACH ROW
+    EXECUTE PROCEDURE addLikeXP();
