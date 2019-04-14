@@ -173,10 +173,8 @@ CREATE TABLE notification (
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
-CREATE INDEX request_sender ON request USING hash(sender);
-CREATE INDEX request_receiver ON request USING hash(receiver);
-CREATE INDEX message_sender ON message USING hash(sender);
-CREATE INDEX message_receiver ON message USING hash(receiver);
+CREATE INDEX request_sender_recevier ON request USING (sender, receiver);
+CREATE INDEX message_sender_recevier ON message USING hash(sender, receiver);
 CREATE INDEX post_user ON post USING hash(userID);
 CREATE INDEX post_id ON post USING hash(id);
 CREATE INDEX share_post ON share USING hash(postID);
