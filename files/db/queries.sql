@@ -130,7 +130,6 @@ ORDER BY request."date" DESC
 LIMIT 15
 OFFSET $offset;
 
-
 --post (comments, likes and shares done above)
 SELECT *
 FROM post
@@ -143,7 +142,6 @@ WHERE "user".email LIKE %$input% OR
       "user".username LIKE %$input%
 LIMIT 15
 OFFSET $offset;
-
 
 --search admin
 SELECT * 
@@ -159,7 +157,6 @@ FROM clan
 WHERE clan.name LIKE %$input%
 LIMIT 15
 OFFSET $offset;
-
 
 --search posts
 SELECT *
@@ -216,5 +213,16 @@ WHERE notification.shareUserID = share.userID
     AND share.postID = post.id
     AND post.userID = $userID
 ORDER BY notification."date" DESC
+LIMIT 10
+OFFSET $offset;
+
+-- post + info
+SELECT *
+FROM post, comment, "like", share
+WHERE post.id = $postID
+    AND comment.postID = post.id
+    AND "like".postID = post.id
+    AND share.postID = post.id
+ORDER BY comment."date" DESC
 LIMIT 10
 OFFSET $offset;
