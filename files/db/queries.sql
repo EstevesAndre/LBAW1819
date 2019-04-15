@@ -152,17 +152,33 @@ LIMIT 15
 OFFSET $offset;
 
 --search clans
-SELECT *
-FROM clan
-WHERE clan.name LIKE %$input%
-LIMIT 15
+SELECT id, name,ts_rank(textsearch, query) AS rank, ownerID
+FROM clan, to_tsquery($search) AS query,
+     to_tsvector('engish', description) AS textsearch
+WHERE query @@ textsearch AND name like  %$search%
+ORDER BY rank DESC
+LIMIT 10
 OFFSET $offset;
 
 --search posts
-SELECT *
-FROM post
-WHERE post.content LIKE %$input%
-LIMIT 15
+SELECT id, "date", ts_rank(textsearch, query) AS rank, hasImg, userID, 
+       clanID
+FROM post, to_tsquery($search) AS query,
+     to_tsvector('engish', content) AS textsearch
+WHERE query @@ textsearch
+ORDER BY rank DESC
+LIMIT 10
+OFFSET $offset;
+
+--search messages on active friend
+SELECT id, sender, receiver, "date", ts_rank(textsearch, query) AS rank
+FROM message, to_tsquery($search) AS query,
+     to_tsvector('engish', messageText) AS textsearch
+WHERE query @@ textsearch AND
+     (sender = $activeID AND receiver =$userID) OR 
+      sender = $userID AND receiver =$activeID
+ORDER BY rank DESC
+LIMIT 10
 OFFSET $offset;
 
 --requests notification
