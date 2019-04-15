@@ -49,7 +49,7 @@ VALUES(3,'Liga das Nations','Support Clan for our warriors in Liga das Nations',
 INSERT INTO clan(id, name, description, ownerID) 
 VALUES(4,'EURO 2016','Remembering old times with our french friends',11);
 INSERT INTO clan(id, name, description, ownerID) 
-VALUES(5,'Falta o Eder','A tiny tribute  to our national hero Ederzito. Join our cause',17);
+VALUES(5,'Falta o Eder','A tiny tribute to our national hero Ederzito. Join our cause',17);
 
 
 INSERT INTO userClan(userID, clanID) VALUES(1, 1);
@@ -123,7 +123,11 @@ INSERT INTO share(postID, userID, content, "date") VALUES (3, 6, 'So funny!', '2
 INSERT INTO share(postID, userID, content, "date") VALUES (12, 3, 'I agree with you', '2019-01-19 09:29:41');
 INSERT INTO share(postID, userID, content, "date") VALUES (5, 19, 'Case terminated!', '2019-02-22 09:12:23');
 INSERT INTO share(postID, userID, content, "date") VALUES (10, 4, 'This information is so wrong!', '2019-04-01 19:22:53');
-INSERT INTO share(postID, userID, content, "date") VALUES (9, 5, 'This post is so nice!', '2019-04-02 23:42:10');
+INSERT INTO share(postID, userID, content, "date") VALUES (15, 5, 'This post is so nice!', '2019-04-02 23:42:10');
+INSERT INTO share(postID, userID, content, "date") VALUES (2, 12, 'I agree with you!', '2019-04-03 23:35:14');
+INSERT INTO share(postID, userID, content, "date") VALUES (9, 3, 'It is like S d i S', '2019-04-15 13:14:32');
+INSERT INTO share(postID, userID, content, "date") VALUES (3, 7, 'Just tomorrow', '2019-05-01 15:34:24');
+INSERT INTO share(postID, userID, content, "date") VALUES (7, 2, 'I do not agree', '2019-05-12 18:22:10');
 
 
 INSERT INTO comment(id, postID, userID, "date", commentText) 
@@ -259,7 +263,17 @@ INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) V
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (7, 8, 1, NULL, 'friendRequest', '2019-03-16 16:21:17', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (8, 5, 11, 4, 'clanRequest', '2019-02-19 10:32:39', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (9, 4, 4, 3, 'clanRequest', '2019-02-23 06:12:20', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (10, 2, 16, NULL, 'friendRequest', '2019-01-29 05:31:40', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (10, 2, 10, NULL, 'friendRequest', '2019-01-26 15:16:22', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (11, 3, 10, NULL, 'friendRequest', '2019-01-27 05:51:12', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (12, 3, 13, NULL, 'friendRequest', '2019-01-27 13:46:47', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (13, 4, 13, NULL, 'friendRequest', '2019-01-27 17:34:16', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (14, 3, 15, NULL, 'friendRequest', '2019-01-28 06:23:34', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (15, 3, 10, NULL, 'friendRequest', '2019-01-28 12:47:27', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (16, 4, 10, NULL, 'friendRequest', '2019-01-28 13:57:24', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (17, 5, 10, NULL, 'friendRequest', '2019-01-28 18:26:56', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (18, 5, 12, NULL, 'friendRequest', '2019-01-29 02:32:35', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (19, 6, 13, NULL, 'friendRequest', '2019-01-29 09:35:16', FALSE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (20, 7, 13, NULL, 'friendRequest', '2019-01-30 01:21:39', TRUE);
 
 
 INSERT INTO blocked(id, userID, admin, "date", motive) VALUES (1, 13, 4, '2019-03-21 07:22:16', 'Racism');
