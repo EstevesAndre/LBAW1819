@@ -167,3 +167,54 @@ FROM post
 WHERE post.content LIKE %$input%
 LIMIT 15
 OFFSET $offset;
+
+--requests notification
+SELECT *
+FROM notification, request
+WHERE notification.requestID = request.id
+    AND request.receiver = $userID
+ORDER BY notification."date" DESC
+LIMIT 10
+OFFSET $offset;
+
+--messages notification
+SELECT *
+FROM notification, message
+WHERE notification.messageID = message.id
+    AND message.receiver = $userID
+ORDER BY notification."date" DESC
+LIMIT 10
+OFFSET $offset;
+
+--comments notification
+SELECT *
+FROM notification, comment, post
+WHERE notification.commentID = comment.id
+    AND comment.postID = post.id 
+    AND post.userID = $userID
+ORDER BY notification."date" DESC
+LIMIT 10
+OFFSET $offset;
+
+--likes notification
+SELECT *
+FROM notification, "like", post
+WHERE notification.likeUserID = "like".userID
+    AND notification.likePostID = "like".postID
+    AND "like".postID = post.id
+    AND post.userID = $userID
+ORDER BY notification."date" DESC
+LIMIT 10
+OFFSET $offset;
+
+
+--shares notification
+SELECT *
+FROM notification, share, post
+WHERE notification.shareUserID = share.userID
+    AND notification.sharePostID = share.postID
+    AND share.postID = post.id
+    AND post.userID = $userID
+ORDER BY notification."date" DESC
+LIMIT 10
+OFFSET $offset;
