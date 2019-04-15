@@ -268,7 +268,7 @@ INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) V
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (12, 3, 13, NULL, 'friendRequest', '2019-01-27 13:46:47', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (13, 4, 13, NULL, 'friendRequest', '2019-01-27 17:34:16', TRUE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (14, 3, 15, NULL, 'friendRequest', '2019-01-28 06:23:34', FALSE);
-INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (15, 3, 10, NULL, 'friendRequest', '2019-01-28 12:47:27', TRUE);
+INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (15, 3, 11, NULL, 'friendRequest', '2019-01-28 12:47:27', TRUE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (16, 4, 10, NULL, 'friendRequest', '2019-01-28 13:57:24', FALSE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (17, 5, 10, NULL, 'friendRequest', '2019-01-28 18:26:56', TRUE);
 INSERT INTO request(id, sender, receiver, clanID, "type", "date", hasAccepted) VALUES (18, 5, 12, NULL, 'friendRequest', '2019-01-29 02:32:35', FALSE);
@@ -340,7 +340,7 @@ VALUES(16, '2019-01-02 16:52:50', 4, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
 INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
 VALUES(17, '2019-03-19 13:07:04', NULL, NULL, 3, NULL, NULL, NULL, NULL, FALSE);
 INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
-VALUES(18, '2019-03-13 15:07:02', NULL, NULL, NULL, NULL, NULL, 9, 5, TRUE);
+VALUES(18, '2019-03-13 15:07:02', NULL, NULL, NULL, NULL, NULL, 2, 12, TRUE);
 INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 
 VALUES(19, '2019-03-27 16:32:20', NULL, NULL, NULL, NULL, NULL, 2, 10, TRUE);
 INSERT INTO notification(id, "date", requestID, messageID, commentID, likePostID, likeUserID, sharePostID, shareUserID, hasBeenSeen) 

@@ -173,8 +173,8 @@ CREATE TABLE notification (
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
-CREATE INDEX request_sender_recevier ON request USING (sender, receiver);
-CREATE INDEX message_sender_recevier ON message USING hash(sender, receiver);
+CREATE INDEX request_sender_recevier ON request USING btree(sender, receiver);
+CREATE INDEX message_sender_recevier ON message USING btree(sender, receiver);
 CREATE INDEX post_user ON post USING hash(userID);
 CREATE INDEX post_id ON post USING hash(id);
 CREATE INDEX share_post ON share USING hash(postID);
@@ -344,19 +344,38 @@ CREATE TRIGGER addPostXP
 
 CREATE FUNCTION addCommentXP() RETURNS TRIGGER AS
 $BODY$
+DECLARE
+    posting_user_id INT;
 BEGIN
+    SELECT "user".id INTO posting_user_id FROM "user", post  WHERE "user".id = post.userID AND post.id = New.postID;
+
     IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
-    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human' AND NOT(id = posting_user_id)
+    )   THEN UPDATE "user" SET xp = xp + 5 WHERE id = New.userID;
     END IF;
     IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
-    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = posting_user_id;
     END IF;
+
     IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf' AND NOT(id = posting_user_id)
     )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
     END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = posting_user_id;
+    END IF;
+
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf' AND NOT(id = posting_user_id)
+    )   THEN UPDATE "user" SET xp = xp + 15 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = posting_user_id;
+    END IF;
+
     RETURN New;
 END
 $BODY$
@@ -369,19 +388,38 @@ CREATE TRIGGER addCommentXP
 
 CREATE FUNCTION addShareXP() RETURNS TRIGGER AS
 $BODY$
+DECLARE
+    posting_user_id INT;
 BEGIN
+    SELECT "user".id INTO posting_user_id FROM "user", post  WHERE "user".id = post.userID AND post.id = New.postID;
+
     IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human' AND NOT(id = posting_user_id)
+    )   THEN UPDATE "user" SET xp = xp + 15 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = posting_user_id;
+    END IF;
+
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf' AND NOT(id = posting_user_id)
+    )   THEN UPDATE "user" SET xp = xp + 5 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = posting_user_id;
+    END IF;
+
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf' AND NOT(id = posting_user_id)
     )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
     END IF;
     IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
-    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = posting_user_id;
     END IF;
-    IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
-    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
-    END IF;
+
     RETURN New;
 END
 $BODY$
@@ -394,19 +432,38 @@ CREATE TRIGGER addShareXP
 
 CREATE FUNCTION addLikeXP() RETURNS TRIGGER AS
 $BODY$
+DECLARE
+    posting_user_id INT;
 BEGIN
+    SELECT "user".id INTO posting_user_id FROM "user", post  WHERE "user".id = post.userID AND post.id = New.postID;
+
     IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human'
-    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = New.userID;
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Human' AND NOT(id = posting_user_id)
+    )   THEN UPDATE "user" SET xp = xp + 15 WHERE id = New.userID;
     END IF;
     IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf'
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = posting_user_id;
+    END IF;
+
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Elf' AND NOT(id = posting_user_id)
+    )   THEN UPDATE "user" SET xp = xp + 5 WHERE id = New.userID;
+    END IF;
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = posting_user_id;
+    END IF;
+
+    IF EXISTS (
+        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf' AND NOT(id = posting_user_id)
     )   THEN UPDATE "user" SET xp = xp + 10 WHERE id = New.userID;
     END IF;
     IF EXISTS (
-        SELECT * FROM "user" WHERE id = New.userID AND race = 'Dwarf'
-    )   THEN UPDATE "user" SET xp = xp + 30 WHERE id = New.userID;
+        SELECT * FROM "user" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.userID)
+    )   THEN UPDATE "user" SET xp = xp + 20 WHERE id = posting_user_id;
     END IF;
+
     RETURN New;
 END
 $BODY$
