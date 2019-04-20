@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('index');
 });
 
 // Cards
@@ -33,3 +33,12 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('index', 'Auth\LoginController@showIndexPage');
+
+// Public Pages
+Route::get('about', 'PublicController@showAboutPage');
+Route::get('faqs', 'PublicController@showFaqsPage');
+Route::get('404', 'PublicController@show404Page');
+
+// Authenticated Pages
+Route::get('home', 'CardController@showPage');

@@ -25,7 +25,12 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cards';
+    protected $redirectTo = 'home';
+
+    public function showIndexPage()
+    {
+        return view('pages.index');
+    }
 
     /**
      * Create a new controller instance.
