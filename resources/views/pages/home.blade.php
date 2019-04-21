@@ -525,7 +525,7 @@
                     </div>
                 </div>
             </div>
-            <form method="GET" action="{{ route('cmore') }}">
+            <form method="GET">
                 <p type="submit"><span>See more </span><i class="fas fa-caret-down"></i></p>
                 <br />
             </form>
