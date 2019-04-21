@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-class PublicController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+class ClanController extends Controller
 {
 
     public function showCreateClanPage()
     {
-        return view('pages.createClan');
+	 if (!Auth::check()) return redirect('/login');       
+	
+	 return view('pages.createClan');
     }
 }
