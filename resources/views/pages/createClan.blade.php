@@ -6,7 +6,7 @@
 <div class="container justify-content-center fullscreen-3-4 my-5">
     <h1>Create Your Clan</h1>
     <div class="text-left">
-        <form method="POST"> <!-- action="{{ route('createClan') }}" -->
+        <form method="POST">
             <div class="form-group mx-auto my-5">
                 <label for="clanName">Clan Name</label>
                 <input type="username" class="form-control mb-3" id="clanName" placeholder="Name">
