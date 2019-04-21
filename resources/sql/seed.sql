@@ -518,7 +518,8 @@ INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp,
 VALUES('bernas.silva@gmail.com', 'EuSouOBernas', 'BVy%8y8f', 'Fernando Rocha', '1997-03-18', 'Human', 'Rogue', 4512, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, isAdmin) 
 VALUES('rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 960, FALSE);
-
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, isAdmin) 
+VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', '3TEAM3', '1998-04-22', 'Human', 'Fighter', 960, FALSE);
 
 INSERT INTO clan(name, description, ownerID) 
 VALUES('Default Clan','Looking forward for the first place in the clans leaderboard',14);
