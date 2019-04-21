@@ -542,7 +542,6 @@
         </div>
         <div class="height-45 scroolable">
             <div class="list-group text-left" id="list-tab" role="tablist">
-                <!-- @each('partials.chatFriend', $chatFriend, 'chatFriend') -->
 
                 <a class="friend-list list-group-item list-group-item-action active" id="list-1-list"
                     data-toggle="list" href="#list-1" role="tab" aria-controls="1">
