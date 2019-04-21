@@ -16,18 +16,18 @@ Route::get('/', function () {
 });
 
 // Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
+Route::get('cards', 'PostController@list');
+Route::get('cards/{id}', 'PostController@show');
 
 // API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
+Route::put('api/cards', 'PostController@create');
+Route::delete('api/cards/{card_id}', 'PostController@delete');
 Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
+//---------------------------------------------------------//
 
 // Authentication
-
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
@@ -41,4 +41,11 @@ Route::get('faqs', 'PublicController@showFaqsPage');
 Route::get('404', 'PublicController@show404Page');
 
 // Authenticated Pages
-Route::get('home', 'CardController@showPage');
+Route::get('home', 'PostController@showPage');
+
+// Posts
+Route::get('posts', 'PostController@list');
+Route::get('post/{id}', 'PostController@show');
+
+// Users
+Route::get('user/{id}', 'UserController@show');

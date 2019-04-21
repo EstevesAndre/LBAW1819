@@ -93,10 +93,8 @@
                                         <button class="dropdown-item dropdown-navbar" type="button">Administrator</button>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <form class="text-left mb-3" method="GET" action="{{ route('logout') }}">
-                                        <div class="no-hover index-nav"> 
-                                            <button type="submit" class="dropdown-item dropdown-navbar">Log out</button>
-                                        </div>
+                                    <form method="GET" action="{{ route('logout') }}">
+                                        <button type="submit" class="dropdown-item dropdown-navbar">Log out</button>
                                     </form>
                                 </div>
                             </div>
