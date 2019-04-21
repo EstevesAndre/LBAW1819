@@ -847,7 +847,7 @@ INSERT INTO notification("date", requestID, messageID, commentID, likePostID, li
 VALUES('2019-04-02 13:23:18', NULL, NULL, NULL, NULL, NULL, 5, 19, FALSE);
 
 
-SELECT setval('user_id_seq', (SELECT MAX(id) from "users"));
+SELECT setval('users_id_seq', (SELECT MAX(id) from "users"));
 SELECT setval('blocked_id_seq', (SELECT MAX(id) from blocked));
 SELECT setval('clan_id_seq', (SELECT MAX(id) from clan));
 SELECT setval('comment_id_seq', (SELECT MAX(id) from comment));
