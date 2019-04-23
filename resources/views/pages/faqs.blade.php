@@ -37,7 +37,7 @@
         <div id="collapseTwo" class="collapse ml-3" aria-labelledby="headingTwo" data-parent="#accordion">
             <div class="card-body">
                 All you need to use AlterEgo is an internet connection and an account on this platform. You can join
-                by clicking <a href="signUp.html">this</a> and following the steps!
+                by clicking <a href="{{ url('/register') }}">this</a> and following the steps!
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
         </div>
         <div id="collapseFour" class="collapse ml-3" aria-labelledby="headingFour" data-parent="#accordion">
             <div class="card-body">
-                To post on AlterEgo you first need to be logged in (<a href="signUp.html">click here</a> if you
+                To post on AlterEgo you first need to be logged in (<a href="{{ url('/register') }}">click here</a> if you
                 don't
                 have an account yet). After verifying your credentials you will need to go to your home page and, at
                 the
