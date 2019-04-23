@@ -42,6 +42,7 @@ Route::get('404', 'PublicController@show404Page');
 
 // Authenticated Pages
 Route::get('home', 'PostController@showPage');
+Route::get('createClan', 'ClanController@showCreateClanPage');
 
 // Posts
 Route::get('posts', 'PostController@list');

@@ -518,7 +518,8 @@ INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp,
 VALUES('bernas.silva@gmail.com', 'EuSouOBernas', 'BVy%8y8f', 'Fernando Rocha', '1997-03-18', 'Human', 'Rogue', 4512, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, isAdmin) 
 VALUES('rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 960, FALSE);
-
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, isAdmin) 
+VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', '3TEAM3', '1998-04-22', 'Human', 'Fighter', 960, FALSE);
 
 INSERT INTO clan(name, description, ownerID) 
 VALUES('Default Clan','Looking forward for the first place in the clans leaderboard',14);
@@ -847,7 +848,7 @@ INSERT INTO notification("date", requestID, messageID, commentID, likePostID, li
 VALUES('2019-04-02 13:23:18', NULL, NULL, NULL, NULL, NULL, 5, 19, FALSE);
 
 
-SELECT setval('user_id_seq', (SELECT MAX(id) from "users"));
+SELECT setval('users_id_seq', (SELECT MAX(id) from "users"));
 SELECT setval('blocked_id_seq', (SELECT MAX(id) from blocked));
 SELECT setval('clan_id_seq', (SELECT MAX(id) from clan));
 SELECT setval('comment_id_seq', (SELECT MAX(id) from comment));
