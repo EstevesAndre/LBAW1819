@@ -2,7 +2,7 @@
 -- Drop old schmema
 -----------------------------------------
 
-DROP TABLE IF EXISTS "user" CASCADE;
+DROP TABLE IF EXISTS "users" CASCADE;
 DROP TABLE IF EXISTS regular CASCADE;
 DROP TABLE IF EXISTS api_user CASCADE;
 DROP TABLE IF EXISTS clan CASCADE;
