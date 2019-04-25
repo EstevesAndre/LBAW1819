@@ -15,18 +15,6 @@ Route::get('/', function () {
     return redirect('index');
 });
 
-// Cards
-Route::get('cards', 'PostController@list');
-Route::get('cards/{id}', 'PostController@show');
-
-// API
-Route::put('api/cards', 'PostController@create');
-Route::delete('api/cards/{card_id}', 'PostController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
-//---------------------------------------------------------//
-
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
