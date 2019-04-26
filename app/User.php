@@ -31,9 +31,9 @@ class User extends Authenticatable
     ];
 
     /**
-     * The cards this user owns.
+     * The posts this user owns.
      */
-    public function cards() {
-        return $this->hasMany('App\Card');
+    public function posts() {
+        return $this->hasMany('App\Post');
     }
 }

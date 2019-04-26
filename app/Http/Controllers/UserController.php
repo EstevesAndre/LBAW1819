@@ -26,9 +26,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $card = Card::find($id);
+        $post = Post::find($id);
 
-        $this->authorize('show', $card);
+        $this->authorize('show', $post);
 
         return view('pages.card', ['card' => $card]);
     }
