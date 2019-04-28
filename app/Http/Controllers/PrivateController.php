@@ -20,20 +20,17 @@ class PrivateController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
+        $friendPosts = DB::select('SELECT * FROM posts 
+                                    WHERE (posts.user_id IN 
+                                        (SELECT sender FROM requests
+                                            WHERE receiver = :ID AND has_accepted = true AND type = \'friendRequest\')
+                                        OR posts.user_id IN
+                                        (SELECT receiver FROM requests
+                                            WHERE sender = :ID AND has_accepted = true AND type = \'friendRequest\')
+                                        OR posts.user_id = :ID)
+                                    AND clan_id IS NULL'
+                                    , ['ID' => Auth::user()->id]);
 
-        //$user = User::find($id);
-
-        
-
-       /*$friends = DB::select('select u2.id, u2.name, requests.date 
-                                from "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
-                                where u1.id = :ID
-                                    AND requests.has_accepted = TRUE
-                                    AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
-                                            OR
-                                            (requests.sender = u2.id AND requests.sender != u1.id)
-                                )', ['ID' => $id]);
-*/
-        return view('pages.home');
+        return view('pages.home', ['posts' => $friendPosts]);
     }
 }
