@@ -88,7 +88,7 @@ CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     content VARCHAR(500) NOT NULL,
-    hasImg BOOLEAN NOT NULL,
+    has_img BOOLEAN NOT NULL,
     user_id INTEGER NOT NULL REFERENCES "users" (id),
     clan_id INTEGER REFERENCES clans (id)
 );  
@@ -545,35 +545,35 @@ INSERT INTO user_clans(user_id, clan_id) VALUES(9, 3);
 INSERT INTO user_clans(user_id, clan_id) VALUES(10, 3);
 
 
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-02-11 13:41:32', 'Clan news tomorrow', TRUE, 1, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-03-21 17:30:31', 'My clan is too strong. Proud on being Default!', FALSE, 3, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-01-13 12:22:20', 'Great practice today boys!', FALSE, 15, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-03-15 02:31:27', 'I believe in god! What about you', TRUE, 20, 2);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-02-17 04:16:04', 'This looks like a good spaghetti!', TRUE, 14, 2);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-03-14 05:05:17', 'What just happened?!', FALSE, 5, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-01-21 12:12:19', 'This Liverpool-Porto match was so rigged! *feeling angry*', TRUE, 2, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-01-26 15:18:06', 'I belive Barcelona will win the UCL!', FALSE, 15, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-01-27 19:34:41', 'Today is a special day!', FALSE, 13, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-03-04 12:43:45', 'Hans Zimmer is such a great composer!', TRUE, 12, 3);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-04-05 17:16:04', 'Have you seen the first pictures of a black hole? AMAZING!', TRUE, 10, 1);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-03-02 15:42:17', 'Feeling GREAT!', TRUE, 5, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-03-15 03:51:37', 'What is it with this weather?!', FALSE, 3, NULL);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-03-18 02:16:49', 'Cant sleep right now! Whats wrong with me!', TRUE, 2, 3);
-INSERT INTO posts ("date", content, hasImg, user_id, clan_id) 
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-04-21 19:05:58', 'Finished gym sesh for today! This one was hard...', FALSE, 19, 3);
 
 
