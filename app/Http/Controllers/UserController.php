@@ -23,13 +23,14 @@ class UserController extends Controller
         $user = User::find($id);
 
         $friends = DB::select('select u2.id, u2.name, requests.date 
-                                from "users" u1 INNER JOIN requests ON (requests.type = "friendRequest" AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
-                                where u1.id = :user_id
+                                from "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
+                                where u1.id = :ID
                                     AND requests.has_accepted = TRUE
                                     AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
                                             OR
                                             (requests.sender = u2.id AND requests.sender != u1.id)
-                                )', ['user_id' => 1]);
+                                )
+                                ORDER BY requests.date DESC', ['ID' => $id]);
 
         return view('pages.profile', ['user' => $user, 'friends' => $friends]);
     }
