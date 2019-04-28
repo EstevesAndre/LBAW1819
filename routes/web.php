@@ -29,7 +29,7 @@ Route::get('faqs', 'PublicController@showFaqsPage');
 Route::get('404', 'PublicController@show404Page');
 
 // Authenticated Pages
-Route::get('home', 'PostController@showPage');
+Route::get('home', 'PrivateController@show');
 Route::get('createClan', 'ClanController@showCreateClanPage');
 
 // Posts
