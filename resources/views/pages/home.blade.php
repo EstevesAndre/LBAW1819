@@ -26,8 +26,8 @@
                     <div class="modal-body">
                         <div class="row align-items-center w-100 mx-2">
                             <div class="col-sm-12 col-md-4 mt-3">
-                                <a href="#"><img width="125" class="img-fluid border rounded-circle mb-3" src="{{ asset('assets/logo.png') }}" alt="User"></a> <!-- CHANGE -->
-                                <p>André Esteves</p> <!-- CHANGE -->
+                                <a href="/user/{{ Auth::user()->id }}"><img width="125" class="img-fluid border rounded-circle mb-3" src="{{ asset('assets/logo.png') }}" alt="User"></a> <!-- CHANGE -->
+                                <p>{{ Auth::user()->name }}</p> <!-- CHANGE -->
                             </div>
                             <div class="col-sm-12 col-md-8 pr-5 form-group">
                                 <textarea class="form-control text-left mt-3 w-100" rows="6"
