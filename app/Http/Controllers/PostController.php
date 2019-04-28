@@ -6,6 +6,7 @@ use App\Post;
 use App\Like;
 use App\Comment;
 use App\Share;
+use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,25 @@ class PostController extends Controller
 
         $post = Post::find($id);
 
-        return view('pages.post', ['post' => $post]);
+        $friends = DB::select('SELECT id, name
+                                FROM users
+                                WHERE id IN (
+                                    SELECT sender
+                                    FROM requests
+                                    WHERE type = \'friendRequest\'
+                                    AND has_accepted = true 
+                                    AND receiver = :ID
+                                )
+                                OR 
+                                id IN (
+                                    SELECT receiver
+                                    FROM requests
+                                    WHERE type = \'friendRequest\'
+                                    AND has_accepted = true 
+                                    AND sender = :ID
+                                )
+                                ORDER BY id', ['ID' => Auth::user()->id]);
+
+        return view('pages.post', ['post' => $post, 'friends' => $friends]);
     }
 }
