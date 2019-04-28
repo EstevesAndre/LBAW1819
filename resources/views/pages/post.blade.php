@@ -19,17 +19,14 @@
                     </div>
                     <div class="media m-0">
                         <div class="d-flex m-3">
-                            <a href="{{ 'url'(/user/{$post->userID->id})}}"><img class="img-fluid rounded-circle" src="{{ asset('assets/logo.png') }}"
+                            <a href="/user/{{ $post->user_id }}"><img class="img-fluid rounded-circle" src="{{ asset('assets/logo.png') }}"
                                     alt="User"></a>
                         </div>
                         <div class="media-body ml-1 align-self-center">
-                            <a href="../pages/profile.html">
-                                <p class="text-dark m-0">{{ $post->userID->name }}</p>
+                            <a href="/user/{{ $post->user_id }}">
+                                <p class="text-dark m-0">{{ $post->user()->get()[0]->name }}</p>
                             </a>
-                            <small><span><i class="icon ion-md-pin mb-0"></i>Porto,
-                                    Portugal</span></small>
-                            <small><span><i class="icon ion-md-time mt-0"></i>10 hours
-                                    ago</span></small>
+                            <small><span><i class="icon ion-md-time mt-0"></i>{{ $post->date }}</span></small>
                         </div>
                     </div>
                 </div>
@@ -37,26 +34,19 @@
                 <div class="cardbox-base">
                     <ul class="mx-3 mb-1">
                         <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                        <li><a href="../pages/profile.html"><img src="{{ asset('assets/logo.png') }}" class="img-fluid rounded-circle bg-success"
-                                    alt="User"></a></li>
-                        <li><a href="../pages/profile.html"><img src="{{ asset('assets/logo.png') }}" class="img-fluid rounded-circle bg-danger"
-                                    alt="User"></a></li>
-                        <li><a href="../pages/profile.html"><img src="{{ asset('assets/logo.png') }}" class="img-fluid rounded-circle bg-info"
-                                    alt="User"></a></li>
-                        <li><a href="../pages/profile.html"><img src="{{ asset('assets/logo.png') }}" class="img-fluid rounded-circle bg-warning"
-                                    alt="User"></a></li>
-                        <li><a><span>12 Likes</span></a></li>
+                        @each('partials.like', $post->like()->take(4)->get(), 'like')
+                        <li><a><span>{{ $post->like()->count() }}</span></a></li>
                     </ul>
                     <ul class="mx-3 mt-2">
-                        <li><a href="../pages/post.html"><i class="fa fa-comments"></i></a></li>
-                        <li><a><em class="mr-5">12</em></a></li>
-                        <li><a href="../pages/post.html"><i class="fa fa-share-alt"></i></a></li>
-                        <li><a><em class="mr-3">03</em></a></li>
+                        <li><a><i class="fa fa-comments"></i></a></li> <!-- Add action to comment and like -->
+                        <li><a><em class="mr-5">{{ $post->comment()->count() }}</em></a></li>
+                        <li><a><i class="fa fa-share-alt"></i></a></li>
+                        <li><a><em class="mr-3">{{ $post->share()->count() }}</em></a></li>
                     </ul>
                 </div>
                 <div class="cardbox-comments d-flex align-items-center">
                     <span class="comment-avatar float-left mr-2">
-                        <a href="../pages/profile.html"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
+                        <a href="/user/{{ $post->user_id }}"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
                     </span>
                     <div class="search-comment">
                         <input placeholder="Write a comment..." type="text">
@@ -64,60 +54,14 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="d-flex align-items-center">
-                        <span class="comment-avatar float-left mr-2">
-                            <a href="../pages/profile.html"><img class="rounded-circle bg-warning" src="{{ asset('assets/logo.png') }}"
-                                    alt="Avatar"></a>
-                        </span>
-                        <div class="comment-data pl-1 pr-0">
-                            <p class="pt-3">This is a comment.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="comment-avatar float-left mr-2">
-                            <a href="../pages/profile.html"><img class="rounded-circle bg-primary" src="{{ asset('assets/logo.png') }}"
-                                    alt="Avatar"></a>
-                        </span>
-                        <div class="comment-data pl-1 pr-0">
-                            <p class="pt-3">This is another comment.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="comment-avatar float-left mr-2">
-                            <a href="../pages/profile.html"><img class="rounded-circle bg-info" src="{{ asset('assets/logo.png') }}"
-                                    alt="Avatar"></a>
-                        </span>
-                        <div class="comment-data pl-1 pr-0 pr-0">
-                            <p class="pt-3">Yet another comment. But this one is bigger. Waaayyy bigger! Ok it's not that big, i
-                                was joking. But it has two lines, so its substantially bigger.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="comment-avatar float-left mr-2">
-                            <a href="../pages/profile.html"><img class="rounded-circle bg-success" src="{{ asset('assets/logo.png') }}"
-                                    alt="Avatar"></a>
-                        </span>
-                        <div class="comment-data pl-1 pr-0">
-                            <p class="pt-3">So many comments.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="comment-avatar float-left mr-2">
-                            <a href="../pages/profile.html"><img class="rounded-circle bg-danger" src="{{ asset('assets/logo.png') }}"
-                                    alt="Avatar"></a>
-                        </span>
-                        <div class="comment-data pl-1 pr-0">
-                            <p class="pt-3">Just stop it already.</p>
-                        </div>
-                    </div>
+                    @each('partials.comment', $post->comment()->orderBy('date','desc')->skip(0)->take(7)->get() , 'comment')
                 </div>
-                <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                @if($post->comment()->count() > 7)
+                    <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                @endif
             </div>
         </div>
     </div>
-
-
-    <!--
     <div class="col-sm-12 col-md-4 col-lg-3 bg-light side-bar side">
         <div class="d-flex justify-content-center">
             <div class="searchbar searchbar-fixed">
@@ -207,62 +151,62 @@
                 <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-1-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">André Esteves</a>
+                    <a href="/user/{{ $post->user_id }}">André Esteves</a>
                 </div>
                 <div class="tab-pane fade" id="list-2" role="tabpanel" aria-labelledby="list-2-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">Luís Diogo Silva</a>
+                    <a href="/user/{{ $post->user_id }}">Luís Diogo Silva</a>
                 </div>
                 <div class="tab-pane fade" id="list-3" role="tabpanel" aria-labelledby="list-3-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">Francisco Filipe</a>
+                    <a href="/user/{{ $post->user_id }}">Francisco Filipe</a>
                 </div>
                 <div class="tab-pane fade" id="list-4" role="tabpanel" aria-labelledby="list-4-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">João Miguel</a>
+                    <a href="/user/{{ $post->user_id }}">João Miguel</a>
                 </div>
                 <div class="tab-pane fade" id="list-5" role="tabpanel" aria-labelledby="list-5-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">André Esteves</a>
+                    <a href="/user/{{ $post->user_id }}">André Esteves</a>
                 </div>
                 <div class="tab-pane fade" id="list-6" role="tabpanel" aria-labelledby="list-6-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">Luís Diogo Silva</a>
+                    <a href="/user/{{ $post->user_id }}">Luís Diogo Silva</a>
                 </div>
                 <div class="tab-pane fade" id="list-7" role="tabpanel" aria-labelledby="list-7-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">Francisco Filipe</a>
+                    <a href="/user/{{ $post->user_id }}">Francisco Filipe</a>
                 </div>
                 <div class="tab-pane fade" id="list-8" role="tabpanel" aria-labelledby="list-8-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">João Miguel</a>
+                    <a href="/user/{{ $post->user_id }}">João Miguel</a>
                 </div>
                 <div class="tab-pane fade" id="list-9" role="tabpanel" aria-labelledby="list-9-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">André Esteves</a>
+                    <a href="/user/{{ $post->user_id }}">André Esteves</a>
                 </div>
                 <div class="tab-pane fade" id="list-10" role="tabpanel" aria-labelledby="list-19-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">Luís Diogo Silva</a>
+                    <a href="/user/{{ $post->user_id }}">Luís Diogo Silva</a>
                 </div>
                 <div class="tab-pane fade" id="list-11" role="tabpanel" aria-labelledby="list-11-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">Francisco Filipe</a>
+                    <a href="/user/{{ $post->user_id }}">Francisco Filipe</a>
                 </div>
                 <div class="tab-pane fade" id="list-12" role="tabpanel" aria-labelledby="list-12-list">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25"
                         class="border bg-warning img-fluid rounded-circle">
-                    <a href="../pages/profile.html">João Miguel</a>
+                    <a href="/user/{{ $post->user_id }}">João Miguel</a>
                 </div>
             </div>
             <div class="border-top border-left w-100 bottom-contained send-message p-0 d-flex align-items-center">
@@ -272,6 +216,5 @@
             </div>
         </div>
     </div>
--->
 </div>
 @endsection

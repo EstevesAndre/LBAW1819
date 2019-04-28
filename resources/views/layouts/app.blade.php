@@ -25,7 +25,7 @@
         <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
     </head>
     <body>
-        <main>
+        <main class="h-100">
         <header>
             @if (Auth::check())
                 <nav class="bg-secondary fixed-top navbar navbar-expand-lg fixed-nav">
@@ -41,7 +41,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item align-self-center">
-                                <a class="nav-link index-nav active" href="{{ url('/profile') }}">Profile</a>
+                                <a class="nav-link index-nav" href="/user/{{ Auth::user()->id }}">Profile</a>
                             </li>
                             <li class="nav-item align-self-center">
                                 <a class="nav-link index-nav" href="{{ url('/clan') }}">Clan</a>
@@ -122,13 +122,13 @@
                             </li>
                         </ul>
                         <div class="d-flex justify-content-center mr-2">
-                            <a href="{{ url('/login') }}" class="btn btn-link bg-dark nav-link index-nav">Login</a>
+                            <a class="btn btn-link bg-dark nav-link index-nav" href="{{ url('/login') }}">Login</a>
                         </div>
                     </div>
                 </nav>  
             @endif
         </header>
-        <section id="content">
+        <section id="content" class="mh-91">
             @yield('content')
         </section>
         <footer class="bg-secondary py-2 mt-5">

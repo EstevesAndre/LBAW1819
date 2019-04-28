@@ -7,7 +7,11 @@
     <div class="bg-white shadow-lg mx-2 pr-4 py-5">
         <div class="row align-items-center">
             <div class="col-sm-12 col-lg-2 text-center">
-                <a href="{{ url('/login') }}">
+                @if (Auth::check())
+                    <a href="{{ url('/home') }}">
+                @else 
+                    <a href="{{ url('/login') }}">
+                @endif
                     <img width="200" class="ml-3 img-fluid border rounded-circle" src="{{ asset('assets/logo.png') }}" alt="logo">
                 </a>
             </div>
@@ -19,9 +23,13 @@
             </div>
             <div class="col-sm-12 col-lg-3 my-2 px-1 text-left clan-info">
                 <div class="d-flex justify-content-center">
-                    <a href="{{ url('/login') }}" class="btn btn-link bg-dark nav-link index-nav">
-                        Go Home, You're Drunk
-                    </a>
+                    @if (Auth::check())
+                        <a href="{{ url('/home') }}" class="btn btn-link bg-dark nav-link index-nav">
+                    @else
+                        <a href="{{ url('/login') }}" class="btn btn-link bg-dark nav-link index-nav">
+                    @endif
+                            Go Home, You're Drunk
+                        </a>
                 </div>
             </div>
         </div>
