@@ -16,7 +16,7 @@
                 </div>
                 <div class="media-body ml-1 align-self-center">
                     <a href="/user/{{ $post->user_id }}">
-                        <p class="text-dark m-0">{{ $post->user()->get()[0]->name }}</p>
+                        {{-- <p class="text-dark m-0">{{ $post->user()->get()[0]->name }}</p> --}}
                     </a>
                     <small><span><i class="icon ion-md-time mt-0"></i>{{ $post->date }}</span></small>
                 </div>
@@ -26,14 +26,14 @@
         <div class="cardbox-base">
             <ul class="mx-3 mb-1">
                 <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                @each('partials.like', $post->like()->take(4)->get(), 'like')
-                <li><a><span>{{ $post->like()->count() }}</span></a></li>
+                {{-- @each('partials.like', $post->like()->take(4)->get(), 'like') --}}
+                {{-- <li><a><span>{{ $post->like()->count() }}</span></a></li> --}}
             </ul>
             <ul class="mx-3 mt-2">
                 <li><a><i class="fa fa-comments"></i></a></li> <!-- Add action to comment and like -->
-                <li><a><em class="mr-5">{{ $post->comment()->count() }}</em></a></li>
+                {{-- <li><a><em class="mr-5">{{ $post->comment()->count() }}</em></a></li> --}}
                 <li><a><i class="fa fa-share-alt"></i></a></li>
-                <li><a><em class="mr-3">{{ $post->share()->count() }}</em></a></li>
+                {{-- <li><a><em class="mr-3">{{ $post->share()->count() }}</em></a></li> --}}
             </ul>
         </div>
         <div class="cardbox-comments d-flex align-items-center">
