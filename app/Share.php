@@ -14,6 +14,6 @@ class Share extends Model
      * The post this share belongs to.
      */
     public function post() {
-        return $this->belongsTo('App\Post', 'id', 'postID');
+        return $this->belongsTo('App\Post', 'id', 'post_id');
     }
 }

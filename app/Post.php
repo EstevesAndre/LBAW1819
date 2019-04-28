@@ -13,7 +13,7 @@ class Post extends Model
      * The user this post belongs to
      */
     public function user() {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     public function getPost($id) {
@@ -24,20 +24,20 @@ class Post extends Model
      * Comments inside this post
      */
     public function comment() {
-        return $this->hasMany('App\Comment', 'postID', 'id');
+        return $this->hasMany('App\Comment', 'post_id', 'id');
     }
 
     /**
      * Likes inside this post
      */
     public function like() {
-        return $this->hasMany('App\Like', 'postID', 'id');
+        return $this->hasMany('App\Like', 'post_id', 'id');
     }
 
     /**
      * Shares inside this post
      */
     public function share() {
-        return $this->hasMany('App\Share', 'postID', 'id');
+        return $this->hasMany('App\Share', 'post_id', 'id');
     }
 }

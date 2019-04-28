@@ -28,7 +28,7 @@ class PostController extends Controller
         if (!Auth::check()) return redirect('/login');
 
         $post = Post::find($id);
-        
+
         return view('pages.post', ['post' => $post]);
     }
 }

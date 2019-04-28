@@ -12,11 +12,11 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Post $post)
+    /*public function show(User $user, Post $post)
     {
         // Only a post owner can see it
         return $user->id == $post->userID;
-    }
+    }*/
 
     public function list(User $user)
     {
