@@ -55,6 +55,10 @@ FROM comment
 LIMIT 10
 OFFSET $offset;
 
+--  INSERT SHARES
+INSERT INTO shares(postID, userID, content, "date") 
+  VALUES ($postID, $userID, $content, now());
+
 -- SELECT SHARES
 SELECT "users".id, "users".name, share.content, share.date
 FROM share 
@@ -114,5 +118,89 @@ LIMIT 10
 OFFSET $offset;
 
 -- TRANSACTIONS
+
+-- T01
+BEGIN TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ WRITE;
+
+-- inserts like
+INSERT INTO "likes"(postID, userID, "date") 
+    VALUES($postID, $userID, now());
+
+-- updates user that liked post
+UPDATE "users" SET xp = xp + 5 WHERE id = $userID AND race = 'Human';
+UPDATE "users" SET xp = xp + 10 WHERE id = $userID AND race = 'Elf';
+UPDATE "users" SET xp = xp + 15 WHERE id = $userID AND race = 'Dwarf';
+
+-- updates post's owner
+UPDATE "users" SET xp = xp + 10 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Human';
+UPDATE "users" SET xp = xp + 20 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Elf';
+UPDATE "users" SET xp = xp + 30 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Dwarf';
+
+COMMIT;
+
+
+-- T02
+BEGIN TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ WRITE;
+
+-- inserts comment
+INSERT INTO comments(id, postID, userID, "date", commentText) 
+  VALUES(nextval('comment_id_seq'::regclass), $postID, $userID, now(), $commentText);
+
+-- updates user that commented post
+UPDATE "users" SET xp = xp + 5 WHERE id = $userID AND race = 'Human';
+UPDATE "users" SET xp = xp + 10 WHERE id = $userID AND race = 'Elf';
+UPDATE "users" SET xp = xp + 15 WHERE id = $userID AND race = 'Dwarf';
+
+-- updates post's owner
+UPDATE "users" SET xp = xp + 10 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Human';
+UPDATE "users" SET xp = xp + 20 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Elf';
+UPDATE "users" SET xp = xp + 30 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Dwarf';
+
+COMMIT;
+
+
+-- T03
+BEGIN TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ WRITE;
+
+-- inserts share
+INSERT INTO shares(postID, userID, content, "date") 
+  VALUES ($postID, $userID, $content, now());
+
+-- updates user that shared post
+UPDATE "users" SET xp = xp + 5 WHERE id = $userID AND race = 'Human';
+UPDATE "users" SET xp = xp + 10 WHERE id = $userID AND race = 'Elf';
+UPDATE "users" SET xp = xp + 15 WHERE id = $userID AND race = 'Dwarf';
+
+-- updates post's owner
+UPDATE "users" SET xp = xp + 10 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Human';
+UPDATE "users" SET xp = xp + 20 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Elf';
+UPDATE "users" SET xp = xp + 30 WHERE id = (SELECT userID FROM posts WHERE id = $postID) AND race = 'Dwarf';
+
+COMMIT;
+
+
+-- T04
+BEGIN TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY
+
+SELECT count(*)
+FROM "like"
+WHERE postID = $postID;
+
+SELECT "users".id, "users".name, "like".date
+FROM "like"
+    INNER JOIN post ON post.id = "like".postID
+    INNER JOIN "users" ON "users".id = "like".userID
+    WHERE post.id = $postID
+    ORDER BY "like"."date" DESC
+LIMIT 10
+OFFSET $offset;
+
+COMMIT;
+
+-- T0
 
 experience queries
