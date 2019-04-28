@@ -546,6 +546,10 @@ a.friend-list {
         text-align: left;
     }
 
+    .mh-91 {
+        min-height: 90.9%;
+    }
+
     .side-bar {
         position: fixed;
         z-index: 1;
