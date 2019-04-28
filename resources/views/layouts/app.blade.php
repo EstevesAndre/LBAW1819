@@ -79,11 +79,10 @@
                                 </div>
                             </div>
 
-                            <a href="{{ url('/profile') }}"><img width="40" class="img-fluid border rounded-circle mr-2" src="{{ asset('assets/logo.png') }}" alt="User"></a>
-                            <a href="{{ url('/profile') }}" class="m-0 no-hover index-nav">André Esteves</a>
+                            <a href="/user/{{ Auth::user()->id }}"><img width="40" class="img-fluid border rounded-circle mr-2" src="{{ asset('assets/logo.png') }}" alt="User"></a>
+                            <a href="/user/{{ Auth::user()->id }}" class="m-0 no-hover index-nav">{{ Auth::user()->name }}</a>
                             <div class="btn-group ml-2 my-2">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false"></button>
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary">
                                     <a class="no-hover index-nav" href="{{ url('/createClan') }}">
                                         <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
