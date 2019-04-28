@@ -575,7 +575,10 @@ INSERT INTO posts ("date", content, has_img, user_id, clan_id)
 VALUES ('2019-03-18 02:16:49', 'Cant sleep right now! Whats wrong with me!', TRUE, 2, 3);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-04-21 19:05:58', 'Finished gym sesh for today! This one was hard...', FALSE, 19, 3);
-
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
+VALUES ('2019-04-28 19:05:58', 'my first post ever', FALSE, 21, NULL);
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
+VALUES ('2019-04-28 21:05:58', 'my second post', FALSE, 21, NULL);
 
 INSERT INTO "likes"(post_id, user_id, "date") VALUES(1, 4, '2019-04-01 19:27:12');
 INSERT INTO "likes"(post_id, user_id, "date") VALUES(1, 7, '2019-03-01 09:21:17');
@@ -755,7 +758,11 @@ INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VA
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (5, 12, NULL, 'friendRequest', '2019-01-29 02:32:35', FALSE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (6, 13, NULL, 'friendRequest', '2019-01-29 09:35:16', FALSE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (7, 13, NULL, 'friendRequest', '2019-01-30 01:21:39', TRUE);
-
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 3, NULL, 'friendRequest', '2019-01-29 12:02:21', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 1, NULL, 'friendRequest', '2019-01-31 22:42:33', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 12, NULL, 'friendRequest', '2019-02-15 14:32:21', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 10, NULL, 'friendRequest', '2019-03-19 16:12:53', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 8, NULL, 'friendRequest', '2019-04-02 17:02:11', TRUE);
 
 INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (13, 4, '2019-03-21 07:22:16', 'Racism');
 INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (15, 4, '2019-04-01 21:42:32', 'Inappropriate behaviour');
