@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class PostsTableSeeder extends Seeder
 {
@@ -25,15 +26,15 @@ class PostsTableSeeder extends Seeder
             $bool_rand = rand(0,1);
             $boolean = $bool_rand = 1 ? TRUE:FALSE;
             
-            $num_users = DB::select('SELECT count(*) FROM users');
-            $user_id = rand(1,$num_users);
+            $users = DB::select('SELECT id FROM users');
+            $user_id = rand(1,count($users));
 
             DB::table('posts')->insert([
                 'date' => $date,
                 'content' => Str::random(40),
-                'hasImg' => $boolean,
-                'userID' => $user_id,
-                'clanID' => NULL,
+                'has_img' => $boolean,
+                'user_id' => $user_id,
+                'clan_id' => NULL,
             ]);
         }
     }
