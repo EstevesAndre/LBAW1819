@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Post;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class PrivateController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        $friendPosts = DB::select('SELECT * FROM posts 
+        $friendPosts = DB::select('SELECT id FROM posts 
                                     WHERE (posts.user_id IN 
                                         (SELECT sender FROM requests
                                             WHERE receiver = :ID AND has_accepted = true AND type = \'friendRequest\')
@@ -30,7 +31,12 @@ class PrivateController extends Controller
                                         OR posts.user_id = :ID)
                                     AND clan_id IS NULL'
                                     , ['ID' => Auth::user()->id]);
-
-        return view('pages.home', ['posts' => $friendPosts]);
+                
+        $posts = [];
+        foreach ($friendPosts as $post) {
+            array_push($posts , Post::find($post->id));
+        }
+        
+        return view('pages.home', ['posts' => $posts]);
     }
 }
