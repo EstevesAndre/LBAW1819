@@ -521,6 +521,7 @@ VALUES('rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
 VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', '3TEAM3', '1998-04-22', 'Human', 'Fighter', 960, FALSE);
 
+
 INSERT INTO clans(name, description, owner_id) 
 VALUES('Default Clan','Looking forward for the first place in the clans leaderboard',14);
 INSERT INTO clans(name, description, owner_id) 
@@ -531,6 +532,8 @@ INSERT INTO clans(name, description, owner_id)
 VALUES('EURO 2016','Remembering old times with our french friends',11);
 INSERT INTO clans(name, description, owner_id) 
 VALUES('Falta o Eder','A tiny tribute to our national hero Ederzito. Join our cause',17);
+INSERT INTO clans(name, description, owner_id) 
+VALUES('Working','Join or join',21);
 
 
 INSERT INTO user_clans(user_id, clan_id) VALUES(1, 1);
@@ -543,6 +546,13 @@ INSERT INTO user_clans(user_id, clan_id) VALUES(7, 5);
 INSERT INTO user_clans(user_id, clan_id) VALUES(8, 2);
 INSERT INTO user_clans(user_id, clan_id) VALUES(9, 3);
 INSERT INTO user_clans(user_id, clan_id) VALUES(10, 3);
+INSERT INTO user_clans(user_id, clan_id) VALUES(11, 6);
+INSERT INTO user_clans(user_id, clan_id) VALUES(12, 6);
+INSERT INTO user_clans(user_id, clan_id) VALUES(13, 6);
+INSERT INTO user_clans(user_id, clan_id) VALUES(14, 6);
+INSERT INTO user_clans(user_id, clan_id) VALUES(15, 6);
+INSERT INTO user_clans(user_id, clan_id) VALUES(16, 6);
+INSERT INTO user_clans(user_id, clan_id) VALUES(17, 6);
 
 
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
@@ -579,6 +589,11 @@ INSERT INTO posts ("date", content, has_img, user_id, clan_id)
 VALUES ('2019-04-28 19:05:58', 'my first post ever', FALSE, 21, NULL);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-04-28 21:05:58', 'my second post', FALSE, 21, NULL);
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
+VALUES ('2019-04-28 11:05:58', 'test post', FALSE, 21, 6);
+INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
+VALUES ('2019-04-29 21:05:58', 'Second post', FALSE, 1, 6);
+
 
 INSERT INTO "likes"(post_id, user_id, "date") VALUES(1, 4, '2019-04-01 19:27:12');
 INSERT INTO "likes"(post_id, user_id, "date") VALUES(1, 7, '2019-03-01 09:21:17');
@@ -763,6 +778,13 @@ INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VA
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 12, NULL, 'friendRequest', '2019-02-15 14:32:21', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 10, NULL, 'friendRequest', '2019-03-19 16:12:53', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 8, NULL, 'friendRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 11, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 12, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 13, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 14, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 15, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 16, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 17, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
 
 INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (13, 4, '2019-03-21 07:22:16', 'Racism');
 INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (15, 4, '2019-04-01 21:42:32', 'Inappropriate behaviour');

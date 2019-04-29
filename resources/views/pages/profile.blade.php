@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         <ul class="pl-0">
-                            @each('partials.friendList', array_slice($friends,0,5), 'friend')
+                            @each('partials.userList', array_slice($friends,0,5), 'user')
                             @if(count($friends) > 5) 
                                 <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                             @endif

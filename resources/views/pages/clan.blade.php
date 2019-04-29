@@ -14,15 +14,15 @@
                 <div class="col-sm-12 col-lg-7 my-2 text-left clan-bio">
                     <div class=" text-left basic-info">
                         <h2><b>{{ $clan->name }}</b></h2>
-                        <p>Clan bio, briefly describing the clan.</p>
-                        <div class="my-2"><a class="no-hover standard-text" href="../pages/clanSettings.html"><i
+                        <p>{{ $clan->description }}</p>
+                        <div class="my-2"><a class="no-hover standard-text" href="{{ url('/clanSettings') }}"><i
                                     class="fas fa-cog"></i> Settings</a></div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-3 my-2 text-left clan-info">
-                    <div class="my-2"><i class="fas fa-globe"></i> Rank: 52</div>
-                    <div class="my-2"><i class="fas fa-user-cog"></i> Owner: André</div>
-                    <div class="my-2"><i class="fas fa-users"></i> Members: 574</div>
+                    <div class="my-2"><i class="fas fa-globe"></i> Rank: 0</div>
+                    <div class="my-2"><i class="fas fa-user-cog"></i> Owner: {{ $owner->name }}</div>
+                    <div class="my-2"><i class="fas fa-users"></i> Members: {{ count($members) }}</div>
                 </div>
             </div>
         </div>
@@ -43,199 +43,16 @@
             </ul>
 
             <div class="mt-4 tab-content" id="content">
-                <div class="text-left tab-pane fade active show" id="forum" role="tabpanel"
-                    aria-labelledby="forum-tab">
-                    <div class="container post mt-4 mb-2 p-0">
-                        <div class="cardbox text-left shadow-lg bg-white">
-                            <div class="cardbox-heading">
-                                <div class="dropdown float-right mt-3 mr-3">
-                                    <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
-                                        aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
-                                    <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                                        <a class="dropdown-item" href="#">Hide post</a>
-                                        <a class="dropdown-item" href="#">Report</a>
-                                    </div>
-                                </div>
-                                <div class="media m-0">
-                                    <div class="d-flex m-3">
-                                        <a href="../pages/profile.html"><img class="img-fluid rounded-circle"
-                                                src="../assets/logo.png" alt="User"></a>
-                                    </div>
-                                    <div class="media-body ml-1 align-self-center">
-                                        <a href="../pages/profile.html">
-                                            <p class="text-dark m-0">André Esteves</p>
-                                        </a>
-                                        <small><span><i class="icon ion-md-pin mb-0"></i>Porto,
-                                                Portugal</span></small>
-                                        <small><span><i class="icon ion-md-time mt-0"></i>10 hours
-                                                ago</span></small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cardbox-item mx-3">
-                                <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time.
-                                    Okokok</p>
-                            </div>
-                            <div class="cardbox-base">
-                                <ul class="mx-3 mb-1">
-                                    <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a><span>12 Likes</span></a></li>
-                                </ul>
-                                <ul class="mx-3 mt-2">
-                                    <li><a href="../pages/post.html"><i class="fa fa-comments"></i></a></li>
-                                    <li><a><em class="mr-5">12</em></a></li>
-                                    <li><a href="../pages/post.html"><i class="fa fa-share-alt"></i></a></li>
-                                    <li><a><em class="mr-3">03</em></a></li>
-                                </ul>
-                            </div>
-                            <div class="cardbox-comments d-flex align-items-center">
-                                <span class="comment-avatar float-left mr-2">
-                                    <a href="../pages/profile.html"><img class="rounded-circle" src="../assets/logo.png"
-                                            alt="Avatar"></a>
-                                </span>
-                                <div class="search-comment">
-                                    <input placeholder="Write a comment..." type="text">
-                                    <button><i class="fas fa-share-square"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container post mt-4 mb-2 p-0">
-                        <div class="cardbox text-left shadow-lg bg-white">
-                            <div class="cardbox-heading">
-                                <div class="dropdown float-right mt-3 mr-3">
-                                    <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
-                                        aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
-                                    <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                                        <a class="dropdown-item" href="#">Hide post</a>
-                                        <a class="dropdown-item" href="#">Report</a>
-                                    </div>
-                                </div>
-                                <div class="media m-0">
-                                    <div class="d-flex m-3">
-                                        <a href="../pages/profile.html"><img class="img-fluid rounded-circle"
-                                                src="../assets/logo.png" alt="User"></a>
-                                    </div>
-                                    <div class="media-body ml-1 align-self-center">
-                                        <a href="../pages/profile.html">
-                                            <p class="text-dark m-0">André Esteves</p>
-                                        </a>
-                                        <small><span><i class="icon ion-md-pin mb-0"></i>Porto,
-                                                Portugal</span></small>
-                                        <small><span><i class="icon ion-md-time mt-0"></i>10 hours
-                                                ago</span></small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cardbox-item mx-3">
-                                <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time.
-                                    Okokok</p>
-                            </div>
-                            <div class="cardbox-base">
-                                <ul class="mx-3 mb-1">
-                                    <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a><span>12 Likes</span></a></li>
-                                </ul>
-                                <ul class="mx-3 mt-2">
-                                    <li><a href="../pages/post.html"><i class="fa fa-comments"></i></a></li>
-                                    <li><a><em class="mr-5">12</em></a></li>
-                                    <li><a href="../pages/post.html"><i class="fa fa-share-alt"></i></a></li>
-                                    <li><a><em class="mr-3">03</em></a></li>
-                                </ul>
-                            </div>
-                            <div class="cardbox-comments d-flex align-items-center">
-                                <span class="comment-avatar float-left mr-2">
-                                    <a href="../pages/profile.html"><img class="rounded-circle" src="../assets/logo.png"
-                                            alt="Avatar"></a>
-                                </span>
-                                <div class="search-comment">
-                                    <input placeholder="Write a comment..." type="text">
-                                    <button><i class="fas fa-share-square"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container post mt-4 mb-2 p-0">
-                        <div class="cardbox text-left shadow-lg bg-white">
-                            <div class="cardbox-heading">
-                                <div class="dropdown float-right mt-3 mr-3">
-                                    <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
-                                        aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
-                                    <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                                        <a class="dropdown-item" href="#">Hide post</a>
-                                        <a class="dropdown-item" href="#">Report</a>
-                                    </div>
-                                </div>
-                                <div class="media m-0">
-                                    <div class="d-flex m-3">
-                                        <a href="../pages/profile.html"><img class="img-fluid rounded-circle"
-                                                src="../assets/logo.png" alt="User"></a>
-                                    </div>
-                                    <div class="media-body ml-1 align-self-center">
-                                        <a href="../pages/profile.html">
-                                            <p class="text-dark m-0">André Esteves</p>
-                                        </a>
-                                        <small><span><i class="icon ion-md-pin mb-0"></i>Porto,
-                                                Portugal</span></small>
-                                        <small><span><i class="icon ion-md-time mt-0"></i>10 hours
-                                                ago</span></small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cardbox-item mx-3">
-                                <p>Hello guys!!!<br />I'm here to announce that ... You will know, when it's time.
-                                    Okokok</p>
-                            </div>
-                            <div class="cardbox-base">
-                                <ul class="mx-3 mb-1">
-                                    <li><a><i class="fa fa-thumbs-up"></i></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a href="../pages/profile.html"><img src="../assets/logo.png"
-                                                class="img-fluid rounded-circle" alt="User"></a></li>
-                                    <li><a><span>12 Likes</span></a></li>
-                                </ul>
-                                <ul class="mx-3 mt-2">
-                                    <li><a href="../pages/post.html"><i class="fa fa-comments"></i></a></li>
-                                    <li><a><em class="mr-5">12</em></a></li>
-                                    <li><a href="../pages/post.html"><i class="fa fa-share-alt"></i></a></li>
-                                    <li><a><em class="mr-3">03</em></a></li>
-                                </ul>
-                            </div>
-                            <div class="cardbox-comments d-flex align-items-center">
-                                <span class="comment-avatar float-left mr-2">
-                                    <a href="../pages/profile.html"><img class="rounded-circle" src="../assets/logo.png"
-                                            alt="Avatar"></a>
-                                </span>
-                                <div class="search-comment">
-                                    <input placeholder="Write a comment..." type="text">
-                                    <button><i class="fas fa-share-square"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                    <p class="text-center standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                <div class="text-left tab-pane fade active show" id="forum" role="tabpanel" aria-labelledby="forum-tab">
+                    @if(count($posts) == 0)
+                        <p class="text-center"><b><small>No posts to be seen!</small></b></p>
+                    @else
+                        @each('partials.post', array_slice($posts,0,5), 'post')
+                        <br />
+                        @if(count($posts) > 5)
+                            <p class="text-center standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                        @endif
+                    @endif
                 </div>
                 <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
                     <div class="d-flex justify-content-center mb-3 mr-3">
@@ -245,6 +62,10 @@
                         </div>
                     </div>
                     <ul class="pl-0">
+                        @each('partials.userList', $members, 'user')
+                        @if(count($members) > 5) 
+                            <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                        @endif
                         <li class="list-group shadow-lg">
                             <button type="button" class="text-left list-group-item list-group-item-action">
                                 <div class="d-flex align-items-center row">
