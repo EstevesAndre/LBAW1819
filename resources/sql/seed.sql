@@ -173,18 +173,18 @@ CREATE TABLE notifications (
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
-CREATE INDEX request_sender_recevier ON requests USING btree(sender, receiver);
-CREATE INDEX message_sender_recevier ON messages USING btree(sender, receiver);
-CREATE INDEX post_user ON posts USING hash(user_id);
-CREATE INDEX post_id ON posts USING hash(id);
-CREATE INDEX share_post ON shares USING hash(post_id);
-CREATE INDEX share_user ON shares USING hash(user_id);
-CREATE INDEX user_clan_user ON user_clans USING hash(user_id);
-CREATE INDEX user_clan_clan ON user_clans USING hash(clan_id);
+CREATE INDEX requests_sender_recevier ON requests USING btree(sender, receiver);
+CREATE INDEX messages_sender_recevier ON messages USING btree(sender, receiver);
+CREATE INDEX posts_user ON posts USING hash(user_id);
+CREATE INDEX posts_id ON posts USING hash(id);
+CREATE INDEX shares_post ON shares USING hash(post_id);
+CREATE INDEX shares_user ON shares USING hash(user_id);
+CREATE INDEX users_clan_user ON user_clans USING hash(user_id);
+CREATE INDEX users_clan_clan ON user_clans USING hash(clan_id);
 CREATE INDEX users_username ON "users" USING hash(username);
-CREATE INDEX post_content_search ON posts USING GIN (to_tsvector('english', content));
-CREATE INDEX clan_description_search ON "clans" USING GIN (to_tsvector('english', description));
-CREATE INDEX message_search ON "messages" USING GIN (to_tsvector('english', message_text));
+CREATE INDEX posts_content_search ON posts USING GIN (to_tsvector('english', content));
+CREATE INDEX clans_description_search ON "clans" USING GIN (to_tsvector('english', description));
+CREATE INDEX messages_search ON "messages" USING GIN (to_tsvector('english', message_text));
 
 -----------------------------------------
 -- TRIGGERS and UDFs
