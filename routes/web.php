@@ -38,3 +38,7 @@ Route::get('post/{id}', 'PostController@show');
 
 // Users
 Route::get('user/{id}', 'UserController@show');
+
+// Clan
+Route::get('clan', 'ClanController@show');
+Route::get('clan/{id}', 'ClanController@show');
