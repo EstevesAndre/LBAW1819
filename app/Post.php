@@ -16,6 +16,10 @@ class Post extends Model
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
+    public function clan() {
+        return $this->belongsTo('App\Clan', 'clan_id', 'id');
+    }
+
     public function getPost($id) {
         return Post::find($id);
     }
