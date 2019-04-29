@@ -35,9 +35,11 @@ class UserController extends Controller
                                 ORDER BY requests.date DESC', ['ID' => $id]);
 
         $userClan = DB::table('clans')
-                        ->join('user_clans', 'clan_id', '=', 'clans.id')
+                        ->join('user_clans', 'user_clans.clan_id', '=', 'clans.id')
                         ->select('clans.*')
                         ->where('user_clans.user_id', '=', $id)
+                        ->orWhere('clans.owner_id', '=',$id)
+                        ->distinct()
                         ->get();
 
         return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan]);
