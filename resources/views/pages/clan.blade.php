@@ -62,99 +62,13 @@
                         </div>
                     </div>
                     <ul class="pl-0">
-                        @each('partials.userList', $members, 'user')
-                        @if(count($members) > 5) 
+                        @each('partials.userList', array_slice($members,0,10), 'user')
+                        @if(count($members) > 10) 
                             <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                         @endif
-                        <li class="list-group shadow-lg">
-                            <button type="button" class="text-left list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-danger img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-5 col-sm-6 pr-1">Tiago Alves</div>
-                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2018</div>
-                                </div>
-                            </button>
-                        </li>
-                        <li class="list-group shadow-lg">
-                            <button type="button" class="text-left list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-light img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-5 col-sm-6 pr-1">Manuel Afonso</div>
-                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2017</div>
-                                </div>
-                            </button>
-                        </li>
-                        <li class="list-group shadow-lg">
-                            <button type="button" class="text-left list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-success img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-5 col-sm-6 pr-1">Leandro Azevedo</div>
-                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2015</div>
-                                </div>
-                            </button>
-                        </li>
-                        <li class="list-group shadow-lg">
-                            <button type="button" class="text-left list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-secondary img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-5 col-sm-6 pr-1">Daniel Silva</div>
-                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2014</div>
-                                </div>
-                            </button>
-                        </li>
-                        <li class="list-group shadow-lg">
-                            <button type="button" class="text-left list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-white img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-5 col-sm-6 pr-1">Filipe Cardoso</div>
-                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2013</div>
-                                </div>
-                            </button>
-                        </li>
-                        <li class="list-group shadow-lg">
-                            <button type="button" class="text-left list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-info img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-5 col-sm-6 pr-1">Mariana Costa</div>
-                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2013</div>
-                                </div>
-                            </button>
-                        </li>
-                        <li class="list-group shadow-lg">
-                            <button type="button" class="text-left list-group-item list-group-item-action">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-warning img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-5 col-sm-6 pr-1">Joana Maria</div>
-                                    <div class="col-5 col-sm-5 pl-1 text-right">Friends since 2013</div>
-                                </div>
-                            </button>
-                        </li>
-                        <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="leaderboard" role="tabpanel"
-                    aria-labelledby="leaderboard-tab">
+                <div class="tab-pane fade" id="leaderboard" role="tabpanel" aria-labelledby="leaderboard-tab">
                     <div class="d-flex justify-content-center mb-3 mr-3">
                         <div class="searchbar">
                             <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">

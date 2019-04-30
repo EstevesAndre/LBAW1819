@@ -39,22 +39,14 @@ class ClanController extends Controller
             array_push($posts , Post::find($post->id));
         }
 
-        $members = DB::table('users')
-                    ->join('user_clans', 'users.id', '=', 'user_clans.user_id')
-                    ->join('requests', 'user_clans.clan_id', '=', 'requests.clan_id')
-                    ->where('user_clans.clan_id', $id)
-                    ->where('has_accepted', 'true')
-                    ->where(function ($query) 
-                    {
-                        $query->where('requests.receiver', '=', 21)
-                                ->orWhere('requests.sender', '=', 21);
-                    })
-                    ->get();
+        $members = DB::select('SELECT users.id, users.name, requests.date, users.xp
+                FROM users INNER JOIN user_clans ON users.id = user_clans.user_id INNER JOIN requests ON user_clans.clan_id = requests.clan_id
+                WHERE has_accepted = true
+                AND user_clans.clan_id = :ID
+                AND (requests.receiver = users.id OR requests.sender = users.id)
+                ORDER BY users.name', ['ID' => $id]);
 
-        /*
-            SQLSTATE[22P02]: Invalid text representation: 7 ERROR: invalid input syntax for integer: "users.id" 
-        */
+
         return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts]);
-    
     }
 }
