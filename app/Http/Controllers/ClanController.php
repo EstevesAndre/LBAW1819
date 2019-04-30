@@ -46,7 +46,13 @@ class ClanController extends Controller
                 AND (requests.receiver = users.id OR requests.sender = users.id)
                 ORDER BY users.name', ['ID' => $id]);
 
+        $leaderboard = DB::table('users')
+                ->select('id','name')
+                ->join('user_clans', 'users.id', '=', 'user_clans.user_id')
+                ->where('user_clans.clan_id', $id)
+                ->orderBy('xp','DESC')
+                ->get();
 
-        return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts]);
+        return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts, 'leaders' => $leaderboard]);
     }
 }

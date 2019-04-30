@@ -80,6 +80,46 @@
                             <li class="ml-3">
                                 <div class="d-flex align-items-center row">
                                     <div class="col-2 col-sm-1 friend-img">
+                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
+                                    </div>
+                                    <div class="col-7 col-sm-6 text-left">{{ $leaders[0]->name }}</div>
+                                    <div class="col-3 col-sm-5 text-right">
+                                        <img src="{{ asset('assets/first.png') }}" alt="logo">
+                                    </div>
+                                </div>
+                            </li>
+                        </button>
+                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                            <li class="ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-2 col-sm-1 friend-img">
+                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
+                                    </div>
+                                    <div class="col-7 col-sm-6 text-left">{{ $leaders[1]->name }}</div>
+                                    <div class="col-3 col-sm-5 text-right">
+                                        <img src="{{ asset('assets/second.png') }}" alt="logo">
+                                    </div>
+                                </div>
+                            </li>
+                        </button>
+                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                            <li class="ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-2 col-sm-1 friend-img">
+                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
+                                    </div>
+                                    <div class="col-7 col-sm-6 text-left">{{ $leaders[2]->name }}</div>
+                                    <div class="col-3 col-sm-5 text-right">
+                                        <img src="{{ asset('assets/third.png') }}" alt="logo">
+                                    </div>
+                                </div>
+                            </li>
+                        </button>
+                        @each('partials.leaderboardElement', $leaders->take(3), 'user')
+                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                            <li class="ml-3">
+                                <div class="d-flex align-items-center row">
+                                    <div class="col-2 col-sm-1 friend-img">
                                         <img src="../assets/logo.png" alt="logo"
                                             class="border bg-danger img-fluid rounded-circle">
                                     </div>
