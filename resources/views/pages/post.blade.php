@@ -6,7 +6,7 @@
 <div class="mt-5 row text-center fullscreen-3-4 m-0 standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 activity">
         <!-- POST -->
-        <div class="container post mt-4 mb-2 p-0">
+        <div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}">
             <div class="cardbox text-left shadow-lg bg-white">
                 <div class="cardbox-heading">
                     <div class="dropdown float-right mt-3 mr-3">
@@ -33,7 +33,11 @@
                 <div class="cardbox-item mx-3">{{ $post->content }}</div>
                 <div class="cardbox-base">
                     <ul class="mx-3 mb-1">
-                        <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                        @if(count($post->like()->where('user_id','=',Auth::user()->id)->get()) == 0)
+                            <li><a><i class="fa fa-thumbs-up"></i></a></li>
+                        @else
+                            <li><a><i class="fa fa-thumbs-up active"></i></a></li>
+                        @endif
                         @each('partials.like', $post->like()->take(4)->get(), 'like')
                         <li><a><span>{{ $post->like()->count() }}</span></a></li>
                     </ul>

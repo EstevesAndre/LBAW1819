@@ -48,7 +48,7 @@
             @if(count($posts) == 0)
                 <p class="text-center"><b><small>No posts to be seen!</small></b></p>
             @else
-                @each('partials.post', $posts, 'post')
+                @each('partials.post', array_slice($posts,0,1), 'post')
                 <form method="GET">
                     <button type="submit"><span>See more </span><i class="fas fa-caret-down"></i></button>
                 </form>

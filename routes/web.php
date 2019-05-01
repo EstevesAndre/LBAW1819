@@ -23,6 +23,10 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 Route::get('index', 'Auth\LoginController@showIndexPage');
 
+// API
+Route::delete('/api/like/{id}', 'PostController@delete');
+Route::put('/api/like/{id}', 'PostController@create');
+
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
 Route::get('faqs', 'PublicController@showFaqsPage');
