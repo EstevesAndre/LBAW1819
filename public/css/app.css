@@ -109,6 +109,10 @@ div.left-color {
     color: rgb(134, 255, 155);
 }
 
+li>a>i.active {
+    color: rgb(135, 38, 199) !important;
+}
+
 input:hover, textarea:hover {
     background-color: rgb(235, 235, 235);
 }
