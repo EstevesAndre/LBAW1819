@@ -39,7 +39,7 @@ class ClanController extends Controller
             array_push($posts , Post::find($post->id));
         }
 
-        $members = DB::select('SELECT users.id, users.name, requests.date, users.xp
+        $members = DB::select('SELECT users.id, users.username, users.name, requests.date, users.xp
                 FROM users INNER JOIN user_clans ON users.id = user_clans.user_id INNER JOIN requests ON user_clans.clan_id = requests.clan_id
                 WHERE has_accepted = true
                 AND user_clans.clan_id = :ID
@@ -47,7 +47,7 @@ class ClanController extends Controller
                 ORDER BY users.name', ['ID' => $id]);
 
         $leaderboard = DB::table('users')
-                ->select('id','name')
+                ->select('id','name', 'username')
                 ->join('user_clans', 'users.id', '=', 'user_clans.user_id')
                 ->where('user_clans.clan_id', $id)
                 ->orderBy('xp','DESC')
