@@ -10,11 +10,13 @@ class Like extends Model
     public $timestamps  = false;
     protected $table = 'likes';
 
+    protected $primaryKey = ['post_id', 'user_id'];
+    public $incrementing = false;
+
     /**
      * The post this like belongs to.
      */
     public function post() {
         return $this->belongsTo('App\Post', 'id', 'post_id');
     }
-
 }
