@@ -1,4 +1,4 @@
-<button type="button" class="text-left list-group-item border-0 list-group-item-action">
+<button data-id="/user/{{ $user->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
     <li class="ml-3">
         <div class="d-flex align-items-center row">
             <div class="col-2 col-sm-1 friend-img">
@@ -6,7 +6,7 @@
             </div>
             <div class="col-7 col-sm-6 text-left">{{ $user->name }}</div>
             <div class="col-3 col-sm-5 text-right">
-                <img src="../assets/first.png" alt="logo">
+                <img src="{{ asset('assets/first.png') }}" alt="logo">
             </div>
         </div>
     </li>

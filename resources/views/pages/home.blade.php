@@ -26,7 +26,7 @@
                     <div class="modal-body">
                         <div class="row align-items-center w-100 mx-2">
                             <div class="col-sm-12 col-md-4 mt-3">
-                                <a href="/user/{{ Auth::user()->id }}"><img width="125" class="img-fluid border rounded-circle mb-3" src="{{ asset('assets/logo.png') }}" alt="User"></a> <!-- CHANGE -->
+                                <a href="/user/{{ Auth::user()->username }}"><img width="125" class="img-fluid border rounded-circle mb-3" src="{{ asset('assets/logo.png') }}" alt="User"></a> <!-- CHANGE -->
                                 <p>{{ Auth::user()->name }}</p> <!-- CHANGE -->
                             </div>
                             <div class="col-sm-12 col-md-8 pr-5 form-group">
@@ -48,15 +48,16 @@
             @if(count($posts) == 0)
                 <p class="text-center"><b><small>No posts to be seen!</small></b></p>
             @else
-                @each('partials.post', array_slice($posts,0,1), 'post')
-                <form method="GET">
-                    <button type="submit"><span>See more </span><i class="fas fa-caret-down"></i></button>
-                </form>
+                @each('partials.post', array_slice($posts,0,5), 'post')
+                @if(count($posts) > 5)
+                    <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                @endif
             @endif
         </section>
     </div>
 
     <!-- Side bar -->
+    <!--
     <div class="col-sm-12 col-md-4 col-lg-3 bg-light side-bar side">
         <div class="d-flex justify-content-center">
             <div class="searchbar searchbar-fixed">
@@ -212,6 +213,6 @@
                 <button type="submit" class="btn btn-primary m-1 float-right" id="send-button">&#9993;</button>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 @endsection

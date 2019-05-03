@@ -1,5 +1,5 @@
 <li class="list-group shadow-lg">
-    <button href="/user/{{ $user->id }}" type="button" class="text-left list-group-item list-group-item-action">
+    <button data-id="/user/{{ $user->username }}" type="button" class="text-left list-group-item list-group-item-action">
         <div class="d-flex align-items-center row">
             <div class="col-2 col-sm-1 friend-img">
                 <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-warning img-fluid rounded-circle">

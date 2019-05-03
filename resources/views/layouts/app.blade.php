@@ -44,7 +44,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item align-self-center">
-                                <a class="nav-link index-nav" href="/user/{{ Auth::user()->id }}">Profile</a>
+                                <a class="nav-link index-nav" href="/user/{{ Auth::user()->username }}">Profile</a>
                             </li>
                             <li class="nav-item align-self-center">
                                 <a class="nav-link index-nav" href="{{ url('/clan') }}">Clan</a>
@@ -82,8 +82,8 @@
                                 </div>
                             </div>
 
-                            <a href="/user/{{ Auth::user()->id }}"><img width="40" class="img-fluid border rounded-circle mr-2" src="{{ asset('assets/logo.png') }}" alt="User"></a>
-                            <a href="/user/{{ Auth::user()->id }}" class="m-0 no-hover index-nav">{{ Auth::user()->name }}</a>
+                            <a href="/user/{{ Auth::user()->username }}"><img width="40" class="img-fluid border rounded-circle mr-2" src="{{ asset('assets/logo.png') }}" alt="User"></a>
+                            <a href="/user/{{ Auth::user()->username }}" class="m-0 no-hover index-nav">{{ Auth::user()->name }}</a>
                             <div class="btn-group ml-2 my-2">
                                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary">

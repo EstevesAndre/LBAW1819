@@ -11,20 +11,23 @@
             </div>
             <div class="media m-0">
                 <div class="d-flex m-3">
-                    <a href="/user/{{ $post->user_id }}"><img class="img-fluid rounded-circle" src="{{ asset('assets/logo.png') }}"
-                            alt="User"></a>
+                    <a href="/user/{{ $post->user()->get()[0]->username }}">
+                        <img class="img-fluid rounded-circle" src="{{ asset('assets/logo.png') }}" alt="User">
+                    </a>
                 </div>
                 <div class="media-body ml-1 align-self-center">
-                    <a href="/user/{{ $post->user_id }}">
-                        <p class="text-dark m-0">{{ $post->user()->get()[0]->name }}</p>
-                    </a>
+                    <p class="text-dark m-0 user-link">
+                        <a class="user-link" href="/user/{{ $post->user()->get()[0]->username }}">
+                            {{ $post->user()->get()[0]->name }}
+                        </a>
+                    </p>
                     <small><span><i class="icon ion-md-time mt-0"></i>{{ $post->date }}</span></small>
                 </div>
             </div>
         </div>
         <div class="cardbox-item mx-3">{{ $post->content }}</div>
         <div class="cardbox-base">
-            <ul class="mx-3 mb-1">
+            <ul class="fst mx-3 mb-1">
                 @if(count($post->like()->where('user_id','=',Auth::user()->id)->get()) == 0)
                     <li><a><i class="fa fa-thumbs-up"></i></a></li>
                 @else
@@ -33,7 +36,7 @@
                 @each('partials.like', $post->like()->take(4)->get(), 'like')
                 <li><a><span>{{ $post->like()->count() }}</span></a></li>
             </ul>
-            <ul class="mx-3 mt-2">
+            <ul class="scd mx-3 mt-2">
                 <li><a><i class="fa fa-comments"></i></a></li> <!-- Add action to comment and like -->
                 <li><a><em class="mr-5">{{ $post->comment()->count() }}</em></a></li>
                 <li><a><i class="fa fa-share-alt"></i></a></li>
@@ -42,11 +45,13 @@
         </div>
         <div class="cardbox-comments d-flex align-items-center">
             <span class="comment-avatar float-left mr-2">
-                <a href="/user/{{ $post->user_id }}"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
+                <a href="/user/{{ Auth::user()->id }}"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
             </span>
             <div class="search-comment">
-                <input placeholder="Write a comment..." type="text">
-                <button><i class="fas fa-share-square"></i></button>
+                <a href="/post/{{ $post->id }}">
+                    <input placeholder="Write a comment..." type="text">
+                    <button><i class="fas fa-share-square"></i></button>
+                </a>
             </div>
         </div>
     </div>
