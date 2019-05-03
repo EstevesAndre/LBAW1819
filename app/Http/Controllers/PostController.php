@@ -44,18 +44,11 @@ class PostController extends Controller
 
     public function create(Request $request, $id) 
     {
-        $like = new Like();
-        $like->post_id = $id;
-        $like->user_id = Auth::user()->id;
 
-        return $like;
     }
 
     public function delete(Request $request, $id) 
     {
-        $post = Post::find($id);
-        $like = $post->like()->where('user_id', '=', Auth::user()->id)->get();
 
-        return $like;
     }
 }
