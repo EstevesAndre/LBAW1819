@@ -16,15 +16,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($username)
     {
         if (!Auth::check()) return redirect('/login');
 
-        $user = User::find($id);
+        $user = User::where('username', $username)->first();
         
         if($user == null) return view('errors.404');
 
-        $friends = DB::select('SELECT u2.id, u2.name, requests.date 
+        $id = $user->id;
+
+        $friends = DB::select('SELECT u2.id, u2.username, u2.name, requests.date 
                                 FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
                                 WHERE u1.id = :ID
                                     AND requests.has_accepted = TRUE
@@ -42,6 +44,6 @@ class UserController extends Controller
                         ->distinct()
                         ->get();
 
-        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan]);
+        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan[0]]);
     }
 }
