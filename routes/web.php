@@ -24,8 +24,8 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('index', 'Auth\LoginController@showIndexPage');
 
 // API
-Route::delete('/api/like/{id}', 'PostController@delete');
-Route::put('/api/like/{id}', 'PostController@create');
+Route::delete('/api/like/{id}', 'LikeController@delete');
+Route::put('/api/like/{id}', 'LikeController@create');
 
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
@@ -41,7 +41,7 @@ Route::get('posts', 'PostController@list');
 Route::get('post/{id}', 'PostController@show');
 
 // Users
-Route::get('user/{id}', 'UserController@show');
+Route::get('user/{username}', 'UserController@show');
 
 // Clan
 Route::get('clan', 'ClanController@show');
