@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <ol class="pl-0 shadow-lg">
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                        <button data-id="/user/{{ $leaders[0]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
                             <li class="ml-3">
                                 <div class="d-flex align-items-center row">
                                     <div class="col-2 col-sm-1 friend-img">
@@ -89,11 +89,11 @@
                                 </div>
                             </li>
                         </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                        <button data-id="/user/{{ $leaders[1]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
                             <li class="ml-3">
                                 <div class="d-flex align-items-center row">
                                     <div class="col-2 col-sm-1 friend-img">
-                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
+                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-success img-fluid rounded-circle">
                                     </div>
                                     <div class="col-7 col-sm-6 text-left">{{ $leaders[1]->name }}</div>
                                     <div class="col-3 col-sm-5 text-right">
@@ -102,11 +102,11 @@
                                 </div>
                             </li>
                         </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
+                        <button data-id="/user/{{ $leaders[2]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
                             <li class="ml-3">
                                 <div class="d-flex align-items-center row">
                                     <div class="col-2 col-sm-1 friend-img">
-                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
+                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-warning img-fluid rounded-circle">
                                     </div>
                                     <div class="col-7 col-sm-6 text-left">{{ $leaders[2]->name }}</div>
                                     <div class="col-3 col-sm-5 text-right">
@@ -115,104 +115,7 @@
                                 </div>
                             </li>
                         </button>
-                        @each('partials.leaderboardElement', $leaders->take(3), 'user')
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-danger img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-7 col-sm-6 text-left">Inês Ribeiro</div>
-                                    <div class="col-3 col-sm-5 text-right">
-                                        <img src="../assets/first.png" alt="logo">
-                                    </div>
-                                </div>
-                            </li>
-                        </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-warning img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-7 col-sm-6 text-left">Rafaela Pereira</div>
-                                    <div class="col-3 col-sm-5 text-right">
-                                        <img src="../assets/second.png" alt="logo">
-                                    </div>
-                                </div>
-                            </li>
-                        </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-success img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-7 col-sm-6 text-left">Bruno Marques</div>
-                                    <div class="col-3 col-sm-5 text-right">
-                                        <img src="../assets/third.png" alt="logo">
-                                    </div>
-                                </div>
-                            </li>
-                        </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-info img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-10 col-sm-11 text-left">Claúdia Barreto</div>
-                                </div>
-                            </li>
-                        </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-secondary img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-10 col-sm-11 text-left">Manuela Alves</div>
-                                </div>
-                            </li>
-                        </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-success img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-10 col-sm-11 text-left">Charllote Marcus</div>
-                                </div>
-                            </li>
-                        </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-danger img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-10 col-sm-11 text-left">Margarida Pinto</div>
-                                </div>
-                            </li>
-                        </button>
-                        <button type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="../assets/logo.png" alt="logo"
-                                            class="border bg-light img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-10 col-sm-11 text-left">João Miguel</div>
-                                </div>
-                            </li>
-                        </button>
+                        @each('partials.leaderboardElement', $leaders->take(4) , 'user')
                         <p class="text-center py-2 bg-white standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                     </ol>
                 </div>
@@ -220,7 +123,7 @@
         </div>
     </div>
     
-    <div class="col-sm-12 col-md-4 col-lg-3 bg-light side-bar side">
+    {{-- <div class="col-sm-12 col-md-4 col-lg-3 bg-light side-bar side">
         <div class="d-flex justify-content-center">
             <div class="searchbar searchbar-fixed">
                 <input class="search_input search_fixed" type="text" name="" placeholder="Search...">
@@ -373,7 +276,7 @@
                 <button type="submit" class="btn btn-primary m-1 float-right" id="send-button">&#9993;</button>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 @endsection
