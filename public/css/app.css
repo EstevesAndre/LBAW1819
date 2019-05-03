@@ -725,6 +725,11 @@ ul.report-list {
     list-style-type: none;
 }
 
+.user-link, .user-link:hover {
+    text-decoration: inherit;
+    color: inherit;
+}
+
 .report-tag {
     border-radius:15px;
     background-color: purple;
