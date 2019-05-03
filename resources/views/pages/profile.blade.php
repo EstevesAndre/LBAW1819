@@ -31,14 +31,14 @@
                 </div>
                 <div class="col-sm-12 col-lg-4 text-left mt-2 py-3">
                     <div class="row text-center mx-1">
-                        @if($clan->first() == null) 
+                        @if($clan === null) 
                             @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
                                 <div class="col-sm-12"><i class="fas fa-users"></i> No clan</div>
                             @else
                                 <div class="col-sm-12"><i class="fas fa-users"></i><a href="#"> Join a clan</a></div>
                             @endif
                         @else
-                            <div class="col-sm-12"><i class="fas fa-users"></i> Clan: <a href='/clan/{{ $clan[0]->id }}'>{{ $clan[0]->name }}</a></div>
+                            <div class="col-sm-12"><i class="fas fa-users"></i> Clan: <a href='/clan/{{ $clan->id }}'>{{ $clan->name }}</a></div>
                         @endif
                         <div class="col-sm-12 mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
                         @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
@@ -94,6 +94,7 @@
             </div>
         </div>
     </div>
+{{-- 
     <div class="col-sm-12 col-md-4 col-lg-3 bg-light side-bar side">
         <div class="d-flex justify-content-center">
             <div class="searchbar searchbar-fixed">
@@ -247,7 +248,7 @@
                 <button type="submit" class="btn btn-primary m-1 float-right" id="send-button">&#9993;</button>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 @endsection
