@@ -30,21 +30,31 @@ DROP FUNCTION IF EXISTS userAcceptClanInvite() CASCADE;
 DROP FUNCTION IF EXISTS userStillBlocked() CASCADE;
 DROP FUNCTION IF EXISTS userCanRequestFriend() CASCADE;
 DROP FUNCTION IF EXISTS repeatedClanInvite() CASCADE;
+DROP FUNCTION IF EXISTS addLikeNotification() CASCADE;
+DROP FUNCTION IF EXISTS addCommentNotification() CASCADE;
+DROP FUNCTION IF EXISTS addShareNotification() CASCADE;
+DROP FUNCTION IF EXISTS addMessageNotification() CASCADE;
+DROP FUNCTION IF EXISTS addRequestNotification() CASCADE;
 DROP FUNCTION IF EXISTS addPostXP() CASCADE;
 DROP FUNCTION IF EXISTS addCommentXP() CASCADE;
 DROP FUNCTION IF EXISTS addShareXP() CASCADE;
 DROP FUNCTION IF EXISTS addLikeXP() CASCADE;
 
-DROP TRIGGER IF EXISTS verifyReportAdmin ON report CASCADE;
-DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blocked CASCADE;
-DROP TRIGGER IF EXISTS userAcceptClanInvite ON report CASCADE;
-DROP TRIGGER IF EXISTS userStillBlocked ON blocked CASCADE;
-DROP TRIGGER IF EXISTS userCanRequestFriend ON request CASCADE;
-DROP TRIGGER IF EXISTS repeatedClanInvite ON request CASCADE;
-DROP TRIGGER IF EXISTS addPostXP ON post CASCADE;
-DROP TRIGGER IF EXISTS addCommentXP ON comment CASCADE;
-DROP TRIGGER IF EXISTS addShareXP ON comment CASCADE;
-DROP TRIGGER IF EXISTS addLikeXP ON comment CASCADE;
+DROP TRIGGER IF EXISTS verifyReportAdmin ON reports CASCADE;
+DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blockeds CASCADE;
+DROP TRIGGER IF EXISTS userAcceptClanInvite ON reports CASCADE;
+DROP TRIGGER IF EXISTS userStillBlocked ON blockeds CASCADE;
+DROP TRIGGER IF EXISTS userCanRequestFriend ON requests CASCADE;
+DROP TRIGGER IF EXISTS repeatedClanInvite ON requests CASCADE;
+DROP TRIGGER IF EXISTS addLikeNotification ON "likes" CASCADE;
+DROP TRIGGER IF EXISTS addCommentNotification ON comments CASCADE;
+DROP TRIGGER IF EXISTS addShareNotification ON shares CASCADE;
+DROP TRIGGER IF EXISTS addMessageNotification ON messages CASCADE;
+DROP TRIGGER IF EXISTS addRequestNotification ON requests CASCADE;
+DROP TRIGGER IF EXISTS addPostXP ON posts CASCADE;
+DROP TRIGGER IF EXISTS addCommentXP ON comments CASCADE;
+DROP TRIGGER IF EXISTS addShareXP ON shares CASCADE;
+DROP TRIGGER IF EXISTS addLikeXP ON "likes" CASCADE;
 
 -----------------------------------------
 -- Types
@@ -337,6 +347,88 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
+
+CREATE FUNCTION addLikeNotification() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+        VALUES(now(), NULL, NULL, NULL, New.post_id, New.user_id, NULL, NULL, FALSE);
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addLikeNotification
+    AFTER INSERT ON "likes"
+    FOR EACH ROW
+    EXECUTE PROCEDURE addLikeNotification();
+
+
+CREATE FUNCTION addCommentNotification() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen)
+        VALUES(now(), NULL, NULL, New.id, NULL, NULL, NULL, NULL, FALSE);
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addCommentNotification
+    AFTER INSERT ON comments
+    FOR EACH ROW
+    EXECUTE PROCEDURE addCommentNotification();
+
+
+CREATE FUNCTION addShareNotification() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen)
+        VALUES(now(), NULL, NULL, NULL, NULL, NULL, New.post_id, New.user_id, FALSE);
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addShareNotification
+    AFTER INSERT ON shares
+    FOR EACH ROW
+    EXECUTE PROCEDURE addShareNotification();
+
+
+CREATE FUNCTION addMessageNotification() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen)
+        VALUES(now(), NULL, New.id, NULL, NULL, NULL, NULL, NULL, FALSE);
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addMessageNotification
+    AFTER INSERT ON messages
+    FOR EACH ROW
+    EXECUTE PROCEDURE addMessageNotification();
+
+
+CREATE FUNCTION addRequestNotification() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen)
+        VALUES(now(), New.id, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+    RETURN New;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER addRequestNotification
+    AFTER INSERT ON requests
+    FOR EACH ROW
+    EXECUTE PROCEDURE addRequestNotification();
+
+
+
 CREATE TRIGGER addPostXP
     AFTER INSERT ON posts
     FOR EACH ROW
@@ -473,6 +565,9 @@ CREATE TRIGGER addLikeXP
     AFTER INSERT ON "likes"
     FOR EACH ROW
     EXECUTE PROCEDURE addLikeXP();
+
+
+
 
 /*
     DATA
@@ -815,66 +910,66 @@ INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, mot
 VALUES(1, 4, '2019-03-13 15:07:02', 'Content not permited', NULL, 1,'Abusive content');
 
 
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-04-04 04:12:10', NULL, NULL, NULL, 1, 4, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-27 12:22:02', NULL, NULL, NULL, 1, 7, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-23 13:42:20', NULL, 1, NULL, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-02-03 12:02:43', NULL, 2, NULL, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-04-3 17:22:16', NULL, NULL, NULL, 1, 17, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-22 18:02:04', 6, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-02 21:12:30', NULL, NULL, NULL, 2, 4, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-02-09 23:02:30', 2, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-02-01 05:23:26', 3, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-02-07 12:52:20', 8, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-04 13:22:03', 9, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-16 01:32:50', NULL, NULL, 4, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-01-07 12:02:27', NULL, NULL, 1, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-05 11:02:26', 1, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-26 11:23:25', NULL, NULL, 2, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-01-02 16:52:50', 4, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-19 13:07:04', NULL, NULL, 3, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-13 15:07:02', NULL, NULL, NULL, NULL, NULL, 2, 12, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-27 16:32:20', NULL, NULL, NULL, NULL, NULL, 2, 10, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-12 16:32:30', 5, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-04-01 17:52:30', NULL, 3, NULL, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-24 14:22:23', NULL, 4, NULL, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-04-01 19:02:40', 7, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-16 23:23:59', NULL, NULL, NULL, 2, 11, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-02-22 23:02:20', NULL, 5, NULL, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-02-02 16:22:40', 10, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-02-12 16:21:50', NULL, NULL, NULL, NULL, NULL, 3, 6, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-15 12:23:56', NULL, NULL, NULL, NULL, NULL, 12, 3, FALSE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-03-23 16:12:16', NULL, NULL, 5, NULL, NULL, NULL, NULL, TRUE);
-INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
-VALUES('2019-04-02 13:23:18', NULL, NULL, NULL, NULL, NULL, 5, 19, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-04-04 04:12:10', NULL, NULL, NULL, 1, 4, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-27 12:22:02', NULL, NULL, NULL, 1, 7, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-23 13:42:20', NULL, 1, NULL, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-02-03 12:02:43', NULL, 2, NULL, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-04-3 17:22:16', NULL, NULL, NULL, 1, 17, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-22 18:02:04', 6, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-02 21:12:30', NULL, NULL, NULL, 2, 4, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-02-09 23:02:30', 2, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-02-01 05:23:26', 3, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-02-07 12:52:20', 8, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-04 13:22:03', 9, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-16 01:32:50', NULL, NULL, 4, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-01-07 12:02:27', NULL, NULL, 1, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-05 11:02:26', 1, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-26 11:23:25', NULL, NULL, 2, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-01-02 16:52:50', 4, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-19 13:07:04', NULL, NULL, 3, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-13 15:07:02', NULL, NULL, NULL, NULL, NULL, 2, 12, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-27 16:32:20', NULL, NULL, NULL, NULL, NULL, 2, 10, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-12 16:32:30', 5, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-04-01 17:52:30', NULL, 3, NULL, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-24 14:22:23', NULL, 4, NULL, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-04-01 19:02:40', 7, NULL, NULL, NULL, NULL, NULL, NULL, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-16 23:23:59', NULL, NULL, NULL, 2, 11, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-02-22 23:02:20', NULL, 5, NULL, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-02-02 16:22:40', 10, NULL, NULL, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-02-12 16:21:50', NULL, NULL, NULL, NULL, NULL, 3, 6, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-15 12:23:56', NULL, NULL, NULL, NULL, NULL, 12, 3, FALSE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-03-23 16:12:16', NULL, NULL, 5, NULL, NULL, NULL, NULL, TRUE);
+--INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 
+--VALUES('2019-04-02 13:23:18', NULL, NULL, NULL, NULL, NULL, 5, 19, FALSE);
 
 
 SELECT setval('users_id_seq', (SELECT MAX(id) from "users"));
