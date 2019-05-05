@@ -19,6 +19,8 @@ class PostController extends Controller
         if (!Auth::check()) return redirect('/login');
 
         $post = Post::find($id);
+        if($post == null)
+            return view('errors.404');
 
         $friends = DB::select('SELECT id, name
                                 FROM users
@@ -42,13 +44,28 @@ class PostController extends Controller
         return view('pages.post', ['post' => $post, 'friends' => $friends]);
     }
 
-    public function create(Request $request, $id) 
+    public function create(Request $request)  // CHANGE has_img and clan_id hanlder
     {
+        $post = new Post();
+        $post->content = $request->input('content');
+        $post->has_img = false;
+        $post->user_id = Auth::user()->id;
+        $post->clan_id = null;
 
+        $post->save();
+
+        return $post;
     }
 
     public function delete(Request $request, $id) 
     {
+        $post = Post::find($id);
 
+        if($post->user_id != Auth::user()->id)
+            return response()->json(['deleted' => false, 'status' => $status ]);
+        
+        $post->delete();
+        
+        return $post;
     }
 }

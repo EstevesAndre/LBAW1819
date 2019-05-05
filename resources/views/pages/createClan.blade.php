@@ -9,11 +9,11 @@
         <form method="POST">
             <div class="form-group mx-auto my-5">
                 <label for="clanName">Clan Name</label>
-                <input type="username" class="form-control mb-3" id="clanName" placeholder="Name">
+                <input type="username" name="name" class="form-control mb-3" id="clanName" placeholder="Name" required>  <!-- $_POST['name'] -->
                 <label for="description">Brief Description</label>
-                <textarea class="form-control mb-3" id="description" rows="8" placeholder="Description..." ></textarea>
+                <textarea class="form-control mb-3" name="description" id="description" rows="8" placeholder="Description..." required></textarea>
                 <label for="clanImage">Insert a clan Image</label>
-                <input type="file" class="form-control-file input-file" id="clanImage">
+                <input type="file" class="form-control-file input-file" id="clanImage" required>
             </div>
             <div class="mx-auto mt-5">
                 <button type="submit" class="btn btn-secondary w-100">Create</button>

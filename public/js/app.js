@@ -16,6 +16,14 @@ function addEventListeners() {
         });
     });
 
+    let addPost = document.querySelector('#postModal>div>div>div.modal-footer>button.create');
+    if(addPost) addPost.addEventListener('click', sendAddPostRequest);
+
+    let postModal = document.querySelectorAll('div.postModal>div>div>div.modal-body>div>button.btn-danger');
+    [].forEach.call(postModal, function(delPost) {
+        delPost.addEventListener('click', sendDeletePostRequest);
+    });
+
     /*$("div.post").hover(function() {
         $post_id = $(this)[0].getAttribute('data-id');
         addEventListener('click', function() {
@@ -61,11 +69,31 @@ function sendAddLikeRequest(event) {
     event.preventDefault();
 }
 
+function sendAddPostRequest(e) {
+    console.log("Post add request");
+    
+    let content = document.querySelector('#postModal>div>div>div.modal-body>div>div.form-group>textarea').value;
+    if(content == '') return;
+
+    sendAjaxRequest('put', '/api/post', { content: content}, addedPostHanlder);
+}
+
+function sendDeletePostRequest(e) {
+    console.log("Post delete request");
+
+    let post_id = this.closest('div.postModal').getAttribute('data-id');
+    
+    if(post_id == null)
+        return;
+
+    sendAjaxRequest('delete', '/api/post/' + post_id, null, deletedPostHandler);
+}
+
 // Handlers
 function deletedLikeHandler() {
     
     let like = JSON.parse(this.responseText);
-    console.log("Like delete - status: " + this.status + ", [1-removed;2-error]: " + like.status);
+    console.log("Like deleted - status: " + this.status + ", [1-removed;2-error]: " + like.status);
 
     let thumbs_up = document.querySelector('div.post[data-id="' + like.post_id + '"]>div>div>ul.fst>li>a');
     thumbs_up.innerHTML = "<i class='fa fa-thumbs-up'></i>";
@@ -91,6 +119,25 @@ function addedLikeHandler() {
     numLikes.innerHTML = value;
 
     addEventListeners();
+}
+
+function addedPostHanlder() {
+    console.log("Post add - status: " + this.status);
+
+    let post = JSON.parse(this.responseText);
+    
+    window.location.href = 'post/' + post.id;
+}
+
+function deletedPostHandler() {
+    console.log("Post deleted - status: " + this.status);
+
+    if(this.status == 200) {
+        let post = JSON.parse(this.responseText);
+        
+        let postHTML = document.querySelector('div.post[data-id="'+post.id+'"]');
+        postHTML.innerHTML = '';
+    }
 }
 
 addEventListeners();

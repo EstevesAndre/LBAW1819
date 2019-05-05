@@ -87,7 +87,7 @@
                             <div class="btn-group ml-2 my-2">
                                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary">
-                                    <a class="no-hover index-nav" href="{{ url('/createClan') }}">
+                                    <a class="no-hover index-nav" href="{{ url('/createClanPage') }}">
                                         <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
                                     </a>
                                     <div class="dropdown-divider"></div>

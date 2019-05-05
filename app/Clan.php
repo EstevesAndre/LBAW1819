@@ -16,4 +16,8 @@ class Clan extends Model
     public function posts() {
         return $this->hasMany('App\Post', 'clan_id', 'id');
     }
+
+    public function owner() {
+        return $this->belongsTo('App\User', 'onwer_id', 'id');
+    }
 }

@@ -52,7 +52,7 @@
                 </div>
                 <div class="cardbox-comments d-flex align-items-center">
                     <span class="comment-avatar float-left mr-2">
-                        <a href="/user/{{ Auth::user()->id }}"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
+                        <a href="/user/{{ Auth::user()->username }}"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
                     </span>
                     <div class="search-comment">
                         <input placeholder="Write a comment..." type="text">

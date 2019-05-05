@@ -26,6 +26,8 @@ Route::get('index', 'Auth\LoginController@showIndexPage');
 // API
 Route::delete('/api/like/{id}', 'LikeController@delete');
 Route::put('/api/like/{id}', 'LikeController@create');
+Route::put('/api/post', 'PostController@create');
+Route::delete('/api/post/{id}', 'PostController@delete');
 
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
@@ -34,7 +36,7 @@ Route::get('404', 'PublicController@show404Page');
 
 // Authenticated Pages
 Route::get('home', 'PrivateController@show');
-Route::get('createClan', 'ClanController@showCreateClanPage');
+Route::get('createClanPage', 'ClanController@showCreateClanPage');
 
 // Posts
 Route::get('posts', 'PostController@list');
@@ -46,3 +48,4 @@ Route::get('user/{username}', 'UserController@show');
 // Clan
 Route::get('clan', 'ClanController@show');
 Route::get('clan/{id}', 'ClanController@show');
+//Route::post('createClan', 'ClanController@create');

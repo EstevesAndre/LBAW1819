@@ -24,7 +24,7 @@ class ClanController extends Controller
         if (!Auth::check()) return redirect('/login');       
 
         
-        $id = 6;
+        //$id = 6;
 
         $clan = Clan::find($id);
         $owner = User::find($clan->owner_id);
@@ -54,5 +54,10 @@ class ClanController extends Controller
                 ->get();
 
         return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts, 'leaders' => $leaderboard]);
+    }
+
+    public function create()
+    {
+       // return view('pages.createClan');
     }
 }

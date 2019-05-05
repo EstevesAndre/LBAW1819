@@ -29,7 +29,8 @@ class PrivateController extends Controller
                                         (SELECT receiver FROM requests
                                             WHERE sender = :ID AND has_accepted = true AND type = \'friendRequest\')
                                         OR posts.user_id = :ID)
-                                    AND clan_id IS NULL'
+                                    AND clan_id IS NULL
+                                    ORDER BY posts.date DESC'
                                     , ['ID' => Auth::user()->id]);
                 
         $posts = [];

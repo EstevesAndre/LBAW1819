@@ -1,3 +1,26 @@
+<div class="modal postModal fade" id="deletePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removePostModalLabel">Delete post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-left">Are you sure you want to delete this post?</p>
+                <div class="float-right">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">Yes</span>
+                    </button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">No</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}">
     <div class="cardbox text-left shadow-lg bg-white">
         <div class="cardbox-heading">
@@ -5,8 +28,10 @@
                 <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
                 <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                    <a class="dropdown-item" href="#">Hide post</a>
                     <a class="dropdown-item" href="#">Report</a>
+                    @if($post->user_id == Auth::user()->id)
+                        <a class="dropdown-item" data-toggle="modal" data-target="#deletePostModal-{{ $post->id }}">Delete</a>
+                    @endif
                 </div>
             </div>
             <div class="media m-0">
@@ -45,7 +70,7 @@
         </div>
         <div class="cardbox-comments d-flex align-items-center">
             <span class="comment-avatar float-left mr-2">
-                <a href="/user/{{ Auth::user()->id }}"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
+                <a href="/user/{{ Auth::user()->username }}"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
             </span>
             <div class="search-comment">
                 <a href="/post/{{ $post->id }}">

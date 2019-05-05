@@ -13,8 +13,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -30,14 +29,15 @@
                                 <p>{{ Auth::user()->name }}</p> <!-- CHANGE -->
                             </div>
                             <div class="col-sm-12 col-md-8 pr-5 form-group">
-                                <textarea class="form-control text-left mt-3 w-100" rows="6"
-                                    placeholder="Write your publication here..."></textarea>
+                                <textarea class="form-control post-content text-left mt-3 w-100" rows="6" placeholder="Write your publication here..."></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="float-right btn btn-secondary m-3">Add Image</button>
-                        <button type="button" class="float-right btn btn-dark my-3">Post</button>
+                        <button type="submit" class="float-right btn btn-dark my-3 create" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">Post</span>
+                        </button>
                     </div>
                 </div>
             </div>
