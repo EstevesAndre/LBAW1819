@@ -429,142 +429,142 @@ CREATE TRIGGER addRequestNotification
 
 
 
-CREATE TRIGGER addPostXP
-    AFTER INSERT ON posts
-    FOR EACH ROW
-    EXECUTE PROCEDURE addPostXP();
-
-CREATE FUNCTION addCommentXP() RETURNS TRIGGER AS
-$BODY$
-DECLARE
-    posting_user_id INT;
-BEGIN
-    SELECT "users".id INTO posting_user_id FROM "users", posts  WHERE "users".id = posts.user_id AND posts.id = New.post_id;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Human' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 5 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = posting_user_id;
-    END IF;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Elf' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 20 WHERE id = posting_user_id;
-    END IF;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Dwarf' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 15 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 30 WHERE id = posting_user_id;
-    END IF;
-
-    RETURN New;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER addCommentXP
-    AFTER INSERT ON comments
-    FOR EACH ROW
-    EXECUTE PROCEDURE addCommentXP();
-
-CREATE FUNCTION addShareXP() RETURNS TRIGGER AS
-$BODY$
-DECLARE
-    posting_user_id INT;
-BEGIN
-    SELECT "users".id INTO posting_user_id FROM "users", posts  WHERE "users".id = posts.user_id AND posts.id = New.post_id;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Human' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 15 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 30 WHERE id = posting_user_id;
-    END IF;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Elf' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 5 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = posting_user_id;
-    END IF;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Dwarf' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 20 WHERE id = posting_user_id;
-    END IF;
-
-    RETURN New;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER addShareXP
-    AFTER INSERT ON shares
-    FOR EACH ROW
-    EXECUTE PROCEDURE addShareXP();
-
-CREATE FUNCTION addLikeXP() RETURNS TRIGGER AS
-$BODY$
-DECLARE
-    posting_user_id INT;
-BEGIN
-    SELECT "users".id INTO posting_user_id FROM "users", posts  WHERE "users".id = posts.user_id AND posts.id = New.post_id;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Human' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 15 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 30 WHERE id = posting_user_id;
-    END IF;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Elf' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 5 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = posting_user_id;
-    END IF;
-
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Dwarf' AND NOT(id = posting_user_id)
-    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = New.user_id;
-    END IF;
-    IF EXISTS (
-        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.user_id)
-    )   THEN UPDATE "users" SET xp = xp + 20 WHERE id = posting_user_id;
-    END IF;
-
-    RETURN New;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER addLikeXP
-    AFTER INSERT ON "likes"
-    FOR EACH ROW
-    EXECUTE PROCEDURE addLikeXP();
+--CREATE TRIGGER addPostXP
+--    AFTER INSERT ON posts
+--    FOR EACH ROW
+--    EXECUTE PROCEDURE addPostXP();
+--
+--CREATE FUNCTION addCommentXP() RETURNS TRIGGER AS
+--$BODY$
+--DECLARE
+--    posting_user_id INT;
+--BEGIN
+--    SELECT "users".id INTO posting_user_id FROM "users", posts  WHERE "users".id = posts.user_id AND posts.id = New.post_id;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Human' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 5 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = posting_user_id;
+--    END IF;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Elf' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 20 WHERE id = posting_user_id;
+--    END IF;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Dwarf' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 15 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 30 WHERE id = posting_user_id;
+--    END IF;
+--
+--    RETURN New;
+--END
+--$BODY$
+--LANGUAGE plpgsql;
+--
+--CREATE TRIGGER addCommentXP
+--    AFTER INSERT ON comments
+--    FOR EACH ROW
+--    EXECUTE PROCEDURE addCommentXP();
+--
+--CREATE FUNCTION addShareXP() RETURNS TRIGGER AS
+--$BODY$
+--DECLARE
+--    posting_user_id INT;
+--BEGIN
+--    SELECT "users".id INTO posting_user_id FROM "users", posts  WHERE "users".id = posts.user_id AND posts.id = New.post_id;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Human' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 15 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 30 WHERE id = posting_user_id;
+--    END IF;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Elf' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 5 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = posting_user_id;
+--    END IF;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Dwarf' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 20 WHERE id = posting_user_id;
+--    END IF;
+--
+--    RETURN New;
+--END
+--$BODY$
+--LANGUAGE plpgsql;
+--
+--CREATE TRIGGER addShareXP
+--    AFTER INSERT ON shares
+--    FOR EACH ROW
+--    EXECUTE PROCEDURE addShareXP();
+--
+--CREATE FUNCTION addLikeXP() RETURNS TRIGGER AS
+--$BODY$
+--DECLARE
+--    posting_user_id INT;
+--BEGIN
+--    SELECT "users".id INTO posting_user_id FROM "users", posts  WHERE "users".id = posts.user_id AND posts.id = New.post_id;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Human' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 15 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Human' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 30 WHERE id = posting_user_id;
+--    END IF;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Elf' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 5 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Elf' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = posting_user_id;
+--    END IF;
+--
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = New.user_id AND race = 'Dwarf' AND NOT(id = posting_user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 10 WHERE id = New.user_id;
+--    END IF;
+--    IF EXISTS (
+--        SELECT * FROM "users" WHERE id = posting_user_id  AND race = 'Dwarf' AND NOT(id = New.user_id)
+--    )   THEN UPDATE "users" SET xp = xp + 20 WHERE id = posting_user_id;
+--    END IF;
+--
+--    RETURN New;
+--END
+--$BODY$
+--LANGUAGE plpgsql;
+--
+--CREATE TRIGGER addLikeXP
+--    AFTER INSERT ON "likes"
+--    FOR EACH ROW
+--    EXECUTE PROCEDURE addLikeXP();
 
 
 
