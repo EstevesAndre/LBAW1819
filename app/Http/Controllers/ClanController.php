@@ -56,8 +56,10 @@ class ClanController extends Controller
         return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts, 'leaders' => $leaderboard]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $clan = new Clan();
+        $clan->content = $request->input('content');
        // return view('pages.createClan');
     }
 }
