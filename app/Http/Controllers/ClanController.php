@@ -23,6 +23,9 @@ class ClanController extends Controller
     {
         if (!Auth::check()) return redirect('/login');       
 
+        $clan = DB::select('SELECT clans.id
+                            FROM clans INNER JOIN user_clans ON clans.id = user_clans.clan_id
+                            WHERE user_clans.user_id = :ID', ['ID' => Auth::user()->id]);
         
         //$id = 6;
 
@@ -59,7 +62,15 @@ class ClanController extends Controller
     public function create(Request $request)
     {
         $clan = new Clan();
-        $clan->content = $request->input('content');
-       // return view('pages.createClan');
+        $clan->name = $request->input('name');
+        $clan->description = $request->input('description');
+        $clan->owner_id = Auth::user()->id;
+        $clan->save();
+
+        DB::table('user_clans')->insert(
+            ['user_id' => Auth::user()->id, 'clan_id' => $clan->id]
+        );
+
+        return redirect('clan/' + $clan->id);
     }
 }

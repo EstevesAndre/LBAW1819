@@ -28,6 +28,7 @@ Route::delete('/api/like/{id}', 'LikeController@delete');
 Route::put('/api/like/{id}', 'LikeController@create');
 Route::put('/api/post', 'PostController@create');
 Route::delete('/api/post/{id}', 'PostController@delete');
+Route::post('/api/createClan', 'ClanController@create');
 
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
@@ -48,4 +49,3 @@ Route::get('user/{username}', 'UserController@show');
 // Clan
 Route::get('clan', 'ClanController@show');
 Route::get('clan/{id}', 'ClanController@show');
-//Route::post('createClan', 'ClanController@create');

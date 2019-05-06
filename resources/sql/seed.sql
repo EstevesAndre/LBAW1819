@@ -618,15 +618,15 @@ VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RG
 
 
 INSERT INTO clans(name, description, owner_id) 
-VALUES('Default Clan','Looking forward for the first place in the clans leaderboard',14);
+VALUES('Default Clan','Looking forward for the first place in the clans leaderboard',1);
 INSERT INTO clans(name, description, owner_id) 
-VALUES('Selection of Quinas','As a selection, we decided to creat a clans to show the union of this team',20);
+VALUES('Selection of Quinas','As a selection, we decided to creat a clans to show the union of this team',2);
 INSERT INTO clans(name, description, owner_id) 
 VALUES('Liga das Nations','Support Clan for our warriors in Liga das Nations',4);
 INSERT INTO clans(name, description, owner_id) 
-VALUES('EURO 2016','Remembering old times with our french friends',11);
+VALUES('EURO 2016','Remembering old times with our french friends',5);
 INSERT INTO clans(name, description, owner_id) 
-VALUES('Falta o Eder','A tiny tribute to our national hero Ederzito. Join our cause',17);
+VALUES('Falta o Eder','A tiny tribute to our national hero Ederzito. Join our cause',7);
 INSERT INTO clans(name, description, owner_id) 
 VALUES('Working','Join or join',21);
 
@@ -647,7 +647,7 @@ INSERT INTO user_clans(user_id, clan_id) VALUES(13, 6);
 INSERT INTO user_clans(user_id, clan_id) VALUES(14, 6);
 INSERT INTO user_clans(user_id, clan_id) VALUES(15, 6);
 INSERT INTO user_clans(user_id, clan_id) VALUES(16, 6);
-INSERT INTO user_clans(user_id, clan_id) VALUES(17, 6);
+INSERT INTO user_clans(user_id, clan_id) VALUES(21, 6);
 
 
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
