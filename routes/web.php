@@ -36,7 +36,9 @@ Route::get('faqs', 'PublicController@showFaqsPage');
 Route::get('404', 'PublicController@show404Page');
 
 // Authenticated Pages
-Route::get('home', 'PrivateController@show');
+Route::get('home', 'PrivateController@showHome');
+Route::get('leaderboard', 'PrivateController@showLeaderboard');
+
 Route::get('createClanPage', 'ClanController@showCreateClanPage');
 
 // Posts
@@ -48,4 +50,4 @@ Route::get('user/{username}', 'UserController@show');
 
 // Clan
 Route::get('clan', 'ClanController@show');
-Route::get('clan/{id}', 'ClanController@show');
+//Route::get('clan/{id}', 'ClanController@show');

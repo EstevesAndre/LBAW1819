@@ -8,7 +8,7 @@
         <div class="container mt-3 bg-white rounded shadow-lg">
             <div class="row align-items-center py-3">
                 <div class="col-sm-12 col-lg-2 align-self-center">
-                    <a href="/user/{{ $user->id }}">
+                    <a href="/user/{{ $user->username }}">
                         <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/logo.png') }}" alt="User">
                     </a>
                 </div>
@@ -35,10 +35,10 @@
                             @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
                                 <div class="col-sm-12"><i class="fas fa-users"></i> No clan</div>
                             @else
-                                <div class="col-sm-12"><i class="fas fa-users"></i><a href="#"> Join a clan</a></div>
+                                <div class="col-sm-12"><i class="fas fa-users"></i><a href="/createClanPage"> Join a clan</a></div>
                             @endif
                         @else
-                            <div class="col-sm-12"><i class="fas fa-users"></i> Clan: <a href='/clan/{{ $clan->id }}'>{{ $clan->name }}</a></div>
+                            <div class="col-sm-12"><i class="fas fa-users"></i> Clan: <a href='/clan'>{{ $clan->name }}</a></div>
                         @endif
                         <div class="col-sm-12 mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
                         @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->

@@ -39,6 +39,7 @@ DROP FUNCTION IF EXISTS addPostXP() CASCADE;
 DROP FUNCTION IF EXISTS addCommentXP() CASCADE;
 DROP FUNCTION IF EXISTS addShareXP() CASCADE;
 DROP FUNCTION IF EXISTS addLikeXP() CASCADE;
+DROP FUNCTION IF EXISTS deleteLikeNotification() CASCADE;
 
 DROP TRIGGER IF EXISTS verifyReportAdmin ON reports CASCADE;
 DROP TRIGGER IF EXISTS verifyBlockingAdmin ON blockeds CASCADE;
@@ -55,6 +56,7 @@ DROP TRIGGER IF EXISTS addPostXP ON posts CASCADE;
 DROP TRIGGER IF EXISTS addCommentXP ON comments CASCADE;
 DROP TRIGGER IF EXISTS addShareXP ON shares CASCADE;
 DROP TRIGGER IF EXISTS addLikeXP ON "likes" CASCADE;
+DROP TRIGGER IF EXISTS removeLikeNotification ON "likes" CASCADE;
 
 -----------------------------------------
 -- Types
@@ -427,7 +429,20 @@ CREATE TRIGGER addRequestNotification
     FOR EACH ROW
     EXECUTE PROCEDURE addRequestNotification();
 
+CREATE FUNCTION deleteLikeNotification() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM notifications
+        WHERE like_post_id = OLD.post_id AND like_user_id = OLD.user_id;
+    RETURN OLD;
+END
+$BODY$
+LANGUAGE plpgsql;
 
+CREATE TRIGGER removeLikeNotification
+    BEFORE DELETE ON "likes"
+    FOR EACH ROW
+    EXECUTE PROCEDURE deleteLikeNotification();
 
 --CREATE TRIGGER addPostXP
 --    AFTER INSERT ON posts
@@ -615,6 +630,8 @@ INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp,
 VALUES('rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 960, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
 VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', '3TEAM3', '1998-04-22', 'Human', 'Fighter', 960, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
+VALUES('t@t.com', 'user22', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'CestLaVie', '1998-04-22', 'Human', 'Fighter', 960, FALSE);
 
 
 INSERT INTO clans(name, description, owner_id) 

@@ -24,7 +24,6 @@ class UserController extends Controller
         
         if($user == null) return view('errors.404');
 
-        $id = $user->id;
 
         $friends = DB::select('SELECT u2.id, u2.username, u2.name, requests.date 
                                 FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
@@ -34,16 +33,16 @@ class UserController extends Controller
                                             OR
                                             (requests.sender = u2.id AND requests.sender != u1.id)
                                 )
-                                ORDER BY requests.date DESC', ['ID' => $id]);
+                                ORDER BY requests.date DESC', ['ID' => $user->id]);
 
         $userClan = DB::table('clans')
                         ->join('user_clans', 'user_clans.clan_id', '=', 'clans.id')
                         ->select('clans.*')
-                        ->where('user_clans.user_id', '=', $id)
-                        ->orWhere('clans.owner_id', '=',$id)
+                        ->where('user_clans.user_id', '=', $user->id)
+                        ->orWhere('clans.owner_id', '=',$user->id)
                         ->distinct()
-                        ->get();
+                        ->first();
 
-        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan[0]]);
+        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan]);
     }
 }

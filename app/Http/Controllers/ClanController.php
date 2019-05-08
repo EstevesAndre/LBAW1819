@@ -19,19 +19,23 @@ class ClanController extends Controller
         return view('pages.createClan');
     }
 
-    public function show($id = null) 
+    public function show() 
     {
         if (!Auth::check()) return redirect('/login');       
-
-        $clan = DB::select('SELECT clans.id
-                            FROM clans INNER JOIN user_clans ON clans.id = user_clans.clan_id
-                            WHERE user_clans.user_id = :ID', ['ID' => Auth::user()->id]);
         
-        //$id = 6;
+        $clans = DB::select('SELECT clan_id
+                            FROM user_clans
+                            WHERE user_clans.user_id = :ID', ['ID' => Auth::user()->id]);
+              
+        if(count($clans) == 0) {
+            return redirect('createClanPage');
+        }
+
+        $id = $clans[0]->clan_id;
 
         $clan = Clan::find($id);
         $owner = User::find($clan->owner_id);
-        $members = DB::select('SELECT user_id FROM user_clans WHERE clan_id = :ID', ['ID' => $id]);
+
         $clanPosts = DB::table('posts')
                     ->whereNotNull('clan_id')
                     ->where('clan_id','=',$id)
@@ -42,15 +46,16 @@ class ClanController extends Controller
             array_push($posts , Post::find($post->id));
         }
 
-        $members = DB::select('SELECT users.id, users.username, users.name, requests.date, users.xp
+        $members = DB::select('SELECT DISTINCT users.id, users.username, users.name, requests.date, users.xp
                 FROM users INNER JOIN user_clans ON users.id = user_clans.user_id INNER JOIN requests ON user_clans.clan_id = requests.clan_id
                 WHERE has_accepted = true
                 AND user_clans.clan_id = :ID
                 AND (requests.receiver = users.id OR requests.sender = users.id)
-                ORDER BY users.name', ['ID' => $id]);
+                ORDER BY users.name'
+                , ['ID' => $id]);
 
         $leaderboard = DB::table('users')
-                ->select('id','name', 'username')
+                ->select('id','name', 'username', 'xp')
                 ->join('user_clans', 'users.id', '=', 'user_clans.user_id')
                 ->where('user_clans.clan_id', $id)
                 ->orderBy('xp','DESC')
@@ -71,6 +76,6 @@ class ClanController extends Controller
             ['user_id' => Auth::user()->id, 'clan_id' => $clan->id]
         );
 
-        return redirect('clan/' + $clan->id);
+        return redirect('clan');
     }
 }

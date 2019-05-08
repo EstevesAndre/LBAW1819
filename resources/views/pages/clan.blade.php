@@ -76,46 +76,27 @@
                         </div>
                     </div>
                     <ol class="pl-0 shadow-lg">
-                        <button data-id="/user/{{ $leaders[0]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
+                        @for ($i = 0; $i < count($leaders); $i++)
+                            <button data-id="/user/{{ $leaders[$i]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
+                                <li class="ml-3">
+                                    <div class="d-flex align-items-center row">
+                                        <div class="col-2 col-sm-1 friend-img">
+                                            <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-7 col-sm-6 text-left">{{ $leaders[$i]->name }}</div>
+                                        <div class="col-3 col-sm-5 text-right">
+                                            @if($i === 0)
+                                                <img src="{{ asset('assets/first.png') }}" alt="logo">
+                                            @elseif($i === 1)
+                                                <img src="{{ asset('assets/second.png') }}" alt="logo">
+                                            @elseif($i === 2)
+                                                <img src="{{ asset('assets/third.png') }}" alt="logo">
+                                            @endif
+                                        </div>
                                     </div>
-                                    <div class="col-7 col-sm-6 text-left">{{ $leaders[0]->name }}</div>
-                                    <div class="col-3 col-sm-5 text-right">
-                                        <img src="{{ asset('assets/first.png') }}" alt="logo">
-                                    </div>
-                                </div>
-                            </li>
-                        </button>
-                        <button data-id="/user/{{ $leaders[1]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-success img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-7 col-sm-6 text-left">{{ $leaders[1]->name }}</div>
-                                    <div class="col-3 col-sm-5 text-right">
-                                        <img src="{{ asset('assets/second.png') }}" alt="logo">
-                                    </div>
-                                </div>
-                            </li>
-                        </button>
-                        <button data-id="/user/{{ $leaders[2]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
-                            <li class="ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="col-2 col-sm-1 friend-img">
-                                        <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-warning img-fluid rounded-circle">
-                                    </div>
-                                    <div class="col-7 col-sm-6 text-left">{{ $leaders[2]->name }}</div>
-                                    <div class="col-3 col-sm-5 text-right">
-                                        <img src="{{ asset('assets/third.png') }}" alt="logo">
-                                    </div>
-                                </div>
-                            </li>
-                        </button>
-                        @each('partials.leaderboardElement', $leaders->take(4) , 'user')
+                                </li>
+                            </button>
+                        @endfor
                         <p class="text-center py-2 bg-white standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                     </ol>
                 </div>
