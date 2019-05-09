@@ -40,9 +40,6 @@ Route::get('home', 'PrivateController@showHome');
 Route::get('leaderboard', 'PrivateController@showLeaderboard');
 Route::get('chat', 'PrivateController@showChat');
 
-
-Route::get('createClanPage', 'ClanController@showCreateClanPage');
-
 // Posts
 Route::get('posts', 'PostController@list');
 Route::get('post/{id}', 'PostController@show');
@@ -51,5 +48,5 @@ Route::get('post/{id}', 'PostController@show');
 Route::get('user/{username}', 'UserController@show');
 
 // Clan
+Route::get('createClanPage', 'ClanController@showCreateClanPage');
 Route::get('clan', 'ClanController@show');
-//Route::get('clan/{id}', 'ClanController@show');
