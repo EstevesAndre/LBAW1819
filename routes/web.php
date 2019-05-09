@@ -29,6 +29,8 @@ Route::put('/api/like/{id}', 'LikeController@create');
 Route::put('/api/post', 'PostController@create');
 Route::delete('/api/post/{id}', 'PostController@delete');
 Route::post('/api/createClan', 'ClanController@create');
+Route::post('/api/notifications', 'PrivateController@getNotifications');
+
 
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');

@@ -74,11 +74,10 @@
                                     <a class="no-hover index-nav" href="{{ url('/chat') }}"><button class="dropdown-item dropdown-navbar" type="button">Go to Chat</button></a>
                                 </div>
                             </div>
-                            <div class="btn-group mr-3 my-2">
+                            <div class="btn-group mr-3 my-2" id="notifications">
                                 <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="far fa-bell"></i></button>
-                                <div class="dropdown-menu bg-secondary">
-                                    <a class="no-hover index-nav" href="{{ url('/home') }}"><button class="dropdown-item dropdown-navbar" type="button">Go to Notifications</button></a>
+                                <div class="dropdown-menu bg-dark">
                                 </div>
                             </div>
 
