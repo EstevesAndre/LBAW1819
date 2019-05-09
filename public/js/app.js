@@ -29,6 +29,10 @@ function addEventListeners() {
 
     let sendComment = document.querySelector('.search-comment > button');
     if (sendComment) sendComment.addEventListener('click', sendAddCommentRequest);
+
+    let sendMessage = document.querySelector('#message-send :nth-child(3)');
+    if (sendMessage) sendMessage.addEventListener('click', sendAddMessageRequest);
+    
     /*$("div.post").hover(function() {
         $post_id = $(this)[0].getAttribute('data-id');
         addEventListener('click', function() {
@@ -110,6 +114,17 @@ function sendAddCommentRequest(e) {
         sendAjaxRequest('put', '/api/comment/' + post_id, { comment: input }, addedCommentHandler);
 }
 
+function sendAddMessageRequest(e) {
+    e.preventDefault();
+    console.log("Add message request");
+
+    let input = document.querySelector('#message-send > input').value;
+    let friend_id = document.querySelector('.friend-chat').id;
+
+    if (input != "")
+        sendAjaxRequest('put', '/api/chat/' + friend_id, { message: input }, addedMessageHandler);
+}
+
 // Handlers
 function deletedLikeHandler() {
 
@@ -187,6 +202,14 @@ function addedCommentHandler() {
     let current_comms = comment_area.innerHTML;
     comment_area.innerHTML = '<div class="d-flex align-items-center" id="' + comment.id + '"><span class="comment-avatar float-left mr-2"><a href="/user/' + comment.user_id + '"><img class="rounded-circle bg-warning" src="/assets/logo.png" alt="Avatar"></a></span><div class="comment-data pl-1 pr-0"><p class="pt-3">' + comment.comment_text + '</p></div></div>';
     comment_area.innerHTML  += current_comms;
+}
+
+function addedMessageHandler() {
+    
+    let message = JSON.parse(this.responseText);
+    console.log(message);
+    let message_area = document.querySelector('#chat-body');
+    message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + message.message_text +'</p><span class="text-right mt-0 pt-0 time_date">' + message.date.date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + message.date.date.substring(11, 19) + '</span></div></div>';
 }
 
 addEventListeners();

@@ -25,7 +25,7 @@
                 <input type="text" class="m-2 border w-90 no-outline search-box" placeholder="Search a friend here..." required>
                 <i class="left fas fa-search"></i>
             </div>
-            <div class="border rounded hgt">
+            <div class="friend-chat border rounded hgt" id="{{ $friends[0]->id }}">
                 <div class="p-3 border rounded text-left tab-content chat-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-1-list">
                         <img src="../assets/logo.png" alt="logo" width="25"
@@ -33,15 +33,15 @@
                         <a href="/user/{{ $friends[0]->username }}">{{ $friends[0]->name }}</a>
                     </div>
                 </div>
-                <div class="height-85 mobile-height">
+                <div class="height-85 mobile-height" id="chat-body">
                     <div class="height-90 scroolable m-3">
                         @each('partials.message', $messages, 'message')
                     </div>
                 </div>
-                <div class="border-top send-message d-flex align-items-center"> <!--</div>class="border-top border-left bottom-contained send-message p-0 d-flex align-items-center">-->
+                <div class="border-top send-message d-flex align-items-center" id="message-send">
                     <input type="text" class="m-2 w-80 border no-outline" id="message-box" placeholder="Write a message here..." required>
                     <button class="btn btn-link float-right"><i class="fas fa-images icon"></i></button>
-                    <a href="#" class="icon"><button type="submit" class="btn btn-link no-hover icon float-right" >Send <i class="fas fa-angle-right"></i></button></a>
+                    <button type="submit" class="btn btn-link no-hover icon float-right" >Send <i class="fas fa-angle-right"></i></button>
                 </div>
             </div>  
         </div>
