@@ -16,29 +16,30 @@ class ClanController extends Controller
     {
         if (!Auth::check()) return redirect('/login');       
         
-        return view('pages.createClan');
+        $clans = DB::table('user_clans')
+                ->where('user_id', Auth::user()->id)
+                ->first();
+
+        return $clans === null ? view('pages.createClan'): redirect('clan');
     }
 
     public function show() 
     {
         if (!Auth::check()) return redirect('/login');       
         
-        $clans = DB::select('SELECT clan_id
-                            FROM user_clans
-                            WHERE user_clans.user_id = :ID', ['ID' => Auth::user()->id]);
-              
-        if(count($clans) == 0) {
+        $clan = DB::table('user_clans')
+                ->join('clans', 'clan_id', '=', 'id')
+                ->where('user_id', Auth::user()->id)
+                ->first();
+
+        if($clan == null)
             return redirect('createClanPage');
-        }
 
-        $id = $clans[0]->clan_id;
-
-        $clan = Clan::find($id);
         $owner = User::find($clan->owner_id);
 
         $clanPosts = DB::table('posts')
                     ->whereNotNull('clan_id')
-                    ->where('clan_id','=',$id)
+                    ->where('clan_id','=',$clan->id)
                     ->get();
         
         $posts = [];
@@ -52,16 +53,33 @@ class ClanController extends Controller
                 AND user_clans.clan_id = :ID
                 AND (requests.receiver = users.id OR requests.sender = users.id)
                 ORDER BY users.name'
-                , ['ID' => $id]);
+                , ['ID' => $clan->id]);
 
         $leaderboard = DB::table('users')
                 ->select('id','name', 'username', 'xp')
                 ->join('user_clans', 'users.id', '=', 'user_clans.user_id')
-                ->where('user_clans.clan_id', $id)
+                ->where('user_clans.clan_id', $clan->id)
                 ->orderBy('xp','DESC')
                 ->get();
 
-        return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts, 'leaders' => $leaderboard]);
+        $friendsQuery = DB::select('SELECT DISTINCT u2.id
+                                FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
+                                WHERE u1.id = :ID
+                                    AND requests.has_accepted = TRUE
+                                    AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
+                                            OR
+                                            (requests.sender = u2.id AND requests.sender != u1.id)
+                                )', ['ID' => Auth::user()->id]);
+        $friendsIDs = array();
+        foreach($friendsQuery as $aux) 
+            $friendsIDs[] = $aux->id;
+
+        $friends = User::select('id', 'name', 'username', 'xp')
+            ->whereIn('id', $friendsIDs)
+            ->orderBy('xp', 'DESC')
+            ->get();
+
+        return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts, 'leaders' => $leaderboard, 'friends' => $friends]);
     }
 
     public function create(Request $request)

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
-
     public function showAboutPage()
     {
         return view('pages.about');

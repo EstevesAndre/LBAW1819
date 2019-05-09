@@ -37,12 +37,30 @@ class PrivateController extends Controller
         foreach ($friendPosts as $post) {
             array_push($posts , Post::find($post->id));
         }
+
+        $friendsQuery = DB::select('SELECT DISTINCT u2.id
+            FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
+            WHERE u1.id = :ID
+                AND requests.has_accepted = TRUE
+                AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
+                        OR
+                        (requests.sender = u2.id AND requests.sender != u1.id)
+            )', ['ID' => Auth::user()->id]);
+
+        $friendsIDs = array();
+        foreach($friendsQuery as $aux) 
+            $friendsIDs[] = $aux->id;
+
+        $friends = User::select('id', 'name', 'username', 'xp')
+            ->whereIn('id', $friendsIDs)
+            ->orderBy('xp', 'DESC')
+            ->get();
         
-        return view('pages.home', ['posts' => $posts]);
+        return view('pages.home', ['posts' => $posts, 'friends' => $friends]);
     }
 
-    public function showLeaderboard() {
-        
+    public function showLeaderboard() 
+    {
         if (!Auth::check()) return redirect('/login');
 
         $allUsers = DB::table('users')
@@ -50,16 +68,23 @@ class PrivateController extends Controller
             ->orderBy('xp', 'DESC')
             ->get();
 
-        $friends = DB::select('SELECT DISTINCT u2.id, u2.username, u2.name, u2.xp, requests.date 
+        $friendsQuery = DB::select('SELECT DISTINCT u2.id
                                 FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
                                 WHERE u1.id = :ID
                                     AND requests.has_accepted = TRUE
                                     AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
                                             OR
                                             (requests.sender = u2.id AND requests.sender != u1.id)
-                                )
-                                ORDER BY u2.xp DESC', ['ID' => Auth::user()->id]);
+                                )', ['ID' => Auth::user()->id]);
+        $friendsIDs = array();
+        foreach($friendsQuery as $aux) 
+            $friendsIDs[] = $aux->id;
 
+        $friends = User::select('id', 'name', 'username', 'xp')
+            ->whereIn('id', $friendsIDs)
+            ->orderBy('xp', 'DESC')
+            ->get();
+            
         $userClan = DB::table('clans')
             ->join('user_clans', 'user_clans.clan_id', '=', 'clans.id')
             ->select('clans.*')
@@ -73,6 +98,7 @@ class PrivateController extends Controller
                 ->join('user_clans', 'user_clans.user_id', '=', 'users.id')
                 ->select('users.username', 'users.name', 'users.xp')
                 ->where('user_clans.clan_id', $userClan->id)
+                ->orderBy('users.xp', 'DESC')
                 ->get();
 
             return view('pages.leaderboard', ['friends' => $friends, 'clanMembers' => $clanMembers, 'global' => $allUsers]);
@@ -81,8 +107,8 @@ class PrivateController extends Controller
         return view('pages.leaderboard', ['friends' => $friends, 'clanMembers' => null, 'global' => $allUsers]);
     }
 
-    public function showChat() {
-        
+    public function showChat() 
+    {
         if (!Auth::check()) return redirect('/login');
 
         $friends = DB::select('SELECT DISTINCT u2.id, u2.username, u2.name, u2.xp, requests.date 
