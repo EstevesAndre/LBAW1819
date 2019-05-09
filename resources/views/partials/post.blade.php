@@ -46,7 +46,7 @@
                             {{ $post->user()->get()[0]->name }}
                         </a>
                     </p>
-                    <small><span><i class="icon ion-md-time mt-0"></i>{{ $post->date }}</span></small>
+                    <small><span><i class="icon ion-md-time mt-0"></i>{{ substr($post->date, 0, 19) }}</span></small>
                 </div>
             </div>
         </div>
