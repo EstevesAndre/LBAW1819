@@ -10,8 +10,8 @@ function addEventListeners() {
     });
 
     let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div>ol>button, #leaderboard>ol>button');
-    [].forEach.call(friendList, function(friend) {
-        friend.addEventListener('click', function() {
+    [].forEach.call(friendList, function (friend) {
+        friend.addEventListener('click', function () {
             window.location.href = this.getAttribute('data-id');
         });
     });
@@ -26,6 +26,9 @@ function addEventListeners() {
 
     let notifications = document.querySelector('#notifications > button');
     if (notifications) notifications.addEventListener('click', sendUserNotificationsRequest);
+
+    let sendComment = document.querySelector('.search-comment > button');
+    if (sendComment) sendComment.addEventListener('click', sendAddCommentRequest);
     /*$("div.post").hover(function() {
         $post_id = $(this)[0].getAttribute('data-id');
         addEventListener('click', function() {
@@ -94,6 +97,17 @@ function sendDeletePostRequest(e) {
 function sendUserNotificationsRequest(e) {
     console.log("Get notifications request");
     sendAjaxRequest('post', '/api/notifications', null, userNotificationsHandler);
+}
+
+function sendAddCommentRequest(e) {
+    e.preventDefault();
+    console.log("Add comment request");
+
+    let input = document.querySelector('.search-comment > input').value;
+    let post_id = document.querySelector('.post').getAttribute('data-id');
+
+    if (input != "")
+        sendAjaxRequest('put', '/api/comment/' + post_id, { comment: input }, addedCommentHandler);
 }
 
 // Handlers
@@ -165,5 +179,14 @@ function userNotificationsHandler() {
         notificationsArea.innerHTML += '<a class="no-hover index-nav" href="/post/' + response.comments[i].postid + '"> <button class="dropdown-item dropdown-navbar" type="button">' + response.comments[i].name + ' shared your post.</button> </a>';
     }
 }
-        
+
+function addedCommentHandler() {
+    
+    let comment = JSON.parse(this.responseText);
+    let comment_area = document.querySelector('.container.comments');
+    let current_comms = comment_area.innerHTML;
+    comment_area.innerHTML = '<div class="d-flex align-items-center" id="' + comment.id + '"><span class="comment-avatar float-left mr-2"><a href="/user/' + comment.user_id + '"><img class="rounded-circle bg-warning" src="/assets/logo.png" alt="Avatar"></a></span><div class="comment-data pl-1 pr-0"><p class="pt-3">' + comment.comment_text + '</p></div></div>';
+    comment_area.innerHTML  += current_comms;
+}
+
 addEventListeners();

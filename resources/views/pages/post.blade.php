@@ -6,7 +6,7 @@
 <div class="mt-5 row text-center fullscreen-3-4 m-0 standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 activity">
         <!-- POST -->
-        <div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}">
+        <div class="post container post mt-4 mb-2 p-0" data-id="{{ $post->id }}">
             <div class="cardbox text-left shadow-lg bg-white">
                 <div class="cardbox-heading">
                     <div class="dropdown float-right mt-3 mr-3">
@@ -59,7 +59,7 @@
                         <button><i class="fas fa-share-square"></i></button>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container comments">
                     @each('partials.comment', $post->comment()->orderBy('date','desc')->skip(0)->take(7)->get() , 'comment')
                 </div>
                 @if($post->comment()->count() > 7)
