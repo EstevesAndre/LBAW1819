@@ -20,10 +20,7 @@ class ClanController extends Controller
                 ->where('user_id', Auth::user()->id)
                 ->first();
 
-        if($clans !== null)
-            return redirect('clan');
-
-        return view('pages.createClan');
+        return $clans === null ? view('pages.createClan'): redirect('clan');
     }
 
     public function show() 
