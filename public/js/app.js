@@ -9,7 +9,7 @@ function addEventListeners() {
         like.addEventListener('click', sendAddLikeRequest);
     });
 
-    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div>ol>button');
+    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div>ol>button, #leaderboard>ol>button');
     [].forEach.call(friendList, function(friend) {
         friend.addEventListener('click', function() {
             window.location.href = this.getAttribute('data-id');

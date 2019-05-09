@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <ol class="pl-0 shadow-lg">
-                        @for ($i = 0; $i < count($leaders); $i++)
+                        @for ($i = 0; $i < min(8,count($leaders)); $i++)
                             <button data-id="/user/{{ $leaders[$i]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
                                 <li class="ml-3">
                                     <div class="d-flex align-items-center row">
@@ -84,7 +84,7 @@
                                             <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
                                         </div>
                                         <div class="col-7 col-sm-6 text-left">{{ $leaders[$i]->name }}</div>
-                                        <div class="col-3 col-sm-5 text-right">
+                                        <div class="col-1 offset-sm-1 col-sm-2 text-right">
                                             @if($i === 0)
                                                 <img src="{{ asset('assets/first.png') }}" alt="logo">
                                             @elseif($i === 1)
@@ -92,12 +92,18 @@
                                             @elseif($i === 2)
                                                 <img src="{{ asset('assets/third.png') }}" alt="logo">
                                             @endif
+                                            
+                                        </div>
+                                        <div class="col-2 col-sm-2 text-right">
+                                            {{ $leaders[$i]->xp }} XP
                                         </div>
                                     </div>
                                 </li>
                             </button>
                         @endfor
-                        <p class="text-center py-2 bg-white standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                        @if(count($leaders) > 8)
+                            <p class="text-center py-2 bg-white standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                        @endif
                     </ol>
                 </div>
             </div>

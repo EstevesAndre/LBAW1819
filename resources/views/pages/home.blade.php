@@ -9,7 +9,7 @@
                 Create a new Post
             </button>
             <div class="search-comment" data-toggle="modal" data-target="#postModal">
-                <input placeholder="New publication..." type="text">
+                <input placeholder="  New publication..." type="text" class="w-100">
             </div>
         </div>
         <!-- Modal -->
