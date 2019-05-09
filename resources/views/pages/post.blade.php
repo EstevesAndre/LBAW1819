@@ -68,35 +68,6 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-md-4 col-lg-3 bg-light side-bar side">
-        @if(count($friends) == 0) 
-            <p class="text-center"><small>Add a friend to chat with him!</small></p>
-        @else
-            <div class="d-flex justify-content-center">
-                <div class="searchbar searchbar-fixed">
-                    <input class="search_input search_fixed" type="text" name="" placeholder="Search...">
-                    <a href="" class="search_icon"><i class="fas fa-search"></i></a>
-                </div>
-            </div>
-            <div class="height-45 scroolable">
-                <div class="list-group text-left" id="list-tab" role="tablist">
-                    @each('partials.chatFriend', array_slice($friends,0,15), 'user')
-                    @if(count($friends) > 15)
-                        <p class="text-center list-group-item p-0 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                    @endif
-                </div>
-            </div>
-        @endif
-        <div class="border-left height-45">
-            <div class="py-3 px-3 border rounded text-left tab-content chat-content" id="nav-tabContent">
-                @each('partials.chatFriendSelected', array_slice($friends,0,15), 'user')
-            </div>
-            <div class="border-top border-left w-100 bottom-contained send-message p-0 d-flex align-items-center">
-                <input type="text" class="m-2 border w-75 no-outline" id="message-box" placeholder="Write a message here..."
-                    required>
-                <button type="submit" class="btn btn-primary m-1 float-right" id="send-button">&#9993;</button>
-            </div>
-        </div>
-    </div>
+    @include('partials.chatSideBar', ['friends' => $friends])
 </div>
 @endsection

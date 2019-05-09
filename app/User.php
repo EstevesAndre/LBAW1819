@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -41,4 +42,22 @@ class User extends Authenticatable
         return $this->hasMany('App\Like', 'id', 'user_id');   
     }
 
+    public function getUserFriends() {
+        $friendsQuery = DB::select('SELECT DISTINCT u2.id
+                                FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
+                                WHERE u1.id = :ID
+                                    AND requests.has_accepted = TRUE
+                                    AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
+                                            OR
+                                            (requests.sender = u2.id AND requests.sender != u1.id)
+                                )', ['ID' => Auth::user()->id]);
+        $friendsIDs = array();
+        foreach($friendsQuery as $aux) 
+            $friendsIDs[] = $aux->id;
+
+        return User::select('id', 'name', 'username', 'xp')
+            ->whereIn('id', $friendsIDs)
+            ->orderBy('xp', 'DESC')
+            ->get();
+    }
 }

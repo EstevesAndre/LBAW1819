@@ -22,24 +22,23 @@ class PostController extends Controller
         if($post == null)
             return view('errors.404');
 
-        $friends = DB::select('SELECT id, name
-                                FROM users
-                                WHERE id IN (
-                                    SELECT sender
-                                    FROM requests
-                                    WHERE type = \'friendRequest\'
-                                    AND has_accepted = true 
-                                    AND receiver = :ID
-                                )
-                                OR 
-                                id IN (
-                                    SELECT receiver
-                                    FROM requests
-                                    WHERE type = \'friendRequest\'
-                                    AND has_accepted = true 
-                                    AND sender = :ID
-                                )
-                                ORDER BY id', ['ID' => Auth::user()->id]);
+        $friendsQuery = DB::select('SELECT DISTINCT u2.id
+            FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
+            WHERE u1.id = :ID
+                AND requests.has_accepted = TRUE
+                AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
+                        OR
+                        (requests.sender = u2.id AND requests.sender != u1.id)
+            )', ['ID' => Auth::user()->id]);
+
+        $friendsIDs = array();
+        foreach($friendsQuery as $aux) 
+            $friendsIDs[] = $aux->id;
+
+        $friends = User::select('id', 'name', 'username', 'xp')
+            ->whereIn('id', $friendsIDs)
+            ->orderBy('xp', 'DESC')
+            ->get();
 
         return view('pages.post', ['post' => $post, 'friends' => $friends]);
     }
