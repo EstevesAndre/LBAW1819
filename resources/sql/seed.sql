@@ -625,7 +625,7 @@ VALUES('neves_ruben@gmail.com', 'SoGolaceiras', 'W]d89up]', 'Louis Vieira', '199
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
 VALUES('feliz.joao@gmail.com', 'NextCR7', '6@9Hz\V', 'Alexandre Santos', '1997-03-18','Dwarf', 'Wizard', 20, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('bernas.silva@gmail.com', 'EuSouOBernas', 'BVy%8y8f', 'Fernando Rocha', '1997-03-18', 'Human', 'Rogue', 4512, FALSE);
+VALUES('bernas.silva@gmail.com', 'EuSouOBernas', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'Fernando Rocha', '1997-03-18', 'Human', 'Rogue', 4512, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
 VALUES('rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 960, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
@@ -897,6 +897,7 @@ INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VA
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 15, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 16, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 17, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (19, 18, null, 'friendRequest', '2019-04-02 17:02:11', TRUE);
 
 INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (13, 4, '2019-03-21 07:22:16', 'Racism');
 INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (15, 4, '2019-04-01 21:42:32', 'Inappropriate behaviour');

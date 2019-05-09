@@ -38,6 +38,8 @@ Route::get('404', 'PublicController@show404Page');
 // Authenticated Pages
 Route::get('home', 'PrivateController@showHome');
 Route::get('leaderboard', 'PrivateController@showLeaderboard');
+Route::get('chat', 'PrivateController@showChat');
+
 
 Route::get('createClanPage', 'ClanController@showCreateClanPage');
 

@@ -88,4 +88,36 @@ class PrivateController extends Controller
 
         return view('pages.leaderboard', ['friends' => $friends, 'clanMembers' => null, 'global' => $allUsers]);
     }
+
+    public function showChat() {
+        
+        // if (!Auth::check()) return redirect('/login');
+
+        $friends = DB::select('SELECT DISTINCT u2.id, u2.username, u2.name, u2.xp, requests.date 
+                                FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
+                                WHERE u1.id = :ID
+                                    AND requests.has_accepted = TRUE
+                                    AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
+                                            OR
+                                            (requests.sender = u2.id AND requests.sender != u1.id)
+                                )', ['ID' => Auth::user()->id]);
+
+        $selFriend = head($friends)->id;
+
+        $selFriendMessages = DB::select('SELECT sender,receiver,"date",message_text
+                                         FROM messages
+                                         WHERE (receiver = :FID AND sender = :ID) OR
+                                               (receiver = :ID AND sender = :FID) 
+                                        ORDER BY "date"', ['ID' => Auth::user()->id, 'FID' => $selFriend]);
+
+        // $userClan = DB::table('clans')
+        //     ->join('user_clans', 'user_clans.clan_id', '=', 'clans.id')
+        //     ->select('clans.*')
+        //     ->where('user_clans.user_id', '=', Auth::user()->id)
+        //     ->orWhere('clans.owner_id', '=',Auth::user()->id)
+        //     ->distinct()
+        //     ->first();
+
+        return view('pages.chat', ['friends' => $friends, 'messages' => $selFriendMessages]);
+    }
 }
