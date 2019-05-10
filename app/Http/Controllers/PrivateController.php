@@ -128,14 +128,30 @@ class PrivateController extends Controller
                                                (receiver = :ID AND sender = :FID) 
                                         ORDER BY "date"', ['ID' => Auth::user()->id, 'FID' => $selFriend]);
 
-        // $userClan = DB::table('clans')
-        //     ->join('user_clans', 'user_clans.clan_id', '=', 'clans.id')
-        //     ->select('clans.*')
-        //     ->where('user_clans.user_id', '=', Auth::user()->id)
-        //     ->orWhere('clans.owner_id', '=',Auth::user()->id)
-        //     ->distinct()
-        //     ->first();
-
         return view('pages.chat', ['friends' => $friends, 'messages' => $selFriendMessages]);
+    }
+
+    public function getNotifications() {
+
+        $commentNotifications = DB::select('SELECT "users".name, posts.id as postid, comments.id as commentid
+                                            FROM notifications INNER JOIN comments ON (notifications.comment_id = comments.id) 
+                                                               INNER JOIN posts ON (comments.post_id = posts.id)
+                                                               INNER JOIN "users" ON (comments.user_id = "users".id)
+                                            WHERE notifications.comment_id IS NOT NULL AND 
+                                                  posts.user_id = :ID ORDER BY notifications."date" asc', ['ID' => Auth::user()->id]);
+
+        $likeNotifications = DB::select('SELECT *
+                                         FROM notifications INNER JOIN posts ON (notifications.like_post_id = posts.id)
+                                         WHERE notifications.like_post_id IS NOT NULL AND
+                                               notifications.like_user_id IS NOT NULL AND
+                                               posts.user_id = :ID  ORDER BY notifications."date" asc', ['ID' => Auth::user()->id]);
+                                               
+        $shareNotifications = DB::select('SELECT *
+                                         FROM notifications INNER JOIN posts ON (notifications.share_post_id = posts.id)
+                                         WHERE notifications.share_post_id IS NOT NULL AND
+                                               notifications.share_user_id IS NOT NULL AND
+                                               posts.user_id = :ID  ORDER BY notifications."date" asc', ['ID' => Auth::user()->id]);  
+
+        return ['comments' => $commentNotifications, 'likes' => $likeNotifications, 'shares' => $shareNotifications];
     }
 }
