@@ -64,7 +64,7 @@
                                 <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="fas fa-user-friends"></i></button>
                                 <div class="dropdown-menu bg-secondary">
-                                    <a class="no-hover index-nav" href="{{ url('/friends') }}"><button class="dropdown-item dropdown-navbar" type="button">Go to Friend Requests</button></a>
+                                    <a class="no-hover index-nav" href="{{ url('/friendRequests') }}"><button class="dropdown-item dropdown-navbar" type="button">Go to Friend Requests</button></a>
                                 </div>
                             </div>
                             <div class="btn-group mr-1">

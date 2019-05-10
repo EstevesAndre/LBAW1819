@@ -44,6 +44,7 @@ Route::get('404', 'PublicController@show404Page');
 Route::get('home', 'PrivateController@showHome');
 Route::get('leaderboard', 'PrivateController@showLeaderboard');
 Route::get('chat', 'PrivateController@showChat');
+Route::get('friendRequests', 'RequestController@show');
 
 // Posts
 Route::get('posts', 'PostController@list');
