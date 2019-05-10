@@ -42,7 +42,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Like', 'id', 'user_id');   
     }
 
-    public static function getUserFriends() {
+    public static function getUserFriends($id) {
         $friendsQuery = DB::select('SELECT DISTINCT u2.id
                                 FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
                                 WHERE u1.id = :ID
@@ -50,7 +50,7 @@ class User extends Authenticatable
                                     AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
                                             OR
                                             (requests.sender = u2.id AND requests.sender != u1.id)
-                                )', ['ID' => Auth::user()->id]);
+                                )', ['ID' => $id]);
         $friendsIDs = array();
         foreach($friendsQuery as $aux) 
             $friendsIDs[] = $aux->id;
