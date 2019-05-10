@@ -42,7 +42,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Like', 'id', 'user_id');   
     }
 
-    public function getUserFriends() {
+    public static function getUserFriends() {
         $friendsQuery = DB::select('SELECT DISTINCT u2.id
                                 FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
                                 WHERE u1.id = :ID
