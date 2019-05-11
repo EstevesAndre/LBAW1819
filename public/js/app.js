@@ -32,6 +32,11 @@ function addEventListeners() {
 
     let sendMessage = document.querySelector('#message-send :nth-child(3)');
     if (sendMessage) sendMessage.addEventListener('click', sendAddMessageRequest);
+
+    let chatFriends = document.querySelectorAll('.friend-list');
+    [].forEach.call(chatFriends, function (friend) {
+        friend.addEventListener('click', updateChatRequest);
+    });
     
     /*$("div.post").hover(function() {
         $post_id = $(this)[0].getAttribute('data-id');
@@ -125,6 +130,13 @@ function sendAddMessageRequest(e) {
         sendAjaxRequest('put', '/api/chat/' + friend_id, { message: input }, addedMessageHandler);
 }
 
+function updateChatRequest(e) {
+    e.preventDefault();
+    console.log("Update chat request");
+    let friend_id = e.target.id;
+    sendAjaxRequest('put', '/api/update_chat/' + friend_id, null, updatedChatHandler);
+}
+
 // Handlers
 function deletedLikeHandler() {
 
@@ -207,9 +219,27 @@ function addedCommentHandler() {
 function addedMessageHandler() {
     
     let message = JSON.parse(this.responseText);
-    console.log(message);
     let message_area = document.querySelector('#chat-body');
     message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + message.message_text +'</p><span class="text-right mt-0 pt-0 time_date">' + message.date.date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + message.date.date.substring(11, 19) + '</span></div></div>';
+}
+
+function updatedChatHandler(){
+    
+    let reply = JSON.parse(this.responseText);
+    
+    let friend_id = document.querySelector('.friend-chat');
+    let friend_names = document.querySelector('.friend-chat a');
+
+    friend_id.setAttribute('id', reply.friend_info[0].id);
+    friend_names.setAttribute('href', '/user/' + reply.friend_info[0].username);
+    friend_names.innerHTML = reply.friend_info[0].name;
+    
+    let message_area = document.querySelector('#chat-body');
+    message_area.innerHTML = "";  
+    for(let i = 0; i < reply.messages.length;i++){
+        message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text +'</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
+    }
+
 }
 
 addEventListeners();

@@ -12,7 +12,7 @@
             </div>
             <div class="height-90 scroolable">
                 <div class="list-group text-left" id="list-tab" role="tablist">
-                <a class="friend-list list-group-item list-group-item-action active" data-id="{{ $friends[0]->id }}">
+                <a class="friend-list list-group-item list-group-item-action active" id="{{ $friends[0]->id }}" data-toggle="list" href="#list-{{ $friends[0]->id }}" aria-controls="{{ $friends[0]->id }}">
                     <img src="{{ asset('assets/logo.png') }}" alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                 {{ $friends[0]->name }}
                 </a>
