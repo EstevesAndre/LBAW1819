@@ -81,4 +81,20 @@ class ClanController extends Controller
 
         return redirect('clan');
     }
+
+    public function showClanSettings(){
+        
+        $clan = DB::table('user_clans')
+        ->join('clans', 'clan_id', '=', 'id')
+        ->where('user_id', Auth::user()->id)
+        ->first();      
+        
+        if (!Auth::check()) return redirect('/login');  
+
+        if($clan->owner_id != Auth::user()->id) return;
+
+        return view('pages.clanSettings', ['clan' => $clan]);
+
+
+    }
 }
