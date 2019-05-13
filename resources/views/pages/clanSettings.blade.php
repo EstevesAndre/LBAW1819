@@ -18,61 +18,59 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-geral" role="tabpanel" aria-labelledby="v-pills-geral-tab">
                         <!-- Change Name ; Change Brief ; Change Clan Image -->
-                        <div class="shadow-lg">
-                            <div class="card card-body mt-3">
-                                <div>
-                                    <h4>Name</h4>
-                                    <div class="p-2 float-left">{{$clan->name}}</div>
-                                    <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                        <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
-                                    </button>
+                        <form class="form-inline px-4 py-2"  method="post" action="/api/update_clan/{{$clan->id}}" enctype="multipart/form-data">
+                            <div class="shadow-lg">
+                                <div class="card card-body mt-3">
+                                    <div>
+                                        <h4>Name</h4>
+                                        <div class="p-2 float-left">{{$clan->name}}</div>
+                                        <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                            <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="collapse" id="collapseExample">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">New Name
+                                                    <input class="form-control ml-2" type="text" name="name" id="exampleFormControlInput1" placeholder="">
+                                                </label>
+                                            </div>
+                                    </div>
                                 </div>
-                                <div class="collapse" id="collapseExample">
-                                    <form class="form-inline px-4 py-2">
-                                        <div class="form-group">
-                                            <label for="exampleFormControlInput1">New Name</label>
-                                            <input class="form-control ml-2" type="text" id="exampleFormControlInput1" placeholder="">
-                                        </div>
-                                    </form>
+                                <div class="card card-body">
+                                    <div>
+                                        <h4>Clan Bio</h4>
+                                        <div class="p-2 float-left">{{$clan->description}}</div>
+                                        <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+                                            <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="collapse" id="collapseExample2">
+                                            <div class="form-group w-100">
+                                                <textarea class="form-control ml-2 w-100" name="description" rows="4" type="text" placeholder="write here..."></textarea>
+                                            </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card card-body">
-                                <div>
-                                    <h4>Clan Bio</h4>
-                                    <div class="p-2 float-left">{{$clan->description}}</div>
-                                    <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-                                        <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
-                                    </button>
-                                </div>
-                                <div class="collapse" id="collapseExample2">
-                                    <form class="form-inline px-4 py-2">
-                                        <div class="form-group w-100">
-                                            <textarea class="form-control ml-2 w-100" rows="4" type="text" placeholder="write here..."></textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="card card-body">
-                                <div>
-                                    <div class="p-2 float-left">Change Clan Image</div>
-                                    <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
-                                        <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
-                                    </button>
-                                </div>
-                                <div class="collapse" id="collapseExample3">
-                                    <form class="form-inline px-4 py-2">
-                                        <div class="form-group w-100">
-                                            <label for="clanImage">Insert a new clan Image</label>
-                                            <input type="file" class="form-control-file input-file mt-2" id="clanImage">
-                                        </div>
-                                    </form>
+                                <div class="card card-body">
+                                    <div>
+                                        <div class="p-2 float-left">Change Clan Image</div>
+                                        <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+                                            <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="collapse" id="collapseExample3">
+                                            <div class="form-group w-100">
+                                                <label for="clanImage">Insert a new clan Image
+                                                    <input type="file" name="clan_img" class="form-control-file input-file mt-2" id="clanImage">
+                                                </label>
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="text-center my-4">
-                            <button type="submit" class="btn btn-secondary">Save Changes</button>
-                        </div>
+                            <div class="text-center my-4">
+                                <button type="submit" class="btn btn-secondary">Save Changes</button>
+                            </div>
+                        </form>
                     </div>
 
                     <div class="tab-pane fade" id="v-pills-activity" role="tabpanel" aria-labelledby="v-pills-activity-tab">

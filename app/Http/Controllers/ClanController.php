@@ -94,7 +94,9 @@ class ClanController extends Controller
         if($clan->owner_id != Auth::user()->id) return;
 
         return view('pages.clanSettings', ['clan' => $clan]);
+    }
 
-
+    public function update(Request $request){
+        return redirect('clan');
     }
 }
