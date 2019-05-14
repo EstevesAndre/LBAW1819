@@ -38,6 +38,23 @@ function addEventListeners() {
         friend.addEventListener('click', updateChatRequest);
     });
     
+    let hasChat = document.querySelector('.has-chat');
+    
+    if(hasChat != null)
+    {
+      let auth_id = document.querySelector('.has-chat').id;
+      let friend_id = document.querySelector('.friend-chat').id;
+
+      Echo.private('chat' + auth_id) //TODO add receiver id to channel name
+      .listen('MessageSent', (e) => {
+        if(e.sender == friend_id){
+          let message_area = document.querySelector('#chat-body');
+          message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text +'</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
+
+        }
+      });
+    }
+
     /*$("div.post").hover(function() {
         $post_id = $(this)[0].getAttribute('data-id');
         addEventListener('click', function() {

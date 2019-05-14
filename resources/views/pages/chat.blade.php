@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5 fixed-bar height-90 pt-3">
+<div class="has-chat container mt-5 fixed-bar height-90 pt-3">
     <div class="row standard-text border rounded h-100">
         <div class="left-desktop col-sm-4 bg-light p-4">
             <div class="border rounded p-0 d-flex align-items-center">

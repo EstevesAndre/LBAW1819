@@ -9,7 +9,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "~1.0",
-        "oyejorge/less.php": "~1.7.0.9"
+        "oyejorge/less.php": "~1.7.0.9",
+        "pusher/pusher-php-server": "^3.4"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

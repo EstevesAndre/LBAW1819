@@ -19,6 +19,8 @@ class MessageController extends Controller
         $message->save();
         $message->refresh();
 
+        broadcast(new MessageSent($message->sender, $message->receiver, $message->message_text))->toOthers();
+
         return $message;
     }
 
