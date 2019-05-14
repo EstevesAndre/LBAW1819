@@ -3,7 +3,7 @@
 @section('content')
 <br />
 <br />
-<div class="has-chat container justify-content-center height-90 pt-3">
+<div class="has-chat container justify-content-center height-90 pt-3" id="{{ $user }}">
     <div class="row standard-text border rounded h-100">
         <div class="left-desktop col-sm-4 bg-light p-4 h-100">
             <div class="border rounded p-0 d-flex align-items-center">

@@ -97,7 +97,7 @@ class PrivateController extends Controller
                                                (receiver = :ID AND sender = :FID) 
                                         ORDER BY "date"', ['ID' => Auth::user()->id, 'FID' => $selFriend]);
 
-        return view('pages.chat', ['friends' => $friends, 'messages' => $selFriendMessages]);
+        return view('pages.chat', ['user' => Auth::user()->id, 'friends' => $friends, 'messages' => $selFriendMessages]);
     }
 
     public function getNotifications() {

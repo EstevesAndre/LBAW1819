@@ -37,6 +37,6 @@ class MessageSent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat');//TODO add receiver id to channel name
+        return new PrivateChannel('chat' + $this->receiver);
     }
 }
