@@ -38,6 +38,16 @@ function addEventListeners() {
         friend.addEventListener('click', updateChatRequest);
     });
     
+    let hasChat = document.querySelector('.has-chat');
+    
+    if(hasChat != null)
+    {
+      Echo.private('chat')
+      .listen('MessageSent', (e) => {
+        // TODO check sender and receiver and add message
+      });
+    }
+
     /*$("div.post").hover(function() {
         $post_id = $(this)[0].getAttribute('data-id');
         addEventListener('click', function() {

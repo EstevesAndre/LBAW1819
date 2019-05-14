@@ -22,6 +22,8 @@ class MessageController extends Controller
                                      ORDER BY "date" desc
                                      LIMIT 1')[0];
 
+        broadcast(new MessageSent($message->sender, $message->receiver, $message->message_text))->toOthers();
+
         return $message;
     }
 
