@@ -77,7 +77,7 @@
                             <div class="btn-group mr-3 my-2" id="notifications">
                                 <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="far fa-bell"></i></button>
-                                <div class="dropdown-menu bg-dark">
+                                <div class="dropdown-menu dropdown-menu-right bg-dark">
                                 </div>
                             </div>
 

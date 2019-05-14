@@ -17,10 +17,7 @@ class MessageController extends Controller
         $message->sender = Auth::user()->id;
         $message->message_text =  $request->input('message');
         $message->save();
-        $message->date = DB::select('SELECT "date"
-                                     FROM messages
-                                     ORDER BY "date" desc
-                                     LIMIT 1')[0];
+        $message->refresh();
 
         return $message;
     }

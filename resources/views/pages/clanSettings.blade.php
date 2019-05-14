@@ -19,6 +19,7 @@
                     <div class="tab-pane fade show active" id="v-pills-geral" role="tabpanel" aria-labelledby="v-pills-geral-tab">
                         <!-- Change Name ; Change Brief ; Change Clan Image -->
                         <form class="form-inline px-4 py-2"  method="post" action="/api/update_clan/{{$clan->id}}" enctype="multipart/form-data">
+                            {{csrf_field()}}
                             <div class="shadow-lg">
                                 <div class="card card-body mt-3">
                                     <div>
