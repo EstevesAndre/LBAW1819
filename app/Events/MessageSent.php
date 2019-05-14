@@ -37,6 +37,6 @@ class MessageSent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat');
+        return new PrivateChannel('chat');//TODO add receiver id to channel name
     }
 }

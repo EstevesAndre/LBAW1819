@@ -42,7 +42,7 @@ function addEventListeners() {
     
     if(hasChat != null)
     {
-      Echo.private('chat')
+      Echo.private('chat') //TODO add receiver id to channel name
       .listen('MessageSent', (e) => {
         // TODO check sender and receiver and add message
       });
