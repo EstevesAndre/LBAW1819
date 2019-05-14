@@ -14,5 +14,9 @@
         "cross-env": "^5.1",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4"
+    },
+    "dependencies": {
+        "laravel-echo": "^1.5.3",
+        "pusher-js": "^4.4.0"
     }
 }
