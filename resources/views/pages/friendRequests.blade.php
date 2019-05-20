@@ -7,6 +7,9 @@
     
     <div class="col-sm-12 col-md-8 col-lg-9 my-3 activity">
         <h1 class="text-left"><b>Friend Requests</b></h1>
+        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#friendrequests_helpModal">
+                <i class="fas fa-question-circle"></i>
+        </button>
         <div class="clan-page-info">
             <ul class="mt-4 nav nav-tabs justify-content-center" id="clan-tabs" role="tablist">
                 <li class="nav-item">
@@ -159,5 +162,20 @@
     </div>
     @include('partials.chatSideBar', ['friends' => $friends])
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="friendrequests_helpModal" tabindex="-1" role="dialog" aria-labelledby="friendrequests_helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="friendrequests_helpModalLabel">Friend Requests Help</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            This is the friend requests pages.
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

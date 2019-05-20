@@ -54,6 +54,9 @@
             <div class="cardbox text-left shadow-lg bg-white">
                 <div class="cardbox-heading">
                     <div class="dropdown float-right mt-3 mr-3">
+                        <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#post_helpModal">
+                                <i class="fas fa-question-circle"></i>
+                        </button>
                         <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
                             aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
                         <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
@@ -116,5 +119,20 @@
         </div>
     </div>
     @include('partials.chatSideBar', ['friends' => $friends])
+</div>
+<div class="modal fade" id="post_helpModal" tabindex="-1" role="dialog" aria-labelledby="post_helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="post_helpModalLabel">Post Help</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            This is the post page.
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

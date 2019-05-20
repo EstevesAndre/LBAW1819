@@ -6,6 +6,9 @@
     <br />
     <div class="container justify-content-center fullscreen-3-4 my-5">
         <h1>Clan Settings</h1>
+        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#clansettings_helpModal">
+                <i class="fas fa-question-circle"></i>
+        </button>
         <div class="row my-4">
             <div class="col-12 col-sm-12 col-md-4 bt-border">
                 <div class="nav flex-column nav-pills mb-3" id="v-pills-tab" role="tablist">
@@ -533,3 +536,19 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+<div class="modal fade" id="clansettings_helpModal" tabindex="-1" role="dialog" aria-labelledby="clansettings_helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clansettings_helpModalLabel">Clan Settings Help</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            This is the clan settings page.
+            </div>
+        </div>
+    </div>
+</div>

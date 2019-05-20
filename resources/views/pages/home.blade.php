@@ -11,6 +11,9 @@
             <div class="search-comment" data-toggle="modal" data-target="#postModal">
                 <input placeholder="  New publication..." type="text" class="w-100">
             </div>
+            <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#home_helpModal">
+                    <i class="fas fa-question-circle"></i>
+            </button>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
@@ -56,5 +59,21 @@
         </section>
     </div>
     @include('partials.chatSideBar', ['friends' => $friends])
+</div>
+<!-- Modal -->
+<div class="modal fade" id="home_helpModal" tabindex="-1" role="dialog" aria-labelledby="home_helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="home_helpModalLabel">Feed Help</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            This is the home pages.
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
