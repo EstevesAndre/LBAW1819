@@ -5,7 +5,7 @@
 <br />
     <br />
     <div class="container justify-content-center fullscreen-3-4 my-5">
-        <h1>Clan Settings - {{$clan->name}}
+        <h1>Clan Settings - {{$clan->name}}  - {{$clan2->members()->count()}} 
             <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#clansettings_helpModal">
                     <i class="fas fa-question-circle"></i>
             </button>

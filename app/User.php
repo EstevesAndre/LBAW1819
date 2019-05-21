@@ -60,4 +60,8 @@ class User extends Authenticatable
             ->orderBy('xp', 'DESC')
             ->get();
     }
+
+    public function clan() {
+        return $this->belongsToMany('App\Clan', 'user_clans', 'user_id', 'clan_id');
+    }
 }

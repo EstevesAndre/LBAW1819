@@ -91,11 +91,12 @@ class ClanController extends Controller
             ->join('clans', 'clan_id', '=', 'id')
             ->where('user_id', Auth::user()->id)
             ->first();
-        
+
+        $clan2 = Clan::find($clan->id);
 
         if($clan->owner_id != Auth::user()->id) return;
 
-        return view('pages.clanSettings', ['clan' => $clan]);
+        return view('pages.clanSettings', ['clan' => $clan, 'clan2' =>$clan2]);
     }
 
     public function update(Request $request){
