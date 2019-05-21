@@ -123,4 +123,8 @@ class PrivateController extends Controller
 
         return ['comments' => $commentNotifications, 'likes' => $likeNotifications, 'shares' => $shareNotifications];
     }
+
+    public function showCreateCharacter() {
+        return view('pages.createCharacter');
+    }
 }
