@@ -34,6 +34,7 @@ Route::put('/api/comment/{id}', 'CommentController@create');
 Route::put('/api/chat/{id}', 'MessageController@create');
 Route::put('/api/update_chat/{id}', 'MessageController@update');
 Route::post('/api/update_clan/{id}', 'ClanController@update');
+Route::post('/api/share/{id}', 'PostController@share');
 
 
 // Public Pages

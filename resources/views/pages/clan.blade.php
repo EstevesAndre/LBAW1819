@@ -26,6 +26,9 @@
                 </div>
             </div>
         </div>
+        <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#clan_helpModal">
+                <i class="fas fa-question-circle"></i>
+        </button>
         <div class="clan-page-info">
             <ul class="mt-5 nav nav-tabs" id="clan-tabs" role="tablist">
                 <li class="nav-item">
@@ -40,8 +43,7 @@
                     <a class="tab-title nav-link" id="leaderboard-tab" data-toggle="tab" href="#leaderboard"
                         role="tab" aria-controls="leaderboard" aria-selected="false">Leaderboard</a>
                 </li>
-            </ul>
-
+            </ul>     
             <div class="mt-4 tab-content" id="content">
                 <div class="text-left tab-pane fade active show" id="forum" role="tabpanel" aria-labelledby="forum-tab">
                     @if(count($posts) == 0)
@@ -111,5 +113,20 @@
     </div>
     @include('partials.chatSideBar', ['friends' => $friends])
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="clan_helpModal" tabindex="-1" role="dialog" aria-labelledby="clan_helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clan_helpModalLabel">Clan Help</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            This is the clan page.
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

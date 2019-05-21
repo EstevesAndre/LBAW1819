@@ -21,6 +21,9 @@
                         aria-controls="leaderboard" aria-selected="false">Friends</a>
                 </li>
             </ul>
+            <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#leaderboard_helpModal">
+                    <i class="fas fa-question-circle"></i>
+            </button>
 
             <div class="mt-4 tab-content" id="leaderboard-content">
                 <div class="text-left tab-pane fade border-0 active show" id="global" role="tabpanel" aria-labelledby="global-tab">
@@ -51,5 +54,20 @@
     </div>
     @include('partials.chatSideBar', ['friends' => $friends])
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="leaderboard_helpModal" tabindex="-1" role="dialog" aria-labelledby="leaderboard_helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="leaderboard_helpModalLabel">Leaderboard Help</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                This is the leaderboard page.
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

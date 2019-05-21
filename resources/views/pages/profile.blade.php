@@ -3,6 +3,7 @@
 @section('content')
 
 <br />
+
 <div class="mt-5 row text-center fullscreen standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 mb-4 activity">
         <div class="container mt-3 bg-white rounded shadow-lg">
@@ -50,6 +51,9 @@
                 </div>
             </div>
         </div>
+        <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#profile_helpModal">
+                <i class="fas fa-question-circle"></i>
+        </button>
         <div class="profile-page-info mb-4">
             <ul class="mt-5 nav nav-tabs" id="profile-tabs" role="tablist">
                 <li class="nav-item">
@@ -96,5 +100,19 @@
     </div>
     @include('partials.chatSideBar', ['friends' => $friends])
 </div>
-
+<div class="modal fade" id="profile_helpModal" tabindex="-1" role="dialog" aria-labelledby="profile_helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="profile_helpModalLabel">Profile Help</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            This is the profile page.
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

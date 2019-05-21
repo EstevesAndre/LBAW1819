@@ -564,6 +564,12 @@ a.friend-list {
         padding: 67px 0 0 0;
     }
 
+    .fixed-bar {
+        position: fixed;
+        overflow-x: hidden;
+        margin: 0px 7%;
+    }
+
     .searchbar:hover > .search_input{
         width: 150px;
     }

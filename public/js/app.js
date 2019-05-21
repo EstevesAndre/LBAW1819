@@ -38,6 +38,23 @@ function addEventListeners() {
         friend.addEventListener('click', updateChatRequest);
     });
     
+    let hasChat = document.querySelector('.has-chat');
+    
+    if(hasChat != null)
+    {
+      let auth_id = document.querySelector('.has-chat').id;
+      let friend_id = document.querySelector('.friend-chat').id;
+
+      Echo.private('chat' + auth_id) //TODO add receiver id to channel name
+      .listen('MessageSent', (e) => {
+        if(e.sender == friend_id){
+          let message_area = document.querySelector('#chat-body');
+          message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text +'</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
+
+        }
+      });
+    }
+
     /*$("div.post").hover(function() {
         $post_id = $(this)[0].getAttribute('data-id');
         addEventListener('click', function() {
@@ -122,8 +139,10 @@ function sendAddCommentRequest(e) {
 function sendAddMessageRequest(e) {
     e.preventDefault();
     console.log("Add message request");
-
-    let input = document.querySelector('#message-send > input').value;
+    
+    let message = document.querySelector('#message-send > input');
+    let input = message.value;
+    message.value = '';
     let friend_id = document.querySelector('.friend-chat').id;
 
     if (input != "")
@@ -219,8 +238,17 @@ function addedCommentHandler() {
 function addedMessageHandler() {
     
     let message = JSON.parse(this.responseText);
-    let message_area = document.querySelector('#chat-body');
-    message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + message.message_text +'</p><span class="text-right mt-0 pt-0 time_date">' + message.date.date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + message.date.date.substring(11, 19) + '</span></div></div>';
+    let message_area = document.querySelector('#chat-body>div');
+    message_area.innerHTML += 
+          '<div class="my-3 outgoing_msg">'
+        +   '<div class="sent_msg">' 
+        +       '<p>' + message.message_text +'</p>'
+        +       '<span class="text-right mt-0 pt-0 time_date">' + message.date.substring(0, 10) 
+        +           '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + message.date.substring(11, 19)
+        +           '&nbsp&nbsp'
+        +       '</span>'
+        +   '</div>'
+        + '</div>';
 }
 
 function updatedChatHandler(){
@@ -234,10 +262,21 @@ function updatedChatHandler(){
     friend_names.setAttribute('href', '/user/' + reply.friend_info[0].username);
     friend_names.innerHTML = reply.friend_info[0].name;
     
-    let message_area = document.querySelector('#chat-body');
+    let message_area = document.querySelector('#chat-body>div');
     message_area.innerHTML = "";  
     for(let i = 0; i < reply.messages.length;i++){
-        message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text +'</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
+        message_area.innerHTML += 
+          '<div class="my-3 outgoing_msg">'
+        +   '<div class="sent_msg">'
+        +       '<p>' + reply.messages[i].message_text +'</p>'
+        +       '<span class="text-right mt-0 pt-0 time_date">' 
+        +           reply.messages[i].date.substring(0, 10) 
+        +           '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' 
+        +           reply.messages[i].date.substring(11, 19) 
+        +           '&nbsp&nbsp'
+        +       '</span>'
+        +   '</div>'
+        + '</div>';
     }
 
 }

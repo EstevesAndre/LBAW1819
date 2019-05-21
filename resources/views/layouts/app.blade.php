@@ -53,6 +53,10 @@
                                 <a class="nav-link index-nav" href="{{ url('/leaderboard') }}">Leaderboards</a>
                             </li>
                         </ul>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#nav_helpModal">
+                                <i class="fas fa-question-circle"></i>
+                        </button>
                         <div class="d-flex justify-content-center mr-2">
                             <div class="searchbar">
                                 <input class="search_input" type="text" name="" placeholder="Search...">
@@ -77,7 +81,7 @@
                             <div class="btn-group mr-3 my-2" id="notifications">
                                 <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="far fa-bell"></i></button>
-                                <div class="dropdown-menu bg-dark">
+                                <div class="dropdown-menu dropdown-menu-right bg-dark">
                                 </div>
                             </div>
 
@@ -135,6 +139,22 @@
         <footer class="bg-secondary py-2 mt-5">
             <div class="footer-copyright text-center text-white">Copyright <i class="fas fa-copyright"></i> AlterEgo lbaw1843</div>
         </footer>
+         <!-- Modal -->
+         <div class="modal fade" id="nav_helpModal" tabindex="-1" role="dialog" aria-labelledby="nav_helpModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="nav_helpModalLabel">Navbar Help</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        This is the navbar.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
 </html>

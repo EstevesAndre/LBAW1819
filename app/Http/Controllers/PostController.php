@@ -51,4 +51,15 @@ class PostController extends Controller
         
         return $post;
     }
+
+    public function share(Request $request, $id) {
+
+        $share = new Share();
+        $share->user_id = Auth::user()->id;
+        $share->post_id = $id;
+        $share->content = $request->input('content');
+        $share->save();
+
+        return redirect('home');
+    }
 }
