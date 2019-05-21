@@ -623,7 +623,7 @@ VALUES('pizzi@gmail.com', 'PizziOficial', '`7vJ4aHw', 'Marcelo Sousa', '1997-03-
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
 VALUES('bruno_nandes@gmail.com', 'AMinhaVidaeoSport', '[Yw?J5XP', 'Pedro Coelho', '1997-03-18', 'Human', 'Wizard', 'Male', 1312, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
-VALUES('neves_ruben@gmail.com', 'SoGolaceiras', 'W]d89up]', 'Louis Vieira', '1997-03-18','Dwarf', 'Healer', 430, 'Male', FALSE);
+VALUES('neves_ruben@gmail.com', 'SoGolaceiras', 'W]d89up]', 'Louis Vieira', '1997-03-18','Dwarf', 'Healer', 'Male', 430, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
 VALUES('feliz.joao@gmail.com', 'NextCR7', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'Alexandre Santos', '1997-03-18','Dwarf', 'Wizard', 'Male', 20, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
