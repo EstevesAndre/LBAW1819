@@ -32,7 +32,7 @@ class MessageController extends Controller
                                                (receiver = :ID AND sender = :FID) 
                                          ORDER BY "date"', ['ID' => Auth::user()->id, 'FID' => $id]);
 
-        $friend_info = DB::select('SELECT id, username, name
+        $friend_info = DB::select('SELECT id, username, name, race, class, gender
                                    FROM "users"
                                    WHERE "users".id = :ID',['ID' => $id]);
 

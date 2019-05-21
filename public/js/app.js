@@ -258,10 +258,15 @@ function updatedChatHandler(){
     
     let friend_id = document.querySelector('.friend-chat');
     let friend_names = document.querySelector('.friend-chat a');
+    let friend_img = document.querySelector('.friend-chat img');
+
+    let path = friend_img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     friend_id.setAttribute('id', reply.friend_info[0].id);
     friend_names.setAttribute('href', '/user/' + reply.friend_info[0].username);
     friend_names.innerHTML = reply.friend_info[0].name;
+    friend_img.setAttribute('src', path_header + '/avatars/' + reply.friend_info[0].race + "_" + reply.friend_info[0].class + '_' + reply.friend_info[0].gender + '.bmp');
     
     let message_area = document.querySelector('#chat-body>div');
     message_area.innerHTML = "";  
