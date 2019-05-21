@@ -40,6 +40,7 @@ class ClanController extends Controller
         $clanPosts = DB::table('posts')
                     ->whereNotNull('clan_id')
                     ->where('clan_id','=',$clan->id)
+                    ->orderBy('date', 'DESC')
                     ->get();
         
         $posts = [];
@@ -84,12 +85,13 @@ class ClanController extends Controller
 
     public function showClanSettings(){
         
-        $clan = DB::table('user_clans')
-        ->join('clans', 'clan_id', '=', 'id')
-        ->where('user_id', Auth::user()->id)
-        ->first();      
-        
         if (!Auth::check()) return redirect('/login');  
+        
+        $clan = DB::table('user_clans')
+            ->join('clans', 'clan_id', '=', 'id')
+            ->where('user_id', Auth::user()->id)
+            ->first();
+        
 
         if($clan->owner_id != Auth::user()->id) return;
 
