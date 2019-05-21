@@ -37,6 +37,9 @@ function addEventListeners() {
     [].forEach.call(chatFriends, function (friend) {
         friend.addEventListener('click', updateChatRequest);
     });
+
+    let scrool = document.getElementById('chatScroll');
+    if(scrool) scrool.scrollTop = scrool.scrollHeight;
     
     let hasChat = document.querySelector('.has-chat');
     
@@ -55,12 +58,8 @@ function addEventListeners() {
       });
     }
 
-    /*$("div.post").hover(function() {
-        $post_id = $(this)[0].getAttribute('data-id');
-        addEventListener('click', function() {
-            window.location.href = "/post/" + $post_id;
-        })
-    });*/
+    // let generateButton = document.querySelector('.');
+    // if (generateButton) generateButton.addEventListener('click', setCharacterInfo);
 }
 
 function encodeForAjax(data) {
@@ -106,7 +105,9 @@ function sendAddPostRequest(e) {
     let content = document.querySelector('#postModal>div>div>div.modal-body>div>div.form-group>textarea').value;
     if (content == '') return;
 
-    sendAjaxRequest('put', '/api/post', { content: content }, addedPostHanlder);
+    let clanID = document.querySelector('#postModal>div>div>div.modal-body>input').value;
+
+   sendAjaxRequest('put', '/api/post', { content: content, clanID : clanID}, addedPostHanlder);
 }
 
 function sendDeletePostRequest(e) {

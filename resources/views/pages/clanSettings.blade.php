@@ -5,10 +5,11 @@
 <br />
     <br />
     <div class="container justify-content-center fullscreen-3-4 my-5">
-        <h1>Clan Settings</h1>
-        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#clansettings_helpModal">
-                <i class="fas fa-question-circle"></i>
-        </button>
+        <h1>Clan Settings - {{$clan->name}}
+            <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#clansettings_helpModal">
+                    <i class="fas fa-question-circle"></i>
+            </button>
+        </h1>
         <div class="row my-4">
             <div class="col-12 col-sm-12 col-md-4 bt-border">
                 <div class="nav flex-column nav-pills mb-3" id="v-pills-tab" role="tablist">
@@ -21,20 +22,20 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-geral" role="tabpanel" aria-labelledby="v-pills-geral-tab">
                         <!-- Change Name ; Change Brief ; Change Clan Image -->
-                        <form class="form-inline px-4 py-2"  method="post" action="/api/update_clan/{{$clan->id}}" enctype="multipart/form-data">
+                        <form class="form-inline p-2"  method="post" action="/api/update_clan/{{$clan->id}}" enctype="multipart/form-data">
                             {{csrf_field()}}
-                            <div class="shadow-lg">
-                                <div class="card card-body mt-3">
+                            <div class="shadow-lg w-100">
+                                <div class="card card-body pt-3">
                                     <div>
                                         <h4>Name</h4>
-                                        <div class="p-2 float-left">{{$clan->name}}</div>
+                                        <div class="py-2 float-left">Actual: {{$clan->name}}</div>
                                         <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                             <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
                                         </button>
                                     </div>
-                                    <div class="collapse" id="collapseExample">
+                                    <div class="collapse pt-2" id="collapseExample">
                                             <div class="form-group">
-                                                <label for="exampleFormControlInput1">New Name
+                                                <label for="exampleFormControlInput1">New name:
                                                     <input class="form-control ml-2" type="text" name="name" id="exampleFormControlInput1" placeholder="">
                                                 </label>
                                             </div>
@@ -43,34 +44,36 @@
                                 <div class="card card-body">
                                     <div>
                                         <h4>Clan Bio</h4>
-                                        <div class="p-2 float-left">{{$clan->description}}</div>
+                                        <div class="py-2 float-left">Actual: {{$clan->description}}</div>
                                         <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
                                             <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
                                         </button>
                                     </div>
-                                    <div class="collapse" id="collapseExample2">
+                                    <div class="collapse px-0 pt-3" id="collapseExample2">
                                             <div class="form-group w-100">
-                                                <textarea class="form-control ml-2 w-100" name="description" rows="4" type="text" placeholder="write here..."></textarea>
+                                                <textarea class="form-control w-100" name="description" rows="4" type="text" placeholder="write here..."></textarea>
                                             </div>
                                     </div>
                                 </div>
                                 <div class="card card-body">
                                     <div>
-                                        <div class="p-2 float-left">Change Clan Image</div>
+                                        <h4>Change Clan Image</h4>
+                                        <div class="py-2 float-left">Insert a new image</div>
                                         <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
                                             <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
                                         </button>
                                     </div>
                                     <div class="collapse" id="collapseExample3">
                                             <div class="form-group w-100">
-                                                <label for="clanImage">Insert a new clan Image
+                                                <p><p>
+                                                <label for="clanImage">
                                                     <input type="file" name="clan_img" class="form-control-file input-file mt-2" id="clanImage">
                                                 </label>
                                             </div>
                                     </div>
                                 </div>
                             </div>
-
+        
                             <div class="text-center my-4">
                                 <button type="submit" class="btn btn-secondary">Save Changes</button>
                             </div>

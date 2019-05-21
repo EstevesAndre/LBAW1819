@@ -15,8 +15,10 @@
                     <div class=" text-left basic-info">
                         <h2><b>{{ $clan->name }}</b></h2>
                         <p>{{ $clan->description }}</p>
-                        <div class="my-2"><a class="no-hover standard-text" href="{{ url('/clanSettings') }}"><i
+                        @if($owner->id == Auth::user()->id)
+                            <div class="my-2"><a class="no-hover standard-text" href="{{ url('/clanSettings') }}"><i
                                     class="fas fa-cog"></i> Settings</a></div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-3 my-2 text-left clan-info">
@@ -46,6 +48,48 @@
             </ul>     
             <div class="mt-4 tab-content" id="content">
                 <div class="text-left tab-pane fade active show" id="forum" role="tabpanel" aria-labelledby="forum-tab">
+                    <div class="cardbox-comments d-flex align-items-center">
+                        <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#postModal">
+                            Create a new Post
+                        </button>
+                        <div class="search-comment" data-toggle="modal" data-target="#postModal">
+                            <input placeholder="  New publication..." type="text" class="w-100">
+                        </div>
+                        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#home_helpModal">
+                                <i class="fas fa-question-circle"></i>
+                        </button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="postModalLabel">{{ $clan->name }} - Create Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name="clanID" value="{{ $clan->id }}">
+                                    <div class="row align-items-center w-100 mx-2">
+                                        <div class="col-sm-12 col-md-4 mt-3">
+                                            <a href="/user/{{ Auth::user()->username }}"><img width="125" class="img-fluid border rounded-circle mb-3" src="{{ asset('assets/logo.png') }}" alt="User"></a> <!-- CHANGE -->
+                                            <p>{{ Auth::user()->name }}</p>
+                                        </div>
+                                        <div class="col-sm-12 col-md-8 pr-5 form-group">
+                                            <textarea class="form-control post-content text-left mt-3 w-100" rows="6" placeholder="Write your publication here..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="float-right btn btn-secondary m-3">Add Image</button>
+                                    <button type="submit" class="float-right btn btn-dark my-3 create" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">Post</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @if(count($posts) == 0)
                         <p class="text-center"><b><small>No posts to be seen!</small></b></p>
                     @else

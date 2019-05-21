@@ -47,6 +47,8 @@ Route::get('home', 'PrivateController@showHome');
 Route::get('leaderboard', 'PrivateController@showLeaderboard');
 Route::get('chat', 'PrivateController@showChat');
 Route::get('friendRequests', 'RequestController@show');
+Route::get('createCharacter', 'PrivateController@showCreateCharacter');
+
 
 // Posts
 Route::get('posts', 'PostController@list');
