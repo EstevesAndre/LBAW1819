@@ -55,7 +55,7 @@ class User extends Authenticatable
         foreach($friendsQuery as $aux) 
             $friendsIDs[] = $aux->id;
 
-        return User::select('id', 'name', 'username', 'xp')
+        return User::select('id', 'name', 'username', 'xp', 'class', 'race', 'gender')
             ->whereIn('id', $friendsIDs)
             ->orderBy('xp', 'DESC')
             ->get();
