@@ -64,6 +64,7 @@ DROP TRIGGER IF EXISTS removeLikeNotification ON "likes" CASCADE;
 
 CREATE TYPE classEnum AS ENUM ('Fighter', 'Wizard', 'Rogue', 'Healer');
 CREATE TYPE raceEnum AS ENUM ('Human', 'Elf', 'Dwarf');
+CREATE TYPE genderEnum AS ENUM ('Male', 'Female');
 CREATE TYPE motiveEnum AS ENUM ('Inappropriate behaviour', 'Abusive content', 'Racism');
 CREATE TYPE requestEnum AS ENUM ('friendRequest', 'clanRequest');
 
@@ -80,6 +81,7 @@ CREATE TABLE "users" (
     birthdate DATE,
     race raceEnum,
     class classEnum,
+    gender genderEnum,
     xp INTEGER NOT NULL DEFAULT 0 CHECK (xp >= 0),
     is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
@@ -588,50 +590,50 @@ CREATE TRIGGER removeLikeNotification
     DATA
 */
 
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('rui.patricio@gmail.com', 'ruiWolves', '_n@6EEs6', 'John Michael', '1998-05-16', 'Elf', 'Fighter',  205, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('beto.gr@gmail.com', 'Bebeto', 'K8c4)-Tx' , 'Andrew Esteves', '1997-03-18', 'Human', 'Wizard', 124, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('sa.ze@hotmail.com', 'Zezocas', '!8Y,yZ^', 'Francisco Filipe', '1997-03-18', 'Human', 'Fighter', 2030, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('pepe.oficial@gmail.com', 'Pepe123', '`/Fsa2g%', 'Lewis Silva', '1997-03-18', 'Elf', 'Wizard', 1540, TRUE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('zecafontes@gmail.com', 'Fontes', 'V~n8`5$*', 'Pedro Silva', '1997-03-18','Human', 'Fighter', 6074, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('guerreiro.def@gmail.com', 'Guerreiro_do_BVB', 'Z;-8g^Wc', 'Simon Silva', '1998-01-20', 'Dwarf', 'Rogue', 681, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('cancelo.juve@hotmail.com', 'CanceloSLB', '?\H=jB3\', 'Pedro Fernandes', '1997-03-18', 'Elf', 'Rogue', 112, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('dias_ruben@gmail.com', 'GOATdaDefesa', 'e7Gh/s-K', 'Bruno Sousa', '1997-03-18', 'Elf', 'Healer', 967, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('mario_rui@gmail.com', 'Ruizinho', ':YG^n9^z', 'Antero Santos', '1997-03-18', 'Human', 'Fighter', 420, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('nelson_semedo.goat@gmail.com', 'M10better_thanCR7', ')K:9Bu^*', 'John Angelical', '1997-03-18', 'Elf', 'Wizard', 2304, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('joao_moutinho@gmail.com', 'MacaPodre', 'Xy>qz9M', 'Mariana Costa', '1997-03-18', 'Dwarf', 'Rogue', 437, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('carvalho.william@gmail.com', 'William_Carvalho', '^7kNr~N', 'Catarina Almeida', '1997-03-18', 'Human', 'Wizard', 892, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('mario_joao@gmail.com', 'OMeuAmoreoSporting', 'q3NTt6.C', 'Miguel Barraca', '1997-03-18', 'Elf', 'Rogue', 1423, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('danilo.fcp@gmail.com', 'ItzDanilo', 'k3M~4&./', 'Tony Costa', '1997-03-18','Dwarf', 'Healer', 3048, TRUE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('pizzi@gmail.com', 'PizziOficial', '`7vJ4aHw', 'Marcelo Sousa', '1997-03-18', 'Human', 'Fighter', 1024, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('bruno_nandes@gmail.com', 'AMinhaVidaeoSport', '[Yw?J5XP', 'Pedro Coelho', '1997-03-18', 'Human', 'Wizard',1312, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('neves_ruben@gmail.com', 'SoGolaceiras', 'W]d89up]', 'Louis Vieira', '1997-03-18','Dwarf', 'Healer', 430, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('feliz.joao@gmail.com', 'NextCR7', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'Alexandre Santos', '1997-03-18','Dwarf', 'Wizard', 20, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('bernas.silva@gmail.com', 'EuSouOBernas', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'Fernando Rocha', '1997-03-18', 'Human', 'Rogue', 4512, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 960, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', '3TEAM3', '1998-04-22', 'Human', 'Fighter', 960, FALSE);
-INSERT INTO "users"(email, username, password, name, birthdate, race, class, xp, is_admin) 
-VALUES('t@t.com', 'user22', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'CestLaVie', '1998-04-22', 'Human', 'Fighter', 960, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('rui.patricio@gmail.com', 'ruiWolves', '_n@6EEs6', 'John Michael', '1998-05-16', 'Elf', 'Fighter', 'Male', 205, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('beto.gr@gmail.com', 'Bebeto', 'K8c4)-Tx' , 'Andrew Esteves', '1997-03-18', 'Human', 'Wizard', 'Male', 124, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('sa.ze@hotmail.com', 'Zezocas', '!8Y,yZ^', 'Francisco Filipe', '1997-03-18', 'Human', 'Fighter', 'Male', 2030, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('pepe.oficial@gmail.com', 'Pepe123', '`/Fsa2g%', 'Lewis Silva', '1997-03-18', 'Elf', 'Wizard', 'Male', 1540, TRUE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('zecafontes@gmail.com', 'Fontes', 'V~n8`5$*', 'Pedro Silva', '1997-03-18','Human', 'Fighter', 'Male', 6074, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('guerreiro.def@gmail.com', 'Guerreiro_do_BVB', 'Z;-8g^Wc', 'Simon Silva', '1998-01-20', 'Dwarf', 'Rogue', 'Male', 681, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('cancelo.juve@hotmail.com', 'CanceloSLB', '?\H=jB3\', 'Pedro Fernandes', '1997-03-18', 'Elf', 'Rogue', 'Male', 112, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('dias_ruben@gmail.com', 'GOATdaDefesa', 'e7Gh/s-K', 'Bruno Sousa', '1997-03-18', 'Elf', 'Healer', 'Male', 967, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('mario_rui@gmail.com', 'Ruizinho', ':YG^n9^z', 'Antero Santos', '1997-03-18', 'Human', 'Fighter', 'Male', 420, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('nelson_semedo.goat@gmail.com', 'M10better_thanCR7', ')K:9Bu^*', 'John Angelical', '1997-03-18', 'Elf', 'Wizard', 'Male', 2304, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('joao_moutinho@gmail.com', 'MacaPodre', 'Xy>qz9M', 'Mariana Costa', '1997-03-18', 'Dwarf', 'Rogue', 'Female', 437, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('carvalho.william@gmail.com', 'William_Carvalho', '^7kNr~N', 'Catarina Almeida', '1997-03-18', 'Human', 'Wizard', 'Female', 892, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('mario_joao@gmail.com', 'OMeuAmoreoSporting', 'q3NTt6.C', 'Miguel Barraca', '1997-03-18', 'Elf', 'Rogue', 'Male', 1423, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('danilo.fcp@gmail.com', 'ItzDanilo', 'k3M~4&./', 'Tony Costa', '1997-03-18','Dwarf', 'Healer', 'Male', 3048, TRUE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('pizzi@gmail.com', 'PizziOficial', '`7vJ4aHw', 'Marcelo Sousa', '1997-03-18', 'Human', 'Fighter', 'Male', 1024, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('bruno_nandes@gmail.com', 'AMinhaVidaeoSport', '[Yw?J5XP', 'Pedro Coelho', '1997-03-18', 'Human', 'Wizard', 'Male', 1312, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('neves_ruben@gmail.com', 'SoGolaceiras', 'W]d89up]', 'Louis Vieira', '1997-03-18','Dwarf', 'Healer', 430, 'Male', FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('feliz.joao@gmail.com', 'NextCR7', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'Alexandre Santos', '1997-03-18','Dwarf', 'Wizard', 'Male', 20, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('bernas.silva@gmail.com', 'EuSouOBernas', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'Fernando Rocha', '1997-03-18', 'Human', 'Rogue', 'Male', 4512, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 'Male', 960, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', '3TEAM3', '1998-04-22', 'Human', 'Fighter', 'Female', 960, FALSE);
+INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
+VALUES('t@t.com', 'user22', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'CestLaVie', '1998-04-22', 'Human', 'Wizard', 'Female', 960, FALSE);
 
 
 INSERT INTO clans(name, description, owner_id) 
