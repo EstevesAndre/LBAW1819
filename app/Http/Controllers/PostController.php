@@ -33,7 +33,12 @@ class PostController extends Controller
         $post->content = $request->input('content');
         $post->has_img = false;
         $post->user_id = Auth::user()->id;
-        $post->clan_id = null;
+        
+        if($request->input('clanID') !== "-1")
+            $post->clan_id = $request->input('clanID');
+        else
+            $post->clan_id = null;
+
 
         $post->save();
 
