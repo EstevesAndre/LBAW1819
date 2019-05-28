@@ -30,7 +30,7 @@
                     @if($global->count() === 0)
                         <p class="text-center py-2 bg-white">There are no users</p>
                     @else
-                        @include('partials.leaderboardType', [ 'collection' => $global])
+                        @include('partials.leaderboardType', [ 'collection' => $global, 'function' => 'updateSearchGlobal'])
                     @endif
                 </div>
 
@@ -38,7 +38,7 @@
                     @if($clanMembers === null)
                         <p class="text-center py-2 bg-white">Join a clan or create one</p>
                     @else
-                        @include('partials.leaderboardType', [ 'collection' => $clanMembers])
+                        @include('partials.leaderboardType', [ 'collection' => $clanMembers, 'function' => 'updateSearchClan'])
                     @endif
                 </div>
 
@@ -46,7 +46,7 @@
                     @if(count($friends) === 0)
                         <p class="text-center py-2 bg-white">{{ Auth::user()->name }}, you have no friends, add a friend</p>
                     @else
-                        @include('partials.leaderboardType', [ 'collection' => $friends])
+                        @include('partials.leaderboardType', [ 'collection' => $friends, 'function' => 'updateSearchFriends'])
                     @endif
                 </div>
             </div>

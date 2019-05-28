@@ -36,13 +36,13 @@
 
 @if($collection->count() > 3)
     <div class="d-flex justify-content-center mb-3 mr-3">
-        <div class="searchbar">
-            <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
+        <div class="leaderboard_search searchbar">
+            <input class="search_input search_input_fixed" onkeyup="{{ $function }}()" type="text" name="" placeholder="Search...">
             <a href="" class="search_icon"><i class="fas fa-search"></i></a>
         </div>
     </div>
 
-    <ol start="4" class="pl-0 shadow-lg">
+    <ol start="4" class="list pl-0 shadow-lg">
         @each('partials.leaderboardElement', $collection->slice(3,5), 'user')
         @if($collection->count() > 3+5)
             <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>

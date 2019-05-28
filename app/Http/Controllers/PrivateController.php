@@ -127,4 +127,40 @@ class PrivateController extends Controller
     public function showCreateCharacter() {
         return view('pages.createCharacter');
     }
+
+    public function getLeaderboardGlobalSearch(Request $request) {
+        $search = $request->input('search');
+
+        $users = null;
+        if($search == '')
+        {
+            $users = DB::table('users')
+            ->select('username', 'name', 'xp', 'race', 'class', 'gender')
+            ->orderBy('xp', 'DESC')
+            ->limit(5)
+            ->offset(3)
+            ->get();
+        }
+        else 
+        {
+            $users = DB::table('users')
+            ->select('username', 'name', 'xp', 'race', 'class', 'gender')
+            ->where('name', 'like', '%' . $search . '%')
+            ->orderBy('xp', 'DESC')
+            ->limit(5)
+            ->get();
+        }
+
+        return ['users' => $users];
+    }
+
+    public function getLeaderboardClanSearch(Request $request) {
+        $search = $request->input('search');
+        
+    }
+
+    public function getLeaderboardFriendsSearch(Request $request) {
+        $search = $request->input('search');
+        
+    }
 }

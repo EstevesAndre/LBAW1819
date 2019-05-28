@@ -49,6 +49,10 @@ Route::get('chat', 'PrivateController@showChat');
 Route::get('friendRequests', 'RequestController@show');
 Route::get('createCharacter', 'PrivateController@showCreateCharacter');
 
+// Searchs
+Route::post('/api/getLeaderboardGlobalSearch', 'PrivateController@getLeaderboardGlobalSearch');
+Route::post('/api/getLeaderboardClanSearch', 'PrivateController@getLeaderboardClanSearch');
+Route::post('/api/getLeaderboardFriendsSearch', 'PrivateController@getLeaderboardFriendsSearch');
 
 // Posts
 Route::get('posts', 'PostController@list');
