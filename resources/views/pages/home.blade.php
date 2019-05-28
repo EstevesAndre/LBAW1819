@@ -29,7 +29,10 @@
                         <input type="hidden" name="clanID" value="-1">
                         <div class="row align-items-center w-100 mx-2">
                             <div class="col-sm-12 col-md-4 mt-3">
-                                <a href="/user/{{ Auth::user()->username }}"><img width="125" class="img-fluid border rounded-circle mb-3" src="{{ asset('assets/logo.png') }}" alt="User"></a> <!-- CHANGE -->
+                                <a href="/user/{{ Auth::user()->username }}">
+                                    <img width="95" class="img-fluid border rounded-circle mb-3" 
+                                    src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}"
+                                    alt="User"></a>
                                 <p>{{ Auth::user()->name }}</p> <!-- CHANGE -->
                             </div>
                             <div class="col-sm-12 col-md-8 pr-5 form-group">

@@ -10,7 +10,9 @@
             <div class="row align-items-center py-3">
                 <div class="col-sm-12 col-lg-2 align-self-center">
                     <a href="/user/{{ $user->username }}">
-                        <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/logo.png') }}" alt="User">
+                        <img width="90" class="img-fluid border rounded-circle" 
+                            src="{{ asset('assets/avatars/'.$user->race.'_'.$user->class.'_'.$user->gender.'.bmp') }}" 
+                        alt="User">
                     </a>
                 </div>
                 <div class="col-sm-12 col-lg-6">

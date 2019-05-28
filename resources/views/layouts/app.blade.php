@@ -52,11 +52,11 @@
                             <li class="nav-item align-self-center">
                                 <a class="nav-link index-nav" href="{{ url('/leaderboard') }}">Leaderboards</a>
                             </li>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#nav_helpModal">
+                                    <i class="fas fa-question-circle"></i>
+                            </button>
                         </ul>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#nav_helpModal">
-                                <i class="fas fa-question-circle"></i>
-                        </button>
                         <div class="d-flex justify-content-center mr-2">
                             <div class="searchbar">
                                 <input class="search_input" type="text" name="" placeholder="Search...">

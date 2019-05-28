@@ -2,8 +2,9 @@
     @if($collection->count() >= 2)
         <div class="second-place">
             <img src="{{ asset('assets/silver.png') }}" alt="logo" class="img-fluid rounded">
-            <div class="podium">     
-                <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border w-25 h-auto img-fluid rounded-circle">     
+            <div class="podium">
+                <img src="{{ asset('assets/avatars/'.$collection[1]->race.'_'.$collection[1]->class.'_'.$collection[1]->gender.'.bmp') }}" alt="logo"
+                    class="border w-25 h-auto img-fluid rounded-circle">
                 <p class="m-0">{{ $collection[1]->name }}</p>     
                 <p>{{ $collection[1]->xp }} XP</p> 
             </div>
@@ -13,7 +14,8 @@
         <div class="first-place">
             <img src="{{ asset('assets/gold.png') }}" alt="logo" class="img-fluid rounded">
             <div class="podium">     
-                <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border w-25 h-auto img-fluid rounded-circle">     
+                <img src="{{ asset('assets/avatars/'.$collection[0]->race.'_'.$collection[0]->class.'_'.$collection[0]->gender.'.bmp') }}" alt="logo"
+                    class="border w-25 h-auto img-fluid rounded-circle">
                 <p class="m-0">{{ $collection[0]->name }}</p>     
                 <p>{{ $collection[0]->xp }} XP</p> 
             </div>
@@ -23,7 +25,8 @@
         <div class="third-place">
             <img src="{{ asset('assets/bronze.png') }}" alt="logo" class="img-fluid rounded">
             <div class="podium">     
-                <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border w-25 h-auto img-fluid rounded-circle">     
+                <img src="{{ asset('assets/avatars/'.$collection[2]->race.'_'.$collection[2]->class.'_'.$collection[2]->gender.'.bmp') }}" alt="logo"
+                    class="border w-25 h-auto img-fluid rounded-circle">
                 <p class="m-0">{{ $collection[2]->name }}</p>     
                 <p>{{ $collection[2]->xp }} XP</p> 
             </div>

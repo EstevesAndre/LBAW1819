@@ -48,7 +48,7 @@ class PrivateController extends Controller
         if (!Auth::check()) return redirect('/login');
 
         $allUsers = DB::table('users')
-            ->select('username', 'name', 'xp')
+            ->select('username', 'name', 'xp', 'race', 'class', 'gender')
             ->orderBy('xp', 'DESC')
             ->get();
 
@@ -65,7 +65,7 @@ class PrivateController extends Controller
         if($userClan !== null) {
             $clanMembers = DB::table('users')
                 ->join('user_clans', 'user_clans.user_id', '=', 'users.id')
-                ->select('users.username', 'users.name', 'users.xp')
+                ->select('users.username', 'users.name', 'users.xp', 'users.race', 'users.class', 'users.gender')
                 ->where('user_clans.clan_id', $userClan->id)
                 ->orderBy('users.xp', 'DESC')
                 ->get();
@@ -80,7 +80,7 @@ class PrivateController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        $friends = DB::select('SELECT DISTINCT u2.id, u2.username, u2.name, u2.xp, requests.date 
+        $friends = DB::select('SELECT DISTINCT u2.id, u2.username, u2.name, u2.xp, u2.class, u2.gender, u2.race, requests.date 
                                 FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
                                 WHERE u1.id = :ID
                                     AND requests.has_accepted = TRUE
