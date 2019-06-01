@@ -42,26 +42,51 @@ class User extends Authenticatable
         return $this->hasMany('App\Like', 'id', 'user_id');   
     }
 
-    public static function getUserFriends($id) {
-        $friendsQuery = DB::select('SELECT DISTINCT u2.id
-                                FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
-                                WHERE u1.id = :ID
-                                    AND requests.has_accepted = TRUE
-                                    AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
-                                            OR
-                                            (requests.sender = u2.id AND requests.sender != u1.id)
-                                )', ['ID' => $id]);
-        $friendsIDs = array();
-        foreach($friendsQuery as $aux) 
-            $friendsIDs[] = $aux->id;
+    public function clan() {
+        return $this->belongsToMany('App\Clan', 'user_clans', 'user_id', 'clan_id');
+    }
+
+    public function requests() {
+        return $this->hasMany('App\Request', 'sender', 'id')->where('type','friendRequest');
+    }
+ 
+    public function messages($userID) {
+        return $this->hasMany('App\Message', 'sender', 'id')->where('receiver', $userID);
+    }
+    
+    public function friends() {
+        $friends_ = $this->belongsToMany('App\User', 'requests', 'sender','receiver')->where('type', 'friendRequest')->where('has_accepted', 'TRUE');
+        $friends__ = $this->belongsToMany('App\User', 'requests', 'receiver','sender')->where('type', 'friendRequest')->where('has_accepted', 'TRUE');
+        
+        $friends = [];
+        foreach($friends_->get() as $friend)
+            array_push($friends, $friend->id);
+        foreach($friends__->get() as $friend)
+            array_push($friends, $friend->id);
 
         return User::select('id', 'name', 'username', 'xp', 'class', 'race', 'gender')
-            ->whereIn('id', $friendsIDs)
+            ->whereIn('id', $friends)
             ->orderBy('xp', 'DESC')
             ->get();
     }
 
-    public function clan() {
-        return $this->belongsToMany('App\Clan', 'user_clans', 'user_id', 'clan_id');
+    public function friendChatMessages($friendID) {
+
+        $thisMessages = $this->messages($friendID);
+
+        $friend = User::find($friendID);
+        $friendMessages = $friend->messages($this->id);
+
+        
+        $messages = [];
+        foreach($thisMessages->get() as $message)
+            array_push($messages, $message->id);
+        foreach($friendMessages->get() as $friend)
+            array_push($messages, $message->id);
+
+        return Message::select('*')
+            ->whereIn('id', $messages)
+            ->orderBy('date', 'DESC')
+            ->get();
     }
 }
