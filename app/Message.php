@@ -13,14 +13,18 @@ class Message extends Model
     /**
      * The receiver of te message
      */
-    public function sender() {
-        return $this->belongsTo('App\User', 'sender', 'id');
+    public function sender($userID) {
+        return $this->belongsTo('App\User', 'sender', 'id')->where('receiver', $userID);
     }
 
     /**
      * The receiver of te message
      */
-    public function receiver() {
-        return $this->belongsTo('App\User', 'receiver', 'id');
+    public function receiver($userID) {
+        return $this->belongsTo('App\User', 'receiver', 'id')->where('sender', $userID);
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User', 'sender', 'id');
     }
 }
