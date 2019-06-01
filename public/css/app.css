@@ -275,8 +275,14 @@ textarea {
 /*
     Media Section          
 */
+.nav-user img {
+    width: 40px !important;
+    height:48px !important;
+    border: 0px solid #dee2e6!important;
+}
+
 .media img {
-    width: 48px !important;
+    width: 40px !important;
     height: 48px !important;
     padding: 2px;
     border: px solid #aaa;
