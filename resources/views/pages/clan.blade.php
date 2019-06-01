@@ -24,7 +24,7 @@
                 <div class="col-sm-12 col-lg-3 my-2 text-left clan-info">
                     <div class="my-2"><i class="fas fa-globe"></i> Rank: 0</div>
                     <div class="my-2"><i class="fas fa-user-cog"></i> Owner: {{ $owner->name }}</div>
-                    <div class="my-2"><i class="fas fa-users"></i> Members: {{ count($members) }}</div>
+                    <div class="my-2"><i class="fas fa-users"></i> Members: {{ $members->count() }}</div>
                 </div>
             </div>
         </div>
@@ -73,7 +73,10 @@
                                     <input type="hidden" name="clanID" value="{{ $clan->id }}">
                                     <div class="row align-items-center w-100 mx-2">
                                         <div class="col-sm-12 col-md-4 mt-3">
-                                            <a href="/user/{{ Auth::user()->username }}"><img width="125" class="img-fluid border rounded-circle mb-3" src="{{ asset('assets/logo.png') }}" alt="User"></a> <!-- CHANGE -->
+                                            <a href="/user/{{ Auth::user()->username }}">
+                                                <img width="125" class="img-fluid border rounded-circle mb-3" 
+                                                    src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}" alt="User">
+                                            </a>
                                             <p>{{ Auth::user()->name }}</p>
                                         </div>
                                         <div class="col-sm-12 col-md-8 pr-5 form-group">
@@ -90,14 +93,12 @@
                             </div>
                         </div>
                     </div>
-                    @if(count($posts) == 0)
+                    @if($posts->count() == 0)
                         <p class="text-center"><b><small>No posts to be seen!</small></b></p>
                     @else
-                        @each('partials.post', array_slice($posts,0,5), 'post')
+                        @each('partials.post', $posts, 'post')
                         <br />
-                        @if(count($posts) > 5)
-                            <p class="text-center standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                        @endif
+                        <p class="text-center standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                     @endif
                 </div>
                 <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
@@ -108,8 +109,8 @@
                         </div>
                     </div>
                     <ul class="pl-0">
-                        @each('partials.userList', array_slice($members,0,10), 'user')
-                        @if(count($members) > 10) 
+                        @each('partials.userList', $members->take(10), 'user')
+                        @if($members->count() > 10) 
                             <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                         @endif
                     </ul>
@@ -122,14 +123,15 @@
                         </div>
                     </div>
                     <ol class="pl-0 shadow-lg">
-                        @for ($i = 0; $i < min(8,count($leaders)); $i++)
-                            <button data-id="/user/{{ $leaders[$i]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
+                        @for ($i = 0; $i < min(8,$members->count()); $i++)
+                            <button data-id="/user/{{ $members[$i]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
                                 <li class="ml-3">
                                     <div class="d-flex align-items-center row">
                                         <div class="col-2 col-sm-1 friend-img">
-                                            <img src="{{ asset('assets/logo.png') }}" alt="logo" class="border bg-danger img-fluid rounded-circle">
+                                            <img alt="logo" width="48" class="border bg-danger img-fluid rounded-circle"
+                                                src="{{ asset('assets/avatars/'.$members[$i]->race.'_'.$members[$i]->class.'_'.$members[$i]->gender.'.bmp') }}">
                                         </div>
-                                        <div class="col-7 col-sm-6 text-left">{{ $leaders[$i]->name }}</div>
+                                        <div class="col-7 col-sm-6 text-left">{{ $members[$i]->name }}</div>
                                         <div class="col-1 offset-sm-1 col-sm-2 text-right">
                                             @if($i === 0)
                                                 <img src="{{ asset('assets/first.png') }}" alt="logo">
@@ -138,16 +140,15 @@
                                             @elseif($i === 2)
                                                 <img src="{{ asset('assets/third.png') }}" alt="logo">
                                             @endif
-                                            
                                         </div>
                                         <div class="col-2 col-sm-2 text-right">
-                                            {{ $leaders[$i]->xp }} XP
+                                            {{ $members[$i]->xp }} XP
                                         </div>
                                     </div>
                                 </li>
                             </button>
                         @endfor
-                        @if(count($leaders) > 8)
+                        @if($members->count() > 8)
                             <p class="text-center py-2 bg-white standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                         @endif
                     </ol>
@@ -155,7 +156,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => $friends])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
 </div>
 <!-- Modal -->
 <div class="modal fade" id="clan_helpModal" tabindex="-1" role="dialog" aria-labelledby="clan_helpModalLabel" aria-hidden="true">

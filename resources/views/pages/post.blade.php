@@ -69,7 +69,8 @@
                     </div>
                     <div class="media m-0">
                         <div class="d-flex m-3">
-                            <a href="/user/{{ $post->user()->get()[0]->username }}"><img class="img-fluid rounded-circle" src="{{ asset('assets/logo.png') }}"
+                            <a href="/user/{{ $post->user()->get()[0]->username }}"><img class="img-fluid rounded-circle" 
+                                src="{{ asset('assets/avatars/'.$post->user()->get()[0]->race.'_'.$post->user()->get()[0]->class.'_'.$post->user()->get()[0]->gender.'.bmp') }}"
                                     alt="User"></a>
                         </div>
                         <div class="media-body ml-1 align-self-center">
@@ -102,7 +103,9 @@
                 </div>
                 <div class="cardbox-comments d-flex align-items-center">
                     <span class="comment-avatar float-left mr-2">
-                        <a href="/user/{{ Auth::user()->username }}"><img class="rounded-circle" src="{{ asset('assets/logo.png') }}" alt="Avatar"></a>
+                        <a href="/user/{{ Auth::user()->username }}"><img class="rounded-circle" 
+                            src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}"
+                            alt="Avatar"></a>
                     </span>
                     <div class="search-comment">
                         <input placeholder="Write a comment..." type="text">

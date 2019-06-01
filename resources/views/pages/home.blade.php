@@ -33,7 +33,7 @@
                                     <img width="95" class="img-fluid border rounded-circle mb-3" 
                                     src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}"
                                     alt="User"></a>
-                                <p>{{ Auth::user()->name }}</p> <!-- CHANGE -->
+                                <p>{{ Auth::user()->name }}</p>
                             </div>
                             <div class="col-sm-12 col-md-8 pr-5 form-group">
                                 <textarea class="form-control post-content text-left mt-3 w-100" rows="6" placeholder="Write your publication here..."></textarea>
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        
+        <p>12 {{ Auth::user()->clan()->get()[0]->owner()->get() }}</p>
         <!-- POSTS -->
         <section id="posts">
             @if(count($posts) == 0)

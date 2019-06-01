@@ -1,26 +1,28 @@
-<div class="modal postModal fade" id="deletePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="removePostModalLabel">Delete post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="text-left">Are you sure you want to delete this post?</p>
-                <div class="float-right">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">Yes</span>
+@if($post->user_id == Auth::user()->id)
+    <div class="modal postModal fade" id="deletePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removePostModalLabel">Delete post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">No</span>
-                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-left">Are you sure you want to delete this post?</p>
+                    <div class="float-right">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">Yes</span>
+                        </button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">No</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endif
 <div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}" onclick="window.location='/post/{{ $post->id }}';">
     <div class="cardbox text-left shadow-lg bg-white">
         <div class="cardbox-heading">
@@ -36,8 +38,8 @@
             </div>
             <div class="media m-0">
                 <div class="d-flex m-3">
-                    <a href="/user/{{ $post->user()->get()[0]->username }}">
-                        <img class="img-fluid rounded-circle" 
+                    <a class="mx-1 my-1" href="/user/{{ $post->user()->get()[0]->username }}">
+                        <img class="img-fuild rounded-circle" 
                             src="{{ asset('assets/avatars/'.$post->user()->get()[0]->race.'_'.$post->user()->get()[0]->class.'_'.$post->user()->get()[0]->gender.'.bmp') }}" 
                         alt="User">
                     </a>

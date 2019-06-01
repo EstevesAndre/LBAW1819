@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => $friends])
+    @include('partials.chatSideBar', ['friends' => $chatFriends])
 </div>
 <div class="modal fade" id="profile_helpModal" tabindex="-1" role="dialog" aria-labelledby="profile_helpModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

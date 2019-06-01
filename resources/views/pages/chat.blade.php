@@ -15,7 +15,7 @@
                          alt="logo" width="25" class="border bg-warning img-fluid rounded-circle">
                     {{ $friends[0]->name }}
                     </a>
-                    @each('partials.chatFriend', array_slice($friends,1,10), 'user')    
+                    @each('partials.chatFriend', $friends->slice(1,10), 'user')    
                 </div>
             </div>
         </div>
@@ -38,9 +38,11 @@
                     
                 </div>
                 <div class="height-85 mobile-height" id="chat-body">
-                    <div class="h-100 scroolable mx-3" id="chatScroll">
-                        @each('partials.message', $messages, 'message')
-                    </div>
+                    @if($messages !== null)
+                        <div class="h-100 scroolable mx-3" id="chatScroll">
+                            @each('partials.message', $messages, 'message')
+                        </div>
+                    @endif
                 </div>
                 <div class="border-top send-message d-flex align-items-center" id="message-send">
                     <input type="text" class="m-2 w-80 border no-outline" id="message-box" placeholder="Write a message here..." required>
