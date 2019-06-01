@@ -14,7 +14,7 @@ class RequestController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
         
-        $friends = User::getUserFriends(Auth::user()->id);
+        $friends = Auth::user()->friends();
 
         $sent = DB::table('requests')
             ->where('type','friendRequest')

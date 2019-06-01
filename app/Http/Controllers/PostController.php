@@ -22,7 +22,7 @@ class PostController extends Controller
         if($post == null)
             return view('errors.404');
 
-        $friends = User::getUserFriends(Auth::user()->id);
+        $friends = Auth::user()->friends();
 
         return view('pages.post', ['post' => $post, 'friends' => $friends]);
     }

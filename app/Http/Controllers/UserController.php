@@ -24,18 +24,16 @@ class UserController extends Controller
         
         if($user == null) return view('errors.404');
 
-        $friends = User::getUserFriends(Auth::user()->id);
+        $friends = $user->friends();
 
-        $userClan = DB::table('clans')
-                        ->join('user_clans', 'user_clans.clan_id', '=', 'clans.id')
-                        ->select('clans.*')
-                        ->where('user_clans.user_id', '=', $user->id)
-                        ->orWhere('clans.owner_id', '=',$user->id)
-                        ->distinct()
-                        ->first();
 
+        $userClan = null;
+        if($user->clan()->get() != null)
+            $userClan = $user->clan()->get()[0];
+
+        $chatFriends = Auth::user()->friends();
         
 
-        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan]);
+        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan, 'chatFriends' => $chatFriends]);
     }
 }

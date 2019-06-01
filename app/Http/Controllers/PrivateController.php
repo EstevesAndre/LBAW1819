@@ -38,7 +38,7 @@ class PrivateController extends Controller
             array_push($posts , Post::find($post->id));
         }
 
-        $friends = User::getUserFriends(Auth::user()->id);
+        $friends = Auth::user()->friends();
         
         return view('pages.home', ['posts' => $posts, 'friends' => $friends]);
     }
@@ -52,23 +52,12 @@ class PrivateController extends Controller
             ->orderBy('xp', 'DESC')
             ->get();
 
-        $friends = User::getUserFriends(Auth::user()->id);
+        $friends = Auth::user()->friends();
 
-        $userClan = DB::table('clans')
-            ->join('user_clans', 'user_clans.clan_id', '=', 'clans.id')
-            ->select('clans.*')
-            ->where('user_clans.user_id', '=', Auth::user()->id)
-            ->orWhere('clans.owner_id', '=',Auth::user()->id)
-            ->distinct()
-            ->first();
+        $userClan = Auth::user()->clan()->get()[0];
 
         if($userClan !== null) {
-            $clanMembers = DB::table('users')
-                ->join('user_clans', 'user_clans.user_id', '=', 'users.id')
-                ->select('users.username', 'users.name', 'users.xp', 'users.race', 'users.class', 'users.gender')
-                ->where('user_clans.clan_id', $userClan->id)
-                ->orderBy('users.xp', 'DESC')
-                ->get();
+            $clanMembers = $userClan->members()->get();
 
             return view('pages.leaderboard', ['friends' => $friends, 'clanMembers' => $clanMembers, 'global' => $allUsers]);
         }
@@ -80,22 +69,9 @@ class PrivateController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        $friends = DB::select('SELECT DISTINCT u2.id, u2.username, u2.name, u2.xp, u2.class, u2.gender, u2.race, requests.date 
-                                FROM "users" u1 INNER JOIN requests ON (requests.type = \'friendRequest\' AND (u1.id = requests.sender OR u1.id = requests.receiver)), "users" u2
-                                WHERE u1.id = :ID
-                                    AND requests.has_accepted = TRUE
-                                    AND (   (requests.receiver = u2.id AND requests.receiver !=  u1.id)
-                                            OR
-                                            (requests.sender = u2.id AND requests.sender != u1.id)
-                                )', ['ID' => Auth::user()->id]);
-
-        $selFriend = head($friends)->id;
-
-        $selFriendMessages = DB::select('SELECT sender,receiver,"date",message_text
-                                         FROM messages
-                                         WHERE (receiver = :FID AND sender = :ID) OR
-                                               (receiver = :ID AND sender = :FID) 
-                                        ORDER BY "date"', ['ID' => Auth::user()->id, 'FID' => $selFriend]);
+        $friends = Auth::user()->friends();
+        
+        $selFriendMessages = Auth::user()->friendChatMessages($friends->first()->id);
 
         return view('pages.chat', ['user' => Auth::user()->id, 'friends' => $friends, 'messages' => $selFriendMessages]);
     }

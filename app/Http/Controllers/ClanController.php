@@ -27,45 +27,15 @@ class ClanController extends Controller
     {
         if (!Auth::check()) return redirect('/login');       
         
-        $clan = DB::table('user_clans')
-                ->join('clans', 'clan_id', '=', 'id')
-                ->where('user_id', Auth::user()->id)
-                ->first();
+        $clan = Auth::user()->clan()->get()[0];
 
-        if($clan == null)
-            return redirect('createClanPage');
+        $members = $clan->members()->get();
 
-        $owner = User::find($clan->owner_id);
+        $owner = $clan->owner()->get()[0];
 
-        $clanPosts = DB::table('posts')
-                    ->whereNotNull('clan_id')
-                    ->where('clan_id','=',$clan->id)
-                    ->orderBy('date', 'DESC')
-                    ->get();
-        
-        $posts = [];
-        foreach ($clanPosts as $post) {
-            array_push($posts , Post::find($post->id));
-        }
+        $posts = $clan->posts()->orderBy('date', 'desc')->limit(5)->get();
 
-        $members = DB::select('SELECT DISTINCT users.id, users.username, users.name, requests.date, users.xp
-                FROM users INNER JOIN user_clans ON users.id = user_clans.user_id INNER JOIN requests ON user_clans.clan_id = requests.clan_id
-                WHERE has_accepted = true
-                AND user_clans.clan_id = :ID
-                AND (requests.receiver = users.id OR requests.sender = users.id)
-                ORDER BY users.name'
-                , ['ID' => $clan->id]);
-
-        $leaderboard = DB::table('users')
-                ->select('id','name', 'username', 'xp')
-                ->join('user_clans', 'users.id', '=', 'user_clans.user_id')
-                ->where('user_clans.clan_id', $clan->id)
-                ->orderBy('xp','DESC')
-                ->get();
-
-        $friends = User::getUserFriends(Auth::user()->id);
-
-        return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts, 'leaders' => $leaderboard, 'friends' => $friends]);
+        return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts]);
     }
 
     public function create(Request $request)
