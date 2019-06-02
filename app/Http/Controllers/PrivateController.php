@@ -52,13 +52,15 @@ class PrivateController extends Controller
 
         $userClan = Auth::user()->clan()->get()[0];
 
+        $userFriends = Auth::user()->friends()->get();
+
         if($userClan !== null) {
             $clanMembers = $userClan->members()->get();
 
-            return view('pages.leaderboard', ['clanMembers' => $clanMembers, 'global' => $allUsers]);
+            return view('pages.leaderboard', ['clanMembers' => $clanMembers, 'global' => $allUsers, 'friends' => $userFriends]);
         }
 
-        return view('pages.leaderboard', ['clanMembers' => null, 'global' => $allUsers]);
+        return view('pages.leaderboard', ['clanMembers' => null, 'global' => $allUsers, 'friends' => $userFriends]);
     }
 
     public function showChat() 
@@ -129,10 +131,52 @@ class PrivateController extends Controller
     public function getLeaderboardClanSearch(Request $request) {
         $search = $request->input('search');
         
+        $clan = Auth::user()->clan()->get()[0];
+
+        if($clan == null)
+            return;
+
+        $users = null;
+        if($search == '')
+        {
+            $users = $clan->members()
+                ->orderBy('xp', 'DESC')
+                ->limit(5)
+                ->offset(3)
+                ->get();
+        }
+        else 
+        {
+            $users = $clan->members()
+                ->where('name', 'like', '%' . $search . '%')
+                ->orderBy('xp', 'DESC')
+                ->limit(5)
+                ->get();
+        }
+
+        return ['users' => $users];
     }
 
     public function getLeaderboardFriendsSearch(Request $request) {
         $search = $request->input('search');
         
+        $users = null;
+        if($search == '')
+        {
+            $users = Auth::user()->friends()
+                ->limit(5)
+                ->offset(3)
+                ->get();
+        }
+        else 
+        {
+            $users = Auth::user()->friends()
+            ->where('name', 'like', '%' . $search . '%')
+            ->orderBy('xp', 'DESC')
+            ->limit(5)
+            ->get();
+        }
+
+        return ['users' => $users];
     }
 }
