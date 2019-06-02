@@ -22,9 +22,7 @@ class PostController extends Controller
         if($post == null)
             return view('errors.404');
 
-        $friends = Auth::user()->friends();
-
-        return view('pages.post', ['post' => $post, 'friends' => $friends]);
+        return view('pages.post', ['post' => $post]);
     }
 
     public function create(Request $request)  // CHANGE has_img and clan_id hanlder
