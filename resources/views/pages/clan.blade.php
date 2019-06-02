@@ -15,7 +15,7 @@
                     <div class=" text-left basic-info">
                         <h2><b>{{ $clan->name }}</b></h2>
                         <p>{{ $clan->description }}</p>
-                        @if($owner->id == Auth::user()->id)
+                        @if($clan->owner()->get()[0]->id == Auth::user()->id)
                             <div class="my-2"><a class="no-hover standard-text" href="{{ url('/clanSettings') }}"><i
                                     class="fas fa-cog"></i> Settings</a></div>
                         @endif
@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-sm-12 col-lg-3 my-2 text-left clan-info">
                     <div class="my-2"><i class="fas fa-globe"></i> Rank: 0</div>
-                    <div class="my-2"><i class="fas fa-user-cog"></i> Owner: {{ $owner->name }}</div>
+                    <div class="my-2"><i class="fas fa-user-cog"></i> Owner: {{ $clan->owner()->get()[0]->name }}</div>
                     <div class="my-2"><i class="fas fa-users"></i> Members: {{ $members->count() }}</div>
                 </div>
             </div>
@@ -104,8 +104,8 @@
                 <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
                     <div class="d-flex justify-content-center mb-3 mr-3">
                         <div class="searchbar">
-                            <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
-                            <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                            <input class="search_input search_input_fixed" onkeyup="clanMembersSearch({{$clan->id}})" type="text" name="" placeholder="Search...">
+                            <div class="search_icon"><i class="fas fa-search"></i></div>
                         </div>
                     </div>
                     <ul class="pl-0">
@@ -118,20 +118,20 @@
                 <div class="tab-pane fade" id="leaderboard" role="tabpanel" aria-labelledby="leaderboard-tab">
                     <div class="d-flex justify-content-center mb-3 mr-3">
                         <div class="searchbar">
-                            <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
-                            <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                            <input class="search_input search_input_fixed" onkeyup="clanLeaderboardSearch({{$clan->id}})" type="text" name="" placeholder="Search...">
+                            <div class="search_icon"><i class="fas fa-search"></i></div>
                         </div>
                     </div>
                     <ol class="pl-0 shadow-lg">
-                        @for ($i = 0; $i < min(8,$members->count()); $i++)
-                            <button data-id="/user/{{ $members[$i]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
+                        @for ($i = 0; $i < min(8,$leaders->count()); $i++)
+                            <button data-id="/user/{{ $leaders[$i]->username }}" type="button" class="text-left list-group-item border-0 list-group-item-action">
                                 <li class="ml-3">
                                     <div class="d-flex align-items-center row">
                                         <div class="col-2 col-sm-1 friend-img">
-                                            <img alt="logo" width="48" class="border bg-danger img-fluid rounded-circle"
-                                                src="{{ asset('assets/avatars/'.$members[$i]->race.'_'.$members[$i]->class.'_'.$members[$i]->gender.'.bmp') }}">
+                                            <img alt="logo" width="48" class="border img-fluid rounded-circle"
+                                                src="{{ asset('assets/avatars/'.$leaders[$i]->race.'_'.$leaders[$i]->class.'_'.$leaders[$i]->gender.'.bmp') }}">
                                         </div>
-                                        <div class="col-7 col-sm-6 text-left">{{ $members[$i]->name }}</div>
+                                        <div class="col-7 col-sm-6 text-left">{{ $leaders[$i]->name }}</div>
                                         <div class="col-1 offset-sm-1 col-sm-2 text-right">
                                             @if($i === 0)
                                                 <img src="{{ asset('assets/first.png') }}" alt="logo">
@@ -142,7 +142,7 @@
                                             @endif
                                         </div>
                                         <div class="col-2 col-sm-2 text-right">
-                                            {{ $members[$i]->xp }} XP
+                                            {{ $leaders[$i]->xp }} XP
                                         </div>
                                     </div>
                                 </li>
@@ -156,7 +156,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
 </div>
 <!-- Modal -->
 <div class="modal fade" id="clan_helpModal" tabindex="-1" role="dialog" aria-labelledby="clan_helpModalLabel" aria-hidden="true">

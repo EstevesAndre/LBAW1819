@@ -121,7 +121,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
 </div>
 <div class="modal fade" id="post_helpModal" tabindex="-1" role="dialog" aria-labelledby="post_helpModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
