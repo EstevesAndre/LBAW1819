@@ -2,12 +2,6 @@
     @if($friends->count() == 0) 
         <p class="text-center"><small>Add a friend to chat with him!</small></p>
     @else
-        <div class="d-flex justify-content-center">
-            <div class="searchbar searchbar-fixed">
-                <input class="search_input search_fixed" type="text" name="" placeholder="Search...">
-                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
-            </div>
-        </div>
         <div class="height-45 scroolable">
             <div class="list-group text-left" id="list-tab" role="tablist">
                 <a class="friend-list list-group-item list-group-item-action active" id="{{ $friends[0]->id }}" data-toggle="list" href="#list-{{ $friends[0]->id }}" aria-controls="{{ $friends[0]->id }}">
