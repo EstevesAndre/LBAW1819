@@ -67,7 +67,7 @@ class PrivateController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        $friends = Auth::user()->friends();
+        $friends = Auth::user()->friends()->get();
         
         $selFriendMessages = Auth::user()->friendChatMessages($friends->first()->id);
 

@@ -21,6 +21,8 @@ class AdminController extends Controller
 
         if (!Auth::user()->is_admin) return redirect('/login');
 
+        
+
         return view('pages.administrator');
     }
 }
