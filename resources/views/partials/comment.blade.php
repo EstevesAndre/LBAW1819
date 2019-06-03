@@ -8,4 +8,7 @@
     <div class="comment-data pl-1 pr-0">
         <p class="pt-3">{{ $comment->comment_text }}</p>
     </div>
+    <span class="delete-comment">
+        <a><i class="fas fa-times"></i></a>
+    </span>
 </div>
