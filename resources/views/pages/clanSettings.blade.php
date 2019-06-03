@@ -5,7 +5,7 @@
 <br />
     <br />
     <div class="container justify-content-center fullscreen-3-4 my-5">
-        <h1>Clan Settings - {{$clan->name}}  - {{$clan2->members()->count()}} 
+        <h1>Clan Settings - {{$clan->name}}  - {{$clan->members()->count()}} 
             <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#clansettings_helpModal">
                     <i class="fas fa-question-circle"></i>
             </button>
@@ -28,7 +28,7 @@
                                 <div class="card card-body pt-3">
                                     <div>
                                         <h4>Name</h4>
-                                        <div class="py-2 float-left">Actual: {{$clan->name}}</div>
+                                        <div class="py-2 float-left">Current: {{$clan->name}}</div>
                                         <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                             <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
                                         </button>
@@ -44,7 +44,7 @@
                                 <div class="card card-body">
                                     <div>
                                         <h4>Clan Bio</h4>
-                                        <div class="py-2 float-left">Actual: {{$clan->description}}</div>
+                                        <div class="py-2 float-left">Current: {{$clan->description}}</div>
                                         <button class="bg-dark btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
                                             <span class="text-white">Edit <i class="fas fa-pencil-alt"></i></span>
                                         </button>
@@ -64,12 +64,12 @@
                                         </button>
                                     </div>
                                     <div class="collapse" id="collapseExample3">
-                                            <div class="form-group w-100">
-                                                <p><p>
-                                                <label for="clanImage">
-                                                    <input type="file" name="clan_img" class="form-control-file input-file mt-2" id="clanImage">
-                                                </label>
-                                            </div>
+                                        <div class="form-group w-100">
+                                            <p><p>
+                                            <label for="clanImage">
+                                                <input type="file" name="clan_img" accept="image/png, image/jpeg" class="form-control-file input-file mt-2" id="clanImage">
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -214,25 +214,16 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>Are you sure that you want to ban this Clan Member?</p>
-                                        <textarea class="form-control text-left my-3 w-100" rows="4" placeholder="Write something about the ban..."></textarea>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                                Innapropriate behaviour
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="Innapropriate behaviour" id="defaultCheck1">Innapropriate behaviour
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                                            <label class="form-check-label" for="defaultCheck2">
-                                                Abusive content
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="Abusive content" id="defaultCheck2">Abusive content
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                                            <label class="form-check-label" for="defaultCheck3">
-                                                Racism
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="Racism" id="defaultCheck3">Racism
                                         </div>
+
                                         <button class="btn btn-secondary w-75 mt-3 dropdown-toggle" type="button" id="dropdownBanButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Ban Duration
@@ -246,7 +237,7 @@
                                             <a class="dropdown-item">1 year</a>
                                             <a class="dropdown-item">Forever</a>
                                         </div>
-                                        <button type="button" class="btn btn-danger mt-3 float-right">Ban!</button>
+                                        <button type="button" id="" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
                                     </div>
                                 </div>
                             </div>
@@ -371,156 +362,8 @@
                             </div>
                         </div>
                         <ul class="pl-0 shadow-lg users-list">
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Juan Maruto</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Daniel Nazário</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Bruno Alves</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Daniel Cardoso</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Catarina Nazário</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Joana Pinto</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Rui Rio</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Mário Gil</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Joana Madureira</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="p-2 ml-3">
-                                <div class="d-flex align-items-center row">
-                                    <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
-                                        <img width="40" class="border bg-warning img-fluid rounded-circle border"
-                                            src="../assets/logo.png" alt="Clan">
-                                    </div>
-                                    <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../pages/profile.html">Juan Maruto</a></div>
-                                    <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#banModal">
-                                            <i class="fas fa-user-times"></i> Ban<span> Member</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
+                                @each('partials.clanSettingsMembers', $members, 'member')
+                                @each('partials.clanSettingsBlocked', $blocked, 'blocked')
                             <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                         </ul>
         

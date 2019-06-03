@@ -58,6 +58,21 @@ function addEventListeners() {
       });
     }
 
+    let openbanModal = document.querySelectorAll('.ban_member');
+    [].forEach.call(openbanModal, function (member) {
+        member.addEventListener('click', setBanModalID);
+    });
+
+    let banMember = document.querySelectorAll('.ban_modal');
+    [].forEach.call(banMember, function (blocked) {
+        blocked.addEventListener('click', sendBanMemberRequest);
+    });
+
+    let unbanMember = document.querySelectorAll('.unban_member');
+    [].forEach.call(unbanMember, function (blocked) {
+        blocked.addEventListener('click', sendUnBanMemberRequest);
+    });
+
     // let generateButton = document.querySelector('.');
     // if (generateButton) generateButton.addEventListener('click', setCharacterInfo);
 }
@@ -155,6 +170,52 @@ function updateChatRequest(e) {
     console.log("Update chat request");
     let friend_id = e.target.id;
     sendAjaxRequest('put', '/api/update_chat/' + friend_id, null, updatedChatHandler);
+}
+
+function setBanModalID(e) {
+    e.preventDefault();
+
+    let id = e.target.id;
+    let modal = document.querySelector('.ban_modal');
+
+    modal.setAttribute('id', id);
+}
+
+function sendBanMemberRequest(e) {
+    e.preventDefault();
+
+    let member_id = e.target.id;
+
+    console.log(member_id);
+
+    let motives = document.querySelectorAll('.form-check-input');
+    var checkedMotives = [];
+
+    for (let i = 0; i < motives.length; i++) {
+        // And stick the checked ones onto an array...
+        if (motives[i].checked) {
+            checkedMotives.push(motives[i]);
+        }
+     }
+   }
+
+   if(checkedMotives.length == 0){
+       console.log(document.querySelector());
+       return;
+   }
+
+
+
+    console.log(motives);
+    
+    sendAjaxRequest('post', '/api/banMember/' + member_id, null, banMemberHandler);
+}
+
+function sendUnBanMemberRequest(e) {
+    e.preventDefault();
+    console.log("Unban Member");
+
+    sendAjaxRequest('post', '/api/unbanMember/' + blocked_id, null, unbanMemberHandler);
 }
 
 // Handlers

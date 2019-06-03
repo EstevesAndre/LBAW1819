@@ -94,10 +94,13 @@
                                     <a class="no-hover index-nav" href="{{ url('/createClanPage') }}">
                                         <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
                                     </a>
+                                    @if (Auth::user()->is_admin)
                                     <div class="dropdown-divider"></div>
                                     <a class="no-hover index-nav" href="{{ url('/administrator') }}">
                                         <button class="dropdown-item dropdown-navbar" type="button">Administrator</button>
                                     </a>
+                                    @else
+                                    @endif
                                     <div class="dropdown-divider"></div>
                                     <form method="GET" action="{{ route('logout') }}">
                                         <button type="submit" class="dropdown-item dropdown-navbar">Log out</button>

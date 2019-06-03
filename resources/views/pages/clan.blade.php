@@ -8,8 +8,19 @@
         <div class="container mt-3 bg-white rounded shadow-lg">
             <div class="row align-items-center py-4" id="clan-header">
                 <div class="col-sm-12 col-lg-2 align-self-center">
-                    <a href="#"><img width="200" class="img-fluid border rounded-circle" src="../assets/logo.png"
+                    @if(file_exists('assets/clanImgs/'.$clan->id.'.png'))
+                    <a href="#"><img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clan->id.'.png')}}"
                             alt="Clan"></a>
+                    @elseif(file_exists('assets/clanImgs/'.$clan->id.'.jpg'))
+                        <a href="#"><img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clan->id.'.jpg')}}"
+                            alt="Clan"></a>
+                    @elseif(file_exists('assets/clanImgs/'.$clan->id.'.jpeg'))
+                        <a href="#"><img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clan->id.'.jpeg')}}"
+                            alt="Clan"></a>
+                    @else
+                        <a href="#"><img width="200" class="img-fluid border rounded-circle" src="../assets/logo.png"
+                            alt="Clan"></a>
+                    @endif
                 </div>
                 <div class="col-sm-12 col-lg-7 my-2 text-left clan-bio">
                     <div class=" text-left basic-info">
