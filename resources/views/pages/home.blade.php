@@ -49,7 +49,6 @@
                 </div>
             </div>
         </div>
-        <p>12 {{ Auth::user()->clan()->get()[0]->owner()->get() }}</p>
         <!-- POSTS -->
         <section id="posts">
             @if(count($posts) == 0)
@@ -62,7 +61,7 @@
             @endif
         </section>
     </div>
-    @include('partials.chatSideBar', ['friends' => $friends])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
 </div>
 <!-- Modal -->
 <div class="modal fade" id="home_helpModal" tabindex="-1" role="dialog" aria-labelledby="home_helpModalLabel" aria-hidden="true">

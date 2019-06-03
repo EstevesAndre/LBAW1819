@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => $friends])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
 </div>
 <!-- Modal -->
 <div class="modal fade" id="leaderboard_helpModal" tabindex="-1" role="dialog" aria-labelledby="leaderboard_helpModalLabel" aria-hidden="true">

@@ -26,14 +26,10 @@ class UserController extends Controller
 
         $friends = $user->friends();
 
-
         $userClan = null;
         if($user->clan()->get() != null)
             $userClan = $user->clan()->get()[0];
 
-        $chatFriends = Auth::user()->friends();
-        
-
-        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan, 'chatFriends' => $chatFriends]);
+        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan]);
     }
 }

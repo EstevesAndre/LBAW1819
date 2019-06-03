@@ -1,5 +1,5 @@
 <div class="col-sm-12 col-md-4 col-lg-3 bg-light side-bar side">
-    @if(count($friends) == 0) 
+    @if($friends->count() == 0) 
         <p class="text-center"><small>Add a friend to chat with him!</small></p>
     @else
         <div class="d-flex justify-content-center">
@@ -29,10 +29,8 @@
                 <a href="/user/{{ $friends[0]->username }}">{{ $friends[0]->name }}</a>
             </div>
         </div>
-        <div id="chat-body">
-            <div>
-                {{-- @each('partials.message', $messages, 'message') --}}
-            </div>
+        <div id="chatScroll" class="h-80 scroolable">
+                @each('partials.message', Auth::user()->friendChatMessages($friends[0]->id), 'message')
         </div>
         <div class="border-top border-left w-100 bottom-contained send-message p-0 d-flex align-items-center">
             <input type="text" class="m-2 border w-75 no-outline" id="message-box" placeholder="Write a message here..."

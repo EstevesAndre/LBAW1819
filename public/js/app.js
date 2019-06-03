@@ -278,10 +278,10 @@ function addedCommentHandler() {
 function addedMessageHandler() {
     
     let message = JSON.parse(this.responseText);
-    let message_area = document.querySelector('#chat-body>div');
+    let message_area = document.querySelector('#chatScroll');
     message_area.innerHTML += 
           '<div class="my-3 outgoing_msg">'
-        +   '<div class="sent_msg">' 
+        +   '<div class="sent_msg w-50 mr-2">' 
         +       '<p>' + message.message_text +'</p>'
         +       '<span class="text-right mt-0 pt-0 time_date">' + message.date.substring(0, 10) 
         +           '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + message.date.substring(11, 19)
@@ -307,13 +307,13 @@ function updatedChatHandler(){
     friend_names.innerHTML = reply.friend_info[0].name;
     friend_img.setAttribute('src', path_header + '/avatars/' + reply.friend_info[0].race + "_" + reply.friend_info[0].class + '_' + reply.friend_info[0].gender + '.bmp');
     
-    let message_area = document.querySelector('#chat-body>div');
+    let message_area = document.querySelector('#chatScroll');
     message_area.innerHTML = "";  
     for(let i = 0; i < reply.messages.length;i++){
         message_area.innerHTML += 
           '<div class="my-3 outgoing_msg">'
-        +   '<div class="sent_msg">'
-        +       '<p>' + reply.messages[i].message_text +'</p>'
+        +   '<div class="sent_msg w-100 mx-2 align-items-right">'
+        +       '<p class=" align-self-right text-right w-50">' + reply.messages[i].message_text +'</p>'
         +       '<span class="text-right mt-0 pt-0 time_date">' 
         +           reply.messages[i].date.substring(0, 10) 
         +           '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' 

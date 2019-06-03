@@ -37,10 +37,8 @@ class PrivateController extends Controller
         foreach ($friendPosts as $post) {
             array_push($posts , Post::find($post->id));
         }
-
-        $friends = Auth::user()->friends();
         
-        return view('pages.home', ['posts' => $posts, 'friends' => $friends]);
+        return view('pages.home', ['posts' => $posts]);
     }
 
     public function showLeaderboard() 
@@ -52,17 +50,15 @@ class PrivateController extends Controller
             ->orderBy('xp', 'DESC')
             ->get();
 
-        $friends = Auth::user()->friends();
-
         $userClan = Auth::user()->clan()->get()[0];
 
         if($userClan !== null) {
             $clanMembers = $userClan->members()->get();
 
-            return view('pages.leaderboard', ['friends' => $friends, 'clanMembers' => $clanMembers, 'global' => $allUsers]);
+            return view('pages.leaderboard', ['clanMembers' => $clanMembers, 'global' => $allUsers]);
         }
 
-        return view('pages.leaderboard', ['friends' => $friends, 'clanMembers' => null, 'global' => $allUsers]);
+        return view('pages.leaderboard', ['clanMembers' => null, 'global' => $allUsers]);
     }
 
     public function showChat() 

@@ -13,8 +13,6 @@ class RequestController extends Controller
     public function show()
     {
         if (!Auth::check()) return redirect('/login');
-        
-        $friends = Auth::user()->friends();
 
         $sent = DB::table('requests')
             ->where('type','friendRequest')
@@ -34,6 +32,6 @@ class RequestController extends Controller
             ->where('has_accepted', true)
             ->get();
 
-        return view('pages.friendRequests', ['friends' => $friends, 'sent' => $sent, 'received' => $received, 'rejected' => $rejected]);
+        return view('pages.friendRequests', ['sent' => $sent, 'received' => $received, 'rejected' => $rejected]);
     }
 }

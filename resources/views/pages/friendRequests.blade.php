@@ -160,7 +160,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => $friends])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
 </div>
 <!-- Modal -->
 <div class="modal fade" id="friendrequests_helpModal" tabindex="-1" role="dialog" aria-labelledby="friendrequests_helpModalLabel" aria-hidden="true">

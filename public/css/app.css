@@ -145,6 +145,10 @@ input:hover, textarea:hover {
     width: 85%;
 }
 
+.h-80 {
+    height: 80% !important;
+}
+
 .w-90 {
     width: 94%;
 }
