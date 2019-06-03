@@ -85,7 +85,6 @@ class User extends Authenticatable
 
         return Message::select('*')
             ->whereIn('id', $messages)
-            ->orderBy('date', 'DESC')
             ->get();
     }
 
