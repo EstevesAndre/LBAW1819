@@ -37,7 +37,7 @@ Route::post('/api/update_chat/{id}', 'UserController@getFriendsMessages');
 Route::post('/api/update_clan/{id}', 'ClanController@update');
 Route::post('/api/share/{id}', 'PostController@share');
 Route::put('/api/banMember/{id}', 'ClanController@banMember');
-Route::put('/api/unbanMember/{id}', 'ClanController@unbanMember');
+Route::put('/api/unbanMember/{user_id}+{clan_id}', 'ClanController@unbanMember');
 
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');

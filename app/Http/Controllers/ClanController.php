@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Clan;
 use App\User;
+use App\Blocked;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -103,10 +104,21 @@ class ClanController extends Controller
         return response()->json(['banned' => $banned_member]); 
     }
 
-    public function unbanMember(Request $request, $id){
+    public function unbanMember(Request $request, $user_id, $clan_id){
         
+        // DB::table('blockeds')
+        //     ->whereColumn([
+        //         ['user_id', '=', $user_id],
+        //         ['clan', '=', $clan_id]])
+        //     ->delete();
 
-        return redirect('clan');
+        Blocked::where('user_id', $user_id)->where('clan', $clan_id)->delete();
+
+        DB::table('user_clans')->insert(['user_id' => $user_id, 'clan_id' => $clan_id]);
+
+        $unbanned_member = User::find($user_id);
+
+        return response()->json(['unbanned' => $unbanned_member]); 
     }
 
     public function getClanSearch(Request $request, $id) {
