@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Blocked;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,9 +22,14 @@ class AdminController extends Controller
 
         if (!Auth::user()->is_admin) return redirect('/login');
 
-        $bannedUsers = DB::table('blockeds');
-        $count = DB::table('users')->get()->count();
+        $bannedUsers = Blocked::all();
+        
+        $idBanned = [];
+        foreach($bannedUsers as $banned)
+            array_push($idBanned, $banned->user_id);
 
-        return view('pages.administrator', ['users' => $bannedUsers, 'count' => $count]);
+        $activeUsers = User::whereNotIn('id', $idBanned)->get();
+
+        return view('pages.administrator', ['activeUsers' => $activeUsers, 'bannedUsers' => $bannedUsers]);
     }
 }

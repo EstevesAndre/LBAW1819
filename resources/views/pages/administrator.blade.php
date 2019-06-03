@@ -54,8 +54,8 @@
                             </div>
                             
                             <ul class="pl-2 shadow-lg users-list">
-                                @each('partials.adminUserList', $users->get(), 'user')
-                                @if($count > 7)
+                                @each('partials.adminActiveUserList', $activeUsers->take(7), 'user')
+                                @if($activeUsers->count() > 7)
                                     <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
                                 @endif
                             </ul>
@@ -69,15 +69,13 @@
                             </div>
 
                             <ul class="pl-0 shadow-lg users-list">
-                                {{-- @each('partials.adminUserList', $users, 'user') --}}
-                                @if($count > 7)
+                                @each('partials.adminBannedUserList', $bannedUsers, 'banned')
+                                @if($bannedUsers->count() > 7)
                                     <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
                                 @endif
                             </ul>
                         </div>
-<p>{{get_class($users->get())}}</p>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-6 mt-4">
                             <a class="no-hover index-nav" href="{{ url('home') }}">
