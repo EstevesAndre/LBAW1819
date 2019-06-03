@@ -316,9 +316,19 @@ function addedCommentHandler() {
     
     let comment = JSON.parse(this.responseText);
     let comment_area = document.querySelector('.container.comments');
+    let comment_img = document.querySelector('.container.comments img');
     let current_comms = comment_area.innerHTML;
-    comment_area.innerHTML = '<div class="d-flex align-items-center" id="' + comment.id + '"><span class="comment-avatar float-left mr-2"><a href="/user/' + comment.user_id + '"><img class="rounded-circle bg-warning" src="/assets/logo.png" alt="Avatar"></a></span><div class="comment-data pl-1 pr-0"><p class="pt-3">' + comment.comment_text + '</p></div></div>';
+
+    let path = comment_img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+   
+    comment_area.innerHTML = '<div class="d-flex align-items-center comment" id="' + comment.id + '"><span class="comment-avatar float-left mr-2"><a href="/user/' + comment.user_id + '"><img class="rounded-circle bg-warning" src="' + path_header + '/avatars/' + comment.race + '_' + comment.class + '_' + comment.gender + '.bmp" alt="Avatar"></a></span><div class=w-90 comment-data pl-1 pr-0"><p class="pt-3">' + comment.comment_text + '</p></div><span class="ml-2 delete-comment" id="' + comment.id + '"><a><i class="fas fa-times"></i></a></span></div>';
     comment_area.innerHTML  += current_comms;
+
+    let deleteComment = document.querySelectorAll('.delete-comment>a>i');
+    [].forEach.call(deleteComment, function (delCom) {
+        delCom.addEventListener('click', sendDeleteCommentRequest);
+    });
 }
 
 function addedMessageHandler() {

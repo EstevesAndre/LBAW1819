@@ -18,7 +18,7 @@ class CommentController extends Controller
         $comment->comment_text =  $request->input('comment');
         $comment->save();
 
-        return $comment;
+        return response()->json(['id' => $comment->id, 'post_id' => $id, 'user_id' => Auth::user()->id, 'comment_text' => $request->input('comment'), 'gender' =>  Auth::user()->gender, 'race' => Auth::user()->race,  'class' => Auth::user()->class ]);
     }
 
     public function delete(Request $request, $id) 
