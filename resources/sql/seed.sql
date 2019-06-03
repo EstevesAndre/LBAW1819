@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS user_clans CASCADE;
 
 DROP TYPE IF EXISTS classEnum CASCADE;
 DROP TYPE IF EXISTS raceEnum CASCADE;
+DROP TYPE IF EXISTS genderEnum CASCADE;
 DROP TYPE IF EXISTS motiveEnum CASCADE;
 DROP TYPE IF EXISTS requestEnum CASCADE;
 
@@ -153,7 +154,8 @@ CREATE TABLE requests (
 CREATE TABLE blockeds (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES "users" (id),
-    admin INTEGER  NOT NULL REFERENCES "users" (id),
+    clan INTEGER REFERENCES "clans" (id),
+    admin INTEGER REFERENCES "users" (id),
     "date" TIMESTAMP WITH TIME zone NOT NULL,
     motive motiveEnum NOT NULL
 );
@@ -901,11 +903,11 @@ INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VA
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 17, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (19, 18, null, 'friendRequest', '2019-04-02 17:02:11', TRUE);
 
-INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (13, 4, '2019-03-21 07:22:16', 'Racism');
-INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (15, 4, '2019-04-01 21:42:32', 'Inappropriate behaviour');
-INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (7, 4, '2019-03-27 19:32:15', 'Abusive content');
-INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (9, 4, '2019-03-23 12:13:20', 'Inappropriate behaviour');
-INSERT INTO blockeds(user_id, admin, "date", motive) VALUES (18, 4, '2019-03-31 05:16:33', 'Inappropriate behaviour');
+INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (13, NULL, 4, '2019-03-21 07:22:16', 'Racism');
+INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (15, NULL, 4, '2019-04-01 21:42:32', 'Inappropriate behaviour');
+INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (7, NULL, 4, '2019-03-27 19:32:15', 'Abusive content');
+INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (9, NULL, 4, '2019-03-23 12:13:20', 'Inappropriate behaviour');
+INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (18, NULL, 4, '2019-03-31 05:16:33', 'Inappropriate behaviour');
 
 
 INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 

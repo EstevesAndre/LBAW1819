@@ -57,19 +57,32 @@ class ClanController extends Controller
         
         if (!Auth::check()) return redirect('/login');  
         
-        $clan = DB::table('user_clans')
-            ->join('clans', 'clan_id', '=', 'id')
-            ->where('user_id', Auth::user()->id)
-            ->first();
+        $clan = Auth::user()->clan()->get()[0];  
 
-        $clan2 = Clan::find($clan->id);
+        $owner = $clan->owner()->get()[0];
+        
+        if($owner->id != Auth::user()->id) return;
 
-        if($clan->owner_id != Auth::user()->id) return;
+        $members = $clan->members()->get();
 
-        return view('pages.clanSettings', ['clan' => $clan, 'clan2' =>$clan2]);
+        $blocked = $clan->blocked()->get();
+
+        return view('pages.clanSettings', ['clan' => $clan, 'members' => $members, 'blocked' => $blocked]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request, $id){
+        
+        DB::table('clans')
+                ->where('id', $id)
+                ->update(['name' => $request->input('name'), 'description' => $request->input('description')]);
+
+        if ($request->hasFile('clan_img')) {
+            $image = $request->file('clan_img');
+            $name = $id.'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/assets/clanImgs');
+            $image->move($destinationPath, $name);
+        }
+
         return redirect('clan');
     }
 }
