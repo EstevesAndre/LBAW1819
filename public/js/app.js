@@ -349,45 +349,61 @@ function updatedChatHandler(){
 }
 
 addEventListeners();
+// ---------------------------------------------------------------------------------------------------------------------//
 
 let lastSearch = "";
 
-function getSearchInfo() 
-{
-    let currentSearch = document.querySelector('#leaderboard-content>.active .leaderboard_search>input').value;
-    
+function updateFriendList($userID) {
+    let currentSearch = document.querySelector('#friends>div>.searchbar>input').value;
     if(lastSearch == currentSearch)
         return;
     lastSearch = currentSearch;
-    return currentSearch;
+
+    sendAjaxRequest('post', '/api/getFriendsListSearch/' + $userID, { search: lastSearch }, updateFriendsListSearch);   
+}
+
+function updateFriendsListSearch() {
+    let reply = JSON.parse(this.responseText);
+
+    let list = document.querySelector('#friends ul.list');
+    list.innerHTML = "";
+
+    let img = document.querySelector('img.img-fluid');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    userListHandler(reply, list, path_header);
+}
+// ---------------------------------------------------------------------------------------------------------------------//
+function getLeaderboardSearchInfo() 
+{
+    let currentSearch = document.querySelector('#leaderboard-content>.active .leaderboard_search>input').value;
+    if(lastSearch == currentSearch)
+        return false;
+
+    lastSearch = currentSearch;
+    return true;
 }
 
 function updateSearchGlobal() 
 {
-    let search = getSearchInfo();
-
-    // send AJAX request
-    sendAjaxRequest('post', '/api/getLeaderboardGlobalSearch/', { search: search }, updateSearchHandler);
+    if(getLeaderboardSearchInfo())
+        sendAjaxRequest('post', '/api/getLeaderboardGlobalSearch/', { search: lastSearch }, updateLeaderboardSearch);   
 }
 
 function updateSearchClan() 
 {
-    let search = getSearchInfo();
-
-    // send AJAX request
-    sendAjaxRequest('post', '/api/getLeaderboardClanSearch', { search: search }, updateSearchHandler);
-
+    if(getLeaderboardSearchInfo())
+        sendAjaxRequest('post', '/api/getLeaderboardClanSearch/', { search: lastSearch }, updateLeaderboardSearch);   
 }
 
 function updateSearchFriends() 
 {
-    let search = getSearchInfo();
-
-    // send AJAX request
-    sendAjaxRequest('post', '/api/getLeaderboardFriendsSearch', { search: search }, updateSearchHandler);
+    if(getLeaderboardSearchInfo())
+        sendAjaxRequest('post', '/api/getLeaderboardFriendsSearch/', { search: lastSearch }, updateLeaderboardSearch);   
 }
 
-function updateSearchHandler() {
+function updateLeaderboardSearch() {
     let reply = JSON.parse(this.responseText);
 
     let list = document.querySelector('#leaderboard-content>.active ol.list');
@@ -416,6 +432,92 @@ function updateSearchHandler() {
                 '</li>' + 
             '</button>';
       });
+}
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function clanMembersSearch($userID) 
+{
+    let currentSearch = document.querySelector('#members.active>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getClanSearch/' + $userID, { search: lastSearch }, updateClanMembersSearch);   
+}
+
+function updateClanMembersSearch() {
+    let reply = JSON.parse(this.responseText);
+
+    let list = document.querySelector('#members.active>ul');
+    list.innerHTML = "";
+
+    let img = document.querySelector('img.img-fluid');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    userListHandler(reply, list, path_header);
+}
 
 
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function clanLeaderboardSearch($userID) 
+{
+    let currentSearch = document.querySelector('#leaderboard.active>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getClanSearch/' + $userID, { search: lastSearch }, updateClanLeaderboardSearch);   
+}
+
+function updateClanLeaderboardSearch() {
+    let reply = JSON.parse(this.responseText);
+
+    let list = document.querySelector('#leaderboard.active>ol');
+    list.innerHTML = "";
+
+    let img = document.querySelector('img.img-fluid');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function(element) {
+        list.innerHTML += 
+            '<button data-id="/user/' + element.username + '" type="button" class="text-left list-group-item border-0 list-group-item-action">' + 
+                '<li class="ml-3">' + 
+                    '<div class="d-flex align-items-center row">' + 
+                        '<div class="col-2 col-sm-1 friend-img">' + 
+                            '<img alt="logo" width="48" src="' + path_header + '/avatars/' + 
+                                        element.race + '_' + element.class + '_' + element.gender + '.bmp"' + 
+                                ' class="border img-fluid rounded-circle">' + 
+                        '</div>' +
+                        '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
+                        '<div class="col-3 col-sm-5 text-right">' + element.xp + '</div>' + 
+                    '</div>' + 
+                '</li>' + 
+            '</button>';
+    });
+}
+
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function userListHandler(reply, list, path_header) {
+
+    reply.forEach(function(element) {
+
+        list.innerHTML +=
+            '<li class="list-group shadow-lg">' 
+        +       '<button data-id="' +  element.username + '" type="button" class="text-left list-group-item list-group-item-action">'
+        +           '<div class="d-flex align-items-center row">'
+        +               '<div class="col-2 col-sm-1 friend-img">'
+        +                   '<img src="' + path_header + '/avatars/'
+        +                       element.race + '_' + element.class + '_' + element.gender + '.bmp"' + 'alt=logo' 
+        +                   ' class="border bg-light img-fluid rounded-circle">'
+        +               '</div>'
+        +               '<div class="col-5 col-sm-6 pr-1">' + element.name + '</div>'
+        //+               '<div class="col-5 col-sm-5 pl-1 text-right">' + element.date + '</div>'
+        +           '</div>'
+        +       '</button>'
+        +   '</li>';
+      });
 }

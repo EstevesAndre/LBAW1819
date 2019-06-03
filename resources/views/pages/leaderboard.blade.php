@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
-                    @if(count($friends) === 0)
+                    @if($friends->count() === 0)
                         <p class="text-center py-2 bg-white">{{ Auth::user()->name }}, you have no friends, add a friend</p>
                     @else
                         @include('partials.leaderboardType', [ 'collection' => $friends, 'function' => 'updateSearchFriends'])
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
+    @include('partials.chatSideBar', ['friends' => $friends])
 </div>
 <!-- Modal -->
 <div class="modal fade" id="leaderboard_helpModal" tabindex="-1" role="dialog" aria-labelledby="leaderboard_helpModalLabel" aria-hidden="true">

@@ -53,6 +53,8 @@ Route::get('createCharacter', 'PrivateController@showCreateCharacter');
 Route::post('/api/getLeaderboardGlobalSearch', 'PrivateController@getLeaderboardGlobalSearch');
 Route::post('/api/getLeaderboardClanSearch', 'PrivateController@getLeaderboardClanSearch');
 Route::post('/api/getLeaderboardFriendsSearch', 'PrivateController@getLeaderboardFriendsSearch');
+Route::post('/api/getFriendsListSearch/{id}', 'UserController@getFriendsListSearch');
+Route::post('/api/getClanSearch/{id}', 'ClanController@getClanSearch');
 
 // Posts
 Route::get('posts', 'PostController@list');

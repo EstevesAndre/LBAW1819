@@ -66,8 +66,7 @@ class User extends Authenticatable
 
         return User::select('id', 'name', 'username', 'xp', 'class', 'race', 'gender')
             ->whereIn('id', $friends)
-            ->orderBy('xp', 'DESC')
-            ->get();
+            ->orderBy('xp', 'DESC');
     }
 
     public function friendChatMessages($friendID) {

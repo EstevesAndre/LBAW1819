@@ -60,7 +60,7 @@
                         <div class="d-flex justify-content-center mr-2">
                             <div class="searchbar">
                                 <input class="search_input" type="text" name="" placeholder="Search...">
-                                <a href="" class="search_icon"><i class="fas fa-search"></i></a> <!-- Change to form -->
+                                <div class="search_icon"><i class="fas fa-search"></i></div> <!-- Change to form -->
                             </div>
                         </div>
                         <div class="d-flex justify-content-center mx-2 align-items-center">

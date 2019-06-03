@@ -31,11 +31,11 @@ class ClanController extends Controller
 
         $members = $clan->members()->get();
 
-        $owner = $clan->owner()->get()[0];
+        $leaders = $clan->members()->orderBy('xp', 'desc')->get();
 
         $posts = $clan->posts()->orderBy('date', 'desc')->limit(5)->get();
 
-        return view('pages.clan', ['clan' => $clan, 'owner' => $owner, 'members' => $members, 'posts' => $posts]);
+        return view('pages.clan', ['clan' => $clan, 'members' => $members, 'leaders' => $leaders, 'posts' => $posts]);
     }
 
     public function create(Request $request)
@@ -84,5 +84,30 @@ class ClanController extends Controller
         }
 
         return redirect('clan');
+    }
+
+    public function getClanSearch(Request $request, $id) {
+
+        $clan = Clan::find($id);
+        $search = $request->input('search');
+
+        $members = null;
+        if($search == '')
+        {
+            $members = $clan->members()
+                ->orderBy('xp', 'DESC')
+                ->limit(7)
+                ->get();
+        }
+        else
+        {
+            $members = $clan->members()
+                ->where('name', 'like', '%'. $search. '%')
+                ->orderBy('xp', 'DESC')
+                ->limit(7)
+                ->get();
+        }
+
+        return $members;
     }
 }

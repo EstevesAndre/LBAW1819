@@ -38,7 +38,7 @@
     <div class="d-flex justify-content-center mb-3 mr-3">
         <div class="leaderboard_search searchbar">
             <input class="search_input search_input_fixed" onkeyup="{{ $function }}()" type="text" name="" placeholder="Search...">
-            <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+            <div class="search_icon"><i class="fas fa-search"></i></div>
         </div>
     </div>
 
