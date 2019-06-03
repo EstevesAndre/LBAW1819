@@ -197,17 +197,12 @@ function sendBanMemberRequest(e) {
             checkedMotives.push(motives[i]);
         }
      }
-   }
 
    if(checkedMotives.length == 0){
        console.log(document.querySelector());
        return;
    }
-
-
-
-    console.log(motives);
-    
+    console.log(motives);    
     sendAjaxRequest('post', '/api/banMember/' + member_id, null, banMemberHandler);
 }
 
