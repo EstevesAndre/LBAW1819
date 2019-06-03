@@ -9,9 +9,14 @@
                 {{ $friends[0]->name }}
                 </a>
                 @each('partials.chatFriend', $friends->slice(1)->take(14), 'user')
-                @each('partials.chatFriend', $friends->slice(1)->take(14), 'user')
                 @if($friends->count() > 15)
                     <p class="text-center list-group-item p-0 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                @else
+                    <div class="text-center">
+                        <button type="button" class="btn btn-lg btn-secondary border-0 rounded-circle my-3">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
                 @endif
             </div>
         </div>
@@ -26,7 +31,7 @@
             <div id="chatScroll" class="h-80 scroolable">
                 @each('partials.message', Auth::user()->friendChatMessages($friends[0]->id), 'message')
             </div>
-            <div class="bg-white border-top border-left w-100 bottom-contained send-message p-0 d-flex align-items-center">
+            <div class="bg-white border-top border-left w-100 send-message p-0 d-flex align-items-center">
                 <input type="text" class="m-2 border w-75 no-outline" id="message-box" placeholder="Write a message here..."
                     required>
                 <button type="submit" class="btn btn-primary m-1 float-right" id="send-button">&#9993;</button>
