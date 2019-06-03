@@ -62,16 +62,18 @@
                         <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
                             <a class="dropdown-item" href="#">Hide post</a>
                             <a class="dropdown-item" href="#">Report</a>
-                            @if($post->user_id == Auth::user()->id)
+                            @if($post->user_id == Auth::user()->id || Auth::user()->is_admin)
                                 <a class="dropdown-item" data-toggle="modal" data-target="#deletePostModal-{{ $post->id }}">Delete</a>
                             @endif
                         </div>
                     </div>
                     <div class="media m-0">
                         <div class="d-flex m-3">
-                            <a href="/user/{{ $post->user()->get()[0]->username }}"><img class="img-fluid rounded-circle" 
-                                src="{{ asset('assets/avatars/'.$post->user()->get()[0]->race.'_'.$post->user()->get()[0]->class.'_'.$post->user()->get()[0]->gender.'.bmp') }}"
-                                    alt="User"></a>
+                            <a href="/user/{{ $post->user()->get()[0]->username }}">
+                                <img class="img-fluid rounded-circle" 
+                                    src="{{ asset('assets/avatars/'.$post->user()->get()[0]->race.'_'.$post->user()->get()[0]->class.'_'.$post->user()->get()[0]->gender.'.bmp') }}"
+                                    alt="User">
+                            </a>
                         </div>
                         <div class="media-body ml-1 align-self-center">
                             <p class="text-dark m-0 user-link">
@@ -121,7 +123,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
 </div>
 <div class="modal fade" id="post_helpModal" tabindex="-1" role="dialog" aria-labelledby="post_helpModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -24,6 +24,11 @@ function addEventListeners() {
         delPost.addEventListener('click', sendDeletePostRequest);
     });
 
+    let deleteComment = document.querySelectorAll('.delete-comment>a>i');
+    [].forEach.call(deleteComment, function (delCom) {
+        delCom.addEventListener('click', sendDeleteCommentRequest);
+    });
+
     let notifications = document.querySelector('#notifications > button');
     if (notifications) notifications.addEventListener('click', sendUserNotificationsRequest);
 
@@ -128,6 +133,17 @@ function sendDeletePostRequest(e) {
         return;
 
     sendAjaxRequest('delete', '/api/post/' + post_id, null, deletedPostHandler);
+}
+
+function sendDeleteCommentRequest(e) {
+    console.log("Comment delete request");
+
+    let comment_id = this.closest('span.delete-comment').getAttribute('id');
+
+    if (comment_id == null)
+        return;
+
+    sendAjaxRequest('delete', '/api/comment/' + comment_id, null, deletedCommentHandler);
 }
 
 function sendUserNotificationsRequest(e) {
@@ -296,6 +312,19 @@ function deletedPostHandler() {
         let postHTML = document.querySelector('div.post[data-id="' + post.id + '"]');
         postHTML.innerHTML = '';
     }
+
+    window.location.href = '../home';
+}
+
+function deletedCommentHandler() {
+    console.log("Comment deleted - status: " + this.status);
+
+    if (this.status == 200) {
+        let comment = JSON.parse(this.responseText);
+
+        let commentHTML = document.querySelector('div.comment[id="' + comment.id + '"]');
+        commentHTML.innerHTML = '';
+    }
 }
 
 function userNotificationsHandler() {
@@ -321,9 +350,34 @@ function addedCommentHandler() {
 
     let comment = JSON.parse(this.responseText);
     let comment_area = document.querySelector('.container.comments');
+    document.querySelector('.search-comment input').value = "";
+    let comment_img = document.querySelector('.container.comments img');
     let current_comms = comment_area.innerHTML;
-    comment_area.innerHTML = '<div class="d-flex align-items-center" id="' + comment.id + '"><span class="comment-avatar float-left mr-2"><a href="/user/' + comment.user_id + '"><img class="rounded-circle bg-warning" src="/assets/logo.png" alt="Avatar"></a></span><div class="comment-data pl-1 pr-0"><p class="pt-3">' + comment.comment_text + '</p></div></div>';
-    comment_area.innerHTML += current_comms;
+
+    let path = comment_img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+    console.log(comment_area);
+    comment_area.innerHTML = 
+        '<div class="d-flex align-items-center comment" id="' + comment.id + '">'
+    +       '<span class="comment-avatar float-left mr-2">'
+    +           '<a href="/user/' + comment.username + '">'
+    +               '<img class="rounded-circle bg-warning" src="' + path_header + '/avatars/' + comment.race + '_' + comment.class + '_' + comment.gender + '.bmp" alt="Avatar">'
+    +           '</a>'
+    +       '</span>'
+    +       '<div class="w-90 comment-data pl-1 pr-0">'
+    +           '<p class="pt-3">' + comment.comment_text + '</p>'
+    +       '</div>'
+    +       '<span class="ml-2 delete-comment" id="' + comment.id + '">'
+    +           '<a><i class="fas fa-times"></i></a>'
+    +       '</span>'
+    +   '</div>';
+
+    comment_area.innerHTML  += current_comms;
+
+    let deleteComment = document.querySelectorAll('.delete-comment>a>i');
+    [].forEach.call(deleteComment, function (delCom) {
+        delCom.addEventListener('click', sendDeleteCommentRequest);
+    });
 }
 
 function addedMessageHandler() {
@@ -378,41 +432,61 @@ function updatedChatHandler() {
 }
 
 addEventListeners();
+// ---------------------------------------------------------------------------------------------------------------------//
 
 let lastSearch = "";
 
-function getSearchInfo() {
-    let currentSearch = document.querySelector('#leaderboard-content>.active .leaderboard_search>input').value;
-
-    if (lastSearch == currentSearch)
+function updateFriendList($userID) {
+    let currentSearch = document.querySelector('#friends>div>.searchbar>input').value;
+    if(lastSearch == currentSearch)
         return;
     lastSearch = currentSearch;
-    return currentSearch;
+
+    sendAjaxRequest('post', '/api/getFriendsListSearch/' + $userID, { search: lastSearch }, updateFriendsListSearch);   
 }
 
-function updateSearchGlobal() {
-    let search = getSearchInfo();
+function updateFriendsListSearch() {
+    let reply = JSON.parse(this.responseText);
 
-    // send AJAX request
-    sendAjaxRequest('post', '/api/getLeaderboardGlobalSearch/', { search: search }, updateSearchHandler);
+    let list = document.querySelector('#friends ul.list');
+    list.innerHTML = "";
+
+    let img = document.querySelector('img.img-fluid');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    userListHandler(reply, list, path_header);
+}
+// ---------------------------------------------------------------------------------------------------------------------//
+function getLeaderboardSearchInfo() 
+{
+    let currentSearch = document.querySelector('#leaderboard-content>.active .leaderboard_search>input').value;
+    if(lastSearch == currentSearch)
+        return false;
+
+    lastSearch = currentSearch;
+    return true;
 }
 
-function updateSearchClan() {
-    let search = getSearchInfo();
-
-    // send AJAX request
-    sendAjaxRequest('post', '/api/getLeaderboardClanSearch', { search: search }, updateSearchHandler);
-
+function updateSearchGlobal() 
+{
+    if(getLeaderboardSearchInfo())
+        sendAjaxRequest('post', '/api/getLeaderboardGlobalSearch/', { search: lastSearch }, updateLeaderboardSearch);   
 }
 
-function updateSearchFriends() {
-    let search = getSearchInfo();
-
-    // send AJAX request
-    sendAjaxRequest('post', '/api/getLeaderboardFriendsSearch', { search: search }, updateSearchHandler);
+function updateSearchClan() 
+{
+    if(getLeaderboardSearchInfo())
+        sendAjaxRequest('post', '/api/getLeaderboardClanSearch/', { search: lastSearch }, updateLeaderboardSearch);   
 }
 
-function updateSearchHandler() {
+function updateSearchFriends() 
+{
+    if(getLeaderboardSearchInfo())
+        sendAjaxRequest('post', '/api/getLeaderboardFriendsSearch/', { search: lastSearch }, updateLeaderboardSearch);   
+}
+
+function updateLeaderboardSearch() {
     let reply = JSON.parse(this.responseText);
 
     let list = document.querySelector('#leaderboard-content>.active ol.list');
@@ -468,4 +542,92 @@ function banMemberHandler(){
                                 '</div>' + 
                             '</div>' + 
                         '</li>');
+}
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function clanMembersSearch($userID) 
+{
+    let currentSearch = document.querySelector('#members.active>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getClanSearch/' + $userID, { search: lastSearch }, updateClanMembersSearch);   
+}
+
+function updateClanMembersSearch() {
+    let reply = JSON.parse(this.responseText);
+
+    let list = document.querySelector('#members.active>ul');
+    list.innerHTML = "";
+
+    let img = document.querySelector('img.img-fluid');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    userListHandler(reply, list, path_header);
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function clanLeaderboardSearch($userID) 
+{
+    let currentSearch = document.querySelector('#leaderboard.active>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getClanSearch/' + $userID, { search: lastSearch }, updateClanLeaderboardSearch);   
+}
+
+function updateClanLeaderboardSearch() {
+    let reply = JSON.parse(this.responseText);
+
+    let list = document.querySelector('#leaderboard.active>ol');
+    list.innerHTML = "";
+
+    let img = document.querySelector('img.img-fluid');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function(element) {
+        list.innerHTML += 
+            '<button data-id="/user/' + element.username + '" type="button" class="text-left list-group-item border-0 list-group-item-action">' + 
+                '<li class="ml-3">' + 
+                    '<div class="d-flex align-items-center row">' + 
+                        '<div class="col-2 col-sm-1 friend-img">' + 
+                            '<img alt="logo" width="48" src="' + path_header + '/avatars/' + 
+                                        element.race + '_' + element.class + '_' + element.gender + '.bmp"' + 
+                                ' class="border img-fluid rounded-circle">' + 
+                        '</div>' +
+                        '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
+                        '<div class="col-3 col-sm-5 text-right">' + element.xp + '</div>' + 
+                    '</div>' + 
+                '</li>' + 
+            '</button>';
+    });
+}
+
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function userListHandler(reply, list, path_header) {
+
+    reply.forEach(function(element) {
+
+        list.innerHTML +=
+            '<li class="list-group shadow-lg">' 
+        +       '<button data-id="' +  element.username + '" type="button" class="text-left list-group-item list-group-item-action">'
+        +           '<div class="d-flex align-items-center row">'
+        +               '<div class="col-2 col-sm-1 friend-img">'
+        +                   '<img src="' + path_header + '/avatars/'
+        +                       element.race + '_' + element.class + '_' + element.gender + '.bmp"' + 'alt=logo' 
+        +                   ' class="border bg-light img-fluid rounded-circle">'
+        +               '</div>'
+        +               '<div class="col-5 col-sm-6 pr-1">' + element.name + '</div>'
+        //+               '<div class="col-5 col-sm-5 pl-1 text-right">' + element.date + '</div>'
+        +           '</div>'
+        +       '</button>'
+        +   '</li>';
+      });
 }

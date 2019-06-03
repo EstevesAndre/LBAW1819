@@ -16,4 +16,8 @@ class Blocked extends Model
     public function clan() {
         return $this->belongsTo('App\Clan', 'id', 'clan');
     }
+
+    public function user() {
+        return $this->belongsTo('App\User', 'id', 'user_id');
+    }
 }

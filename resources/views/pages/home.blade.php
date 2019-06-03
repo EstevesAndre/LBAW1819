@@ -61,7 +61,7 @@
             @endif
         </section>
     </div>
-    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
 </div>
 <!-- Modal -->
 <div class="modal fade" id="home_helpModal" tabindex="-1" role="dialog" aria-labelledby="home_helpModalLabel" aria-hidden="true">

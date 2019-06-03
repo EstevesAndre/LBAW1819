@@ -85,11 +85,11 @@
                     @else
                         <div class="d-flex justify-content-center mb-3 mr-3">
                             <div class="searchbar">
-                                <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
-                                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                                <input class="search_input search_input_fixed" onkeyup="updateFriendList({{$user->id}})" type="text" name="" placeholder="Search...">
+                                <div class="search_icon"><i class="fas fa-search"></i></div>
                             </div>
                         </div>
-                        <ul class="pl-0">
+                        <ul class="list pl-0">
                             @each('partials.userList', $friends->take(5), 'user')
                             @if($friends->count() > 5) 
                                 <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
 </div>
 <div class="modal fade" id="profile_helpModal" tabindex="-1" role="dialog" aria-labelledby="profile_helpModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

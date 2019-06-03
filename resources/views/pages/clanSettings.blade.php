@@ -276,7 +276,7 @@
                                         <div class="d-flex justify-content-center mb-3 mr-3">
                                             <div class="searchbar">
                                                 <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
-                                                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                                                <div class="search_icon"><i class="fas fa-search"></i></div>
                                             </div>
                                         </div>
                                         <ul class="pl-0 users-list">
@@ -358,7 +358,7 @@
                         <div class="d-flex justify-content-center my-3 mr-3">
                             <div class="searchbar">
                                 <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
-                                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                                <div class="search_icon"><i class="fas fa-search"></i></div>
                             </div>
                         </div>
 
@@ -406,3 +406,4 @@
         </div>
     </div>
 </div>
+@endsection

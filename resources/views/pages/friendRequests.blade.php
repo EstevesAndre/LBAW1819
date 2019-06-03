@@ -61,7 +61,7 @@
                         <div class="d-flex justify-content-center mb-3 mr-3">
                             <div class="searchbar">
                                 <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
-                                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                                <div class="search_icon"><i class="fas fa-search"></i></div>
                             </div>
                         </div>
                     
@@ -94,7 +94,7 @@
                         <div class="d-flex justify-content-center mb-3 mr-3">
                             <div class="searchbar">
                                 <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
-                                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                                <div class="search_icon"><i class="fas fa-search"></i></div>
                             </div>
                         </div>
 
@@ -130,7 +130,7 @@
                         <div class="d-flex justify-content-center mb-3 mr-3">
                             <div class="searchbar">
                                 <input class="search_input search_input_fixed" type="text" name="" placeholder="Search...">
-                                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
+                                <div class="search_icon"><i class="fas fa-search"></i></div>
                             </div>
                         </div>
                         <ul class="pl-0 shadow-lg py-3 mt-3 users-list">
@@ -160,7 +160,7 @@
             </div>
         </div>
     </div>
-    @include('partials.chatSideBar', ['friends' => Auth::user()->friends() ])
+    @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
 </div>
 <!-- Modal -->
 <div class="modal fade" id="friendrequests_helpModal" tabindex="-1" role="dialog" aria-labelledby="friendrequests_helpModalLabel" aria-hidden="true">

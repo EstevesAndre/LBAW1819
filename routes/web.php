@@ -31,6 +31,7 @@ Route::delete('/api/post/{id}', 'PostController@delete');
 Route::post('/api/createClan', 'ClanController@create');
 Route::post('/api/notifications', 'PrivateController@getNotifications');
 Route::put('/api/comment/{id}', 'CommentController@create');
+Route::delete('/api/comment/{id}', 'CommentController@delete');
 Route::put('/api/chat/{id}', 'MessageController@create');
 Route::put('/api/update_chat/{id}', 'MessageController@update');
 Route::post('/api/update_clan/{id}', 'ClanController@update');
@@ -54,6 +55,8 @@ Route::get('createCharacter', 'PrivateController@showCreateCharacter');
 Route::post('/api/getLeaderboardGlobalSearch', 'PrivateController@getLeaderboardGlobalSearch');
 Route::post('/api/getLeaderboardClanSearch', 'PrivateController@getLeaderboardClanSearch');
 Route::post('/api/getLeaderboardFriendsSearch', 'PrivateController@getLeaderboardFriendsSearch');
+Route::post('/api/getFriendsListSearch/{id}', 'UserController@getFriendsListSearch');
+Route::post('/api/getClanSearch/{id}', 'ClanController@getClanSearch');
 
 // Posts
 Route::get('posts', 'PostController@list');
@@ -66,3 +69,6 @@ Route::get('user/{username}', 'UserController@show');
 Route::get('createClanPage', 'ClanController@showCreateClanPage');
 Route::get('clan', 'ClanController@show');
 Route::get('clanSettings', 'ClanController@showClanSettings');
+
+// Admin
+Route::get('administrator', 'AdminController@show');
