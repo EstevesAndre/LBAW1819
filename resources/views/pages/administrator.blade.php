@@ -10,12 +10,12 @@
         </button>
     </h1>
     <div class="row admin-content my-4">
-        <div class="col-12 col-sm-12 col-md-4 bt-border">
+        <div class="col-12 col-sm-12 col-md-3 bt-border">
             <div class="nav flex-column nav-pills mb-3" id="v-pills-tab" role="tablist">
-                <a class="nav-link bg-secondary text-white text-center my-2 active" 
+                <a class="nav-link bg-secondary text-white text-center my-2" 
                     id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" 
                         aria-controls="v-pills-reports" aria-selected="true">Reports</a>
-                <a class="nav-link bg-secondary text-white text-center my-2" 
+                <a class="nav-link bg-secondary text-white text-center my-2 active" 
                     id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" 
                         aria-controls="v-pills-manage-users" aria-selected="false">Manage Users</a>
                 <a class="nav-link bg-secondary text-white text-center my-2" 
@@ -26,9 +26,11 @@
                         aria-controls="v-pills-administrators" aria-selected="false">Manage Administrators</a>
             </div>
         </div>
-        <div class="clan-page-info col-12 col-sm-12 col-md-8">
+        <div class="clan-page-info col-12 col-sm-12">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
+                <div class="tab-pane fade" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
+                </div>
+                <div class="mt-3 tab-pane fade show active" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">            
                     <h4 class="text-center">Manage Users</h4>
                     
                     <ul class="justify-content-center mt-3 nav nav-pills" role="tablist">
@@ -50,14 +52,30 @@
                                     <div class="search_icon"><i class="fas fa-search"></i></div>
                                 </div>
                             </div>
-                            <ul class="pl-0 shadow-lg users-list">
-                                {{-- @each('partials.chatFriend', $friends->slice(1,10), 'user') --}}
-                                
+                            
+                            <ul class="pl-2 shadow-lg users-list">
+                                @each('partials.adminUserList', $users->get(), 'user')
+                                @if($count > 7)
+                                    <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                                @endif
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="banned" role="tabpanel" aria-labelledby="banned-tab">
-                        
+                            <div class="d-flex justify-content-center mb-3 mr-3">
+                                <div class="searchbar">
+                                    <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                                    <div class="search_icon"><i class="fas fa-search"></i></div>
+                                </div>
+                            </div>
+
+                            <ul class="pl-0 shadow-lg users-list">
+                                {{-- @each('partials.adminUserList', $users, 'user') --}}
+                                @if($count > 7)
+                                    <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                                @endif
+                            </ul>
                         </div>
+<p>{{get_class($users->get())}}</p>
                     </div>
 
                     <div class="row">
