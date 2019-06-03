@@ -316,6 +316,7 @@ function addedCommentHandler() {
     
     let comment = JSON.parse(this.responseText);
     let comment_area = document.querySelector('.container.comments');
+    document.querySelector('.search-comment input').value = "";
     let comment_img = document.querySelector('.container.comments img');
     let current_comms = comment_area.innerHTML;
 
