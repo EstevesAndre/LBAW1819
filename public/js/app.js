@@ -387,7 +387,7 @@ function addedMessageHandler() {
 function updatedChatHandler() {
 
     let reply = JSON.parse(this.responseText);
-    console.log(reply);
+
     let friend_id = document.querySelector('.friend-chat');
     let friend_names = document.querySelector('.friend-chat a');
     let friend_img = document.querySelector('.friend-chat img');

@@ -60,11 +60,11 @@ div.left-color {
 }
 
 .height-55 {
-    height: 55%;
+    height: 55% !important;
 }
 
 .height-45 {
-    max-height: 45%;
+    max-height: 45% !important;
 }
 
 .height-30 {
@@ -146,7 +146,7 @@ input:hover, textarea:hover {
 }
 
 .h-80 {
-    height: 80% !important;
+    height: 75% !important;
 }
 
 .w-90 {
