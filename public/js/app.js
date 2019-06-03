@@ -178,8 +178,9 @@ function sendAddMessageRequest(e) {
 function updateChatRequest(e) {
     e.preventDefault();
     console.log("Update chat request");
-    let friend_id = e.target.id;
-    sendAjaxRequest('put', '/api/update_chat/' + friend_id, null, updatedChatHandler);
+    let friend_id = e.target.closest("a.friend-list").getAttribute('id');
+
+    sendAjaxRequest('post', '/api/update_chat/' + friend_id, null, updatedChatHandler);
 }
 
 function setBanModalID(e) {
@@ -384,22 +385,13 @@ function addedMessageHandler() {
 
     let message = JSON.parse(this.responseText);
     let message_area = document.querySelector('#chatScroll');
-    message_area.innerHTML +=
-        '<div class="my-3 outgoing_msg">'
-        + '<div class="sent_msg w-50 mr-2">'
-        + '<p>' + message.message_text + '</p>'
-        + '<span class="text-right mt-0 pt-0 time_date">' + message.date.substring(0, 10)
-        + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + message.date.substring(11, 19)
-        + '&nbsp&nbsp'
-        + '</span>'
-        + '</div>'
-        + '</div>';
+    message_area.innerHTML += getChatMessage(message.message_text, message.date.substring(0,10), message.date.substring(11,19));
 }
 
 function updatedChatHandler() {
 
     let reply = JSON.parse(this.responseText);
-
+    console.log(reply);
     let friend_id = document.querySelector('.friend-chat');
     let friend_names = document.querySelector('.friend-chat a');
     let friend_img = document.querySelector('.friend-chat img');
@@ -407,28 +399,28 @@ function updatedChatHandler() {
     let path = friend_img.getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
-    friend_id.setAttribute('id', reply.friend_info[0].id);
-    friend_names.setAttribute('href', '/user/' + reply.friend_info[0].username);
-    friend_names.innerHTML = reply.friend_info[0].name;
-    friend_img.setAttribute('src', path_header + '/avatars/' + reply.friend_info[0].race + "_" + reply.friend_info[0].class + '_' + reply.friend_info[0].gender + '.bmp');
+    friend_id.setAttribute('id', reply.friend_info.id);
+    friend_names.setAttribute('href', '/user/' + reply.friend_info.username);
+    friend_names.innerHTML = reply.friend_info.name;
+    friend_img.setAttribute('src', path_header + '/avatars/' + reply.friend_info.race + "_" + reply.friend_info.class + '_' + reply.friend_info.gender + '.bmp');
 
     let message_area = document.querySelector('#chatScroll');
     message_area.innerHTML = "";
     for (let i = 0; i < reply.messages.length; i++) {
-        message_area.innerHTML +=
-            '<div class="my-3 outgoing_msg">'
-            + '<div class="sent_msg w-100 mx-2 align-items-right">'
-            + '<p class=" align-self-right text-right w-50">' + reply.messages[i].message_text + '</p>'
-            + '<span class="text-right mt-0 pt-0 time_date">'
-            + reply.messages[i].date.substring(0, 10)
-            + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp'
-            + reply.messages[i].date.substring(11, 19)
-            + '&nbsp&nbsp'
-            + '</span>'
-            + '</div>'
-            + '</div>';
+        message_area.innerHTML += getChatMessage(reply.messages[i].message_text, reply.messages[i].date.substring(0,10), reply.messages[i].date.substring(11,19));
     }
+}
 
+function getChatMessage(text, date1, date2) {
+    return  '<div class="my-3 outgoing_msg">'
+        +       '<div class="sent_msg w-50 text-right mr-2">'
+        +           '<p>' + text + '</p>'
+        +           '<span class="text-right mt-0 pt-0 time_date">' + date1
+        +               '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + date2
+        +               '&nbsp&nbsp'
+        +           '</span>'
+        +       '</div>'
+        +   '</div>';
 }
 
 addEventListeners();
