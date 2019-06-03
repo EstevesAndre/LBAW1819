@@ -11,7 +11,7 @@
             <div class="search-comment" data-toggle="modal" data-target="#postModal">
                 <input placeholder="  New publication..." type="text" class="w-100">
             </div>
-            <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#home_helpModal">
+            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">
                     <i class="fas fa-question-circle"></i>
             </button>
         </div>

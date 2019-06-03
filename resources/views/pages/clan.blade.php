@@ -24,7 +24,11 @@
                 </div>
                 <div class="col-sm-12 col-lg-7 my-2 text-left clan-bio">
                     <div class=" text-left basic-info">
-                        <h2><b>{{ $clan->name }}</b></h2>
+                        <h2><b>{{ $clan->name }}</b>
+                            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#clan_helpModal">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
+                        </h2>
                         <p>{{ $clan->description }}</p>
                         @if($clan->owner()->get()[0]->id == Auth::user()->id)
                             <div class="my-2"><a class="no-hover standard-text" href="{{ url('/clanSettings') }}"><i
@@ -39,9 +43,6 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#clan_helpModal">
-                <i class="fas fa-question-circle"></i>
-        </button>
         <div class="clan-page-info">
             <ul class="mt-5 nav nav-tabs" id="clan-tabs" role="tablist">
                 <li class="nav-item">
@@ -66,7 +67,7 @@
                         <div class="search-comment" data-toggle="modal" data-target="#postModal">
                             <input placeholder="  New publication..." type="text" class="w-100">
                         </div>
-                        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#home_helpModal">
+                        <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">
                                 <i class="fas fa-question-circle"></i>
                         </button>
                     </div>

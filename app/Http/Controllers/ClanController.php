@@ -68,7 +68,13 @@ class ClanController extends Controller
 
         $blocked = $clan->blocked()->get();
 
-        return view('pages.clanSettings', ['clan' => $clan, 'members' => $members, 'blocked' => $blocked]);
+        $idClanMembers = [];
+        foreach($clan->members()->get() as $member)
+            array_push($idClanMembers, $member->id);
+
+        $potentialUsers = User::whereNotIn('id', $idClanMembers)->limit(7)->get();
+
+        return view('pages.clanSettings', ['clan' => $clan, 'members' => $members, 'blocked' => $blocked, 'potentialUsers' => $potentialUsers]);
     }
 
     public function update(Request $request, $id){

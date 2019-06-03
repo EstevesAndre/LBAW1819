@@ -5,7 +5,7 @@
 <br />
 <div class="container justify-content-center fullscreen-3-4 my-5">
     <h1>Create Your Clan</h1>
-    <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#createclan_helpModal">
+    <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#createclan_helpModal">
             <i class="fas fa-question-circle"></i>
     </button>
     <div class="text-left">

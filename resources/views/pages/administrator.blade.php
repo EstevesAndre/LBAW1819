@@ -5,7 +5,7 @@
 <br>
 <div class="container justify-content-center my-5">
     <h1 class="text-center"><b>Administrator's Page</b>
-        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#clan_helpModal">
+        <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#clan_helpModal">
             <i class="fas fa-question-circle"></i>
         </button>
     </h1>
@@ -344,7 +344,7 @@
 </div>
 <!-- Add permissions Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addModalLabel">Add Administrator</h5>

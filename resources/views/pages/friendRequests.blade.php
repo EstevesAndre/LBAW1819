@@ -7,7 +7,7 @@
     
     <div class="col-sm-12 col-md-8 col-lg-9 my-3 activity">
         <h1 class="text-left"><b>Friend Requests</b></h1>
-        <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#friendrequests_helpModal">
+        <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#friendrequests_helpModal">
                 <i class="fas fa-question-circle"></i>
         </button>
         <div class="clan-page-info">

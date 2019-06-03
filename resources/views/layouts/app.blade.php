@@ -54,7 +54,7 @@
                             </li>
                             <!-- Button trigger modal -->
                             <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#nav_helpModal">
-                                    <i class="fas fa-question-circle"></i>
+                                <i class="fas fa-question-circle"></i>
                             </button>
                         </ul>
                         <div class="d-flex justify-content-center mr-2">
