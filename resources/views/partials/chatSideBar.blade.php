@@ -2,25 +2,24 @@
     @if($friends->count() == 0) 
         <p class="text-center"><small>Add a friend to chat with him!</small></p>
     @else
-        <div class="d-flex justify-content-center">
-            <div class="searchbar searchbar-fixed">
-                <input class="search_input search_fixed" type="text" name="" placeholder="Search...">
-                <a href="" class="search_icon"><i class="fas fa-search"></i></a>
-            </div>
+    <div class="d-flex justify-content-center">
+        <div class="searchbar searchbar-fixed">
+            <input class="search_input search_fixed" type="text" name="" placeholder="Search...">
+            <a href="" class="search_icon"><i class="fas fa-search"></i></a>
         </div>
-        <div class="height-45 scroolable">
-            <div class="list-group text-left" id="list-tab" role="tablist">
-                <a class="friend-list list-group-item list-group-item-action active" id="{{ $friends[0]->id }}" data-toggle="list" href="#list-{{ $friends[0]->id }}" aria-controls="{{ $friends[0]->id }}">
-                    <img src="{{ asset('assets/avatars/'.$friends[0]->race.'_'.$friends[0]->class.'_'.$friends[0]->gender.'.bmp') }}" alt="logo" width="25" class="mr-2 border bg-warning img-fluid rounded-circle">
-                {{ $friends[0]->name }}
-                </a>
-                @each('partials.chatFriend', $friends->slice(1)->take(14), 'user')
-                @if(count($friends) > 15)
-                    <p class="text-center list-group-item p-0 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                @endif
-            </div>
+    </div>
+    <div class="height-45 scroolable">
+        <div class="list-group text-left" id="list-tab" role="tablist">
+            <a class="friend-list list-group-item list-group-item-action active" id="{{ $friends[0]->id }}" data-toggle="list" href="#list-{{ $friends[0]->id }}" aria-controls="{{ $friends[0]->id }}">
+                <img src="{{ asset('assets/avatars/'.$friends[0]->race.'_'.$friends[0]->class.'_'.$friends[0]->gender.'.bmp') }}" alt="logo" width="25" class="mr-2 border bg-warning img-fluid rounded-circle">
+            {{ $friends[0]->name }}
+            </a>
+            @each('partials.chatFriend', $friends->slice(1)->take(14), 'user')
+            @if(count($friends) > 15)
+                <p class="text-center list-group-item p-0 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+            @endif
         </div>
-    @endif
+    </div>
     <div class="border-left height-45 friend-chat">
         <div class="py-3 px-3 border rounded text-left tab-content chat-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-1-list">
@@ -38,4 +37,5 @@
             <button type="submit" class="btn btn-primary m-1 float-right" id="send-button">&#9993;</button>
         </div>
     </div>
+    @endif
 </div>

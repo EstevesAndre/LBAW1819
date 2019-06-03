@@ -185,6 +185,28 @@ function sendBanMemberRequest(e) {
     e.preventDefault();
 
     let member_id = e.target.id;
+
+    console.log(member_id);
+
+    let motives = document.querySelectorAll('.form-check-input');
+    var checkedMotives = [];
+
+    for (let i = 0; i < motives.length; i++) {
+        // And stick the checked ones onto an array...
+        if (motives[i].checked) {
+            checkedMotives.push(motives[i]);
+        }
+     }
+   }
+
+   if(checkedMotives.length == 0){
+       console.log(document.querySelector());
+       return;
+   }
+
+
+
+    console.log(motives);
     
     sendAjaxRequest('post', '/api/banMember/' + member_id, null, banMemberHandler);
 }

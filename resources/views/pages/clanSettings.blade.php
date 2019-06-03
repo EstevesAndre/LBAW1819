@@ -215,23 +215,15 @@
                                     <div class="modal-body">
                                         <p>Are you sure that you want to ban this Clan Member?</p>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                                Innapropriate behaviour
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="Innapropriate behaviour" id="defaultCheck1">Innapropriate behaviour
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                                            <label class="form-check-label" for="defaultCheck2">
-                                                Abusive content
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="Abusive content" id="defaultCheck2">Abusive content
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                                            <label class="form-check-label" for="defaultCheck3">
-                                                Racism
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="Racism" id="defaultCheck3">Racism
                                         </div>
+
                                         <button class="btn btn-secondary w-75 mt-3 dropdown-toggle" type="button" id="dropdownBanButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Ban Duration
