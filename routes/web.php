@@ -65,3 +65,6 @@ Route::get('user/{username}', 'UserController@show');
 Route::get('createClanPage', 'ClanController@showCreateClanPage');
 Route::get('clan', 'ClanController@show');
 Route::get('clanSettings', 'ClanController@showClanSettings');
+
+// Admin
+Route::get('administrator', 'AdminController@show');
