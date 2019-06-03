@@ -21,8 +21,9 @@ class AdminController extends Controller
 
         if (!Auth::user()->is_admin) return redirect('/login');
 
-        
+        $bannedUsers = DB::table('blockeds');
+        $count = DB::table('users')->get()->count();
 
-        return view('pages.administrator');
+        return view('pages.administrator', ['users' => $bannedUsers, 'count' => $count]);
     }
 }

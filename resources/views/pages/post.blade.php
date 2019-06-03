@@ -69,9 +69,11 @@
                     </div>
                     <div class="media m-0">
                         <div class="d-flex m-3">
-                            <a href="/user/{{ $post->user()->get()[0]->username }}"><img class="img-fluid rounded-circle" 
-                                src="{{ asset('assets/avatars/'.$post->user()->get()[0]->race.'_'.$post->user()->get()[0]->class.'_'.$post->user()->get()[0]->gender.'.bmp') }}"
-                                    alt="User"></a>
+                            <a href="/user/{{ $post->user()->get()[0]->username }}">
+                                <img class="img-fluid rounded-circle" 
+                                    src="{{ asset('assets/avatars/'.$post->user()->get()[0]->race.'_'.$post->user()->get()[0]->class.'_'.$post->user()->get()[0]->gender.'.bmp') }}"
+                                    alt="User">
+                            </a>
                         </div>
                         <div class="media-body ml-1 align-self-center">
                             <p class="text-dark m-0 user-link">
