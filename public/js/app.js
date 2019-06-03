@@ -248,19 +248,15 @@ function sendBanMemberRequest(e) {
         
     }
 
-    console.log(formattedDate);
-    console.log(member_id);
-    console.log(checkedMotive);
-
     sendAjaxRequest('put', '/api/banMember/' + member_id, { motive: checkedMotive, endDate: formattedDate }, banMemberHandler);
 }
 
 function sendUnBanMemberRequest(e) {
     e.preventDefault();
     let blocked_id = e.target.id;
-    console.log("Unban Member");
+    let clan_id = document.querySelector('.settings').getAttribute('data-id');
 
-    sendAjaxRequest('post', '/api/unbanMember/' + blocked_id, null, unbanMemberHandler);
+    sendAjaxRequest('put', '/api/unbanMember/' + blocked_id + '+' + clan_id, null, unbanMemberHandler);
 }
 
 // Handlers
@@ -528,11 +524,11 @@ function banMemberHandler(){
 
     active_list.removeChild(active_banned);
 
-    banned_list.insertAdjacentHTML("afterbegin",'<li class="p-2 ml-3">' + 
+    banned_list.insertAdjacentHTML("afterbegin",'<li class="p-2 ml-3" data-id="' + banned.id + '">' + 
                             '<div class="d-flex align-items-center row">' + 
                                 '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">' + 
                                     '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
-                                    'src="{{asset(\'assets/avatars/' + banned.race + '_' + banned.class + '_' + banned.gender + '.bmp\')}} alt="Clan">' + 
+                                    'src="assets/avatars/' + banned.race + '_' + banned.class + '_' + banned.gender + '.bmp" alt="Clan">' + 
                                 '</div>' + 
                                 '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + banned.username + '">' + banned.name + '</a></div>' + 
                                 '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
@@ -542,6 +538,45 @@ function banMemberHandler(){
                                 '</div>' + 
                             '</div>' + 
                         '</li>');
+
+    let unbanMember = document.querySelectorAll('.unban_member');
+    [].forEach.call(unbanMember, function (blocked) {
+        blocked.addEventListener('click', sendUnBanMemberRequest);
+    });
+}
+
+function unbanMemberHandler(){
+    
+    let reply = JSON.parse(this.responseText);
+    let unbanned = reply.unbanned;    
+
+    let active_list = document.querySelector('ul.active'); //list of active members
+    let banned_list = document.querySelector('ul.banned'); //list of banned members
+    let banned_active = document.querySelector('ul.banned [data-id="' + unbanned.id + '"]'); //member in banned list that was unbanned
+
+    console.log(banned_active);
+
+    banned_list.removeChild(banned_active);
+
+    active_list.insertAdjacentHTML("afterbegin",'<li class="p-2 ml-3" data-id="' + unbanned.id + '">' + 
+                            '<div class="d-flex align-items-center row">' + 
+                                '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">' + 
+                                    '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
+                                    'src="assets/avatars/' + unbanned.race + '_' + unbanned.class + '_' + unbanned.gender + '.bmp" alt="Clan">' + 
+                                '</div>' + 
+                                '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + unbanned.username + '">' + unbanned.name + '</a></div>' + 
+                                '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
+                                   '<button type="button" class="unban_member btn btn-danger btn-sm" id="' + unbanned.id +'">' + 
+                                        '<i class="fas fa-user-times"></i> Ban Member' + 
+                                    '</button>' + 
+                                '</div>' + 
+                            '</div>' + 
+                        '</li>');
+
+    let banMember = document.querySelectorAll('.ban_member');
+    [].forEach.call(banMember, function (blocked) {
+        blocked.addEventListener('click', sendBanMemberRequest);
+    });
 }
 // ---------------------------------------------------------------------------------------------------------------------//
 
