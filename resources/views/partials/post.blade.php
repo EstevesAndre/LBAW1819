@@ -1,4 +1,4 @@
-@if($post->user_id == Auth::user()->id)
+@if($post->user_id == Auth::user()->id || Auth::user()->is_admin)
     <div class="modal postModal fade" id="deletePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -31,7 +31,7 @@
                     aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
                 <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
                     <a class="dropdown-item" href="#">Report</a>
-                    @if($post->user_id == Auth::user()->id)
+                    @if($post->user_id == Auth::user()->id || Auth::user()->is_admin)
                         <a class="dropdown-item" data-toggle="modal" data-target="#deletePostModal-{{ $post->id }}">Delete</a>
                     @endif
                 </div>

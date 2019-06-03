@@ -262,6 +262,8 @@ function deletedPostHandler() {
         let postHTML = document.querySelector('div.post[data-id="' + post.id + '"]');
         postHTML.innerHTML = '';
     }
+
+    window.location.href = '../home';
 }
 
 function userNotificationsHandler() {
