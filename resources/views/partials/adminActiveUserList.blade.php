@@ -1,4 +1,4 @@
-{{-- <li class="p-2 ml-4">
+<li class="p-2 ml-4">
     <div class="d-flex align-items-center row">
         <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
             <img width="50" class="border img-fluid rounded-circle" alt="Clan"
@@ -12,7 +12,4 @@
             </button>
         </div>
     </div>
-</li> --}}
-<p> 
-    {{ $user->id }}
-</p>
+</li>

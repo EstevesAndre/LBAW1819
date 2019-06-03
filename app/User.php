@@ -88,4 +88,9 @@ class User extends Authenticatable
             ->orderBy('date', 'DESC')
             ->get();
     }
+
+    public function isBanned() {
+        return $this->hasOne('App\Blocked', 'user_id');
+    }
+
 }
