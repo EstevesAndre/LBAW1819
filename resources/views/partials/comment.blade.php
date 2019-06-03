@@ -5,10 +5,10 @@
             src="{{ asset('assets/avatars/'.$comment->user()->get()[0]->race.'_'.$comment->user()->get()[0]->class.'_'.$comment->user()->get()[0]->gender.'.bmp') }}"
             alt="User"></a>
     </span>
-    <div class="comment-data pl-1 pr-0">
+    <div class="w-90 comment-data pl-1 pr-0">
         <p class="pt-3">{{ $comment->comment_text }}</p>
     </div>
-    <span class="delete-comment">
+    <span class="ml-2 delete-comment">
         <a><i class="fas fa-times"></i></a>
     </span>
 </div>
