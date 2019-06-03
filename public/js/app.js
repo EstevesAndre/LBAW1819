@@ -24,6 +24,11 @@ function addEventListeners() {
         delPost.addEventListener('click', sendDeletePostRequest);
     });
 
+    let deleteComment = document.querySelectorAll('.delete-comment>a>i');
+    [].forEach.call(deleteComment, function (delCom) {
+        delCom.addEventListener('click', sendDeleteCommentRequest);
+    });
+
     let notifications = document.querySelector('#notifications > button');
     if (notifications) notifications.addEventListener('click', sendUserNotificationsRequest);
 
@@ -134,6 +139,17 @@ function sendDeletePostRequest(e) {
         return;
 
     sendAjaxRequest('delete', '/api/post/' + post_id, null, deletedPostHandler);
+}
+
+function sendDeleteCommentRequest(e) {
+    console.log("Comment delete request");
+
+    let comment_id = this.closest('span.delete-comment').getAttribute('id');
+
+    if (comment_id == null)
+        return;
+
+    sendAjaxRequest('delete', '/api/comment/' + comment_id, null, deletedCommentHandler);
 }
 
 function sendUserNotificationsRequest(e) {
@@ -264,6 +280,17 @@ function deletedPostHandler() {
     }
 
     window.location.href = '../home';
+}
+
+function deletedCommentHandler() {
+    console.log("Comment deleted - status: " + this.status);
+
+    if (this.status == 200) {
+        let comment = JSON.parse(this.responseText);
+
+        let commentHTML = document.querySelector('div.comment[id="' + comment.id + '"]');
+        commentHTML.innerHTML = '';
+    }
 }
 
 function userNotificationsHandler() {

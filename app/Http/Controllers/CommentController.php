@@ -20,4 +20,16 @@ class CommentController extends Controller
 
         return $comment;
     }
+
+    public function delete(Request $request, $id) 
+    {
+        $comment = Comment::find($id);
+
+        if($comment->post_id != Auth::user()->id && !Auth::user()->is_admin)
+            return response()->json(['deleted' => false, 'status' => $status ]);
+        
+        $comment->delete();
+        
+        return $comment;
+    }
 }
