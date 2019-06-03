@@ -85,4 +85,27 @@ class ClanController extends Controller
 
         return redirect('clan');
     }
+
+    public function banMember(Request $request, $id){
+        
+        $endDate = $request->input('endDate') == -1? null : $request->input('endDate');
+
+        DB::table('blockeds')->insert(
+            ['user_id' => $id, 'clan' =>Auth::user()->clan()->get()[0]->id, 'date' => $endDate, 'motive' => $request->input('motive')]
+        );
+
+        DB::table('user_clans')
+                ->where('user_id' , $id)
+                ->delete();
+
+        $banned_member = User::find($id);
+
+        return response()->json(['banned' => $banned_member]); 
+    }
+
+    public function unbanMember(Request $request, $id){
+        
+
+        return redirect('clan');
+    }
 }

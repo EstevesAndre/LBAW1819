@@ -215,29 +215,29 @@
                                     <div class="modal-body">
                                         <p>Are you sure that you want to ban this Clan Member?</p>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Innapropriate behaviour" id="defaultCheck1">Innapropriate behaviour
+                                            <input class="form-check-input" name="motive" type="radio" value="Inappropriate behaviour" id="defaultCheck1">Inappropriate behaviour
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Abusive content" id="defaultCheck2">Abusive content
+                                            <input class="form-check-input" name="motive" type="radio" value="Abusive content" id="defaultCheck2">Abusive content
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Racism" id="defaultCheck3">Racism
+                                            <input class="form-check-input" name="motive" type="radio" value="Racism" id="defaultCheck3">Racism
                                         </div>
-
-                                        <button class="btn btn-secondary w-75 mt-3 dropdown-toggle" type="button" id="dropdownBanButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Ban Duration
-                                        </button>
-                                        <div class="dropdown-menu mr-4 w-50 text-center" aria-labelledby="dropdownBanButton">
-                                            <a class="dropdown-item">7 days</a>
-                                            <a class="dropdown-item">2 weeks</a>
-                                            <a class="dropdown-item">1 month</a>
-                                            <a class="dropdown-item">3 months</a>
-                                            <a class="dropdown-item">6 months</a>
-                                            <a class="dropdown-item">1 year</a>
-                                            <a class="dropdown-item">Forever</a>
-                                        </div>
-                                        <button type="button" id="" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
+                                        
+                                        <br>
+                                        <p>Ban Duration</p>
+                                        <select class="form-control bg-dark .text-light w-75 mt-3" id="exampleFormControlSelect1">
+                                            <option value="0" selected disabled>Ban Duration</option>
+                                            <option value="7">7 days</option>
+                                            <option value="14">2 weeks</option>
+                                            <option value="31">1 month</option>
+                                            <option value="93">3 months</option>
+                                            <option value="186">6 months</option>
+                                            <option value="365">1 year</option>
+                                            <option value="-1">Forever</option>
+                                        </select>
+                                        <p class="error-msg"></p>
+                                        <button type="button" id="" data-dismiss="modal" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
                                     </div>
                                 </div>
                             </div>
@@ -361,11 +361,19 @@
                                 <a href="" class="search_icon"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
-                        <ul class="pl-0 shadow-lg users-list">
+
+                        <h3>Active Members</h3>
+                        <ul class="active pl-0 shadow-lg users-list">
                                 @each('partials.clanSettingsMembers', $members, 'member')
+                            <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                        </ul>
+                        
+                        <h3>Banned Members</h3>
+                        <ul class="banned pl-0 shadow-lg users-list">
                                 @each('partials.clanSettingsBlocked', $blocked, 'blocked')
                             <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                         </ul>
+                       
         
                         <div class="mt-4">
                             <button type="button" class="btn btn-success float-right" data-toggle="modal"

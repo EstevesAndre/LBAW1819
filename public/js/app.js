@@ -39,33 +39,27 @@ function addEventListeners() {
     });
 
     let scrool = document.getElementById('chatScroll');
-    if(scrool) scrool.scrollTop = scrool.scrollHeight;
-    
+    if (scrool) scrool.scrollTop = scrool.scrollHeight;
+
     let hasChat = document.querySelector('.has-chat');
-    
-    if(hasChat != null)
-    {
-      let auth_id = document.querySelector('.has-chat').id;
-      let friend_id = document.querySelector('.friend-chat').id;
 
-      Echo.private('chat' + auth_id) //TODO add receiver id to channel name
-      .listen('MessageSent', (e) => {
-        if(e.sender == friend_id){
-          let message_area = document.querySelector('#chat-body');
-          message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text +'</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
+    if (hasChat != null) {
+        let auth_id = document.querySelector('.has-chat').id;
+        let friend_id = document.querySelector('.friend-chat').id;
 
-        }
-      });
+        Echo.private('chat' + auth_id) //TODO add receiver id to channel name
+            .listen('MessageSent', (e) => {
+                if (e.sender == friend_id) {
+                    let message_area = document.querySelector('#chat-body');
+                    message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text + '</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
+
+                }
+            });
     }
 
-    let openbanModal = document.querySelectorAll('.ban_member');
-    [].forEach.call(openbanModal, function (member) {
+    let openBanModal = document.querySelectorAll('.ban_member');
+    [].forEach.call(openBanModal, function (member) {
         member.addEventListener('click', setBanModalID);
-    });
-
-    let banMember = document.querySelectorAll('.ban_modal');
-    [].forEach.call(banMember, function (blocked) {
-        blocked.addEventListener('click', sendBanMemberRequest);
     });
 
     let unbanMember = document.querySelectorAll('.unban_member');
@@ -122,7 +116,7 @@ function sendAddPostRequest(e) {
 
     let clanID = document.querySelector('#postModal>div>div>div.modal-body>input').value;
 
-   sendAjaxRequest('put', '/api/post', { content: content, clanID : clanID}, addedPostHanlder);
+    sendAjaxRequest('put', '/api/post', { content: content, clanID: clanID }, addedPostHanlder);
 }
 
 function sendDeletePostRequest(e) {
@@ -155,7 +149,7 @@ function sendAddCommentRequest(e) {
 function sendAddMessageRequest(e) {
     e.preventDefault();
     console.log("Add message request");
-    
+
     let message = document.querySelector('#message-send > input');
     let input = message.value;
     message.value = '';
@@ -179,40 +173,75 @@ function setBanModalID(e) {
     let modal = document.querySelector('.ban_modal');
 
     modal.setAttribute('id', id);
+
+    let modal_error = document.querySelector('#banModal .modal-body .error-msg');
+    modal_error.innerHTML = "";
+
+    let banMember = document.querySelector('.ban_modal');
+    banMember.addEventListener('click', sendBanMemberRequest);
 }
 
 function sendBanMemberRequest(e) {
     e.preventDefault();
 
     let member_id = e.target.id;
-
-    console.log(member_id);
-
     let motives = document.querySelectorAll('.form-check-input');
-    var checkedMotives = [];
+    let checkedMotive = "";
 
+    //get checked motive
     for (let i = 0; i < motives.length; i++) {
-        // And stick the checked ones onto an array...
         if (motives[i].checked) {
-            checkedMotives.push(motives[i]);
+            checkedMotive = motives[i].value;
+            break;
         }
-     }
-   }
+    }
 
-   if(checkedMotives.length == 0){
-       console.log(document.querySelector());
-       return;
-   }
+    //at least one must be checked
+    if (checkedMotive == "") {
+        let modal_error = document.querySelector('#banModal .modal-body .error-msg');
+        modal_error.innerHTML = 'Please select at least one motive!';
+        return;
+    }
 
+    let durations = document.querySelectorAll('.modal-body .form-control option');
+    let selectedDuration = "";
 
+    //get selected duration
+    for (let i = 0; i < durations.length; i++) {
+        if (durations[i].selected) {
+            selectedDuration = parseInt(durations[i].value);
+            break;
+        }
+    }
 
-    console.log(motives);
+    if (selectedDuration == 0) {
+        let modal_error = document.querySelector('#banModal .modal-body .error-msg');
+        modal_error.innerHTML = 'Please select a ban duration';
+        return;
+    }
+
+    let formattedDate = selectedDuration;
     
-    sendAjaxRequest('post', '/api/banMember/' + member_id, null, banMemberHandler);
+    if(selectedDuration != -1){
+        let endDate = new Date();
+        endDate.setDate(endDate.getDate() + selectedDuration);
+
+        let date = endDate.toISOString().replace('Z', '').replace('T', ' ');
+        formattedDate = date.substr(0, date.lastIndexOf('.'));
+
+        
+    }
+
+    console.log(formattedDate);
+    console.log(member_id);
+    console.log(checkedMotive);
+
+    sendAjaxRequest('put', '/api/banMember/' + member_id, { motive: checkedMotive, endDate: formattedDate }, banMemberHandler);
 }
 
 function sendUnBanMemberRequest(e) {
     e.preventDefault();
+    let blocked_id = e.target.id;
     console.log("Unban Member");
 
     sendAjaxRequest('post', '/api/unbanMember/' + blocked_id, null, unbanMemberHandler);
@@ -289,34 +318,34 @@ function userNotificationsHandler() {
 }
 
 function addedCommentHandler() {
-    
+
     let comment = JSON.parse(this.responseText);
     let comment_area = document.querySelector('.container.comments');
     let current_comms = comment_area.innerHTML;
     comment_area.innerHTML = '<div class="d-flex align-items-center" id="' + comment.id + '"><span class="comment-avatar float-left mr-2"><a href="/user/' + comment.user_id + '"><img class="rounded-circle bg-warning" src="/assets/logo.png" alt="Avatar"></a></span><div class="comment-data pl-1 pr-0"><p class="pt-3">' + comment.comment_text + '</p></div></div>';
-    comment_area.innerHTML  += current_comms;
+    comment_area.innerHTML += current_comms;
 }
 
 function addedMessageHandler() {
-    
+
     let message = JSON.parse(this.responseText);
     let message_area = document.querySelector('#chatScroll');
-    message_area.innerHTML += 
-          '<div class="my-3 outgoing_msg">'
-        +   '<div class="sent_msg w-50 mr-2">' 
-        +       '<p>' + message.message_text +'</p>'
-        +       '<span class="text-right mt-0 pt-0 time_date">' + message.date.substring(0, 10) 
-        +           '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + message.date.substring(11, 19)
-        +           '&nbsp&nbsp'
-        +       '</span>'
-        +   '</div>'
+    message_area.innerHTML +=
+        '<div class="my-3 outgoing_msg">'
+        + '<div class="sent_msg w-50 mr-2">'
+        + '<p>' + message.message_text + '</p>'
+        + '<span class="text-right mt-0 pt-0 time_date">' + message.date.substring(0, 10)
+        + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + message.date.substring(11, 19)
+        + '&nbsp&nbsp'
+        + '</span>'
+        + '</div>'
         + '</div>';
 }
 
-function updatedChatHandler(){
-    
+function updatedChatHandler() {
+
     let reply = JSON.parse(this.responseText);
-    
+
     let friend_id = document.querySelector('.friend-chat');
     let friend_names = document.querySelector('.friend-chat a');
     let friend_img = document.querySelector('.friend-chat img');
@@ -328,22 +357,22 @@ function updatedChatHandler(){
     friend_names.setAttribute('href', '/user/' + reply.friend_info[0].username);
     friend_names.innerHTML = reply.friend_info[0].name;
     friend_img.setAttribute('src', path_header + '/avatars/' + reply.friend_info[0].race + "_" + reply.friend_info[0].class + '_' + reply.friend_info[0].gender + '.bmp');
-    
+
     let message_area = document.querySelector('#chatScroll');
-    message_area.innerHTML = "";  
-    for(let i = 0; i < reply.messages.length;i++){
-        message_area.innerHTML += 
-          '<div class="my-3 outgoing_msg">'
-        +   '<div class="sent_msg w-100 mx-2 align-items-right">'
-        +       '<p class=" align-self-right text-right w-50">' + reply.messages[i].message_text +'</p>'
-        +       '<span class="text-right mt-0 pt-0 time_date">' 
-        +           reply.messages[i].date.substring(0, 10) 
-        +           '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' 
-        +           reply.messages[i].date.substring(11, 19) 
-        +           '&nbsp&nbsp'
-        +       '</span>'
-        +   '</div>'
-        + '</div>';
+    message_area.innerHTML = "";
+    for (let i = 0; i < reply.messages.length; i++) {
+        message_area.innerHTML +=
+            '<div class="my-3 outgoing_msg">'
+            + '<div class="sent_msg w-100 mx-2 align-items-right">'
+            + '<p class=" align-self-right text-right w-50">' + reply.messages[i].message_text + '</p>'
+            + '<span class="text-right mt-0 pt-0 time_date">'
+            + reply.messages[i].date.substring(0, 10)
+            + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp'
+            + reply.messages[i].date.substring(11, 19)
+            + '&nbsp&nbsp'
+            + '</span>'
+            + '</div>'
+            + '</div>';
     }
 
 }
@@ -352,26 +381,23 @@ addEventListeners();
 
 let lastSearch = "";
 
-function getSearchInfo() 
-{
+function getSearchInfo() {
     let currentSearch = document.querySelector('#leaderboard-content>.active .leaderboard_search>input').value;
-    
-    if(lastSearch == currentSearch)
+
+    if (lastSearch == currentSearch)
         return;
     lastSearch = currentSearch;
     return currentSearch;
 }
 
-function updateSearchGlobal() 
-{
+function updateSearchGlobal() {
     let search = getSearchInfo();
 
     // send AJAX request
     sendAjaxRequest('post', '/api/getLeaderboardGlobalSearch/', { search: search }, updateSearchHandler);
 }
 
-function updateSearchClan() 
-{
+function updateSearchClan() {
     let search = getSearchInfo();
 
     // send AJAX request
@@ -379,8 +405,7 @@ function updateSearchClan()
 
 }
 
-function updateSearchFriends() 
-{
+function updateSearchFriends() {
     let search = getSearchInfo();
 
     // send AJAX request
@@ -399,23 +424,48 @@ function updateSearchHandler() {
     let path = img.getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
-    reply.users.forEach(function(element) {
+    reply.users.forEach(function (element) {
 
         list.innerHTML +=
-            '<button data-id="/user/' + element.username + '" type="button" class="text-left list-group-item border-0 list-group-item-action">' + 
-                '<li class="ml-3">' + 
-                    '<div class="d-flex align-items-center row">' + 
-                        '<div class="col-2 col-sm-1 friend-img">' + 
-                            '<img src="' + path_header + '/avatars/' + 
-                                        element.race + '_' + element.class + '_' + element.gender + '.bmp"' + 'alt=logo' + 
-                                ' class="border bg-light img-fluid rounded-circle">' + 
-                        '</div>' +
-                        '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
-                        '<div class="col-3 col-sm-5 text-right">' + element.xp + '</div>' + 
-                    '</div>' + 
-                '</li>' + 
+            '<button data-id="/user/' + element.username + '" type="button" class="text-left list-group-item border-0 list-group-item-action">' +
+            '<li class="ml-3">' +
+            '<div class="d-flex align-items-center row">' +
+            '<div class="col-2 col-sm-1 friend-img">' +
+            '<img src="' + path_header + '/avatars/' +
+            element.race + '_' + element.class + '_' + element.gender + '.bmp"' + 'alt=logo' +
+            ' class="border bg-light img-fluid rounded-circle">' +
+            '</div>' +
+            '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
+            '<div class="col-3 col-sm-5 text-right">' + element.xp + '</div>' +
+            '</div>' +
+            '</li>' +
             '</button>';
-      });
+    });
+}
 
+function banMemberHandler(){
+    
+    let reply = JSON.parse(this.responseText);
+    let banned = reply.banned;    
 
+    let active_list = document.querySelector('ul.active'); //list of active members
+    let banned_list = document.querySelector('ul.banned'); //list of banned members
+    let active_banned = document.querySelector('ul.active [data-id="' + banned.id + '"]'); //member in active list that was banned
+
+    active_list.removeChild(active_banned);
+
+    banned_list.insertAdjacentHTML("afterbegin",'<li class="p-2 ml-3">' + 
+                            '<div class="d-flex align-items-center row">' + 
+                                '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">' + 
+                                    '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
+                                    'src="{{asset(\'assets/avatars/' + banned.race + '_' + banned.class + '_' + banned.gender + '.bmp\')}} alt="Clan">' + 
+                                '</div>' + 
+                                '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + banned.username + '">' + banned.name + '</a></div>' + 
+                                '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
+                                   '<button type="button" class="unban_member btn btn-success btn-sm" id="' + banned.id +'">' + 
+                                        '<i class="fas fa-user-plus"></i> Unban Member' + 
+                                    '</button>' + 
+                                '</div>' + 
+                            '</div>' + 
+                        '</li>');
 }

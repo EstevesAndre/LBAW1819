@@ -156,7 +156,7 @@ CREATE TABLE blockeds (
     user_id INTEGER NOT NULL REFERENCES "users" (id),
     clan INTEGER REFERENCES "clans" (id),
     admin INTEGER REFERENCES "users" (id),
-    "date" TIMESTAMP WITH TIME zone NOT NULL,
+    "date" TIMESTAMP WITH TIME zone NULL,
     motive motiveEnum NOT NULL
 );
  
