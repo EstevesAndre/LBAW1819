@@ -633,7 +633,7 @@ VALUES('bernas.silva@gmail.com', 'EuSouOBernas', '$2y$12$m8f/MWb5VFOGvlpLK8sDluU
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
 VALUES('rafa_slb@gmail.com', 'JustRafa', '#9sYEtAg', 'Leonel Silva', '1997-03-18', 'Elf', 'Fighter', 'Male', 960, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
-VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', '3TEAM3', '1998-04-22', 'Human', 'Fighter', 'Female', 960, FALSE);
+VALUES('test@test.com', 'lbaw1843', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', '3TEAM3', '1998-04-22', 'Human', 'Fighter', 'Female', 960, TRUE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
 VALUES('t@t.com', 'user22', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'CestLaVie', '1998-04-22', 'Human', 'Wizard', 'Female', 960, FALSE);
 
