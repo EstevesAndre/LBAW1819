@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Blocked;
+use App\Clan;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,14 +23,31 @@ class AdminController extends Controller
 
         if (!Auth::user()->is_admin) return redirect('/login');
 
-        $bannedUsers = Blocked::all();
+        $allBans = Blocked::all();
         
-        $idBanned = [];
-        foreach($bannedUsers as $banned)
-            array_push($idBanned, $banned->user_id);
+        $idUserBanned = [];
+        $idClanBanned = [];
+        foreach($allBans as $banned) {
+            if($banned->user()->get()->isEmpty())
+                array_push($idClanBanned, $banned->clan);
+            else
+                array_push($idUserBanned, $banned->user_id);
+        }
 
-        $activeUsers = User::whereNotIn('id', $idBanned)->get();
+        $activeUsers = User::whereNotIn('id', $idUserBanned)->get();
+        $bannedUsers = User::whereIn('id', $idUserBanned)->get();
 
-        return view('pages.administrator', ['activeUsers' => $activeUsers, 'bannedUsers' => $bannedUsers]);
+        $activeClans = Clan::whereNotIn('id', $idClanBanned)->get();
+        $bannedClans = Clan::whereIn('id', $idClanBanned)->get();
+
+        $admins = User::where('is_admin',TRUE)->whereNotIn('id', $idUserBanned)->get();
+        $potentialAdmins = User::where('is_admin', FALSE)->whereNotIn('id', $idUserBanned)->limit(7)->get();
+
+        return view('pages.administrator', ['activeUsers' => $activeUsers, 
+                                            'bannedUsers' => $bannedUsers, 
+                                            'activeClans' => $activeClans, 
+                                            'bannedClans' => $bannedClans, 
+                                            'admins' => $admins, 
+                                            'potentialAdmins' => $potentialAdmins]);
     }
 }

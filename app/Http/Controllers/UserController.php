@@ -32,7 +32,7 @@ class UserController extends Controller
 
         return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan]);
     }
-
+    
     public function getFriendsListSearch(Request $request, $id) 
     {
         $user = User::find($id);
@@ -56,4 +56,9 @@ class UserController extends Controller
 
         return $users;
     }
+
+    public function getFriendsMessages(Request $request, $id) {
+        return ['friend_info' => User::find($id), 'messages' => Auth::user()->friendChatMessages($id)];
+    }
+
 }

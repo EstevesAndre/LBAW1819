@@ -33,7 +33,7 @@ Route::post('/api/notifications', 'PrivateController@getNotifications');
 Route::put('/api/comment/{id}', 'CommentController@create');
 Route::delete('/api/comment/{id}', 'CommentController@delete');
 Route::put('/api/chat/{id}', 'MessageController@create');
-Route::put('/api/update_chat/{id}', 'MessageController@update');
+Route::post('/api/update_chat/{id}', 'UserController@getFriendsMessages');
 Route::post('/api/update_clan/{id}', 'ClanController@update');
 Route::post('/api/share/{id}', 'PostController@share');
 Route::put('/api/banMember/{id}', 'ClanController@banMember');

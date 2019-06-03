@@ -153,7 +153,7 @@ CREATE TABLE requests (
 
 CREATE TABLE blockeds (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES "users" (id),
+    user_id INTEGER REFERENCES "users" (id),
     clan INTEGER REFERENCES "clans" (id),
     admin INTEGER REFERENCES "users" (id),
     "date" TIMESTAMP WITH TIME zone NULL,
