@@ -85,7 +85,7 @@
                                 </div>
                             </div>
 
-                            <a href="/user/{{ Auth::user()->username }}" class="nav-user"><img class="img-fluid border rounded-circle mr-3" 
+                            <a href="/user/{{ Auth::user()->username }}" class="nav-user"><img id="nav-user-img" data-id="{{Auth::user()->id }}" class="img-fluid border rounded-circle mr-3" 
                                 src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}" alt="User"></a>
                             <a href="/user/{{ Auth::user()->username }}" class="m-0 no-hover index-nav">{{ Auth::user()->name }}</a>
                             <div class="btn-group ml-2 my-2">

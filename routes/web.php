@@ -58,6 +58,12 @@ Route::post('/api/getLeaderboardClanSearch', 'PrivateController@getLeaderboardCl
 Route::post('/api/getLeaderboardFriendsSearch', 'PrivateController@getLeaderboardFriendsSearch');
 Route::post('/api/getFriendsListSearch/{id}', 'UserController@getFriendsListSearch');
 Route::post('/api/getClanSearch/{id}', 'ClanController@getClanSearch');
+Route::post('/api/getActiveUsersSearch', 'UserController@getActiveUsersSearch');
+Route::post('/api/getBannedUsersSearch', 'UserController@getBannedUsersSearch');
+Route::post('/api/getActiveClansSearch', 'ClanController@getActiveClansSearch');
+Route::post('/api/getBannedClansSearch', 'ClanController@getBannedClansSearch');
+Route::post('/api/getActiveAdminsSearch', 'AdminController@getActiveAdminsSearch');
+Route::post('/api/getPotentialAdminsSearch', 'AdminController@getPotentialAdminsSearch');
 
 // Posts
 Route::get('posts', 'PostController@list');
