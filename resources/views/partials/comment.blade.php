@@ -8,7 +8,7 @@
     <div class="w-90 comment-data pl-1 pr-0">
         <p class="pt-3">{{ $comment->comment_text }}</p>
     </div>
-    @if($comment->post_id == Auth::user()->id || Auth::user()->is_admin)
+    @if($comment->post_id == Auth::user()->id || Auth::user()->is_admin || ($post->clan_id != null && $post->clan()->get()[0]->owner()->get()[0]->id == Auth::user()->id))
     <span class="ml-2 delete-comment" id="{{ $comment->id}}">
         <a><i class="fas fa-times"></i></a>
     </span>

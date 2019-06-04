@@ -1,4 +1,4 @@
-@if($post->user_id == Auth::user()->id || Auth::user()->is_admin)
+@if($post->user_id == Auth::user()->id || Auth::user()->is_admin || ($post->clan_id != null && $post->clan()->get()[0]->owner()->get()[0]->id == Auth::user()->id))
     <div class="modal postModal fade" id="deletePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -23,7 +23,7 @@
         </div>
     </div>
 @endif
-<div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}" onclick="window.location='/post/{{ $post->id }}';">
+<div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}">
     <div class="cardbox text-left shadow-lg bg-white">
         <div class="cardbox-heading">
             <div class="dropdown float-right mt-3 mr-3">
