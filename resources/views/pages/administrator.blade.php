@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 
-                                <ul class="users-active pl-2 shadow-lg users-list">
+                                <ul class="users-active pl-0 shadow-lg users-list">
                                     @each('partials.adminActiveUserList', $activeUsers->take(7), 'user')
                                     @if($activeUsers->count() > 7)
                                         <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
@@ -108,7 +108,7 @@
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
-                                <ul class="py-2 pl-2 shadow-lg users-list">
+                                <ul class="shadow-lg pl-2 users-list">
                                     @each('partials.adminActiveClanList', $activeClans, 'clan')
                                 </ul>
                             @else
@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
 
-                                <ul class="pl-0 shadow-lg users-list">
+                                <ul class="pl-2 shadow-lg users-list">
                                     @each('partials.adminBannedClanList', $bannedClans, 'clan')
                                 </ul>
                             @else
@@ -148,7 +148,7 @@
                             <div class="search_icon"><i class="fas fa-search"></i></div>
                         </div>
                     </div>
-                    <ul class="pl-0 shadow-lg users-list">
+                    <ul class="pl-2 shadow-lg users-list">
                         @each('partials.adminActiveAdminsList', $admins, 'user')
                     </ul>
                 </div>
@@ -232,10 +232,10 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure that you want to unban this user?</p>
-                <p><small>10 Days 5 hours 34 minutes 20 seconds</small> to unban</p>
+                <p>His/her ban ends <small class="end-date"></small></p>
                 <div class="float-right">
-                    <button type="button" class="btn btn-success">Yes</button>
-                    <button type="button" class="btn btn-danger">No</button>
+                    <button type="button" id="" data-dismiss="modal" class="btn-unban-modal btn btn-success">Yes</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
         </div>

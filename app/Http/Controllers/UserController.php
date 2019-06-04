@@ -28,7 +28,7 @@ class UserController extends Controller
         $friends = $user->friends()->get();
 
         $userClan = null;
-        if($user->clan()->get() != null)
+        if($user->clan()->get()->count() !== 0)
             $userClan = $user->clan()->get()[0];
 
         return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan]);
