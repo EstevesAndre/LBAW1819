@@ -28,4 +28,8 @@ class Clan extends Model
     public function members() {
         return $this->belongsToMany('App\User', 'user_clans', 'clan_id','user_id');
     }
+
+    public function invited() {
+        return $this->hasMany('App\Request', 'clan_id', 'id');
+    }
 }

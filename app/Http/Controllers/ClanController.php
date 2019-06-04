@@ -67,10 +67,21 @@ class ClanController extends Controller
         $members = $clan->members()->get();
 
         $blocked = $clan->blocked()->get();
+        
+        $invited = $clan->invited()->get();
 
         $idClanMembers = [];
-        foreach($clan->members()->get() as $member)
+
+        foreach($members as $member)
             array_push($idClanMembers, $member->id);
+
+        foreach($invited as $invite)
+            array_push($idClanMembers, $invite->receiver()->get()[0]->id);
+
+        foreach($blocked as $block)
+            array_push($idClanMembers, $block->user()->get()[0]->id);
+
+        $idClanMembers = array_unique($idClanMembers);
 
         $potentialUsers = User::whereNotIn('id', $idClanMembers)->limit(7)->get();
 
