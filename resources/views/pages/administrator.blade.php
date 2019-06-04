@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 
-                                <ul class="pl-2 shadow-lg users-list">
+                                <ul class="users-active pl-2 shadow-lg users-list">
                                     @each('partials.adminActiveUserList', $activeUsers->take(7), 'user')
                                     @if($activeUsers->count() > 7)
                                         <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
 
-                                <ul class="pl-0 shadow-lg users-list">
+                                <ul class="users-banned pl-0 shadow-lg users-list">
                                     @each('partials.adminBannedUserList', $bannedUsers, 'user')
                                     @if($bannedUsers->count() > 7)
                                         <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
@@ -192,39 +192,30 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure that you want to ban this user?</p>
-                <textarea class="form-control text-left my-3 w-100" rows="4" placeholder="Write something about the ban..."></textarea>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Innapropriate behaviour
-                    </label>
+                    <input class="form-check-input" name="motive" type="radio" value="Inappropriate behaviour" id="defaultCheck1">Inappropriate behaviour
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        Abusive content
-                    </label>
+                    <input class="form-check-input" name="motive" type="radio" value="Abusive content" id="defaultCheck2">Abusive content
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                    <label class="form-check-label" for="defaultCheck3">
-                        Racism
-                    </label>
+                    <input class="form-check-input" name="motive" type="radio" value="Racism" id="defaultCheck3">Racism
                 </div>
-                <button class="btn btn-secondary w-75 mt-3 dropdown-toggle" type="button" id="dropdownBanButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Ban Duration
-                </button>
-                <div class="dropdown-menu mr-4 w-50 text-center" aria-labelledby="dropdownBanButton">
-                    <a class="dropdown-item">7 days</a>
-                    <a class="dropdown-item">2 weeks</a>
-                    <a class="dropdown-item">1 month</a>
-                    <a class="dropdown-item">3 months</a>
-                    <a class="dropdown-item">6 months</a>
-                    <a class="dropdown-item">1 year</a>
-                    <a class="dropdown-item">Forever</a>
-                </div>
-                <button type="button" class="btn btn-danger mt-3 float-right">Ban!</button>
+                <br />
+                <p>Ban Duration</p>
+                <select class="form-control w-75 mt-3" id="exampleFormControlSelect1">
+                    <option value="0" selected disabled>Duration</option>
+                    <option value="7">7 days</option>
+                    <option value="14">2 weeks</option>
+                    <option value="31">1 month</option>
+                    <option value="93">3 months</option>
+                    <option value="186">6 months</option>
+                    <option value="365">1 year</option>
+                    <option value="-1">Forever</option>
+                </select>
+                <p class="text-center mt-2 mb-0 msg-response">&nbsp</p>
+                <button type="button" data-dismiss="modal" class="btn btn-secondary mt-2 mx-2 float-right">Close!</button>
+                <button type="button" class="btn-ban-modal btn btn-danger mt-2 float-right"><i class="fas fa-user-times"></i> Ban!</button>
             </div>
         </div>
     </div>

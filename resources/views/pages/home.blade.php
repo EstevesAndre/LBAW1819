@@ -51,11 +51,11 @@
         </div>
         <!-- POSTS -->
         <section id="posts">
-            @if(count($posts) == 0)
+            @if($posts->count() == 0)
                 <p class="text-center"><b><small>No posts to be seen!</small></b></p>
             @else
-                @each('partials.post', array_slice($posts,0,5), 'post')
-                @if(count($posts) > 5)
+                @each('partials.post', $posts->take(15), 'post')
+                @if($posts->count() > 15)
                     <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                 @endif
             @endif

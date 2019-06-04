@@ -182,11 +182,10 @@
                 <div class="form-check">
                     <input class="form-check-input" name="motive" type="radio" value="Racism" id="defaultCheck3">Racism
                 </div>
-                
-                <br>
+                <br />
                 <p>Ban Duration</p>
-                <select class="form-control bg-dark .text-light w-75 mt-3" id="exampleFormControlSelect1">
-                    <option value="0" selected disabled>Ban Duration</option>
+                <select class="form-control w-75 mt-3" id="exampleFormControlSelect1">
+                    <option value="0" selected disabled>Duration</option>
                     <option value="7">7 days</option>
                     <option value="14">2 weeks</option>
                     <option value="31">1 month</option>
@@ -195,8 +194,9 @@
                     <option value="365">1 year</option>
                     <option value="-1">Forever</option>
                 </select>
-                <p class="error-msg"></p>
-                <button type="button" id="" data-dismiss="modal" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
+                <p class="ml-2 mt-2 error-msg"></p>
+                <button type="button" data-dismiss="modal" class="btn btn-secondary mt-3 mx-2 float-right">Close!</button>
+                <button type="button" id="" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
             </div>
         </div>
     </div>

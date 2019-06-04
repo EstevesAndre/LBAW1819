@@ -41,6 +41,11 @@ Route::put('/api/unbanMember/{user_id}+{clan_id}', 'ClanController@unbanMember')
 Route::post('/api/inviteUsers/{clan_id}', 'ClanController@inviteUsers');
 Route::get('/api/deleteClan/{clan_id}', 'ClanController@delete');
 
+Route::put('/api/banUser/{id}', 'BlockedController@createBanUser');
+Route::put('/api/banClan/{id}', 'BlockedController@createBanClan');
+Route::delete('/api/unbanUser/{id}', 'BlockedController@deletebanUser');
+Route::delete('/api/unbanClan/{id}', 'BlockedController@deletebanClan');
+
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
 Route::get('faqs', 'PublicController@showFaqsPage');

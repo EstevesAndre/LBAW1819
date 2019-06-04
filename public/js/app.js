@@ -77,6 +77,11 @@ function addEventListeners() {
 
     // let generateButton = document.querySelector('.');
     // if (generateButton) generateButton.addEventListener('click', setCharacterInfo);
+
+    let adminBanUsersModal = document.querySelectorAll('.ban_user');
+    [].forEach.call(adminBanUsersModal, function (user) {
+        user.addEventListener('click', setUserBanModalID);
+    });
 }
 
 function encodeForAjax(data) {
@@ -200,6 +205,65 @@ function setBanModalID(e) {
     let banMember = document.querySelector('.ban_modal');
     banMember.addEventListener('click', sendBanMemberRequest);
 }
+
+function setUserBanModalID(e) {
+    e.preventDefault();
+
+    let modalSubmit = document.querySelector('.btn-ban-modal');
+    modalSubmit.setAttribute('id', e.target.closest('button.ban_user').getAttribute('id'));
+    modalSubmit.disabled = false;
+
+    let modal_msg = document.querySelector('#banModal .modal-body .msg-response');
+    modal_msg.innerHTML = "&nbsp";
+
+    modalSubmit.addEventListener('click', sendBanUserRequest);
+}
+
+function sendBanUserRequest(e) {
+    e.preventDefault();
+    let userID = e.target.closest('button.btn-ban-modal').getAttribute('id');
+    let motives = document.querySelectorAll('#banModal .form-check-input');
+    let checkedMotive = "";
+    //get checked motive
+    for (let i = 0; i < motives.length; i++) {
+        if (motives[i].checked) {
+            checkedMotive = motives[i].value;
+            break;
+        }
+    }
+    //at least one must be checked
+    if (checkedMotive == "") {
+        let modal_msg = document.querySelector('#banModal .modal-body .msg-response');
+        modal_msg.innerHTML = 'Please select at least one motive!';
+        return;
+    }
+
+    let durations = document.querySelectorAll('#banModal .modal-body .form-control option');
+    let selectedDuration = "";
+    //get selected duration
+    for (let i = 0; i < durations.length; i++) {
+        if (durations[i].selected) {
+            selectedDuration = parseInt(durations[i].value);
+            break;
+        }
+    }
+    if (selectedDuration == 0) {
+        let modal_msg = document.querySelector('#banModal .modal-body .msg-response');
+        modal_msg.innerHTML = 'Please select a ban duration';
+        return;
+    }
+
+    let formattedDate = selectedDuration;
+    
+    if(selectedDuration != -1){
+        let endDate = new Date();
+        endDate.setDate(endDate.getDate() + selectedDuration);
+        let date = endDate.toISOString().replace('Z', '').replace('T', ' ');
+        formattedDate = date.substr(0, date.lastIndexOf('.'))
+    }
+
+    sendAjaxRequest('put', '/api/banUser/' + userID, { motive: checkedMotive, endDate: formattedDate }, banUserHandler);
+} 
 
 function sendBanMemberRequest(e) {
     e.preventDefault();
@@ -545,6 +609,50 @@ function updateLeaderboardSearch() {
     });
 }
 
+function banUserHandler() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let modal_msg = document.querySelector('#banModal .modal-body .msg-response');
+    modal_msg.innerHTML = "User banned!";
+    let banButton = document.querySelector('#banModal .modal-body .btn-ban-modal');
+    banButton.disabled = true;
+    
+    let active_list = document.querySelector('ul.users-active'); //list of active users
+    let banned_list = document.querySelector('ul.users-banned'); //list of banned users
+
+    let active_banned = active_list.querySelector('li[data-id="' + reply.blocked.user_id + '"]'); //user in active list that was banned
+    
+    if(active_banned == null) return; // error occurred
+
+    active_list.removeChild(active_banned);
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    banned_list.insertAdjacentHTML("afterbegin",
+        '<li class="p-2 ml-4" data-id="' + reply.user.id + '">' + 
+            '<div class="d-flex align-items-center row">' + 
+                '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">' + 
+                    '<img width="50" class="border bg-warning img-fluid rounded-circle border"' + 
+                        'src="' + path_header + '/avatars/' + reply.user.race + '_' + reply.user.class + '_' + reply.user.gender + '.bmp" alt="Clan">' + 
+                '</div>' + 
+                '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="user/' + reply.user.username + '">' + reply.user.name + '</a></div>' + 
+                '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
+                '<button type="button" class="btn btn-success btn-sm" id="' + reply.user.id +'" data-toggle="modal" data-target="#unbanModal">' + 
+                    '<i class="fas fa-user-plus"></i> Unban Member' + 
+                '</button>' + 
+                '</div>' + 
+            '</div>' + 
+        '</li>');
+
+    let unbanMember = document.querySelectorAll('.unban_member');
+    [].forEach.call(unbanMember, function (blocked) {
+    blocked.addEventListener('click', sendUnBanMemberRequest);
+    });
+}
+
 function banMemberHandler(){
     
     let reply = JSON.parse(this.responseText);
@@ -554,13 +662,17 @@ function banMemberHandler(){
     let banned_list = document.querySelector('ul.banned'); //list of banned members
     let active_banned = document.querySelector('ul.active [data-id="' + banned.id + '"]'); //member in active list that was banned
 
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
     active_list.removeChild(active_banned);
 
     banned_list.insertAdjacentHTML("afterbegin",'<li class="p-2 ml-3" data-id="' + banned.id + '">' + 
                             '<div class="d-flex align-items-center row">' + 
                                 '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">' + 
                                     '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
-                                    'src="assets/avatars/' + banned.race + '_' + banned.class + '_' + banned.gender + '.bmp" alt="Clan">' + 
+                                    'src="' + path_header + '/avatars/' + banned.race + '_' + banned.class + '_' + banned.gender + '.bmp" alt="Clan">' + 
                                 '</div>' + 
                                 '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + banned.username + '">' + banned.name + '</a></div>' + 
                                 '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
@@ -586,6 +698,10 @@ function unbanMemberHandler(){
     let banned_list = document.querySelector('ul.banned'); //list of banned members
     let banned_active = document.querySelector('ul.banned [data-id="' + unbanned.id + '"]'); //member in banned list that was unbanned
 
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
     console.log(banned_active);
 
     banned_list.removeChild(banned_active);
@@ -594,7 +710,7 @@ function unbanMemberHandler(){
                             '<div class="d-flex align-items-center row">' + 
                                 '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">' + 
                                     '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
-                                    'src="assets/avatars/' + unbanned.race + '_' + unbanned.class + '_' + unbanned.gender + '.bmp" alt="Clan">' + 
+                                    'src="' + path_header + '/avatars/' + unbanned.race + '_' + unbanned.class + '_' + unbanned.gender + '.bmp" alt="Clan">' + 
                                 '</div>' + 
                                 '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + unbanned.username + '">' + unbanned.name + '</a></div>' + 
                                 '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
@@ -741,7 +857,7 @@ function updateActiveUsersSearch() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     reply.forEach(function(element) {
-        users.innerHTML += '<li class="p-2 ml-4">'
+        users.innerHTML += '<li class="p-2 ml-4" data-id="' + element.id + '">'
             +   '<div class="d-flex align-items-center row">'
             +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
             +           '<img width="50" class="border img-fluid rounded-circle" alt="Clan"'
@@ -749,7 +865,7 @@ function updateActiveUsersSearch() {
             +       '</div>'
             +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="user/' + element.username + '">'  + element.name + '</a></div>'
             +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
-            +           '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#banModal">'
+            +           '<button type="button" class="ban_user btn btn-danger btn-sm" id="' + element.id + '" data-toggle="modal" data-target="#banModal">'
             +               '<i class="fas fa-user-times"></i> Ban User'
             +           '</button>'
             +       '</div>'
