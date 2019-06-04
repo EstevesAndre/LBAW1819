@@ -1,4 +1,4 @@
-@if($post->user_id == Auth::user()->id || Auth::user()->is_admin)
+@if($post->user_id == Auth::user()->id || Auth::user()->is_admin || ($post->clan_id != null && $post->clan()->get()[0]->owner()->get()[0]->id == Auth::user()->id))
     <div class="modal postModal fade" id="deletePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -62,7 +62,7 @@
                         <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
                             <a class="dropdown-item" href="#">Hide post</a>
                             <a class="dropdown-item" href="#">Report</a>
-                            @if($post->user_id == Auth::user()->id || Auth::user()->is_admin)
+                            @if($post->user_id == Auth::user()->id || Auth::user()->is_admin || ($post->clan_id != null && $post->clan()->get()[0]->owner()->get()[0]->id == Auth::user()->id))
                                 <a class="dropdown-item" data-toggle="modal" data-target="#deletePostModal-{{ $post->id }}">Delete</a>
                             @endif
                         </div>
