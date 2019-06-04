@@ -1,4 +1,4 @@
-<li class="p-2 ml-3">
+<li class="invite-list-user p-2 ml-3" data-id="{{ $user->id }}">
     <div class="d-flex align-items-center row">
         <div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">
             <img width="40" class="border img-fluid rounded-circle border" alt="User"
