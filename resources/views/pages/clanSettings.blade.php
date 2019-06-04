@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                             
-                            <ul class="pl-2 shadow-lg users-list">
+                            <ul class="active pl-2 shadow-lg users-list">
                                 @each('partials.clanSettingsMembers', $members->take(7), 'member')
                                 @if($members->count() > 7)
                                     <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
@@ -110,9 +110,9 @@
                             <h5 class="my-5 text-center">There are no active users</h5>
                         @endif
                         <div class="mt-4">
-                            <button type="button" class="btn btn-success float-right" data-toggle="modal"
+                            <button type="button invite" class="btn btn-success float-right" data-toggle="modal"
                                 data-target="#addMembersModal">
-                                <i class="fas fa-envelope"></i> Invite User
+                                <i class="fas fa-envelope"></i> Invite Users
                             </button>
                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#removeClanModal">
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
 
-                            <ul class="pl-0 shadow-lg users-list">
+                            <ul class="banned pl-0 shadow-lg users-list">
                                 @each('partials.clanSettingsBlocked', $blocked, 'blocked')
                                 @if($blocked->count() > 7)
                                     <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
@@ -238,13 +238,13 @@
                         <div class="search_icon"><i class="fas fa-search"></i></div>
                     </div>
                 </div>
-                <ul class="pl-0 users-list">
+            <ul class="pl-0 users-list invite-list" data-id="{{$clan->id}}">
                     @each('partials.userCheckbox', $potentialUsers, 'user')
                     <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success"><i class="fas fa-user-plus"></i> Add</button>
+                <button type="button" class="invite-users btn btn-success"><i class="fas fa-user-plus"></i> Invite</button>
             </div>
         </div>
     </div>

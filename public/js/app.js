@@ -72,6 +72,9 @@ function addEventListeners() {
         blocked.addEventListener('click', sendUnBanMemberRequest);
     });
 
+    let invite = document.querySelector('.invite-users');
+    invite.addEventListener('click', addInviteRequest);
+
     // let generateButton = document.querySelector('.');
     // if (generateButton) generateButton.addEventListener('click', setCharacterInfo);
 }
@@ -260,6 +263,29 @@ function sendUnBanMemberRequest(e) {
     sendAjaxRequest('put', '/api/unbanMember/' + blocked_id + '+' + clan_id, null, unbanMemberHandler);
 }
 
+function addInviteRequest(e){
+    e.preventDefault();
+
+    let users = document.querySelectorAll('.invite-list-user input');
+    let clan_id = parseInt(document.querySelector('.invite-list').getAttribute('data-id'));
+
+    let invited_users = [];
+    let invited_count = 0;
+
+    for(let i= 0; i < users.length; i++){
+        if(users[i].checked){
+            invited_users.push(parseInt(users[i].parentElement.parentElement.parentElement.getAttribute('data-id')));
+            invited_count++;
+        }
+    }
+
+    if(invited_count == 0){
+        return;
+    }
+    console.log(invited_users);
+    sendAjaxRequest('post', '/api/inviteUsers/' + clan_id, {invites: invited_users}, addedInvitesHandler);
+    
+}
 // Handlers
 function deletedLikeHandler() {
 
@@ -657,4 +683,16 @@ function userListHandler(reply, list, path_header) {
         +       '</button>'
         +   '</li>';
       });
+}
+
+function addedInvitesHandler(){
+    let reply = JSON.parse(this.responseText);
+    let invited_users = reply.invited;
+
+    let invite_list =  document.querySelector('.invite-list');
+    
+    for(let i = 0; i < invited_users.length; i++){
+        let invited = document.querySelector('.invite-list-user[data-id="' + parseInt(invited_users[i]) + '"]');
+        invite_list.removeChild(invited);
+    }
 }
