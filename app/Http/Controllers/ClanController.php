@@ -111,12 +111,6 @@ class ClanController extends Controller
     }
 
     public function unbanMember(Request $request, $user_id, $clan_id){
-        
-        // DB::table('blockeds')
-        //     ->whereColumn([
-        //         ['user_id', '=', $user_id],
-        //         ['clan', '=', $clan_id]])
-        //     ->delete();
 
         Blocked::where('user_id', $user_id)->where('clan', $clan_id)->delete();
 
@@ -150,5 +144,18 @@ class ClanController extends Controller
         }
 
         return $members;
+    }
+
+    public function inviteUsers(Request $request, $clan_id){
+
+        $invites = explode(",", $request->input('invites'));
+        $owner = Auth::user()->id;
+
+        foreach($invites as $invite){
+            DB::table('requests')
+            ->insert(['sender' => $owner, 'receiver' => intval($invite), 'clan_id' => $clan_id, 'type' => 'clanRequest' ,'has_accepted' => NULL]);
+        }
+        
+        return response()->json(['invited' =>$request->input('invites')]); 
     }
 }
