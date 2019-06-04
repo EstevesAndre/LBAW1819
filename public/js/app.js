@@ -817,12 +817,14 @@ function userListHandler(reply, list, path_header) {
 
 function addedInvitesHandler(){
     let reply = JSON.parse(this.responseText);
-    let invited_users = reply.invited;
+    let invited_users = reply.invited.split(',');
 
     let invite_list =  document.querySelector('.invite-list');
     
     for(let i = 0; i < invited_users.length; i++){
+        console.log(invited_users[i]);
         let invited = document.querySelector('.invite-list-user[data-id="' + parseInt(invited_users[i]) + '"]');
+        console.log(invited);
         invite_list.removeChild(invited);
     }
 }

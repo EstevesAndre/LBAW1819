@@ -19,10 +19,14 @@ class Request extends Model
     }
 
     /**
-     * The receiver of te request
+     * The receiver of the request
      */
     public function receiver() {
         return $this->belongsTo('App\User', 'receiver', 'id');
+    }
+
+    public function clan() {
+        return $this->belongsTo('App\Clan', 'clan_id', 'id');
     }
 
     public function type() {
