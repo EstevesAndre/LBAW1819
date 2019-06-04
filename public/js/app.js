@@ -612,14 +612,14 @@ function unbanMemberHandler(){
 }
 // ---------------------------------------------------------------------------------------------------------------------//
 
-function clanMembersSearch($userID) 
+function clanMembersSearch($clanID) 
 {
     let currentSearch = document.querySelector('#members.active>div>div.searchbar>input').value;
     if(lastSearch == currentSearch)
         return;
     lastSearch = currentSearch;
 
-    sendAjaxRequest('post', '/api/getClanSearch/' + $userID, { search: lastSearch }, updateClanMembersSearch);   
+    sendAjaxRequest('post', '/api/getClanSearch/' + $clanID, { search: lastSearch }, updateClanMembersSearch);   
 }
 
 function updateClanMembersSearch() {
@@ -712,3 +712,236 @@ function addedInvitesHandler(){
         invite_list.removeChild(invited);
     }
 }
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function activeUsersSearch() {
+    let currentSearch = document.querySelector('#active>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getActiveUsersSearch', { search: lastSearch }, updateActiveUsersSearch);   
+}
+
+function bannedUsersSearch() {
+    let currentSearch = document.querySelector('#banned>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getBannedUsersSearch', { search: lastSearch }, updateBannedUsersSearch);   
+}
+
+function updateActiveUsersSearch() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let users = document.querySelector('#users-content>div.active>ul');
+    users.innerHTML = "";
+
+    let path = document.querySelector('#nav-user-img').getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function(element) {
+        users.innerHTML += '<li class="p-2 ml-4">'
+            +   '<div class="d-flex align-items-center row">'
+            +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+            +           '<img width="50" class="border img-fluid rounded-circle" alt="Clan"'
+            +               'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp">'
+            +       '</div>'
+            +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="user/' + element.username + '">'  + element.name + '</a></div>'
+            +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
+            +           '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#banModal">'
+            +               '<i class="fas fa-user-times"></i> Ban User'
+            +           '</button>'
+            +       '</div>'
+            +   '</div>'
+            +'</li>'
+    });
+}
+
+function updateBannedUsersSearch() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let users = document.querySelector('#users-content>div.active>ul');
+    users.innerHTML = "";
+
+    let path = document.querySelector('#nav-user-img').getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function(element) {
+        users.innerHTML += '<li class="p-2 ml-4">'
+            +   '<div class="d-flex align-items-center row">'
+            +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+            +           '<img width="50" class="border img-fluid rounded-circle" alt="Clan"'
+            +               'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp">'
+            +       '</div>'
+            +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="user/' + element.username + '">'  + element.name + '</a></div>'
+            +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
+            +           '<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#unbanModal">'
+            +               '<i class="fas fa-user-times"></i> Unban User'
+            +           '</button>'
+            +       '</div>'
+            +   '</div>'
+            +'</li>'
+    });
+}
+
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function activeClansSearch() {
+    let currentSearch = document.querySelector('#active-clans>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getActiveClansSearch', { search: lastSearch }, updateActiveClansSearch);   
+}
+
+function bannedClansSearch() {
+    let currentSearch = document.querySelector('#banned-clans>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getBannedClansSearch', { search: lastSearch }, updateBannedsClansSearch);   
+}
+
+function updateActiveClansSearch() {
+    let reply = JSON.parse(this.responseText);
+
+    let users = document.querySelector('#clans-content>div.active>ul');
+    users.innerHTML = "";
+
+    let path = document.querySelector('#nav-user-img').getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function(element) {
+        users.innerHTML += '<li class="p-2 ml-3">'
+            +   '<div class="d-flex align-items-center row">'
+            +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+            +           '<img width="50" class="border img-fluid rounded-circle border" alt="Clan" src="' + path_header + '/clanImgs/'+element.id+'.jpg' + '">'
+            +       '</div>'
+            +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="clan/' + element.id + '">' + element.name + '</a></div>'
+            +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
+            +           '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#clanBanModal">'
+            +               '<i class="fas fa-user-times"></i> Ban Clan'
+            +           '</button>'
+            +       '</div>'
+            +   '</div>'
+            +'</li>'
+    });
+}
+
+function updateBannedsClansSearch() {
+    let reply = JSON.parse(this.responseText);
+
+    let users = document.querySelector('#clans-content>div.active>ul');
+    users.innerHTML = "";
+
+    let path = document.querySelector('#nav-user-img').getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+
+    reply.forEach(function(element) {
+        users.innerHTML += '<li class="p-2 ml-3">'
+            +   '<div class="d-flex align-items-center row">'
+            +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+            +           '<img width="50" class="border img-fluid rounded-circle border" alt="Clan" src="' + path_header + '/clanImgs/'+element.id+'.jpg' + '">'
+            +       '</div>'
+            +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="clan/' + element.id + '">' + element.name + '</a></div>'
+            +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
+            +           '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#clanUnbanModal">'
+            +               '<i class="fas fa-user-times"></i> Unban Clan'
+            +           '</button>'
+            +       '</div>'
+            +   '</div>'
+            +'</li>'
+    });
+}
+// ---------------------------------------------------------------------------------------------------------------------//
+
+function activeAdminsSearch() {
+    let currentSearch = document.querySelector('#admins-content>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getActiveAdminsSearch', { search: lastSearch }, updateActiveAdminsSearch);   
+}
+
+function potentialAdminsSearch() {
+    let currentSearch = document.querySelector('#addModal>div>div>div.modal-body>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getPotentialAdminsSearch', { search: lastSearch }, updatePotentialAdminsSearch);   
+}
+
+function updateActiveAdminsSearch() {
+    let reply = JSON.parse(this.responseText);
+
+    let users = document.querySelector('#v-pills-administrators>ul');
+    users.innerHTML = "";
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let userID = img.getAttribute('data-id');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function(element) {
+        let button = "";
+            if(element.id == userID) button = '<button type="button" class="btn btn-danger btn-sm" disabled>';
+            else button = '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#removePermModal">';
+            
+        users.innerHTML +=
+            '<li class="p-2 ml-3">'
+    +            '<div class="d-flex align-items-center row">'
+    +                '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+    +                    '<img width="50" class="border img-fluid rounded-circle border"'
+    +                      'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp">'
+    +                '</div>'
+    +                '<div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="⁄user/' + element.username + '">' + element.name + '</a></div>'
+    +                '<div class="col-4 col-sm-4 col-md-4 px-0 text-right">'
+    +                    button
+    +                        '<i class="fas fa-user-times"></i> Remove Permissions'
+    +                    '</button>'
+    +                '</div>'
+    +           '</div>'
+    +        '</li>';
+    });
+}
+
+function updatePotentialAdminsSearch() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let users = document.querySelector('#addModal>div>div>div.modal-body>ul');
+    users.innerHTML = "";
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function(element) {
+        users.innerHTML += 
+            '<li class="invite-list-user p-2 ml-3" data-id="' + element.id + '">'
+        +        '<div class="d-flex align-items-center row">'
+        +           '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+        +                '<img width="40" class="border img-fluid rounded-circle border" alt="User"'
+        +                    'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp">'
+        +            '</div>'
+        +            '<div class="col-7 col-sm-6 col-md-7 pr-1 text-left">'
+        +                '<a class="no-hover standard-text" href="user/' + element.username + '">' + element.name + '</a>'
+        +            '</div>'
+        +            '<div class="col-2 col-sm-3 col-md-3 px-0 text-right">'
+        +                '<input type="checkbox">'
+        +                '<span class="checkmark"></span>'
+        +            '</div>'
+        +        '</div>'
+        +    '</li>'
+    });
+}
+// ---------------------------------------------------------------------------------------------------------------------//

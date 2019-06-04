@@ -50,4 +50,42 @@ class AdminController extends Controller
                                             'admins' => $admins, 
                                             'potentialAdmins' => $potentialAdmins]);
     }
+
+    public function getActiveAdminsSearch(Request $request) {
+        $search = $request->input('search');
+
+        $allBans = Blocked::all();
+        $idUserBanned = [];
+        foreach($allBans as $banned) {
+            if(!$banned->user()->get()->isEmpty())
+                array_push($idUserBanned, $banned->user_id);
+        }
+
+        $adminsSearch = User::where('is_admin',TRUE)
+            ->whereNotIn('id', $idUserBanned)
+            ->where('name', 'like', '%'.$search.'%')
+            ->get();
+
+        return $adminsSearch;
+    }
+
+
+    public function getPotentialAdminsSearch(Request $request) {
+        $search = $request->input('search');
+
+        $allBans = Blocked::all();
+        $idUserBanned = [];
+        foreach($allBans as $banned) {
+            if(!$banned->user()->get()->isEmpty())
+                array_push($idUserBanned, $banned->user_id);
+        }
+
+        $potentialAdminsSearch = User::where('is_admin',FALSE)
+            ->whereNotIn('id', $idUserBanned)
+            ->where('name', 'like', '%'.$search.'%')
+            ->limit(7)
+            ->get();
+
+        return $potentialAdminsSearch;
+    }
 }

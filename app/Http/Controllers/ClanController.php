@@ -170,6 +170,42 @@ class ClanController extends Controller
         return response()->json(['invited' =>$request->input('invites')]); 
     }
 
+    public function getActiveClansSearch(Request $request) {
+        $search = $request->input('search');
+
+        $allBans = Blocked::all();
+        $idClanBanned = [];
+
+        foreach($allBans as $banned) {
+            if($banned->user()->get()->isEmpty())
+                array_push($idClanBanned, $banned->clan);
+        }
+
+        $activeClansSearch = Clan::whereNotIn('id', $idClanBanned)
+            ->where('name', 'like', '%' . $search . '%')
+            ->get();
+        
+        return $activeClansSearch;
+    }
+
+    public function getBannedClansSearch(Request $request) {
+        $search = $request->input('search');
+        
+        $allBans = Blocked::all();
+        $idClanBanned = [];
+
+        foreach($allBans as $banned) {
+            if($banned->user()->get()->isEmpty())
+                array_push($idClanBanned, $banned->clan);
+        }
+
+        $bannedClansSearch = Clan::whereIn('id', $idClanBanned)
+            ->where('name', 'like', '%' . $search . '%')
+            ->get();
+        
+            return $bannedClansSearch;
+    }
+
     public function delete($clan_id){
 
         Clan::find($clan_id)->delete();

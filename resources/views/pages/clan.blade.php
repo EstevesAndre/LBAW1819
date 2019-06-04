@@ -18,7 +18,7 @@
                         <a href="#"><img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clan->id.'.jpeg')}}"
                             alt="Clan"></a>
                     @else
-                        <a href="#"><img width="200" class="img-fluid border rounded-circle" src="../assets/logo.png"
+                        <a href="#"><img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/logo.png') }}"
                             alt="Clan"></a>
                     @endif
                 </div>

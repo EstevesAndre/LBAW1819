@@ -44,12 +44,12 @@
                         </li>
                     </ul>
                     
-                    <div class="mt-4 tab-content" id="leaderboard-content">
+                    <div class="mt-4 tab-content" id="users-content">
                         <div class="text-left tab-pane fade border-0 active show" id="active" role="tabpanel" aria-labelledby="active-tab">
                             @if($activeUsers->count() > 0)    
                                 <div class="d-flex justify-content-center mb-3 mr-3">
                                     <div class="searchbar">
-                                        <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                                        <input class="search_input search_input_fixed" onkeyup="activeUsersSearch()" type="text" name="" placeholder="Search...">
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                             @if($bannedUsers->count() > 0)
                                 <div class="d-flex justify-content-center mb-3 mr-3">
                                     <div class="searchbar">
-                                        <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                                        <input class="search_input search_input_fixed" onkeyup="bannedUsersSearch()" type="text" name="" placeholder="Search...">
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
@@ -99,12 +99,12 @@
                                 aria-controls="banned" aria-selected="false">Banned Clans</a>
                         </li>
                     </ul>
-                    <div class="mt-4 tab-content">
+                    <div class="mt-4 tab-content" id="clans-content">
                         <div class="text-left tab-pane fade border-0 active show" id="active-clans" role="tabpanel" aria-labelledby="active-clans-tab">
                             @if($activeClans->count() > 0)
                                 <div class="d-flex justify-content-center mb-3 mr-3">
                                     <div class="searchbar">
-                                        <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                                        <input class="search_input search_input_fixed" onkeyup="activeClansSearch()" type="text" name="" placeholder="Search...">
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                             @if($bannedClans->count() > 0)
                                 <div class="d-flex justify-content-center mb-3 mr-3">
                                     <div class="searchbar">
-                                        <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                                        <input class="search_input search_input_fixed" onkeyup="bannedClansSearch()" type="text" name="" placeholder="Search...">
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
@@ -142,9 +142,9 @@
                             <i class="fas fa-user-plus"></i> Add Administrator
                         </button>
                     </div>
-                    <div class="d-flex justify-content-center mb-3 mr-3">
+                    <div class="d-flex justify-content-center mb-3 mr-3" id="admins-content">
                         <div class="searchbar">
-                            <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                            <input class="search_input search_input_fixed" onkeyup="activeAdminsSearch()" type="text" name="" placeholder="Search...">
                             <div class="search_icon"><i class="fas fa-search"></i></div>
                         </div>
                     </div>
@@ -355,7 +355,7 @@
             <div class="modal-body">
                 <div class="d-flex justify-content-center mb-3 mr-3">
                     <div class="searchbar">
-                        <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                        <input class="search_input search_input_fixed" onkeyup="potentialAdminsSearch()" type="text" name="" placeholder="Search...">
                         <div class="search_icon"><i class="fas fa-search"></i></div>
                     </div>
                 </div>
