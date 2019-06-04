@@ -103,7 +103,7 @@ class User extends Authenticatable
             ->get();
     }
 
-    public function isBanned() {
+    public function ban() {
         return $this->hasOne('App\Blocked', 'user_id');
     }
 
