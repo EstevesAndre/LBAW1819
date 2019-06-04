@@ -23,7 +23,7 @@
         </div>
     </div>
 @endif
-<div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}" onclick="window.location='/post/{{ $post->id }}';">
+<div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}">
     <div class="cardbox text-left shadow-lg bg-white">
         <div class="cardbox-heading">
             <div class="dropdown float-right mt-3 mr-3">
