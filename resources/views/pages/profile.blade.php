@@ -3,7 +3,6 @@
 @section('content')
 
 <br />
-
 <div class="mt-5 row text-center fullscreen standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 mb-4 activity">
         <div class="container mt-3 bg-white rounded shadow-lg">
@@ -45,14 +44,38 @@
                         @endif
                         <div class="col-sm-12 mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
                         @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
-                            <button type="button" class="col-sm-12 mt-5 btn btn-outline-danger"> <!-- Add action to send friend request -->
+                            @if($status == 0)
+                            <button type="button" class="col-sm-12 mt-5 btn btn-outline-success"> 
                                 Add as Friend <i class="fas fa-user-plus"></i>
                             </button>
+                            @elseif($status == 1)
+                            <button type="button" class="col-sm-12 mt-5 btn btn-secondary" disabled> 
+                                <i class="fas fa-user-slash"></i>
+                            </button>
+                            @elseif($status == 2)
+                            <button type="button" class="col-sm-12 mt-5 btn btn-danger"> 
+                                Cancel Request <i class="fas fa-times"></i>
+                            </button>
+                            @elseif($status == 3)
+                            <div class="text-center w-100">
+                                <button type="button" class="w-50 col-sm-12 mt-5 btn btn-success"> 
+                                    Accept <i class="fas fa-check"></i>
+                                </button>
+                                <button type="button" class="w-50 col-sm-12 mt-2 btn btn-danger">   
+                                    Decline <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            @elseif($status == 4)
+                            <button type="button" class="col-sm-12 mt-5 btn btn-outline-danger"> 
+                                Remove Friendship <i class="fas fa-user-times"></i>
+                            </button>
+                            @endif
                         @endif
                     </div>
                 </div>
             </div>
         </div>
+        {{$status}}
         <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#profile_helpModal">
                 <i class="fas fa-question-circle"></i>
         </button>

@@ -1133,7 +1133,7 @@ function addedMoreHomeHandler(){
     let posts = reply.posts.data;
     let posts_div = document.querySelector('section#posts');
     
-    for(let i = 0; i < posts.length; i++){
-        posts_div.innerHTML += 
-    }
+    // for(let i = 0; i < posts.length; i++){
+    //     posts_div.innerHTML += 
+    // }
 }
