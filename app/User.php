@@ -69,6 +69,21 @@ class User extends Authenticatable
             ->orderBy('xp', 'DESC');
     }
 
+    public function friendIDs() {
+        $friends_ = $this->belongsToMany('App\User', 'requests', 'sender','receiver')->where('type', 'friendRequest')->where('has_accepted', 'TRUE');
+        $friends__ = $this->belongsToMany('App\User', 'requests', 'receiver','sender')->where('type', 'friendRequest')->where('has_accepted', 'TRUE');
+        
+        $friends = [];
+        foreach($friends_->get() as $friend)
+            array_push($friends, $friend->id);
+        foreach($friends__->get() as $friend)
+            array_push($friends, $friend->id);
+
+        return User::select('id')
+            ->whereIn('id', $friends)
+            ->orderBy('xp', 'DESC');
+    }
+
     public function friendChatMessages($friendID) {
 
         $thisMessages = $this->messages($friendID);

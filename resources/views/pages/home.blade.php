@@ -50,14 +50,16 @@
             </div>
         </div>
         <!-- POSTS -->
-        <section id="posts">
+    <section id="posts" data-count="1">
             @if($posts->count() == 0)
                 <p class="text-center"><b><small>No posts to be seen!</small></b></p>
             @else
                 @each('partials.post', $posts->take(15), 'post')
-                @if($posts->count() > 15)
-                    <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                @endif
+                {{-- @if($posts->count() > 15) --}}
+                    <button type="button" class="see-more btn-primary-outline btn m-3">
+                        See more <i class="fas fa-caret-down"></i>
+                    </button>
+                {{-- @endif --}}
             @endif
         </section>
     </div>

@@ -8,6 +8,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class PrivateController extends Controller
 {
@@ -21,16 +22,24 @@ class PrivateController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        $friends = Auth::user()->friends()->get();
+        $friendIDs = Auth::user()->friendIDs()->get();
         
-        $idPosts = [];
-        foreach($friends as $friend) 
-            foreach($friend->posts()->get() as $post)
-                array_push($idPosts, $post->id);
-        
-        $posts = Post::whereIn('id', $idPosts)->orderBy('date', 'DESC')->get();
-        
+        $posts = Post::whereIn('user_id', $friendIDs)->orderBy('date', 'DESC')->simplePaginate(3);
+
         return view('pages.home', ['posts' => $posts]);
+    }
+
+    public function seeMoreHome($cur_page){
+        
+        $friendIDs = Auth::user()->friendIDs()->get();
+        
+        Paginator::currentPageResolver(function () use ($cur_page) {
+            return $cur_page;
+        });
+
+        $posts = Post::whereIn('user_id', $friendIDs)->orderBy('date', 'DESC')->simplePaginate(3);
+
+        return response()->json(['posts' => $posts]); 
     }
 
     public function showLeaderboard() 
