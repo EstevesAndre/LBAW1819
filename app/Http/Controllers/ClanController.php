@@ -158,4 +158,11 @@ class ClanController extends Controller
         
         return response()->json(['invited' =>$request->input('invites')]); 
     }
+
+    public function delete($clan_id){
+
+        Clan::find($clan_id)->delete();
+        
+        return redirect('home');
+    }
 }

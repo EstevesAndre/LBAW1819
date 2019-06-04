@@ -73,7 +73,7 @@ function addEventListeners() {
     });
 
     let invite = document.querySelector('.invite-users');
-    invite.addEventListener('click', addInviteRequest);
+    if(invite) invite.addEventListener('click', addInviteRequest);
 
     // let generateButton = document.querySelector('.');
     // if (generateButton) generateButton.addEventListener('click', setCharacterInfo);

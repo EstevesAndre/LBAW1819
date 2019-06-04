@@ -96,7 +96,7 @@ CREATE TABLE clans (
 
 CREATE TABLE user_clans (
     user_id INTEGER NOT NULL REFERENCES "users" PRIMARY KEY,
-    clan_id INTEGER NOT NULL REFERENCES clans
+    clan_id INTEGER NOT NULL REFERENCES clans ON DELETE CASCADE
 );
  
 CREATE TABLE posts (
@@ -105,7 +105,7 @@ CREATE TABLE posts (
     content VARCHAR(500) NOT NULL,
     has_img BOOLEAN NOT NULL,
     user_id INTEGER NOT NULL REFERENCES "users" (id),
-    clan_id INTEGER REFERENCES clans (id)
+    clan_id INTEGER REFERENCES clans (id) ON DELETE CASCADE
 );  
  
 CREATE TABLE "likes" (
@@ -144,7 +144,7 @@ CREATE TABLE requests (
     id SERIAL PRIMARY KEY,
     sender INTEGER NOT NULL REFERENCES "users" (id),
     receiver INTEGER NOT NULL REFERENCES "users" (id),
-    clan_id INTEGER REFERENCES clans (id),
+    clan_id INTEGER REFERENCES clans (id) ON DELETE CASCADE,
     "type" requestEnum,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     has_accepted BOOLEAN,
@@ -154,7 +154,7 @@ CREATE TABLE requests (
 CREATE TABLE blockeds (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES "users" (id),
-    clan INTEGER REFERENCES "clans" (id),
+    clan INTEGER REFERENCES "clans" (id)  ON DELETE CASCADE,
     admin INTEGER REFERENCES "users" (id),
     "date" TIMESTAMP WITH TIME zone NULL,
     motive motiveEnum NOT NULL

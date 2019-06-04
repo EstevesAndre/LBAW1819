@@ -207,15 +207,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="removeClanModalLabel">Delete Clan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 <p>Are you sure that you want to remove your Clan?</p>
                 <div class="float-right">
-                    <button type="button" class="btn btn-success">Yes</button>
-                    <button type="button" class="btn btn-danger">No</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-success" onclick="window.location='{{ url('api/deleteClan/'.$clan->id)}}'">Yes</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
         </div>
