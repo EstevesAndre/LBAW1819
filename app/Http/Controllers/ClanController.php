@@ -194,4 +194,11 @@ class ClanController extends Controller
         
             return $bannedClansSearch;
     }
+
+    public function delete($clan_id){
+
+        Clan::find($clan_id)->delete();
+        
+        return redirect('home');
+    }
 }

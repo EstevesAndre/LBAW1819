@@ -39,6 +39,7 @@ Route::post('/api/share/{id}', 'PostController@share');
 Route::put('/api/banMember/{id}', 'ClanController@banMember');
 Route::put('/api/unbanMember/{user_id}+{clan_id}', 'ClanController@unbanMember');
 Route::post('/api/inviteUsers/{clan_id}', 'ClanController@inviteUsers');
+Route::get('/api/deleteClan/{clan_id}', 'ClanController@delete');
 
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
