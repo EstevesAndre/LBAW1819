@@ -40,6 +40,11 @@
                 <div class="height-85 mobile-height" id="chat-body">
                     @if($messages !== null)
                         <div class="h-100 scroolable mx-3" id="chatScroll">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-sm bg-secondary border-0 rounded-circle my-1">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
                             @each('partials.message', $messages, 'message')
                         </div>
                     @endif
@@ -47,7 +52,7 @@
                 <div class="border-top send-message d-flex align-items-center" id="message-send">
                     <input type="text" class="m-2 w-80 border no-outline" id="message-box" placeholder="Write a message here..." required>
                     <button class="btn btn-link float-right"><i class="fas fa-images icon"></i></button>
-                    <button type="submit" class="btn btn-link no-hover icon float-right" >Send <i class="fas fa-angle-right"></i></button>
+                    <button type="submit" class="btn btn-link no-hover icon float-right" id="send-button">Send <i class="fas fa-angle-right"></i></button>
                 </div>
             </div>  
         </div>

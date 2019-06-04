@@ -64,7 +64,7 @@ div.left-color {
 }
 
 .height-45 {
-    height: 45% !important;
+    height: 44% !important;
 }
 
 .height-30 {
@@ -412,7 +412,7 @@ a.friend-list.active {
     outline-offset: 0px !important;
     outline: none !important;
     color: black;
-    background-color: #f8f9fa;
+    background-color: #dcdde0;
     border-color: #9da3a0;
 }
 
