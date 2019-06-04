@@ -35,7 +35,7 @@ function addEventListeners() {
     let sendComment = document.querySelector('.search-comment > button');
     if (sendComment) sendComment.addEventListener('click', sendAddCommentRequest);
 
-    let sendMessage = document.querySelector('#message-send :nth-child(3)');
+    let sendMessage = document.querySelector('#send-button');
     if (sendMessage) sendMessage.addEventListener('click', sendAddMessageRequest);
 
     let chatFriends = document.querySelectorAll('.friend-list');
@@ -169,7 +169,7 @@ function sendAddMessageRequest(e) {
     e.preventDefault();
     console.log("Add message request");
 
-    let message = document.querySelector('#message-send > input');
+    let message = document.querySelector('#message-send>input');
     let input = message.value;
     message.value = '';
     let friend_id = document.querySelector('.friend-chat').id;
@@ -408,6 +408,9 @@ function addedMessageHandler() {
     let message = JSON.parse(this.responseText);
     let message_area = document.querySelector('#chatScroll');
     message_area.innerHTML += getChatMessage(message.message_text, message.date.substring(0,10), message.date.substring(11,19));
+
+    let scrool = document.getElementById('chatScroll');
+    if (scrool) scrool.scrollTop = scrool.scrollHeight;
 }
 
 function updatedChatHandler() {
@@ -428,9 +431,20 @@ function updatedChatHandler() {
 
     let message_area = document.querySelector('#chatScroll');
     message_area.innerHTML = "";
+    
+    if(reply.messages.length > 7)
+        message_area.innerHTML = '<div class="text-center">'
+        +   '<button type="button" class="btn btn-sm bg-secondary border-0 rounded-circle my-1">'
+        +        '<i class="fas fa-chevron-up"></i>'
+        +   '</button>'
+        + '</div>';
+
+
     for (let i = 0; i < reply.messages.length; i++) {
         message_area.innerHTML += getChatMessage(reply.messages[i].message_text, reply.messages[i].date.substring(0,10), reply.messages[i].date.substring(11,19));
     }
+    let scrool = document.getElementById('chatScroll');
+    if (scrool) scrool.scrollTop = scrool.scrollHeight;
 }
 
 function getChatMessage(text, date1, date2) {
