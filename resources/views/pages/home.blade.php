@@ -56,11 +56,9 @@
             @else
                 <div id="posts-list">
                     @each('partials.post', $posts->take(15), 'post')
-                    {{-- @if($posts->count() > 15) --}}
                         <button type="button" class="see-more btn-primary-outline btn m-3">
                             See more <i class="fas fa-caret-down"></i>
                         </button>
-                    {{-- @endif --}}
                 </div>
             @endif
         </section>

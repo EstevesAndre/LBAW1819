@@ -17,23 +17,25 @@ class ClanController extends Controller
     {
         if (!Auth::check()) return redirect('/login');       
         
-        $clans = DB::table('user_clans')
-                ->where('user_id', Auth::user()->id)
-                ->first();
+        $exists = TRUE;
 
-        return $clans === null ? view('pages.createClan'): redirect('clan');
+        if(Auth::user()->clan()->get()->isEmpty())
+            $exists = FALSE;
+
+        return $exists === FALSE ? view('pages.createClan') : redirect('clan');
     }
 
     public function show() 
     {
         if (!Auth::check()) return redirect('/login');       
         
-        $clan = Auth::user()->clan()->get()[0];
+        if(Auth::user()->clan()->get()->isEmpty()) {
+            return view('pages.createClan');
+        }
 
+        $clan = Auth::user()->clan()->get()->first();
         $members = $clan->members()->get();
-
         $leaders = $clan->members()->orderBy('xp', 'desc')->get();
-
         $posts = $clan->posts()->orderBy('date', 'desc')->limit(5)->get();
 
         return view('pages.clan', ['clan' => $clan, 'members' => $members, 'leaders' => $leaders, 'posts' => $posts]);

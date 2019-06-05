@@ -37,7 +37,6 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-3 my-2 text-left clan-info">
-                    <div class="my-2"><i class="fas fa-globe"></i> Rank: 0</div>
                     <div class="my-2"><i class="fas fa-user-cog"></i> Owner: {{ $clan->owner()->get()[0]->name }}</div>
                     <div class="my-2"><i class="fas fa-users"></i> Members: {{ $members->count() }}</div>
                 </div>

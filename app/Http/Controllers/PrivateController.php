@@ -25,7 +25,7 @@ class PrivateController extends Controller
 
         $friendIDs = Auth::user()->friendIDs()->get();
         
-        $posts = Post::whereIn('user_id', $friendIDs)->orderBy('date', 'DESC')->simplePaginate(3);
+        $posts = Post::whereIn('user_id', $friendIDs)->orderBy('date', 'DESC')->get();
 
         return view('pages.home', ['posts' => $posts]);
     }
