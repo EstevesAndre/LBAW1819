@@ -49,28 +49,28 @@
                         <div class="col-sm-12 mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
                         @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
                             @if($status == 0)
-                            <button type="button" class="col-sm-12 mt-5 btn btn-outline-success"> 
+                            <button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="{{$user->id}}"> 
                                 Add as Friend <i class="fas fa-user-plus"></i>
                             </button>
                             @elseif($status == 1)
-                            <button type="button" class="col-sm-12 mt-5 btn btn-secondary" disabled> 
+                            <button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="{{$user->id}}" disabled> 
                                 <i class="fas fa-user-slash"></i>
                             </button>
                             @elseif($status == 2)
-                            <button type="button" class="col-sm-12 mt-5 btn btn-danger"> 
+                            <button type="button" class="friend-cancel col-sm-12 mt-5 btn btn-danger" data-id="{{$user->id}}"> 
                                 Cancel Request <i class="fas fa-times"></i>
                             </button>
                             @elseif($status == 3)
                             <div class="text-center w-100">
-                                <button type="button" class="w-50 col-sm-12 mt-5 btn btn-success"> 
+                                <button type="button" class="friend-accept w-50 col-sm-12 mt-5 btn btn-success" data-id="{{$user->id}}"> 
                                     Accept <i class="fas fa-check"></i>
                                 </button>
-                                <button type="button" class="w-50 col-sm-12 mt-2 btn btn-danger">   
+                                <button type="button" class="friend-decline w-50 col-sm-12 mt-2 btn btn-danger" data-id="{{$user->id}}">   
                                     Decline <i class="fas fa-times"></i>
                                 </button>
                             </div>
                             @elseif($status == 4)
-                            <button type="button" class="col-sm-12 mt-5 btn btn-outline-danger"> 
+                            <button type="button" class="friend-remove col-sm-12 mt-5 btn btn-outline-danger" data-id="{{$user->id}}"> 
                                 Remove Friendship <i class="fas fa-user-times"></i>
                             </button>
                             @endif
@@ -79,6 +79,7 @@
                 </div>
             </div>
         </div>
+        {{$is_friend}}
         <div class="profile-page-info mb-4">
             <ul class="mt-5 nav nav-tabs" id="profile-tabs" role="tablist">
                 <li class="nav-item">

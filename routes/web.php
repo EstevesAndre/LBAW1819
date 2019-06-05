@@ -49,6 +49,9 @@ Route::delete('/api/unbanUser/{id}', 'BlockedController@deletebanUser');
 Route::delete('/api/unbanClan/{id}', 'BlockedController@deletebanClan');
 Route::delete('/api/removePermissions/{id}', 'UserController@removePermissions');
 
+Route::put('/api/removeFriend/{friend}', 'UserController@removeFriend');
+Route::post('/api/sendFriend/{friend}', 'UserController@sendFriendRequest');
+Route::post('/api/cancelFriend/{friend}', 'UserController@cancelFriendRequest');
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
 Route::get('faqs', 'PublicController@showFaqsPage');

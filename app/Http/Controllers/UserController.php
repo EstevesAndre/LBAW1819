@@ -45,16 +45,19 @@ class UserController extends Controller
                 $status = 0;
             }
             else if($is_friend[0]->type == "friendRequest"){
+                
                 if($is_friend[0]->sender == Auth::user()->id && $is_friend[0]->has_accepted == false){//sent request refused BLOCKED REQUEST
                    $status = 1;
                 } 
                 else if($is_friend[0]->sender == Auth::user()->id && $is_friend[0]->has_accepted == NULL){//sent request pending CANCEL REQUEST
                     $status = 2;
                 } 
-                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted == null){//received request pending  ANSWER REQUEST
+                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted == NULL){//received request pending  ANSWER REQUEST
+                    echo '<h1>CARALHOOOOOOOO</h1>';
                     $status = 3;
                 } 
                 else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted == false){///received request refused ->  ADD AS FRIEND
+                    echo '<h1>CARALHAAAAAAAAA</h1>';
                     $status = 0;
                 }
                 else if($is_friend[0]->has_accepted == true){ //are friends REMOVE FRIENDSHIP
@@ -63,7 +66,7 @@ class UserController extends Controller
             }
         }
         
-        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan, 'status' => $status]);
+        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan, 'status' => $status, 'is_friend' => $is_friend]);
     }
     
     public function getFriendsListSearch(Request $request, $id) 
@@ -146,6 +149,37 @@ class UserController extends Controller
         $user->update();
 
         return $user;
+    }
+
+    public function removeFriend($friend){
+
+        $is_friend = Auth::user()->sent($friend)->get();
+        $can_send = 0;
+        
+        if($is_friend->isEmpty()){
+            $is_friend = Auth::user()->requested($friend)->get();
+            $can_send = 1;
+        }
+
+        // $is_friend[0]->has_accepted = false;
+        // $is_friend[0]->update();
+               
+        return response()->json(['can_send' => $can_send]); 
+
+    }
+
+    public function sendFriendRequest($friend){
+
+        $request = new \App\Request();
+        $request->sender = Auth::user()->id;
+        $request->receiver = $friend;
+        $request->type ='friendRequest';
+        $request->save();
+    }
+
+    public function cancelFriendRequest($friend){
+
+        $is_friend = Auth::user()->sent($friend)->delete();
     }
 
 }

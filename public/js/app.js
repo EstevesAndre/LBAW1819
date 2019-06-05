@@ -110,6 +110,16 @@ function addEventListeners() {
     [].forEach.call(adminAddPermissionsModal, function (admin) {
         admin.addEventListener('click', sendAddAdminPermissionsRequest);
     });
+
+    let removeFriendShip = document.querySelector('.friend-remove');
+    if(removeFriendShip) removeFriendShip.addEventListener('click', removeFriendShipRequest);
+
+    let sendFriendShip = document.querySelector('.friend-add');
+    if(sendFriendShip) sendFriendShip.addEventListener('click', sendFriendShipRequest);
+
+    let cancelFriendShip = document.querySelector('.friend-cancel');
+    if(cancelFriendShip) cancelFriendShip.addEventListener('click', cancelFriendShipRequest);
+
 }
 
 function encodeForAjax(data) {
@@ -524,6 +534,29 @@ function seeMorePostsRequest(e){
     sendAjaxRequest('get', '/api/seeMoreHome/' + current_page, null, addedMoreHomeHandler);
 
 }
+
+function removeFriendShipRequest(e){
+    console.log('remove');
+    let friend_id = parseInt(e.target.closest('.friend-remove').getAttribute('data-id'));
+
+    sendAjaxRequest('put', '/api/removeFriend/' + friend_id, null, removedFriendHandler);
+}
+
+function sendFriendShipRequest(e){
+    console.log('send');
+    let friend_id = parseInt(e.target.closest('.friend-add').getAttribute('data-id'));
+
+    sendAjaxRequest('post', '/api/sendFriend/' + friend_id, null, sentFriendHandler);
+}
+
+function cancelFriendShipRequest(e){
+    console.log('cancel');
+    let friend_id = parseInt(e.target.closest('.friend-cancel').getAttribute('data-id'));
+
+    sendAjaxRequest('post', '/api/cancelFriend/' + friend_id, null, cancelledFriendHandler);
+}
+
+
 
 // Handlers
 function deletedLikeHandler() {
@@ -1410,4 +1443,58 @@ function addedMoreHomeHandler(){
     // for(let i = 0; i < posts.length; i++){
     //     posts_div.innerHTML += 
     // }
+}
+
+function removedFriendHandler(){
+    
+    let reply = JSON.parse(this.responseText);
+    let old_button = document.querySelector('.friend-remove');
+    let friend = document.querySelector('.friend-remove').getAttribute('data-id');
+    let new_button = "";
+    
+    if(reply.can_send){
+        new_button =  '<button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '">'
+        + 'Add as Friend <i class="fas fa-user-plus"></i>'
+        + '</button>';
+
+        old_button.outerHTML = new_button;
+
+        let newEvent = document.querySelector('.friend-add');
+        if(newEvent) newEvent.addEventListener('click', sendFriendShipRequest);
+    }
+    else{
+        new_button =  '<button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="' + friend + '" disabled> '
+        + '<i class="fas fa-user-slash"></i>'
+        + '</button>';
+
+        old_button.outerHTML = new_button;
+    }    
+}
+
+function sentFriendHandler(){
+    let old_button = document.querySelector('.friend-add');
+    let friend = document.querySelector('.friend-add').getAttribute('data-id');
+    let new_button =  '<button type="button" class="friend-cancel col-sm-12 mt-5 btn btn-danger" data-id="' + friend + '"> '
+            + 'Cancel Request <i class="fas fa-times"></i>'
+            + '</button>';
+
+    old_button.outerHTML = new_button;
+
+    let newEvent = document.querySelector('.friend-cancel');
+    if(newEvent) newEvent.addEventListener('click', cancelFriendShipRequest);
+
+}
+
+function cancelledFriendHandler(){
+    let old_button = document.querySelector('.friend-cancel');
+    let friend = document.querySelector('.friend-cancel').getAttribute('data-id');
+    let new_button =  '<button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '"> '
+            + 'Add as Friend <i class="fas fa-user-plus"></i>'
+            + '</button>';
+
+    old_button.outerHTML = new_button;
+
+    let newEvent = document.querySelector('.friend-add');
+    if(newEvent) newEvent.addEventListener('click', sendFriendShipRequest);
+
 }
