@@ -85,6 +85,7 @@ Route::post('/api/getPotentialAdminsSearch', 'AdminController@getPotentialAdmins
 // Posts
 Route::get('posts', 'PostController@list');
 Route::get('post/{id}', 'PostController@show');
+Route::get('share/{post_id}_{user_id}', 'ShareController@show');
 
 // Users
 Route::get('user/{username}', 'UserController@show');
