@@ -6,8 +6,11 @@
         </div>
         <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/{{$member->username}}">{{$member->name}}</a></div>
         <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-            <button type="button" class="ban_member btn btn-danger btn-sm" id="{{$member->id}}" data-toggle="modal"
-                data-target="#banModal">
+            @if(Auth::user()->id == $member->id)
+            <button type="button" class="ban_member btn btn-danger btn-sm" id="{{$member->id}}" data-toggle="modal" data-target="#banModal">
+            @else 
+                <button type="button" class="ban_member btn btn-danger btn-sm" id="{{$member->id}}" data-toggle="modal" data-target="#banModal">
+            @endif
                 <i class="fas fa-user-times"></i> Ban Member
             </button>
         </div>
