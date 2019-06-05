@@ -17,7 +17,11 @@
                 </div>
                 <div class="col-sm-12 col-lg-6">
                     <div class="text-left basic-info">
-                        <h2><b>{{ $user->name }}</b></h2>
+                        <h2><b>{{ $user->name }}</b>
+                            <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#profile_helpModal">
+                                <i class="fas fa-question-circle"></i>
+                            </button>
+                        </h2>
                         <p class="my-0">Birthdate: <small>{{ $user->birthdate }}</small></p>
                         <p class="mt-0">Class: <small>{{ $user->class }}</small></p>
                     </div>
@@ -53,9 +57,6 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#profile_helpModal">
-                <i class="fas fa-question-circle"></i>
-        </button>
         <div class="profile-page-info mb-4">
             <ul class="mt-5 nav nav-tabs" id="profile-tabs" role="tablist">
                 <li class="nav-item">
