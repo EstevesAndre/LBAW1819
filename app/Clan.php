@@ -32,4 +32,8 @@ class Clan extends Model
     public function invited() {
         return $this->hasMany('App\Request', 'clan_id', 'id');
     }
+
+    public function ban() {
+        return $this->hasOne('App\Blocked', 'clan');
+    }
 }
