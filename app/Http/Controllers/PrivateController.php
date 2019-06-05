@@ -26,9 +26,9 @@ class PrivateController extends Controller
 
         $friendIDs = Auth::user()->friendIDs()->get();
         
-        $posts = Post::whereIn('user_id', $friendIDs)->orderBy('date', 'DESC')->paginate(3);
+        $posts = Post::whereIn('user_id', $friendIDs)->get();//->orderBy('date', 'DESC')->paginate(3);
         
-        // $shares = Share::whereIn('user_id', $friendIDs)->get();
+        $shares = Share::whereIn('user_id', $friendIDs)->get();
         
         $list = collect([]);
 
@@ -36,22 +36,22 @@ class PrivateController extends Controller
             $list = $list->push($post);
         }
 
-        // foreach($shares as $share) {
-        //     $list = $list->push($share);
-        // }
+        foreach($shares as $share) {
+            $list = $list->push($share);
+        }
 
-        // $list = $list->sort(function ($a, $b) {
-        //     if(strtotime($a->date) > strtotime($b->date))
-        //     {
-        //         return -1;
-        //     }
-        //     else 
-        //     {
-        //         return 1;
-        //     }
-        // });
+        $list = $list->sort(function ($a, $b) {
+            if(strtotime($a->date) > strtotime($b->date))
+            {
+                return -1;
+            }
+            else 
+            {
+                return 1;
+            }
+        });
 
-        return view('pages.home',compact('posts'));
+        return view('pages.home', ['posts' => $list]);
     }
 
     public function seeMoreHome($cur_page){
