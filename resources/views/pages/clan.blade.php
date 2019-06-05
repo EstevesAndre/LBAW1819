@@ -40,6 +40,11 @@
                     <div class="my-2"><i class="fas fa-globe"></i> Rank: 0</div>
                     <div class="my-2"><i class="fas fa-user-cog"></i> Owner: {{ $clan->owner()->get()[0]->name }}</div>
                     <div class="my-2"><i class="fas fa-users"></i> Members: {{ $members->count() }}</div>
+                     @if($clan->id == Auth::user()->clan()->get()[0]->id)
+                    <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#leaveClanModal">
+                        Leave Clan <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -186,4 +191,22 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="leaveClanModal" tabindex="-1" role="dialog" aria-labelledby="leaveClanModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="leaveClanModalLabel">Leave Clan</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure that you want to remove your Clan?</p>
+                    <div class="float-right">
+                        <button type="button" data-dismiss="modal" class="btn btn-success" onclick="window.location='{{ url('api/leaveClan/'.Auth::user()->id)}}'">Yes</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

@@ -223,4 +223,9 @@ class ClanController extends Controller
 
         return $xp;
     }
+
+    public function leaveClan($user){
+        DB::table('user_clans')->where('user_id',$user)->delete();
+        return redirect('home');
+    }
 }

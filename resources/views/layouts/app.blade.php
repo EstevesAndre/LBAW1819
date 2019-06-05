@@ -47,7 +47,11 @@
                                 <a class="nav-link index-nav" href="/user/{{ Auth::user()->username }}">Profile</a>
                             </li>
                             <li class="nav-item align-self-center">
+                                @if(!Auth::user()->clan()->get()->isEmpty())
                                 <a class="nav-link index-nav" href="{{ url('/clan') }}">Clan</a>
+                                @else 
+                                <a class="nav-link index-nav" href="{{ url('/createClanPage') }}">Clan</a>
+                                @endif
                             </li>
                             <li class="nav-item align-self-center">
                                 <a class="nav-link index-nav" href="{{ url('/leaderboard') }}">Leaderboards</a>

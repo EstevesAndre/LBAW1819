@@ -483,7 +483,7 @@ VALUES('danilo.fcp@gmail.com', 'ItzDanilo', 'k3M~4&./', 'Tony Costa', '1997-03-1
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
 VALUES('pizzi@gmail.com', 'PizziOficial', '`7vJ4aHw', 'Marcelo Sousa', '1997-03-18', 'Human', 'Fighter', 'Male', 1024, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
-VALUES('bruno_nandes@gmail.com', 'AMinhaVidaeoSport', '[Yw?J5XP', 'Pedro Coelho', '1997-03-18', 'Human', 'Wizard', 'Male', 1312, FALSE);
+VALUES('bruno_nandes@gmail.com', 'AMinhaVidaeoSport', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'Pedro Coelho', '1997-03-18', 'Human', 'Wizard', 'Male', 1312, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
 VALUES('neves_ruben@gmail.com', 'SoGolaceiras', 'W]d89up]', 'Louis Vieira', '1997-03-18','Dwarf', 'Healer', 'Male', 430, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
