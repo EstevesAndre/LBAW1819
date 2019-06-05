@@ -55,12 +55,13 @@
                 <p class="text-center"><b><small>No posts to be seen!</small></b></p>
             @else
                 <div id="posts-list">
-                    @each('partials.post', $posts->take(15), 'post')
-                    {{-- @if($posts->count() > 15) --}}
-                        <button type="button" class="see-more btn-primary-outline btn m-3">
-                            See more <i class="fas fa-caret-down"></i>
-                        </button>
-                    {{-- @endif --}}
+                    @foreach($posts as $p)
+                        @if($p->id != null)
+                            @include('partials.post', ['post' => $p])
+                        @else
+                            @include('partials.share', ['share' => $p])
+                        @endif
+                    @endforeach
                 </div>
             @endif
         </section>

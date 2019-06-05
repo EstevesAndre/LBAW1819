@@ -1,3 +1,24 @@
+<div class="modal shareModal fade" id="sharePostModal-{{ $share->post()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog align-center" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removePostModalLabel">Share post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/api/share/{{$share->post()->get()[0]->id}}">
+                    {{csrf_field()}}
+                    <textarea class="rounded border-secondary w-100" rows="4" placeholder="Write your share message..." name="content"></textarea>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-success">Share</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @if($share->user_id == Auth::user()->id || Auth::user()->is_admin)
     <div class="modal postModal fade" id="deleteShareModal-{{ $share->id }}" data-id="{{ $share->id }}" tabindex="-1" role="dialog" aria-labelledby="removeShareModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -61,7 +82,7 @@
         <a class="box-link no-hover" href="/share/{{ $share->id }}"><div class="cardbox-item mx-3 mb-2">{{ $share->content }}</div></a>
         
         <a class="box-link no-hover" href="/post/{{ $share->post()->get()[0]->id }}">
-            @include('partials.post', ['post', $share->post()->get[0]])
+            @include('partials.post', ['post' => $share->post()->get()[0]])
         </a>
     </div>
 </div>
