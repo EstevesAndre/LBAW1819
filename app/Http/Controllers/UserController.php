@@ -46,18 +46,16 @@ class UserController extends Controller
             }
             else if($is_friend[0]->type == "friendRequest"){
                 
-                if($is_friend[0]->sender == Auth::user()->id && $is_friend[0]->has_accepted == false){//sent request refused BLOCKED REQUEST
+                if($is_friend[0]->sender == Auth::user()->id && $is_friend[0]->has_accepted === false){//sent request refused BLOCKED REQUEST
                    $status = 1;
                 } 
-                else if($is_friend[0]->sender == Auth::user()->id && $is_friend[0]->has_accepted == NULL){//sent request pending CANCEL REQUEST
+                else if($is_friend[0]->sender == Auth::user()->id && $is_friend[0]->has_accepted === NULL){//sent request pending CANCEL REQUEST
                     $status = 2;
                 } 
-                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted == NULL){//received request pending  ANSWER REQUEST
-                    echo '<h1>CARALHOOOOOOOO</h1>';
+                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted === NULL){//received request pending  ANSWER REQUEST
                     $status = 3;
                 } 
-                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted == false){///received request refused ->  ADD AS FRIEND
-                    echo '<h1>CARALHAAAAAAAAA</h1>';
+                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted === false){///received request refused ->  ADD AS FRIEND
                     $status = 0;
                 }
                 else if($is_friend[0]->has_accepted == true){ //are friends REMOVE FRIENDSHIP
@@ -180,6 +178,23 @@ class UserController extends Controller
     public function cancelFriendRequest($friend){
 
         $is_friend = Auth::user()->sent($friend)->delete();
+    }
+
+    public function answerFriendRequest($friend, $accepted){
+
+        $is_friend = Auth::user()->sent($friend)->get();
+
+        // if($accepted){
+        //     $is_friend[0]->has_accepted = true;
+        // }
+        // else{
+        //     $is_friend[0]->has_accepted = false;
+        // }
+
+        // $is_friend[0]->update();
+
+            
+        return response()->json(['accepted' => $accepted]); 
     }
 
 }

@@ -61,7 +61,7 @@
                                 Cancel Request <i class="fas fa-times"></i>
                             </button>
                             @elseif($status == 3)
-                            <div class="text-center w-100">
+                            <div class="friend-answers text-center w-100">
                                 <button type="button" class="friend-accept w-50 col-sm-12 mt-5 btn btn-success" data-id="{{$user->id}}"> 
                                     Accept <i class="fas fa-check"></i>
                                 </button>
