@@ -9,7 +9,7 @@ function addEventListeners() {
         like.addEventListener('click', sendAddLikeRequest);
     });
 
-    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div.to_link>ol>button, #leaderboard>ol>button');
+    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div>ol>button, #leaderboard>ol>button');
     [].forEach.call(friendList, function (friend) {
         friend.addEventListener('click', function () {
             window.location.href = this.getAttribute('data-id');
@@ -120,8 +120,10 @@ function addEventListeners() {
     let cancelFriendShip = document.querySelector('.friend-cancel');
     if(cancelFriendShip) cancelFriendShip.addEventListener('click', cancelFriendShipRequest);
 
-    let answerFriendShip = document.querySelector('.friend-accept, .friend-decline');
-    if(answerFriendShip) answerFriendShip.addEventListener('click', answerFriendShipRequest);
+    let answerFriendShip = document.querySelectorAll('.friend-accept, .friend-decline');
+    [].forEach.call(answerFriendShip, function (answer) {
+        answer.addEventListener('click', answerFriendShipRequest);
+    });
 }
 
 function encodeForAjax(data) {
@@ -217,7 +219,7 @@ function sendAddMessageRequest(e) {
     let message = document.querySelector('#message-send>input');
     let input = message.value;
     message.value = '';
-    let friend_id = document.querySelector('.friend-chat').id;
+    let friend_id = document.querySelector('.friend-chat').getAttribute('data-id');
 
     if (input != "")
         sendAjaxRequest('put', '/api/chat/' + friend_id, { message: input }, addedMessageHandler);
@@ -226,7 +228,7 @@ function sendAddMessageRequest(e) {
 function updateChatRequest(e) {
     e.preventDefault();
     console.log("Update chat request");
-    let friend_id = e.target.closest("a.friend-list").getAttribute('id');
+    let friend_id = e.target.closest("a.friend-list").getAttribute('data-id');
 
     sendAjaxRequest('post', '/api/update_chat/' + friend_id, null, updatedChatHandler);
 }
@@ -561,15 +563,18 @@ function cancelFriendShipRequest(e){
 function answerFriendShipRequest(e){
     console.log('answer');
 
-    let friend_id = parseInt(e.target.closest('.friend-decline').getAttribute('data-id'));
+    let friend_id = 0;
     let accepted = 0;
 
-    if(friend_id == null){
+    if(e.target.closest('.friend-decline') == null){
         friend_id = parseInt(e.target.closest('.friend-accept').getAttribute('data-id'));
         accepted = 1;
     }
+    else{
+        friend_id = parseInt(e.target.closest('.friend-decline').getAttribute('data-id'));
+    }
    
-    // sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendHandler);
+    sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendHandler);
 }
 
 
@@ -799,7 +804,7 @@ function updateSearchGlobal()
 function updateSearchClan() 
 {
     if(getLeaderboardSearchInfo())
-        sendAjaxRequest('post', '/api/getLeaderboardClanSearch/', { search: lastSearch }, updateLeaderboardClanSearch);   
+        sendAjaxRequest('post', '/api/getLeaderboardClanSearch/', { search: lastSearch }, updateLeaderboardSearch);   
 }
 
 function updateSearchFriends() 
@@ -836,33 +841,6 @@ function updateLeaderboardSearch() {
             '</div>' +
             '</li>' +
             '</button>';
-    });
-}
-
-function updateLeaderboardClanSearch() {
-    let reply = JSON.parse(this.responseText);
-    console.log(reply);
-    let list = document.querySelector('#leaderboard-content>.active ol.list');
-
-    list.innerHTML = "";
-
-    let img = document.querySelector('#nav-user-img');
-    let path = img.getAttribute('src');
-    let path_header = path.substr(0, path.indexOf("/avatars/"));
-
-    reply.forEach(function (element) {
-        console.log(element.name);
-        list.innerHTML +=
-            '<button type="button" class="text-left list-group-item border-0 list-group-item-action">'
-        +        '<li class="ml-3">'
-        +            '<div class="d-flex align-items-center row">'
-        +                '<div class="col-2 col-sm-1 friend-img">'
-        +                    '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/clanImgs/' + element.id + '.jpg" alt="Clan">'
-        +                '</div>'
-        +                '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>'
-        +            '</div>'
-        +        '</li>'
-        +    '</button>'
     });
 }
 
@@ -1513,11 +1491,18 @@ function removedFriendHandler(){
     }
     else{
         new_button =  '<button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="' + friend + '" disabled> '
-        + '<i class="fas fa-user-slash"></i>'
+        + 'Friendship blocked <i class="fas fa-user-slash"></i>'
         + '</button>';
 
         old_button.outerHTML = new_button;
     }    
+
+    let sidebar_chat = document.querySelector('.chat-side-bar');
+    let chat_icon = document.querySelector('.chat-side-bar [data-id="' + friend + '"]');
+    sidebar_chat.removeChild(chat_icon);
+
+    let active = document.querySelector('.friend-chat');
+    active.disabled = 'true';
 }
 
 function sentFriendHandler(){
@@ -1630,28 +1615,39 @@ function getPostHTML(user, post, path_header) {
     +        '</div>'
     +    '</div>';
 }
-
-// function answeredFriendHandler(){
-//     let reply = JSON.parse(this.responseText);
-//     let old_button = document.querySelector('.friend-remove');
-//     let friend = document.querySelector('.friend-remove').getAttribute('data-id');
-//     let new_button = "";
     
-//     if(reply.accepted){
-//         new_button =  '<button type="button" class="friend-remove col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '">'
-//         + 'Remove Friendship <i class="fas fa-user-times"></i>'
-//         + '</button>';
+function answeredFriendHandler(){
+    let reply = JSON.parse(this.responseText);
+    let old_button = document.querySelector('.friend-answers');
+    let friend = document.querySelector('.friend-accept').getAttribute('data-id');
+    let new_button = "";
 
-//         old_button.outerHTML = new_button;
+    if(parseInt(reply.accepted)){
+        new_button =  '<button type="button" class="friend-remove col-sm-12 mt-5 btn btn-outline-danger" data-id="' + friend + '">'
+        + 'Remove Friendship <i class="fas fa-user-times"></i>'
+        + '</button>';
 
-//         let newEvent = document.querySelector('.friend-add');
-//         if(newEvent) newEvent.addEventListener('click', sendFriendShipRequest);
-//     }
-//     else{
-//         new_button =  '<button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="' + friend + '" disabled> '
-//         + '<i class="fas fa-user-slash"></i>'
-//         + '</button>';
+        old_button.outerHTML = new_button;
+        
+        let newEvent = document.querySelector('.friend-remove');
+        if(newEvent) newEvent.addEventListener('click', removeFriendShipRequest);
 
-//         old_button.outerHTML = new_button;
-//     }    
-// }
+        let sidebar_chat = document.querySelector('.chat-side-bar');
+        console.log(reply.friend.name);
+    //     let new_friend = '<a class="friend-list list-group-item list-group-item-action" data-id="' +  +'" data-toggle="list" href="#list-{{ $user->id }}" aria-controls="{{ $user->id }}">
+    //     <img src="{{ asset('assets/avatars/'.$user->race.'_'.$user->class.'_'.$user->gender.'.bmp') }}" alt="logo" width="25" class="mr-2 border bg-warning img-fluid rounded-circle">
+    //     {{ $user->name }}
+    // </a>
+
+    }
+    else{
+        new_button =  '<button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '">'
+        + 'Add as Friend <i class="fas fa-user-plus"></i>'
+        + '</button>';
+
+        old_button.outerHTML = new_button;
+
+        let newEvent = document.querySelector('.friend-add');
+        if(newEvent) newEvent.addEventListener('click', sendFriendShipRequest);
+    }    
+}

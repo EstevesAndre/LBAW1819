@@ -49,12 +49,17 @@
                         <a class="user-link" href="/user/{{ $post->user()->get()[0]->username }}">
                             {{ $post->user()->get()[0]->name }}
                         </a>
+                        @if (!$post->clan()->get()->isEmpty())
+                        <a class="user-link" href="/clan">
+                            @ {{ $post->clan()->get()[0]->name }}
+                        </a>
+                        @endif
                     </p>
                     <small><span><i class="icon ion-md-time mt-0"></i>{{ substr($post->date, 0, 19) }}</span></small>
                 </div>
             </div>
         </div>
-        <div class="cardbox-item mx-3">{{ $post->content }}</div>
+        <a class="box-link no-hover" href="/post/{{ $post->id }}"><div class="cardbox-item mx-3 mb-2">{{ $post->content }}</div></a>
         <div class="cardbox-base">
             <ul class="fst mx-3 mb-1">
                 @if(count($post->like()->where('user_id','=',Auth::user()->id)->get()) == 0)
@@ -71,21 +76,6 @@
                 <li><a><i class="fa fa-share-alt"></i></a></li>
                 <li><a><em class="mr-3">{{ $post->share()->count() }}</em></a></li>
             </ul>
-        </div>
-        <div class="cardbox-comments d-flex align-items-center">
-            <span class="comment-avatar float-left mr-2">
-                <a href="/user/{{ Auth::user()->username }}">
-                    <img class="rounded-circle" 
-                        src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}" 
-                    alt="Avatar">
-                </a>
-            </span>
-            <div class="search-comment">
-                <a href="/post/{{ $post->id }}">
-                    <input placeholder="Write a comment..." type="text">
-                    <button><i class="fas fa-share-square"></i></button>
-                </a>
-            </div>
         </div>
     </div>
 </div>

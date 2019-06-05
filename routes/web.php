@@ -52,6 +52,8 @@ Route::delete('/api/removePermissions/{id}', 'UserController@removePermissions')
 Route::put('/api/removeFriend/{friend}', 'UserController@removeFriend');
 Route::post('/api/sendFriend/{friend}', 'UserController@sendFriendRequest');
 Route::post('/api/cancelFriend/{friend}', 'UserController@cancelFriendRequest');
+Route::put('/api/answerFriend/{friend}+{accepted}', 'UserController@answerFriendRequest');
+
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
 Route::get('faqs', 'PublicController@showFaqsPage');

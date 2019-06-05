@@ -161,12 +161,22 @@ class UserController extends Controller
 
         // $is_friend[0]->has_accepted = false;
         // $is_friend[0]->update();
+
+        //OR
+
+        //is_friend[0]->delete(); <-----
                
         return response()->json(['can_send' => $can_send]); 
 
     }
 
     public function sendFriendRequest($friend){
+
+        $is_friend = Auth::user()->received($friend)->get();
+       
+        if(!$is_friend->isEmpty()){
+           //is_friend[0]->delete();
+        }
 
         $request = new \App\Request();
         $request->sender = Auth::user()->id;
@@ -178,6 +188,25 @@ class UserController extends Controller
     public function cancelFriendRequest($friend){
 
         $is_friend = Auth::user()->sent($friend)->delete();
+    }
+
+    public function answerFriendRequest($friend, $accepted){
+
+        $is_friend = Auth::user()->sent($friend)->get();
+
+        // if($accepted){
+        //     $is_friend[0]->has_accepted = true;
+        // }
+        // else{
+        //     $is_friend[0]->has_accepted = false;
+        // }
+
+        // $is_friend[0]->update();
+
+        $new_friend = User::find($friend);
+
+            
+        return response()->json(['accepted' => $accepted, 'friend' => $friend]); 
     }
 
 }
