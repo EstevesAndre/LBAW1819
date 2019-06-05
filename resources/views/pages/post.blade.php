@@ -80,6 +80,11 @@
                                 <a class="user-link" href="/user/{{ $post->user()->get()[0]->username }}">
                                     {{ $post->user()->get()[0]->name }}
                                 </a>
+                                @if (!$post->clan()->get()->isEmpty())
+                                <a class="user-link" href="/clan">
+                                    @ {{ $post->clan()->get()[0]->name }}
+                                </a>
+                                @endif
                             </p>
                             <small><span><i class="icon ion-md-time mt-0"></i>{{ substr($post->date, 0, 19) }}</span></small>
                         </div>

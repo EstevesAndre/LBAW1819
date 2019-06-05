@@ -113,7 +113,9 @@
                     @if($posts->count() == 0)
                         <p class="text-center"><b><small>No posts to be seen!</small></b></p>
                     @else
-                        @each('partials.post', $posts, 'post')
+                        <div id="posts-list">
+                            @each('partials.post', $posts, 'post')
+                        </div>
                         <br />
                         <p class="text-center standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                     @endif

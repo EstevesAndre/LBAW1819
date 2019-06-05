@@ -64,7 +64,7 @@ class UserController extends Controller
             }
         }
         
-        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan, 'status' => $status, 'is_friend' => $is_friend]);
+        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan, 'status' => $status]);
     }
     
     public function getFriendsListSearch(Request $request, $id) 

@@ -37,10 +37,13 @@ class PostController extends Controller
         else
             $post->clan_id = null;
 
-
         $post->save();
+        $post->refresh();
 
-        return $post;
+        return response()->json([
+            'post' => $post,
+            'user' => Auth::user()
+        ]);
     }
 
     public function delete(Request $request, $id) 
