@@ -821,6 +821,17 @@ img{ max-width:100%;}
   width: 46%;
 }
 
+.box-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.box-link:hover 
+{
+    color: inherit;
+    cursor:pointer;  
+}
+
 @media (max-width: 576px) {
     .btn-ban > span {
         display: none;
