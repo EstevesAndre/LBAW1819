@@ -265,7 +265,32 @@ class ClanController extends Controller
         return redirect('home');
     }
 
-    public function getBannedClanUsersSearch(Request $request) {
-        return Blocked::where('clan', Auth::user()->id)->get();
+    public function getBannedClanUsersSearch(Request $request, $id) {
+
+        $search = $request->input('search');
+        $clanBlocked = Blocked::where('clan', $id)
+            ->whereNotNull('user_id')
+            ->get();
+
+        $idUsersBanned = [];
+        foreach($clanBlocked as $banned) {
+            array_push($idUsersBanned, $banned->user_id);
+        }
+
+        $users = null;
+
+        if($search == '')
+        {
+            $users = User::whereIn('id', $idUsersBanned)
+                ->get();
+        }
+        else
+        {
+            $users = User::whereIn('id', $idUsersBanned)
+                ->where('name', 'like', '%' . $search . '%')
+                ->get();
+        }
+
+        return $users;
     }
 }

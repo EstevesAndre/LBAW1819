@@ -62,13 +62,11 @@
                             </button>
                         </ul>
                         <div class="d-flex justify-content-center mr-2">
-                            <form class="mb-3 ml-4 mr-4" method="GET" action="/search">
+                            <form class="my-2 ml-4 mr-4" method="GET" action="/search">
                                 <div class="searchbar">
                                     <input type ="text" class="search_input" name="search" placeholder="Search..." required>
-                                    <button type="submit" class="btn btn-dark btn-circle">
-                                        <div class="search_icon">
+                                    <button type="submit" class="search_icon btn btn-dark btn-circle">
                                             <i class="fas fa-search"></i>
-                                        </div>
                                     </button>
                                 </div>
                             </form>

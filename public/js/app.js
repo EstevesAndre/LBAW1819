@@ -24,7 +24,7 @@ function addEventListeners() {
         like.addEventListener('click', sendAddLikeRequest);
     });
 
-    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div>ol>button, #leaderboard>ol>button');
+    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div.to_link ol>button, #leaderboard-content>div.to_link div.podium, #leaderboard>ol>button');
     [].forEach.call(friendList, function (friend) {
         friend.addEventListener('click', function () {
             window.location.href = this.getAttribute('data-id');
@@ -263,11 +263,12 @@ function setBanModalID(e) {
 
     let id = e.target.closest('button.ban_member').getAttribute('id');
     let modal = document.querySelector('.ban_modal');
+    modal.disabled = false;
 
     modal.setAttribute('id', id);
 
     let modal_error = document.querySelector('#banModal .modal-body .error-msg');
-    modal_error.innerHTML = "";
+    modal_error.innerHTML = "&nbsp";
 
     let banMember = document.querySelector('.ban_modal');
     banMember.addEventListener('click', sendBanMemberRequest);
@@ -514,16 +515,15 @@ function sendBanMemberRequest(e) {
 
         let date = endDate.toISOString().replace('Z', '').replace('T', ' ');
         formattedDate = date.substr(0, date.lastIndexOf('.'));
-
-        
     }
 
-    sendAjaxRequest('put', '/api/banMember/' + member_id, { motive: checkedMotive, endDate: formattedDate }, banMemberHandler);
+   sendAjaxRequest('put', '/api/banMember/' + member_id, { motive: checkedMotive, endDate: formattedDate }, banMemberHandler);
 }
 
 function sendUnBanMemberRequest(e) {
     e.preventDefault();
-    let blocked_id = e.target.id;
+
+    let blocked_id = e.target.closest('button.unban_member').getAttribute('id');
     let clan_id = document.querySelector('.settings').getAttribute('data-id');
 
     sendAjaxRequest('put', '/api/unbanMember/' + blocked_id + '+' + clan_id, null, unbanMemberHandler);
@@ -846,6 +846,7 @@ function updateFriendsListSearch() {
 
     userListHandler(reply, list, path_header);
 }
+
 // ---------------------------------------------------------------------------------------------------------------------//
 function getLeaderboardSearchInfo() 
 {
@@ -928,6 +929,13 @@ function updateLeaderboardSearch() {
             '</div>' +
             '</li>' +
             '</button>';
+    });
+    
+    let friendList = document.querySelectorAll('#leaderboard-content>div.to_link ol>button');
+    [].forEach.call(friendList, function (friend) {
+        friend.addEventListener('click', function () {
+            window.location.href = this.getAttribute('data-id');
+        });
     });
 }
 
@@ -1096,6 +1104,11 @@ function banMemberHandler(){
     let reply = JSON.parse(this.responseText);
     let banned = reply.banned;
 
+    let modal_msg = document.querySelector('#banModal .modal-body .error-msg');
+    modal_msg.innerHTML = "Member banned!";
+    let banButton = document.querySelector('#banModal .modal-body .ban_modal');
+    banButton.disabled = true;
+
     let active_list = document.querySelector('ul.active'); //list of active members
     let banned_list = document.querySelector('ul.banned'); //list of banned members
     let msg = document.querySelector('h5.no-banned'); if(msg) msg.outerHTML = "";
@@ -1113,7 +1126,7 @@ function banMemberHandler(){
                                     '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
                                     'src="' + path_header + '/avatars/' + banned.race + '_' + banned.class + '_' + banned.gender + '.bmp" alt="Clan">' + 
                                 '</div>' + 
-                                '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + banned.username + '">' + banned.name + '</a></div>' + 
+                                '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="/user/' + banned.username + '">' + banned.name + '</a></div>' + 
                                 '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
                                    '<button type="button" class="unban_member btn btn-success btn-sm" id="' + banned.id +'">' + 
                                         '<i class="fas fa-user-plus"></i> Unban Member' + 
@@ -1151,18 +1164,19 @@ function unbanMemberHandler(){
                                     '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
                                     'src="' + path_header + '/avatars/' + unbanned.race + '_' + unbanned.class + '_' + unbanned.gender + '.bmp" alt="Clan">' + 
                                 '</div>' + 
-                                '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + unbanned.username + '">' + unbanned.name + '</a></div>' + 
+                                '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="/user/' + unbanned.username + '">' + unbanned.name + '</a></div>' + 
                                 '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
-                                   '<button type="button" class="unban_member btn btn-danger btn-sm" id="' + unbanned.id +'">' + 
+                                   '<button type="button" class="ban_member btn btn-danger btn-sm" id="' + unbanned.id +'" data-toggle="modal" data-target="#banModal">' + 
                                         '<i class="fas fa-user-times"></i> Ban Member' + 
                                     '</button>' + 
                                 '</div>' + 
                             '</div>' + 
                         '</li>');
 
-    let banMember = document.querySelectorAll('.ban_member');
-    [].forEach.call(banMember, function (blocked) {
-        blocked.addEventListener('click', sendBanMemberRequest);
+    
+    let openBanModal = document.querySelectorAll('.ban_member');
+    [].forEach.call(openBanModal, function (member) {
+        member.addEventListener('click', setBanModalID);
     });
 }
 // ---------------------------------------------------------------------------------------------------------------------//
@@ -1189,7 +1203,6 @@ function updateClanMembersSearch() {
 
     userListHandler(reply, list, path_header);
 }
-
 
 // ---------------------------------------------------------------------------------------------------------------------//
 
@@ -1229,6 +1242,13 @@ function updateClanUsersLeaderboardSearch() {
                 '</li>' + 
             '</button>';
     });
+
+    let friendList = document.querySelectorAll('#leaderboard>ol>button');
+    [].forEach.call(friendList, function (friend) {
+        friend.addEventListener('click', function () {
+            window.location.href = this.getAttribute('data-id');
+        });
+    });
 }
 
 // ---------------------------------------------------------------------------------------------------------------------//
@@ -1239,7 +1259,7 @@ function userListHandler(reply, list, path_header) {
 
         list.innerHTML +=
             '<li class="list-group shadow-lg">' 
-        +       '<button data-id="' +  element.username + '" type="button" class="text-left list-group-item list-group-item-action">'
+        +       '<button data-id="/user/' +  element.username + '" type="button" class="text-left list-group-item list-group-item-action">'
         +           '<div class="d-flex align-items-center row">'
         +               '<div class="col-2 col-sm-1 friend-img">'
         +                   '<img src="' + path_header + '/avatars/'
@@ -1252,6 +1272,13 @@ function userListHandler(reply, list, path_header) {
         +       '</button>'
         +   '</li>';
       });
+    
+    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button');
+    [].forEach.call(friendList, function (friend) {
+        friend.addEventListener('click', function () {
+            window.location.href = this.getAttribute('data-id');
+        });
+    });
 }
 
 function addedInvitesHandler(){
@@ -1267,6 +1294,7 @@ function addedInvitesHandler(){
         invite_list.removeChild(invited);
     }
 }
+
 // ---------------------------------------------------------------------------------------------------------------------//
 
 function searchActiveClanUsers($clanID) {
@@ -1323,7 +1351,7 @@ function updateActiveClanUsersSearch() {
         if(parseInt(reply.userID) == element.id)
             button = '<button type="button" class="btn btn-danger btn-sm" disabled>';
         else
-            button = '<button type="button" class="unban_member btn btn-danger btn-sm" id="' + element.id +'">';
+            button = '<button type="button" class="ban_member btn btn-danger btn-sm" id="' + element.id +'" data-toggle="modal" data-target="#banModal">';
 
         $users.innerHTML += '<li class="p-2 ml-3" data-id="' + element.id + '">' + 
                                 '<div class="d-flex align-items-center row">' + 
@@ -1331,7 +1359,7 @@ function updateActiveClanUsersSearch() {
                                         '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
                                         'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp" alt="Clan">' + 
                                     '</div>' + 
-                                    '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + element.username + '">' + element.name + '</a></div>' + 
+                                    '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="/user/' + element.username + '">' + element.name + '</a></div>' + 
                                     '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
                                         button + 
                                             '<i class="fas fa-user-times"></i> Ban Member' + 
@@ -1340,11 +1368,46 @@ function updateActiveClanUsersSearch() {
                                 '</div>' + 
                             '</li>';
     });
+
+    let openBanModal = document.querySelectorAll('.ban_member');
+    [].forEach.call(openBanModal, function (member) {
+        member.addEventListener('click', setBanModalID);
+    });
 }
 
 function updateBannedClanUsersSearch() {
     let reply = JSON.parse(this.responseText);
     console.log(reply);
+
+    
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+    
+    $users = document.querySelector('#banned ul.banned');
+    $users.innerHTML = "";
+
+    reply.forEach(function(element) {
+        $users.innerHTML += '<li class="p-2 ml-3" data-id="' + element.id + '">' + 
+                                '<div class="d-flex align-items-center row">' + 
+                                    '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">' + 
+                                        '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
+                                        'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp" alt="Clan">' + 
+                                    '</div>' + 
+                                    '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="/user/' + element.username + '">' + element.name + '</a></div>' + 
+                                    '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
+                                        '<button type="button" class="unban_member btn btn-success btn-sm" id="' + element.id +'">' + 
+                                            '<i class="fas fa-user-times"></i> Unban Member' + 
+                                        '</button>' + 
+                                    '</div>' + 
+                                '</div>' + 
+                            '</li>';
+    });
+
+    let unbanMember = document.querySelectorAll('.unban_member');
+    [].forEach.call(unbanMember, function (blocked) {
+        blocked.addEventListener('click', sendUnBanMemberRequest);
+    });
 }
 
 function updateActiveUsersSearch() {
@@ -1486,7 +1549,6 @@ function updateBannedsClansSearch() {
     let path = document.querySelector('#nav-user-img').getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
-
     reply.forEach(function(element) {
         users.innerHTML += getUnbanClanHTML(element, path_header);
     });
@@ -1546,6 +1608,11 @@ function updateActiveAdminsSearch() {
 
     reply.forEach(function(element) {
         users.innerHTML += getActiveAdminPermissionsHTML(element, path_header, userID)
+    });
+
+    let adminRmPermissionsModal = document.querySelectorAll('.rm_permissions');
+    [].forEach.call(adminRmPermissionsModal, function (admin) {
+        admin.addEventListener('click', setRmPermissionsModalID);
     });
 }
 
@@ -1810,3 +1877,4 @@ function answeredFriendRPHandler(){
     let count = parseInt(document.querySelector('#received-tab span').innerHTML);
     document.querySelector('#received-tab span').innerHTML = count -1;
 }
+
