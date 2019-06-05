@@ -50,9 +50,9 @@ Route::delete('/api/unbanUser/{id}', 'BlockedController@deletebanUser');
 Route::delete('/api/unbanClan/{id}', 'BlockedController@deletebanClan');
 Route::delete('/api/removePermissions/{id}', 'UserController@removePermissions');
 
-Route::put('/api/removeFriend/{friend}', 'UserController@removeFriend');
-Route::post('/api/sendFriend/{friend}', 'UserController@sendFriendRequest');
-Route::post('/api/cancelFriend/{friend}', 'UserController@cancelFriendRequest');
+Route::delete('/api/removeFriend/{friend}', 'UserController@removeFriend');
+Route::put('/api/sendFriend/{friend}', 'UserController@sendFriendRequest');
+Route::delete('/api/cancelFriend/{friend}', 'UserController@cancelFriendRequest');
 Route::put('/api/answerFriend/{friend}+{accepted}', 'UserController@answerFriendRequest');
 
 Route::get('/api/leaveClan/{user}', 'ClanController@leaveClan');
@@ -81,6 +81,8 @@ Route::post('/api/getActiveClansSearch', 'ClanController@getActiveClansSearch');
 Route::post('/api/getBannedClansSearch', 'ClanController@getBannedClansSearch');
 Route::post('/api/getActiveAdminsSearch', 'AdminController@getActiveAdminsSearch');
 Route::post('/api/getPotentialAdminsSearch', 'AdminController@getPotentialAdminsSearch');
+Route::post('/api/getActiveClanUsersSearch/{id}', 'ClanController@getActiveClanUsersSearch');
+Route::post('/api/getBannedClanUsersSearch/{id}', 'ClanController@getBannedClanUsersSearch');
 
 // Posts
 Route::get('posts', 'PostController@list');
