@@ -14,24 +14,24 @@ class RequestController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        $sent = DB::table('requests')
-            ->where('type','friendRequest')
-            ->where('sender',Auth::user()->id)
-            ->where('has_accepted', null)
-            ->get();
+        
+        $sent = Auth::user()->allSent()->get();
 
-        $received = DB::table('requests')
-            ->where('type','friendRequest')
-            ->where('receiver',Auth::user()->id)
-            ->where('has_accepted', null)
-            ->get();
+        // $sent = DB::table('requests')
+        //     ->where('type','friendRequest')
+        //     ->where('sender',Auth::user()->id)
+        //     ->where('has_accepted', null)
+        //     ->get();
 
-        $rejected = DB::table('requests')
-            ->where('type','friendRequest')
-            ->where('receiver',Auth::user()->id)
-            ->where('has_accepted', true)
-            ->get();
+        $received =Auth::user()->allRequested()->get();
 
-        return view('pages.friendRequests', ['sent' => $sent, 'received' => $received, 'rejected' => $rejected]);
+
+        // $received = DB::table('requests')
+        //     ->where('type','friendRequest')
+        //     ->where('receiver',Auth::user()->id)
+        //     ->where('has_accepted', null)
+        //     ->get();
+
+        return view('pages.friendRequests', ['sent' => $sent, 'received' => $received]);
     }
 }

@@ -69,23 +69,20 @@
                         </div>
                         <div class="d-flex justify-content-center mx-2 align-items-center">
                             <div class="btn-group my-2">
-                                <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="fas fa-user-friends"></i></button>
-                                <div class="dropdown-menu bg-secondary">
-                                    <a class="no-hover index-nav" href="{{ url('/friendRequests') }}"><button class="dropdown-item dropdown-navbar" type="button">Go to Friend Requests</button></a>
-                                </div>
+                                <button type="button" class="btn btn-secondary rounded" onclick="window.location='{{ url('/friendRequests') }}'" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"><i class="fas fa-user-friends"></i>
+                                </button>
                             </div>
                             <div class="btn-group mr-1">
-                                <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="far fa-envelope"></i></button>
-                                <div class="dropdown-menu bg-secondary">
-                                    <a class="no-hover index-nav" href="{{ url('/chat') }}"><button class="dropdown-item dropdown-navbar" type="button">Go to Chat</button></a>
-                                </div>
+                                <button type="button" class="btn btn-secondary rounded" onclick="window.location='{{ url('/chat') }}'" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"><i class="far fa-envelope"></i>
+                                </button>
                             </div>
                             <div class="btn-group mr-3 my-2" id="notifications">
                                 <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="far fa-bell"></i></button>
-                                <div class="dropdown-menu dropdown-menu-right bg-dark">
+                                <div class="dropdown-menu text-center dropdown-menu-right text-light bg-dark">
+                                    You have 0 notifications!
                                 </div>
                             </div>
 

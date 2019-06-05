@@ -61,6 +61,14 @@ class User extends Authenticatable
     public function sent($id) {
         return $this->hasOne('App\Request', 'sender', 'id')->where('receiver',$id);
     }
+
+    public function allRequested() {
+        return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null);
+    }
+
+    public function allSent() {
+        return $this->hasMany('App\Request', 'sender', 'id')->where('has_accepted', null);;
+    }
     
     public function friends() {
         $friends_ = $this->belongsToMany('App\User', 'requests', 'sender','receiver')->where('type', 'friendRequest')->where('has_accepted', 'TRUE');

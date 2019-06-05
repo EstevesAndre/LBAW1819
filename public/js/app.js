@@ -111,18 +111,28 @@ function addEventListeners() {
         admin.addEventListener('click', sendAddAdminPermissionsRequest);
     });
 
-    let removeFriendShip = document.querySelector('.friend-remove');
+    let removeFriendShip = document.querySelector('.profile .friend-remove');
     if(removeFriendShip) removeFriendShip.addEventListener('click', removeFriendShipRequest);
 
-    let sendFriendShip = document.querySelector('.friend-add');
+    let sendFriendShip = document.querySelector('.profile .friend-add');
     if(sendFriendShip) sendFriendShip.addEventListener('click', sendFriendShipRequest);
 
-    let cancelFriendShip = document.querySelector('.friend-cancel');
+    let cancelFriendShip = document.querySelector('.profile .friend-cancel');
     if(cancelFriendShip) cancelFriendShip.addEventListener('click', cancelFriendShipRequest);
 
-    let answerFriendShip = document.querySelectorAll('.friend-accept, .friend-decline');
+    let cancelFriendShipRequestPage = document.querySelectorAll('.friend-cancel-rp .friend-cancel');
+    [].forEach.call(cancelFriendShipRequestPage, function (answer) {
+        answer.addEventListener('click', cancelFriendShipRPRequest);
+    });
+
+    let answerFriendShip = document.querySelectorAll('.profile .friend-accept, .profile .friend-decline');
     [].forEach.call(answerFriendShip, function (answer) {
         answer.addEventListener('click', answerFriendShipRequest);
+    });
+
+    let answerFriendShipRequestPage = document.querySelectorAll('.friend-answer-rp .friend-accept,.friend-answer-rp .friend-decline');
+    [].forEach.call(answerFriendShipRequestPage, function (answer) {
+        answer.addEventListener('click', answerFriendShipRPRequest);
     });
 }
 
@@ -577,6 +587,31 @@ function answerFriendShipRequest(e){
     sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendHandler);
 }
 
+function cancelFriendShipRPRequest(e){
+    console.log('cancel2');
+
+    let friend_id = parseInt(e.target.closest('.friend-cancel').getAttribute('data-id'));
+
+    sendAjaxRequest('post', '/api/cancelFriend/' + friend_id, null, cancelledFriendRPHandler);
+}
+
+function answerFriendShipRPRequest(e){
+    console.log('answer2');
+
+    let friend_id = 0;
+    let accepted = 0;
+
+    if(e.target.closest('.friend-decline') == null){
+        friend_id = parseInt(e.target.closest('.friend-accept').getAttribute('data-id'));
+        accepted = 1;
+    }
+    else{
+        friend_id = parseInt(e.target.closest('.friend-decline').getAttribute('data-id'));
+    }
+   
+    sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendRPHandler);
+}
+
 
 
 // Handlers
@@ -659,6 +694,13 @@ function userNotificationsHandler() {
     let notificationsArea = document.querySelector('#notifications > .dropdown-menu');
 
     notificationsArea.innerHTML = "";
+
+    let notifications = response.comments.length + response.likes.length + response.shares.length;
+
+    if(notifications == 0){
+        notificationsArea.innerHTML += "You have 0 notifications!";
+        return;
+    }
 
     for (let i = 0; i < response.comments.length; i++) {
         notificationsArea.innerHTML += '<a class="no-hover index-nav" href="/post/' + response.comments[i].postid + '#' + response.comments[i].commentid + '"> <button class="dropdown-item dropdown-navbar" type="button">' + response.comments[i].name + ' commented your post.</button> </a>';
@@ -1642,4 +1684,28 @@ function answeredFriendHandler(){
         let newEvent = document.querySelector('.friend-add');
         if(newEvent) newEvent.addEventListener('click', sendFriendShipRequest);
     }    
+}
+
+function cancelledFriendRPHandler(){
+    let reply = JSON.parse(this.responseText);
+
+    let old_div = document.querySelector('.sent-r');
+    let answered = document.querySelector('.friend-cancel-rp[data-id="' + reply.friend + '"]');
+    old_div.removeChild(answered);
+
+    let count = parseInt(document.querySelector('#sent-tab span').innerHTML);
+    document.querySelector('#sent-tab span').innerHTML = count -1;
+
+    
+}
+
+function answeredFriendRPHandler(){
+    let reply = JSON.parse(this.responseText);
+
+    let old_div = document.querySelector('.received-r');
+    let answered = document.querySelector('.friend-answer-rp[data-id="' + reply.friend + '"]');
+    old_div.removeChild(answered);
+
+    let count = parseInt(document.querySelector('#received-tab span').innerHTML);
+    document.querySelector('#received-tab span').innerHTML = count -1;
 }

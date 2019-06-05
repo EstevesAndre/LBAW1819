@@ -286,32 +286,32 @@ CREATE TRIGGER userStillBlocked
     FOR EACH ROW
     EXECUTE PROCEDURE userStillBlocked();
 
-CREATE FUNCTION userCanRequestFriend() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    IF EXISTS (
-        SELECT *
-        FROM requests
-        WHERE "type" = 'friendRequest' AND sender = New.receiver AND receiver = New.sender AND has_accepted IS NULL
-    )
-    THEN RAISE EXCEPTION 'User already has a not answered friend request from that user.';
-    END IF;
-    IF EXISTS (
-        SELECT *
-        FROM requests
-        WHERE "type" = 'friendRequest' AND sender = New.receiver AND receiver = New.sender AND has_accepted = TRUE
-    )
-    THEN RAISE EXCEPTION 'Users are already friends.';
-    END IF;
-    RETURN New;
-END
-$BODY$
-LANGUAGE plpgsql;
+-- CREATE FUNCTION userCanRequestFriend() RETURNS TRIGGER AS
+-- $BODY$
+-- BEGIN
+--     IF EXISTS (
+--         SELECT *
+--         FROM requests
+--         WHERE "type" = 'friendRequest' AND sender = New.receiver AND receiver = New.sender AND has_accepted IS NOT NULL
+--     )
+--     THEN RAISE EXCEPTION 'User already has a not answered friend request from that user.';
+--     END IF;
+--     IF EXISTS (
+--         SELECT *
+--         FROM requests
+--         WHERE "type" = 'friendRequest' AND sender = New.receiver AND receiver = New.sender AND has_accepted = TRUE
+--     )
+--     THEN RAISE EXCEPTION 'Users are already friends.';
+--     END IF;
+--     RETURN New;
+-- END
+-- $BODY$
+-- LANGUAGE plpgsql;
 
-CREATE TRIGGER userCanRequestFriend
-    BEFORE INSERT ON requests
-    FOR EACH ROW
-    EXECUTE PROCEDURE userCanRequestFriend();
+-- CREATE TRIGGER userCanRequestFriend
+--     BEFORE INSERT ON requests
+--     FOR EACH ROW
+--     EXECUTE PROCEDURE userCanRequestFriend();
 
 CREATE FUNCTION repeatedClanInvite() RETURNS TRIGGER AS
 $BODY$
@@ -747,11 +747,11 @@ INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VA
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (5, 12, NULL, 'friendRequest', '2019-01-29 02:32:35', FALSE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (6, 13, NULL, 'friendRequest', '2019-01-29 09:35:16', FALSE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (7, 13, NULL, 'friendRequest', '2019-01-30 01:21:39', TRUE);
-INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 3, NULL, 'friendRequest', '2019-01-29 12:02:21', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 3, NULL, 'friendRequest', '2019-01-29 12:02:21', NULL);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 1, NULL, 'friendRequest', '2019-01-31 22:42:33', TRUE);
-INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 12, NULL, 'friendRequest', '2019-02-15 14:32:21', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (12, 21, NULL, 'friendRequest', '2019-02-15 14:32:21', NULL);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 10, NULL, 'friendRequest', '2019-03-19 16:12:53', TRUE);
-INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 8, NULL, 'friendRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (8, 21, NULL, 'friendRequest', '2019-04-02 17:02:11', NULL);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 11, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 12, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 13, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
