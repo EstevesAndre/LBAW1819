@@ -502,6 +502,7 @@ function sendBanMemberRequest(e) {
 
         
     }
+
     sendAjaxRequest('put', '/api/banMember/' + member_id, { motive: checkedMotive, endDate: formattedDate }, banMemberHandler);
 }
 
@@ -552,21 +553,21 @@ function removeFriendShipRequest(e){
     console.log('remove');
     let friend_id = parseInt(e.target.closest('.friend-remove').getAttribute('data-id'));
 
-    sendAjaxRequest('put', '/api/removeFriend/' + friend_id, null, removedFriendHandler);
+    sendAjaxRequest('delete', '/api/removeFriend/' + friend_id, null, removedFriendHandler);
 }
 
 function sendFriendShipRequest(e){
     console.log('send');
     let friend_id = parseInt(e.target.closest('.friend-add').getAttribute('data-id'));
 
-    sendAjaxRequest('post', '/api/sendFriend/' + friend_id, null, sentFriendHandler);
+    sendAjaxRequest('put', '/api/sendFriend/' + friend_id, null, sentFriendHandler);
 }
 
 function cancelFriendShipRequest(e){
     console.log('cancel');
     let friend_id = parseInt(e.target.closest('.friend-cancel').getAttribute('data-id'));
 
-    sendAjaxRequest('post', '/api/cancelFriend/' + friend_id, null, cancelledFriendHandler);
+    sendAjaxRequest('delete', '/api/cancelFriend/' + friend_id, null, cancelledFriendHandler);
 }
 
 function answerFriendShipRequest(e){
@@ -850,7 +851,7 @@ function updateSearchGlobal()
 function updateSearchClan() 
 {
     if(getLeaderboardSearchInfo())
-        sendAjaxRequest('post', '/api/getLeaderboardClanSearch/', { search: lastSearch }, updateLeaderboardSearch);   
+        sendAjaxRequest('post', '/api/getLeaderboardClanSearch/', { search: lastSearch }, updateClansLeaderboardSearch);   
 }
 
 function updateSearchFriends() 
@@ -859,9 +860,35 @@ function updateSearchFriends()
         sendAjaxRequest('post', '/api/getLeaderboardFriendsSearch/', { search: lastSearch }, updateLeaderboardSearch);   
 }
 
+function updateClansLeaderboardSearch() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+    let list = document.querySelector('#leaderboard-content>.active ol.list');
+
+    list.innerHTML = "";
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function (element) {
+        list.innerHTML +=
+            '<button type="button" class="text-left list-group-item border-0 list-group-item-action">' +
+                '<li class="ml-3">' +
+                    '<div class="d-flex align-items-center row">' +
+                        '<div class="col-2 col-sm-1 friend-img">' +
+                            '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/clanImgs/' + element.id + '.png" alt="Clan">' +
+                        '</div>' +
+                        '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
+                    '</div>' +
+                '</li>' +
+            '</button>';
+    });
+}
+
 function updateLeaderboardSearch() {
     let reply = JSON.parse(this.responseText);
-
+    console.log(reply);
     let list = document.querySelector('#leaderboard-content>.active ol.list');
 
     list.innerHTML = "";
@@ -872,7 +899,6 @@ function updateLeaderboardSearch() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     reply.users.forEach(function (element) {
-
         list.innerHTML +=
             '<button data-id="/user/' + element.username + '" type="button" class="text-left list-group-item border-0 list-group-item-action">' +
             '<li class="ml-3">' +
@@ -1053,10 +1079,11 @@ function addPermissionsHandler() {
 function banMemberHandler(){
     
     let reply = JSON.parse(this.responseText);
-    let banned = reply.banned;    
+    let banned = reply.banned;
 
     let active_list = document.querySelector('ul.active'); //list of active members
     let banned_list = document.querySelector('ul.banned'); //list of banned members
+    let msg = document.querySelector('h5.no-banned'); if(msg) msg.outerHTML = "";
     let active_banned = document.querySelector('ul.active [data-id="' + banned.id + '"]'); //member in active list that was banned
 
     let img = document.querySelector('#nav-user-img');
@@ -1158,10 +1185,10 @@ function clanLeaderboardSearch($userID)
         return;
     lastSearch = currentSearch;
 
-    sendAjaxRequest('post', '/api/getClanSearch/' + $userID, { search: lastSearch }, updateClanLeaderboardSearch);   
+    sendAjaxRequest('post', '/api/getClanSearch/' + $userID, { search: lastSearch }, updateClanUsersLeaderboardSearch);   
 }
 
-function updateClanLeaderboardSearch() {
+function updateClanUsersLeaderboardSearch() {
     let reply = JSON.parse(this.responseText);
 
     let list = document.querySelector('#leaderboard.active>ol');
@@ -1227,6 +1254,24 @@ function addedInvitesHandler(){
 }
 // ---------------------------------------------------------------------------------------------------------------------//
 
+function searchActiveClanUsers($clanID) {
+    let currentSearch = document.querySelector('#active>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getActiveClanUsersSearch/' + $clanID, { search: lastSearch }, updateActiveClanUsersSearch);   
+}
+
+function searchBannedClanUsers(clanID) {
+    let currentSearch = document.querySelector('#banned>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getBannedClanUsersSearch/' + clanID, { search: lastSearch }, updateBannedClanUsersSearch);   
+}
+
 function activeUsersSearch() {
     let currentSearch = document.querySelector('#active>div>div.searchbar>input').value;
     if(lastSearch == currentSearch)
@@ -1243,6 +1288,48 @@ function bannedUsersSearch() {
     lastSearch = currentSearch;
 
     sendAjaxRequest('post', '/api/getBannedUsersSearch', { search: lastSearch }, updateBannedUsersSearch);   
+}
+
+function updateActiveClanUsersSearch() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    $users = document.querySelector('#active ul.active');
+    
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+    
+    $users.innerHTML = "";
+
+    reply.users.forEach(function(element) {
+
+        let button = "";
+        if(parseInt(reply.userID) == element.id)
+            button = '<button type="button" class="btn btn-danger btn-sm" disabled>';
+        else
+            button = '<button type="button" class="unban_member btn btn-danger btn-sm" id="' + element.id +'">';
+
+        $users.innerHTML += '<li class="p-2 ml-3" data-id="' + element.id + '">' + 
+                                '<div class="d-flex align-items-center row">' + 
+                                    '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">' + 
+                                        '<img width="40" class="border bg-warning img-fluid rounded-circle border"' + 
+                                        'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp" alt="Clan">' + 
+                                    '</div>' + 
+                                    '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/' + element.username + '">' + element.name + '</a></div>' + 
+                                    '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' + 
+                                        button + 
+                                            '<i class="fas fa-user-times"></i> Ban Member' + 
+                                        '</button>' + 
+                                    '</div>' + 
+                                '</div>' + 
+                            '</li>';
+    });
+}
+
+function updateBannedClanUsersSearch() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
 }
 
 function updateActiveUsersSearch() {

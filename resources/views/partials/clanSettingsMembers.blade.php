@@ -7,7 +7,7 @@
         <div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="../user/{{$member->username}}">{{$member->name}}</a></div>
         <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
             @if(Auth::user()->id == $member->id)
-            <button type="button" class="ban_member btn btn-danger btn-sm" id="{{$member->id}}" data-toggle="modal" data-target="#banModal">
+            <button type="button" class="btn btn-danger btn-sm" disabled>
             @else 
                 <button type="button" class="ban_member btn btn-danger btn-sm" id="{{$member->id}}" data-toggle="modal" data-target="#banModal">
             @endif
