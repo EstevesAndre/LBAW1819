@@ -94,7 +94,11 @@
             <ul class="scd mx-3 mt-2">
                 <li><a><i class="fa fa-comments"></i></a></li> <!-- Add action to comment and like -->
                 <li><a><em class="mr-5">{{ $post->comment()->count() }}</em></a></li>
-                <li><a data-toggle="modal" data-target="#sharePostModal-{{ $post->id }}"><i class="fa fa-share-alt"></i></a></li>
+                @if(count($post->share()->where('user_id','=',Auth::user()->id)->get()) == 0)
+                     <li><a data-toggle="modal" data-target="#sharePostModal-{{ $post->id }}"><i class="fa fa-share-alt"></i></a></li>
+                @else
+                    <li><a><i class="fa fa-share-alt active"></i></a></li>
+                @endif
                 <li><a><em class="mr-3">{{ $post->share()->count() }}</em></a></li>
             </ul>
         </div>
