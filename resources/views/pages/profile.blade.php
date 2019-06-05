@@ -21,8 +21,7 @@
                                 <i class="fas fa-question-circle"></i>
                             </button>
                         </h2>
-                        <p class="my-0">Birthdate: <small>{{ $user->birthdate }}</small></p>
-                        <p class="mt-0">Class: <small>{{ $user->class }}</small></p>
+                        <p class="mt-0 mb-4">Birthdate: <small>{{ $user->birthdate }}</small></p>
                     </div>
                     <div class="text-left">
                         LVL {{ floor($user->xp/100) }}
@@ -47,6 +46,7 @@
                             <div class="col-sm-12"><i class="fas fa-users"></i> Clan: <a href='/clan'>{{ $clan->name }}</a></div>
                         @endif
                         <div class="col-sm-12 mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
+                        <div class="col-sm-12 mt-1"><i class="fas fa-ankh"></i> Class: {{ $user->class }}</div>
                         @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
                             @if($status == 0) <!-- received request refused ->  ADD AS FRIEND -->
                                 <button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="{{$user->id}}"> 

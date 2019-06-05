@@ -23,7 +23,7 @@
             <p class="text-left mr-4 ml-4">Username must be 1 to 20 characters, containing only letters a to z,
                 numbers 0 to 9, hyphens, or underscores, and cannot include any inappropriate terms.</p>
 
-            <form class="mb-3 ml-4 mr-4" method="POST" action="{{ route('register') }}">
+            <form class="mb-3 ml-4 mr-4" method="POST" action="/createChar">
                 {{ csrf_field() }}
 
                 <div class="form-group">
