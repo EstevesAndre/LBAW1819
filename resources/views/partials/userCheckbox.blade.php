@@ -10,7 +10,7 @@
             </a>
         </div>
         <div class="col-2 col-sm-3 col-md-3 px-0 text-right">
-            <input type="checkbox" autocomplete="off">
+            <input class="checks" name="new-admin" type="radio">
             <span class="checkmark"></span>
         </div>
     </div>

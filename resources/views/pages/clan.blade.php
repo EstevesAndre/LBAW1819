@@ -23,7 +23,7 @@
                     @endif
                 </div>
                 <div class="col-sm-12 col-lg-7 my-2 text-left clan-bio">
-                    <div class=" text-left basic-info">
+                    <div class="text-left basic-info">
                         <h2><b>{{ $clan->name }}</b>
                             <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#clan_helpModal">
                                 <i class="fas fa-question-circle"></i>
