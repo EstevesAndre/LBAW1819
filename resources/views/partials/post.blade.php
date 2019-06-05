@@ -23,6 +23,27 @@
         </div>
     </div>
 @endif
+<div class="modal shareModal fade" id="sharePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog align-center" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removePostModalLabel">Share post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/api/share/{{$post->id}}">
+                    {{csrf_field()}}
+                    <textarea class="rounded border-secondary w-100" rows="4" placeholder="Write your share message..." name="content"></textarea>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-success">Share</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container post mt-4 mb-2 p-0" data-id="{{ $post->id }}">
     <div class="cardbox text-left shadow-lg bg-white">
         <div class="cardbox-heading">
@@ -73,7 +94,7 @@
             <ul class="scd mx-3 mt-2">
                 <li><a><i class="fa fa-comments"></i></a></li> <!-- Add action to comment and like -->
                 <li><a><em class="mr-5">{{ $post->comment()->count() }}</em></a></li>
-                <li><a><i class="fa fa-share-alt"></i></a></li>
+                <li><a data-toggle="modal" data-target="#sharePostModal-{{ $post->id }}"><i class="fa fa-share-alt"></i></a></li>
                 <li><a><em class="mr-3">{{ $post->share()->count() }}</em></a></li>
             </ul>
         </div>
