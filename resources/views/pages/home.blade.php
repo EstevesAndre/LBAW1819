@@ -50,21 +50,24 @@
             </div>
         </div>
         <!-- POSTS -->
-    <section id="posts" data-count="1">
+        <section id="posts" data-count="1">
             @if($posts->count() == 0)
                 <p class="text-center"><b><small>No posts to be seen!</small></b></p>
             @else
-                @each('partials.post', $posts->take(15), 'post')
-                {{-- @if($posts->count() > 15) --}}
-                    <button type="button" class="see-more btn-primary-outline btn m-3">
-                        See more <i class="fas fa-caret-down"></i>
-                    </button>
-                {{-- @endif --}}
+                <div id="posts-list">
+                    @each('partials.post', $posts->take(15), 'post')
+                    {{-- @if($posts->count() > 15) --}}
+                        <button type="button" class="see-more btn-primary-outline btn m-3">
+                            See more <i class="fas fa-caret-down"></i>
+                        </button>
+                    {{-- @endif --}}
+                </div>
             @endif
         </section>
     </div>
     @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="home_helpModal" tabindex="-1" role="dialog" aria-labelledby="home_helpModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
