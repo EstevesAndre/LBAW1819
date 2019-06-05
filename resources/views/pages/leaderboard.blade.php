@@ -14,7 +14,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="tab-title nav-link" id="clan-tab" data-toggle="tab" href="#clan" role="tab"
-                        aria-controls="members" aria-selected="false">Clan</a>
+                        aria-controls="members" aria-selected="false">Clans</a>
                 </li>
                 <li class="nav-item">
                     <a class="tab-title nav-link" id="friends-tab" data-toggle="tab" href="#friends" role="tab"
@@ -26,7 +26,7 @@
             </button>
 
             <div class="mt-4 tab-content" id="leaderboard-content">
-                <div class="text-left tab-pane fade border-0 active show" id="global" role="tabpanel" aria-labelledby="global-tab">
+                <div class="to_link text-left tab-pane fade border-0 active show" id="global" role="tabpanel" aria-labelledby="global-tab">
                     @if($global->count() === 0)
                         <p class="text-center py-2 bg-white">There are no users</p>
                     @else
@@ -35,14 +35,14 @@
                 </div>
 
                 <div class="tab-pane fade" id="clan" role="tabpanel" aria-labelledby="clan-tab">
-                    @if($clanMembers === null)
+                    @if($allClans === null)
                         <p class="text-center py-2 bg-white">Join a clan or create one</p>
                     @else
-                        @include('partials.leaderboardType', [ 'collection' => $clanMembers, 'function' => 'updateSearchClan'])
+                        @include('partials.leaderboardClanType', [ 'clan' => $allClans, 'function' => 'updateSearchClan'])
                     @endif
                 </div>
 
-                <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
+                <div class="to_link tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
                     @if($friends->count() === 0)
                         <p class="text-center py-2 bg-white">{{ Auth::user()->name }}, you have no friends, add a friend</p>
                     @else

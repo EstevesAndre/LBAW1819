@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Post;
+use App\Clan;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,13 +53,9 @@ class PrivateController extends Controller
 
         $userFriends = Auth::user()->friends()->get();
 
-        if($userClan !== null) {
-            $clanMembers = $userClan->members()->get();
+        $allClans = Clan::all();
 
-            return view('pages.leaderboard', ['clanMembers' => $clanMembers, 'global' => $allUsers, 'friends' => $userFriends]);
-        }
-
-        return view('pages.leaderboard', ['clanMembers' => null, 'global' => $allUsers, 'friends' => $userFriends]);
+        return view('pages.leaderboard', ['allClans' => $allClans, 'global' => $allUsers, 'friends' => $userFriends]);
     }
 
     public function showChat() 
@@ -129,30 +126,21 @@ class PrivateController extends Controller
     public function getLeaderboardClanSearch(Request $request) {
         $search = $request->input('search');
         
-        $clan = Auth::user()->clan()->get()[0];
-
-        if($clan == null)
-            return;
-
-        $users = null;
+        $clans = null;
         if($search == '')
         {
-            $users = $clan->members()
-                ->orderBy('xp', 'DESC')
-                ->limit(5)
-                ->offset(3)
-                ->get();
+            $clans = Clan::where('name', 'like', '%' . $search . '%')
+            ->limit(5)
+            ->offset(3)
+            ->get();
         }
-        else 
-        {
-            $users = $clan->members()
-                ->where('name', 'like', '%' . $search . '%')
-                ->orderBy('xp', 'DESC')
+        else {
+            $clans = Clan::where('name', 'like', '%' . $search . '%')
                 ->limit(5)
                 ->get();
         }
 
-        return ['users' => $users];
+        return $clans;
     }
 
     public function getLeaderboardFriendsSearch(Request $request) {

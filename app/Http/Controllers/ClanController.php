@@ -212,4 +212,15 @@ class ClanController extends Controller
         
         return redirect('home');
     }
+
+    public function xp($id) {
+        $clan = Clan::find($id);
+
+        $members = $clan->members()->get();
+        $xp = 0;
+        foreach($members as $member)
+            $xp += $member->xp;
+
+        return $xp;
+    }
 }
