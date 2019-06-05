@@ -189,4 +189,12 @@ class PrivateController extends Controller
 
         return ['users' => $users];
     }
+
+    public function showSearchPage(Request $data){
+
+        $users = User::where('name', 'like', '%'.$data['search'].'%')->orWhere('username', 'like','%'.$data['search'].'%')->get();
+        $posts = Post::where('content', 'like', '%'.$data['search'].'%')->get();
+
+        return view('pages.search', ['search' => $data['search'], 'users' => $users, 'posts' =>$posts]);
+    }
 }
