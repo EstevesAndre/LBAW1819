@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Create Clan')
+
 @section('content')
 <br />
 <br />

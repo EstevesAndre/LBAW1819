@@ -246,7 +246,7 @@ function updateChatRequest(e) {
 function setBanModalID(e) {
     e.preventDefault();
 
-    let id = e.target.id;
+    let id = e.target.closest('button.ban_member').getAttribute('id');
     let modal = document.querySelector('.ban_modal');
 
     modal.setAttribute('id', id);
@@ -455,7 +455,7 @@ function sendAddAdminPermissionsRequest(e) {
 function sendBanMemberRequest(e) {
     e.preventDefault();
 
-    let member_id = e.target.id;
+    let member_id = e.target.closest('button.ban_modal').getAttribute('id');
     let motives = document.querySelectorAll('.form-check-input');
     let checkedMotive = "";
 
@@ -502,7 +502,6 @@ function sendBanMemberRequest(e) {
 
         
     }
-
     sendAjaxRequest('put', '/api/banMember/' + member_id, { motive: checkedMotive, endDate: formattedDate }, banMemberHandler);
 }
 

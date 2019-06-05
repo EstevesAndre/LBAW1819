@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', "$clan->name Settings")
+
 @section('content')
 
 <br />
@@ -34,11 +36,11 @@
                                 </button>
                             </div>
                             <div class="collapse pt-2" id="collapseExample">
-                                    <div class="form-group">
-                                        <label for="exampleFormControlInput1">New name:
-                                            <input class="form-control ml-2" type="text" name="name" id="exampleFormControlInput1" placeholder="">
-                                        </label>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">New name:
+                                        <input class="form-control ml-2" type="text" name="name" id="exampleFormControlInput1" placeholder="">
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="card card-body">
@@ -67,7 +69,7 @@
                                 <div class="form-group w-100">
                                     <p><p>
                                     <label for="clanImage">
-                                        <input type="file" name="clan_img" accept="image/png, image/jpeg" class="form-control-file input-file mt-2" id="clanImage">
+                                        <input type="file" name="clan_img" accept="image/png" class="form-control-file input-file mt-2" id="clanImage">
                                     </label>
                                 </div>
                             </div>

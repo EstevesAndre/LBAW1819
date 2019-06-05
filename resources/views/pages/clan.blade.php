@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', $clan->name)
+
 @section('content')
 
 <br />
@@ -39,10 +41,10 @@
                 <div class="col-sm-12 col-lg-3 my-2 text-left clan-info">
                     <div class="my-2"><i class="fas fa-user-cog"></i> Owner: {{ $clan->owner()->get()[0]->name }}</div>
                     <div class="my-2"><i class="fas fa-users"></i> Members: {{ $members->count() }}</div>
-                     @if($clan->id == Auth::user()->clan()->get()[0]->id)
-                    <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#leaveClanModal">
-                        Leave Clan <i class="fas fa-sign-out-alt"></i>
-                    </button>
+                     @if($clan->id == Auth::user()->clan()->get()[0]->id && !($clan->owner()->get()[0]->id == Auth::user()->id))
+                        <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#leaveClanModal">
+                            Leave Clan <i class="fas fa-sign-out-alt"></i>
+                        </button>
                     @endif
                 </div>
             </div>

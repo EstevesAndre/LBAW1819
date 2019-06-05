@@ -35,7 +35,31 @@ class User extends Authenticatable
      * The posts this user owns.
      */
     public function posts() {
-        return $this->hasMany('App\Post', 'user_id', 'id');
+        $posts = Post::where('user_id', $this->id)->get();
+        
+        $shares = Share::where('user_id', $this->id)->get();
+        
+        $list = collect([]);
+
+        foreach($posts as $post) {
+            $list = $list->push($post);
+        }
+
+        foreach($shares as $share) {
+            $list = $list->push($share);
+        }
+
+        $list = $list->sort(function ($a, $b) {
+            if(strtotime($a->date) > strtotime($b->date))
+            {
+                return -1;
+            }
+            else 
+            {
+                return 1;
+            }
+        });
+        return $list;
     }
 
     public function likes() {

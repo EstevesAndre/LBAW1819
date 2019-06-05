@@ -90,11 +90,20 @@ class ClanController extends Controller
         return view('pages.clanSettings', ['clan' => $clan, 'members' => $members, 'blocked' => $blocked, 'potentialUsers' => $potentialUsers]);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id) {
         
-        DB::table('clans')
-                ->where('id', $id)
-                ->update(['name' => $request->input('name'), 'description' => $request->input('description')]);
+        $clan = Clan::find($id);
+
+        $name = $clan->name;
+        $description = $clan->description;
+
+        if($request->input('name') !== null)
+            $name = $request->input('name');
+        
+        if($request->input('description') !== null)
+            $description = $request->input('description');
+
+        $clan->update(['name' => $name, 'description' => $description]); 
 
         if ($request->hasFile('clan_img')) {
             $image = $request->file('clan_img');

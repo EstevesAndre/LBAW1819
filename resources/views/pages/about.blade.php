@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'About')
+
 @section('content')
 <div class="row justify-content-center mt-5 ml-4 mr-4 align-self-center">
     <div class="col-md-8 align-self-center text-center">

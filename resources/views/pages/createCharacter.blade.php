@@ -1,5 +1,7 @@
 @extends('layouts.noNavBar')
 
+@section('pageTitle', 'Create Character')
+
 @section('content')
 
 <div class="container justify-content-center my-5">
