@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', "$user->name")
+
 @section('content')
 
 <br />

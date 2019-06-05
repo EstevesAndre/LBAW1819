@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', "$clan->name Settings")
+
 @section('content')
 
 <br />

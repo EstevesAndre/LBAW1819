@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Chat')
+
 @section('content')
 <div class="has-chat container mt-5 fixed-bar height-90 pt-3">
     <div class="row standard-text border rounded h-100">

@@ -7,7 +7,6 @@
         
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        {{-- <title>{{ config('app.name', 'AlterEgo') }}</title> --}}
         <title>@yield('pageTitle') - AlterEgo</title> 
         <!-- Styles -->  
         <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">

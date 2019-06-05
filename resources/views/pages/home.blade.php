@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Home')
+
 @section('content')
 <br />
 <div class="mt-5 pt-3 row text-center fullscreen standard-text">
