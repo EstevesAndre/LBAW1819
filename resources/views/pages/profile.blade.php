@@ -54,14 +54,14 @@
                                 </button>
                             @elseif($status == 1) <!-- //sent request refused BLOCKED REQUEST -->
                                 <button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="{{$user->id}}" disabled> 
-                                    <i class="fas fa-user-slash"></i>
+                                    Friendship blocked <i class="fas fa-user-slash"></i>
                                 </button>
                             @elseif($status == 2) <!-- //sent request pending CANCEL REQUEST  -->
                                 <button type="button" class="friend-cancel col-sm-12 mt-5 btn btn-danger" data-id="{{$user->id}}"> 
                                     Cancel Request <i class="fas fa-times"></i>
                                 </button>
                             @elseif($status == 3) <!-- //received request pending  ANSWER REQUEST -->
-                                <div class="text-center w-100">
+                                <div class="friend-answers text-center w-100">
                                     <button type="button" class="friend-accept w-50 col-sm-12 mt-5 btn btn-success" data-id="{{$user->id}}"> 
                                         Accept <i class="fas fa-check"></i>
                                     </button>

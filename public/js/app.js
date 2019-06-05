@@ -219,7 +219,7 @@ function sendAddMessageRequest(e) {
     let message = document.querySelector('#message-send>input');
     let input = message.value;
     message.value = '';
-    let friend_id = document.querySelector('.friend-chat').id;
+    let friend_id = document.querySelector('.friend-chat').getAttribute('data-id');
 
     if (input != "")
         sendAjaxRequest('put', '/api/chat/' + friend_id, { message: input }, addedMessageHandler);
@@ -228,7 +228,7 @@ function sendAddMessageRequest(e) {
 function updateChatRequest(e) {
     e.preventDefault();
     console.log("Update chat request");
-    let friend_id = e.target.closest("a.friend-list").getAttribute('id');
+    let friend_id = e.target.closest("a.friend-list").getAttribute('data-id');
 
     sendAjaxRequest('post', '/api/update_chat/' + friend_id, null, updatedChatHandler);
 }
@@ -1485,11 +1485,18 @@ function removedFriendHandler(){
     }
     else{
         new_button =  '<button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="' + friend + '" disabled> '
-        + '<i class="fas fa-user-slash"></i>'
+        + 'Friendship blocked <i class="fas fa-user-slash"></i>'
         + '</button>';
 
         old_button.outerHTML = new_button;
     }    
+
+    let sidebar_chat = document.querySelector('.chat-side-bar');
+    let chat_icon = document.querySelector('.chat-side-bar [data-id="' + friend + '"]');
+    sidebar_chat.removeChild(chat_icon);
+
+    let active = document.querySelector('.friend-chat');
+    active.disabled = 'true';
 }
 
 function sentFriendHandler(){
@@ -1535,6 +1542,14 @@ function answeredFriendHandler(){
         
         let newEvent = document.querySelector('.friend-remove');
         if(newEvent) newEvent.addEventListener('click', removeFriendShipRequest);
+
+        let sidebar_chat = document.querySelector('.chat-side-bar');
+        console.log(reply.friend.name);
+    //     let new_friend = '<a class="friend-list list-group-item list-group-item-action" data-id="' +  +'" data-toggle="list" href="#list-{{ $user->id }}" aria-controls="{{ $user->id }}">
+    //     <img src="{{ asset('assets/avatars/'.$user->race.'_'.$user->class.'_'.$user->gender.'.bmp') }}" alt="logo" width="25" class="mr-2 border bg-warning img-fluid rounded-circle">
+    //     {{ $user->name }}
+    // </a>
+
     }
     else{
         new_button =  '<button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '">'

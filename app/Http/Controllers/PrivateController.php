@@ -47,7 +47,7 @@ class PrivateController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        $allUsers = User::all();
+        $allUsers = User::orderBy('xp','DESC')->get();
 
         $userClan = Auth::user()->clan()->get()[0];
 
