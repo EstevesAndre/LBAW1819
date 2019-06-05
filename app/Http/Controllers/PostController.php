@@ -37,8 +37,8 @@ class PostController extends Controller
         else
             $post->clan_id = null;
 
-
         $post->save();
+        $post->refresh();
 
         return response()->json([
             'post' => $post,

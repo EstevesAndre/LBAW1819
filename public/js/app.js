@@ -622,6 +622,11 @@ function addedPostHanlder() {
 
     list = document.querySelector('#posts-list');
     if (list) list.insertAdjacentHTML("afterbegin", getPostHTML(reply.user, reply.post, path_header));
+
+    let postModal = document.querySelectorAll('div.postModal>div>div>div.modal-body>div>button.btn-danger');
+    [].forEach.call(postModal, function (delPost) {
+        delPost.addEventListener('click', sendDeletePostRequest);
+    });
 }
 
 function deletedPostHandler() {
@@ -1580,11 +1585,13 @@ function getPostHTML(user, post, path_header) {
     +                        '<p class="text-dark m-0 user-link">'
     +                            '<a class="user-link" href="/user/' + user.username + '">' + user.name + '</a>'
     +                        '</p>'
-    +                        '<small><span><i class="icon ion-md-time mt-0"></i>{{ substr($post->date, 0, 19) }}</span></small>'
+    +                        '<small><span><i class="icon ion-md-time mt-0"></i>' + (post.date.substring(0,19)) + '</span></small>'
     +                    '</div>'
     +                '</div>'
     +            '</div>'
-    +            '<div class="cardbox-item mx-3">' + post.content + '</div>'
+    +            '<a class="box-link no-hover" href="post/' + post.id + '">'
+    +               '<div class="cardbox-item mx-3">' + post.content + '</div>'
+    +            '</a>'
     +            '<div class="cardbox-base">'
     +                '<ul class="fst mx-3 mb-1">'
     +                    '<li><a><i class="fa fa-thumbs-up"></i></a></li>'
@@ -1593,24 +1600,9 @@ function getPostHTML(user, post, path_header) {
     +                '<ul class="scd mx-3 mt-2">'
     +                    '<li><a><i class="fa fa-comments"></i></a></li>'
     +                    '<li><a><em class="mr-5">0</em></a></li>'
-    +                    '<li><a><i class="fa fa-share-alt"></i></a></li>'
+    +                    '<li><a data-toggle="modal" data-target="#sharePostModal-' + post.id + '"><i class="fa fa-share-alt"></i></a></li>'
     +                    '<li><a><em class="mr-3">0</em></a></li>'
     +                '</ul>'
-    +            '</div>'
-    +            '<div class="cardbox-comments d-flex align-items-center">'
-    +                '<span class="comment-avatar float-left mr-2">'
-    +                    '<a href="/user/' + user.username + '>'
-    +                        '<img class="rounded-circle"'
-    +                            'src="' + path_header + '/avatars/' + user.race + '_' + user.class + '_' + user.gender + '.bmp"'
-    +                        'alt="Avatar">'
-    +                    '</a>'
-    +                '</span>'
-    +                '<div class="search-comment">'
-    +                    '<a href="post/' + post.id  + '">'
-    +                        '<input placeholder="Write a comment..." type="text">'
-    +                        '<button><i class="fas fa-share-square"></i></button>'
-    +                    '</a>'
-    +                '</div>'
     +            '</div>'
     +        '</div>'
     +    '</div>';
