@@ -98,4 +98,22 @@ class UserController extends Controller
         return $bannedUsersSearch;
     }
 
+    public function removePermissions(Request $request, $id) {
+        $user = User::find($id);
+
+        $user->is_admin = FALSE;
+        $user->update();
+
+        return $user;
+    }
+
+    public function addPermissions(Request $request, $id) {
+        $user = User::find($id);
+
+        $user->is_admin = TRUE;
+        $user->update();
+
+        return $user;
+    }
+
 }
