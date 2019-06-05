@@ -9,7 +9,7 @@ function addEventListeners() {
         like.addEventListener('click', sendAddLikeRequest);
     });
 
-    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div>ol>button, #leaderboard>ol>button');
+    let friendList = document.querySelectorAll('#friends>ul>li>button, #members>ul>li>button, #leaderboard-content>div.to_link>ol>button, #leaderboard>ol>button');
     [].forEach.call(friendList, function (friend) {
         friend.addEventListener('click', function () {
             window.location.href = this.getAttribute('data-id');
@@ -744,7 +744,7 @@ function updateSearchGlobal()
 function updateSearchClan() 
 {
     if(getLeaderboardSearchInfo())
-        sendAjaxRequest('post', '/api/getLeaderboardClanSearch/', { search: lastSearch }, updateLeaderboardSearch);   
+        sendAjaxRequest('post', '/api/getLeaderboardClanSearch/', { search: lastSearch }, updateLeaderboardClanSearch);   
 }
 
 function updateSearchFriends() 
@@ -781,6 +781,33 @@ function updateLeaderboardSearch() {
             '</div>' +
             '</li>' +
             '</button>';
+    });
+}
+
+function updateLeaderboardClanSearch() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+    let list = document.querySelector('#leaderboard-content>.active ol.list');
+
+    list.innerHTML = "";
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function (element) {
+        console.log(element.name);
+        list.innerHTML +=
+            '<button type="button" class="text-left list-group-item border-0 list-group-item-action">'
+        +        '<li class="ml-3">'
+        +            '<div class="d-flex align-items-center row">'
+        +                '<div class="col-2 col-sm-1 friend-img">'
+        +                    '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/clanImgs/' + element.id + '.jpg" alt="Clan">'
+        +                '</div>'
+        +                '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>'
+        +            '</div>'
+        +        '</li>'
+        +    '</button>'
     });
 }
 
