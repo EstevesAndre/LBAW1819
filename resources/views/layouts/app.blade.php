@@ -25,6 +25,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
         <script type="text/javascript" src={{ asset('js/bootstrap/bootstrap.min.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
+        <script src="/js/jquery.jscroll.min.js"></script>
     </head>
     <body>
         <main class="h-100">
