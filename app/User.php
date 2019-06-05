@@ -53,6 +53,14 @@ class User extends Authenticatable
     public function messages($userID) {
         return $this->hasMany('App\Message', 'sender', 'id')->where('receiver', $userID);
     }
+
+    public function requested($id) {
+        return $this->hasOne('App\Request', 'receiver', 'id')->where('sender',$id);
+    }
+
+    public function sent($id) {
+        return $this->hasOne('App\Request', 'sender', 'id')->where('receiver',$id);
+    }
     
     public function friends() {
         $friends_ = $this->belongsToMany('App\User', 'requests', 'sender','receiver')->where('type', 'friendRequest')->where('has_accepted', 'TRUE');
@@ -65,6 +73,21 @@ class User extends Authenticatable
             array_push($friends, $friend->id);
 
         return User::select('id', 'name', 'username', 'xp', 'class', 'race', 'gender')
+            ->whereIn('id', $friends)
+            ->orderBy('xp', 'DESC');
+    }
+
+    public function friendIDs() {
+        $friends_ = $this->belongsToMany('App\User', 'requests', 'sender','receiver')->where('type', 'friendRequest')->where('has_accepted', 'TRUE');
+        $friends__ = $this->belongsToMany('App\User', 'requests', 'receiver','sender')->where('type', 'friendRequest')->where('has_accepted', 'TRUE');
+        
+        $friends = [];
+        foreach($friends_->get() as $friend)
+            array_push($friends, $friend->id);
+        foreach($friends__->get() as $friend)
+            array_push($friends, $friend->id);
+
+        return User::select('id')
             ->whereIn('id', $friends)
             ->orderBy('xp', 'DESC');
     }

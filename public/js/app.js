@@ -75,6 +75,9 @@ function addEventListeners() {
     let invite = document.querySelector('.invite-users');
     if(invite) invite.addEventListener('click', addInviteRequest);
 
+    let seeMoreHome = document.querySelector('section#posts .see-more');
+    if(seeMoreHome) seeMoreHome.addEventListener('click', seeMorePostsRequest);
+
     // let generateButton = document.querySelector('.');
     // if (generateButton) generateButton.addEventListener('click', setCharacterInfo);
 
@@ -510,6 +513,18 @@ function addInviteRequest(e){
     sendAjaxRequest('post', '/api/inviteUsers/' + clan_id, {invites: invited_users}, addedInvitesHandler);
     
 }
+
+function seeMorePostsRequest(e){
+    console.log(e.target);
+
+    let current_page = parseInt(document.querySelector('section#posts').getAttribute('data-count'));
+
+    console.log(current_page);
+    
+    sendAjaxRequest('get', '/api/seeMoreHome/' + current_page, null, addedMoreHomeHandler);
+
+}
+
 // Handlers
 function deletedLikeHandler() {
 
@@ -1378,3 +1393,21 @@ function updatePotentialAdminsSearch() {
     });
 }
 // ---------------------------------------------------------------------------------------------------------------------//
+
+
+function addedMoreHomeHandler(){
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+    console.log(reply.posts.current_page);
+    console.log();
+
+    let current_page = reply.posts.current_page + 1;
+    document.querySelector('section#posts').setAttribute('data-count',current_page);
+
+    let posts = reply.posts.data;
+    let posts_div = document.querySelector('section#posts');
+    
+    // for(let i = 0; i < posts.length; i++){
+    //     posts_div.innerHTML += 
+    // }
+}

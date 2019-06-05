@@ -28,10 +28,42 @@ class UserController extends Controller
         $friends = $user->friends()->get();
 
         $userClan = null;
+
         if($user->clan()->get()->count() !== 0)
             $userClan = $user->clan()->get()[0];
 
-        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan]);
+        $status = null;
+
+        if($username != Auth::user()->username){
+
+            $is_friend = Auth::user()->sent($user->id)->get();
+
+            if($is_friend->isEmpty())
+                $is_friend =  Auth::user()->requested($user->id)->get();
+
+            if($is_friend->isEmpty()){ //not friends -> ADD AS FRIEND
+                $status = 0;
+            }
+            else if($is_friend[0]->type == "friendRequest"){
+                if($is_friend[0]->sender == Auth::user()->id && $is_friend[0]->has_accepted == false){//sent request refused BLOCKED REQUEST
+                   $status = 1;
+                } 
+                else if($is_friend[0]->sender == Auth::user()->id && $is_friend[0]->has_accepted == NULL){//sent request pending CANCEL REQUEST
+                    $status = 2;
+                } 
+                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted == null){//received request pending  ANSWER REQUEST
+                    $status = 3;
+                } 
+                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted == false){///received request refused ->  ADD AS FRIEND
+                    $status = 0;
+                }
+                else if($is_friend[0]->has_accepted == true){ //are friends REMOVE FRIENDSHIP
+                    $status = 4;
+                }
+            }
+        }
+        
+        return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan, 'status' => $status]);
     }
     
     public function getFriendsListSearch(Request $request, $id) 
