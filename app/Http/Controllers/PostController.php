@@ -66,6 +66,8 @@ class PostController extends Controller
         $share->content = $request->input('content');
         $share->save();
 
-        return redirect('home');
+        return redirect()->action(
+            'ShareController@show', ['post_id' => $share->post_id, 'user_id' => $share->user_id]
+        );
     }
 }
