@@ -108,7 +108,7 @@
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
-                                <ul class="shadow-lg pl-2 users-list">
+                                <ul class="clans-active shadow-lg pl-2 users-list">
                                     @each('partials.adminActiveClanList', $activeClans, 'clan')
                                 </ul>
                             @else
@@ -116,20 +116,15 @@
                             @endif
                         </div>
                         <div class="tab-pane fade" id="banned-clans" role="tabpanel" aria-labelledby="banned-clans-tab">
-                            @if($bannedClans->count() > 0)
-                                <div class="d-flex justify-content-center mb-3 mr-3">
-                                    <div class="searchbar">
-                                        <input class="search_input search_input_fixed" onkeyup="bannedClansSearch()" type="text" name="" placeholder="Search...">
-                                        <div class="search_icon"><i class="fas fa-search"></i></div>
-                                    </div>
+                            <div class="d-flex justify-content-center mb-3 mr-3">
+                                <div class="searchbar">
+                                    <input class="search_input search_input_fixed" onkeyup="bannedClansSearch()" type="text" name="" placeholder="Search...">
+                                    <div class="search_icon"><i class="fas fa-search"></i></div>
                                 </div>
-
-                                <ul class="pl-2 shadow-lg users-list">
-                                    @each('partials.adminBannedClanList', $bannedClans, 'clan')
-                                </ul>
-                            @else
-                                <h5 class="my-5 text-center">There are no banned clans</h5>
-                            @endif
+                            </div>
+                            <ul class="clans-banned pl-2 shadow-lg users-list">
+                                @each('partials.adminBannedClanList', $bannedClans, 'clan')
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -148,7 +143,7 @@
                             <div class="search_icon"><i class="fas fa-search"></i></div>
                         </div>
                     </div>
-                    <ul class="pl-2 shadow-lg users-list">
+                    <ul class="admins-active pl-2 shadow-lg users-list">
                         @each('partials.adminActiveAdminsList', $admins, 'user')
                     </ul>
                 </div>
@@ -254,39 +249,30 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure that you want to ban this Clan?</p>
-                <textarea class="form-control text-left my-3 w-100" rows="4" placeholder="Write something about the ban..."></textarea>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Innapropriate behaviour
-                    </label>
+                    <input class="form-check-input" name="motive" type="radio" value="Inappropriate behaviour" id="clancheck1">Inappropriate behaviour
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                    <label class="form-check-label" for="defaultCheck2">
-                        Abusive content
-                    </label>
+                    <input class="form-check-input" name="motive" type="radio" value="Abusive content" id="clancheck2">Abusive content
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                    <label class="form-check-label" for="defaultCheck3">
-                        Racism
-                    </label>
+                    <input class="form-check-input" name="motive" type="radio" value="Racism" id="clancheck3">Racism
                 </div>
-                <button class="btn btn-secondary w-75 mt-3 dropdown-toggle" type="button" id="dropdownBanButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Ban Duration
-                </button>
-                <div class="dropdown-menu mr-4 w-50 text-center" aria-labelledby="dropdownBanButton">
-                    <a class="dropdown-item">7 days</a>
-                    <a class="dropdown-item">2 weeks</a>
-                    <a class="dropdown-item">1 month</a>
-                    <a class="dropdown-item">3 months</a>
-                    <a class="dropdown-item">6 months</a>
-                    <a class="dropdown-item">1 year</a>
-                    <a class="dropdown-item">Forever</a>
-                </div>
-                <button type="button" class="btn btn-danger mt-3 float-right">Ban!</button>
+                <br />
+                <p>Ban Duration</p>
+                <select class="form-control w-75 mt-3" id="selectionBanClan">
+                    <option value="0" selected disabled>Duration</option>
+                    <option value="7">7 days</option>
+                    <option value="14">2 weeks</option>
+                    <option value="31">1 month</option>
+                    <option value="93">3 months</option>
+                    <option value="186">6 months</option>
+                    <option value="365">1 year</option>
+                    <option value="-1">Forever</option>
+                </select>
+                <p class="text-center mt-2 mb-0 msg-response">&nbsp</p>
+                <button type="button" data-dismiss="modal" class="btn btn-secondary mt-2 mx-2 float-right">Close!</button>
+                <button type="button" class="btn-ban-clan-modal btn btn-danger mt-2 float-right"><i class="fas fa-user-times"></i> Ban!</button>
             </div>
         </div>
     </div>
@@ -303,10 +289,10 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure that you want to unban this clan?</p>
-                <p><small>10 Days 5 hours 34 minutes 20 seconds</small> to unban</p>
+                <p>This ban ends <small class="end-date"></small></p>
                 <div class="float-right">
-                    <button type="button" class="btn btn-success">Yes</button>
-                    <button type="button" class="btn btn-danger">No</button>
+                    <button type="button" id="" data-dismiss="modal" class="btn-unban-clan-modal btn btn-success">Yes</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
         </div>
@@ -326,8 +312,8 @@
             <div class="modal-body">
                 <p>Are you sure that you want to remove admin permissions?</p>
                 <div class="float-right">
-                    <button type="button" class="btn btn-success">Yes</button>
-                    <button type="button" class="btn btn-danger">No</button>
+                    <button type="button" id="" data-dismiss="modal" class="btn-rm-permissions-modal btn btn-success">Yes</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
         </div>
@@ -350,12 +336,12 @@
                         <div class="search_icon"><i class="fas fa-search"></i></div>
                     </div>
                 </div>
-                <ul class="pl-0 shadow-lg users-list">
+                <ul class="not-admin-users pl-0 shadow-lg users-list">
                     @each('partials.userCheckbox', $potentialAdmins, 'user')
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success"><i class="fas fa-user-plus"></i> Add</button>
+                <button type="button" data-dismiss="modal" class="add_permissions btn btn-success"><i class="fas fa-user-plus"></i> Add</button>
             </div>
         </div>
     </div>
