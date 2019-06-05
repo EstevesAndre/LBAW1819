@@ -55,7 +55,7 @@ class UserController extends Controller
                 else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted === NULL){//received request pending  ANSWER REQUEST
                     $status = 3;
                 } 
-                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted === false){///received request refused ->  ADD AS FRIEND
+                else if($is_friend[0]->receiver == Auth::user()->id && $is_friend[0]->has_accepted === false){//received request refused ->  ADD AS FRIEND
                     $status = 0;
                 }
                 else if($is_friend[0]->has_accepted == true){ //are friends REMOVE FRIENDSHIP
