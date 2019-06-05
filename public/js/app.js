@@ -87,6 +87,26 @@ function addEventListeners() {
     [].forEach.call(adminUnbanUsersModal, function (user) {
         user.addEventListener('click', setUserUnbanModalID);
     });
+
+    let adminBanClansModal = document.querySelectorAll('.ban_clan');
+    [].forEach.call(adminBanClansModal, function (clan) {
+        clan.addEventListener('click', setClanBanModalID);
+    });
+
+    let adminUnbanClansModal = document.querySelectorAll('.unban_clan');
+    [].forEach.call(adminUnbanClansModal, function (clan) {
+        clan.addEventListener('click', setClanUnbanModalID);
+    });
+
+    let adminRmPermissionsModal = document.querySelectorAll('.rm_permissions');
+    [].forEach.call(adminRmPermissionsModal, function (admin) {
+        admin.addEventListener('click', setRmPermissionsModalID);
+    });
+
+    let adminAddPermissionsModal = document.querySelectorAll('.add_permissions');
+    [].forEach.call(adminAddPermissionsModal, function (admin) {
+        admin.addEventListener('click', sendAddAdminPermissionsRequest);
+    });
 }
 
 function encodeForAjax(data) {
@@ -236,6 +256,41 @@ function setUserUnbanModalID(e) {
     modalSubmit.addEventListener('click', sendUnbanUserRequest);
 }
 
+function setClanBanModalID(e) {
+    e.preventDefault();
+
+    let modalSubmit = document.querySelector('.btn-ban-clan-modal');
+    modalSubmit.setAttribute('id', e.target.closest('button.ban_clan').getAttribute('id'));
+    modalSubmit.disabled = false;
+
+    let modal_msg = document.querySelector('#clanBanModal .modal-body .msg-response');
+    modal_msg.innerHTML = "&nbsp";
+
+    modalSubmit.addEventListener('click', sendBanClanRequest);
+}
+
+function setClanUnbanModalID(e) {
+    e.preventDefault();
+    
+    let modalSubmit = document.querySelector('.btn-unban-clan-modal');
+    modalSubmit.setAttribute('id', e.target.closest('button.unban_clan').getAttribute('id'));
+    modalSubmit.disabled = false;
+
+    document.querySelector('#clanUnbanModal>div>div>div.modal-body>p>small.end-date').innerHTML = e.target.closest('button.unban_clan').getAttribute('ban-end-date');
+
+    modalSubmit.addEventListener('click', sendUnbanClanRequest);
+}
+
+function setRmPermissionsModalID(e) {
+    e.preventDefault();
+    
+    let modalSubmit = document.querySelector('.btn-rm-permissions-modal');
+    modalSubmit.setAttribute('id', e.target.closest('button.rm_permissions').getAttribute('id'));
+    modalSubmit.disabled = false;
+
+    modalSubmit.addEventListener('click', sendRmPermissionsRequest);
+}
+
 function sendBanUserRequest(e) {
     e.preventDefault();
     let userID = e.target.closest('button.btn-ban-modal').getAttribute('id');
@@ -288,6 +343,87 @@ function sendUnbanUserRequest(e) {
     
     sendAjaxRequest('delete', '/api/unbanUser/' + userID, null, unbanUserHandler);
 }
+
+function sendBanClanRequest(e) {
+    e.preventDefault();
+    let clanID = e.target.closest('button.btn-ban-clan-modal').getAttribute('id');
+
+    let motives = document.querySelectorAll('#clanBanModal .form-check-input');
+    let checkedMotive = "";
+    //get checked motive
+    for (let i = 0; i < motives.length; i++) {
+        if (motives[i].checked) {
+            checkedMotive = motives[i].value;
+            break;
+        }
+    }
+    //at least one must be checked
+    if (checkedMotive == "") {
+        let modal_msg = document.querySelector('#clanBanModal .modal-body .msg-response');
+        modal_msg.innerHTML = 'Please select at least one motive!';
+        return;
+    }
+
+    let durations = document.querySelectorAll('#clanBanModal .modal-body .form-control option');
+    let selectedDuration = "";
+    //get selected duration
+    for (let i = 0; i < durations.length; i++) {
+        if (durations[i].selected) {
+            selectedDuration = parseInt(durations[i].value);
+            break;
+        }
+    }
+    if (selectedDuration == 0) {
+        let modal_msg = document.querySelector('#clanBanModal .modal-body .msg-response');
+        modal_msg.innerHTML = 'Please select a ban duration';
+        return;
+    }
+
+    let formattedDate = selectedDuration;
+    
+    if(selectedDuration != -1){
+        let endDate = new Date();
+        endDate.setDate(endDate.getDate() + selectedDuration);
+        let date = endDate.toISOString().replace('Z', '').replace('T', ' ');
+        formattedDate = date.substr(0, date.lastIndexOf('.'))
+    }
+    
+    sendAjaxRequest('put', '/api/banClan/' + clanID, { motive: checkedMotive, endDate: formattedDate }, banClanHandler);
+}
+
+function sendUnbanClanRequest(e) {
+    e.preventDefault();
+    let clanID = e.target.closest('button.btn-unban-clan-modal').getAttribute('id');
+    
+   sendAjaxRequest('delete', '/api/unbanClan/' + clanID, null, unbanClanHandler);
+}
+
+function sendRmPermissionsRequest(e) {
+    e.preventDefault();
+    let userID = e.target.closest('button.btn-rm-permissions-modal').getAttribute('id');
+    
+   sendAjaxRequest('delete', '/api/removePermissions/' + userID, null, removePermissionsHandler);
+}
+
+function sendAddAdminPermissionsRequest(e) {
+    e.preventDefault();
+    
+    let checks = document.querySelectorAll('li.invite-list-user .checks');
+    let checkedUser = "";
+
+    //get checked motive
+    for (let i = 0; i < checks.length; i++) {
+        if (checks[i].checked) {
+            checkedUser = checks[i].closest('li.invite-list-user').getAttribute('data-id');
+            break;
+        }
+    }
+
+    if(checkedUser == "") return;
+
+    sendAjaxRequest('put', '/api/addPermissions/' + checkedUser, null, addPermissionsHandler);
+}
+
 
 function sendBanMemberRequest(e) {
     e.preventDefault();
@@ -656,6 +792,11 @@ function banUserHandler() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     banned_list.insertAdjacentHTML("afterbegin", getUnbanUserHTML(reply.user, path_header));
+
+    let adminUnbanUsersModal = document.querySelectorAll('.unban_user');
+    [].forEach.call(adminUnbanUsersModal, function (user) {
+        user.addEventListener('click', setUserUnbanModalID);
+    });
 }
 
 function unbanUserHandler() {
@@ -680,6 +821,112 @@ function unbanUserHandler() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     active_list.insertAdjacentHTML("afterbegin", getActiveUserHTML(reply.user, path_header, userID));
+
+    let adminBanUsersModal = document.querySelectorAll('.ban_user');
+    [].forEach.call(adminBanUsersModal, function (user) {
+        user.addEventListener('click', setUserBanModalID);
+    });
+}
+
+function banClanHandler() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let modal_msg = document.querySelector('#clanBanModal .modal-body .msg-response');
+    modal_msg.innerHTML = "Clan banned!";
+    let banButton = document.querySelector('#clanBanModal .modal-body .btn-ban-clan-modal');
+    banButton.disabled = true;
+    
+    let active_list = document.querySelector('ul.clans-active'); //list of active clans
+    let banned_list = document.querySelector('ul.clans-banned'); //list of banned clans
+
+    let active_banned = active_list.querySelector('li[data-id="' + reply.blocked.clan + '"]'); //clan in active list that was banned
+
+    if(active_banned == null) return; // error occurred
+
+    active_list.removeChild(active_banned);
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    console.log(banned_list);
+    console.log(reply);
+    console.log(path_header);
+    banned_list.insertAdjacentHTML("afterbegin", getUnbanClanHTML(reply.clan, path_header));
+
+    let adminUnbanClansModal = document.querySelectorAll('.unban_clan');
+    [].forEach.call(adminUnbanClansModal, function (clan) {
+        clan.addEventListener('click', setClanUnbanModalID);
+    });
+}
+
+function unbanClanHandler() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let banButton = document.querySelector('#clanUnbanModal .modal-body .btn-unban-clan-modal');
+    banButton.disabled = true;
+    
+    let active_list = document.querySelector('ul.clans-active'); //list of active clans
+    let banned_list = document.querySelector('ul.clans-banned'); //list of banned clans
+
+    let unbanned = banned_list.querySelector('li[data-id="' + reply.clan.id + '"]'); //user in active list that was banned
+    
+    if(unbanned == null) return; // error occurred
+
+    banned_list.removeChild(unbanned);
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    active_list.insertAdjacentHTML("afterbegin", getActiveClanHTML(reply.clan, path_header));
+
+    let adminBanClansModal = document.querySelectorAll('.ban_clan');
+    [].forEach.call(adminBanClansModal, function (clan) {
+        clan.addEventListener('click', setClanBanModalID);
+    });
+}
+
+function removePermissionsHandler() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let removeButton = document.querySelector('#removePermModal .modal-body .btn-rm-permissions-modal');
+    removeButton.disabled = true;
+    
+    let active_admins = document.querySelector('ul.admins-active'); //list of active clans
+
+    let removed = active_admins.querySelector('li[data-id="' + reply.id + '"]'); //user in active list that was banned
+    
+    if(removed == null) return; // error occurred
+    active_admins.removeChild(removed);
+}
+
+function addPermissionsHandler() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let active_admins = document.querySelector('ul.admins-active');
+    let not_admins = document.querySelector('ul.not-admin-users');
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let userID = img.getAttribute('data-id');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    let added = not_admins.querySelector('li.invite-list-user[data-id="' + reply.id + '"]');
+    
+    if(added == null) return; // error occurred
+    not_admins.removeChild(added);
+
+    active_admins.insertAdjacentHTML("afterbegin", getActiveAdminPermissionsHTML(reply, path_header, userID));
+
+    let adminRmPermissionsModal = document.querySelectorAll('.rm_permissions');
+    [].forEach.call(adminRmPermissionsModal, function (admin) {
+        admin.addEventListener('click', setRmPermissionsModalID);
+    });
 }
 
 function banMemberHandler(){
@@ -892,6 +1139,11 @@ function updateActiveUsersSearch() {
     reply.forEach(function(element) {
         users.innerHTML += getActiveUserHTML(element, path_header, userID);
     });
+
+    let adminBanUsersModal = document.querySelectorAll('.ban_user');
+    [].forEach.call(adminBanUsersModal, function (user) {
+        user.addEventListener('click', setUserBanModalID);
+    });
 }
 
 function updateBannedUsersSearch() {
@@ -906,6 +1158,11 @@ function updateBannedUsersSearch() {
 
     reply.forEach(function(element) {
         users.innerHTML += getUnbanUserHTML(element, path_header);
+    });
+
+    let adminUnbanUsersModal = document.querySelectorAll('.unban_user');
+    [].forEach.call(adminUnbanUsersModal, function (user) {
+        user.addEventListener('click', setUserUnbanModalID);
     });
 }
 
@@ -927,7 +1184,7 @@ function getActiveUserHTML(element, path_header, userID) {
     +           '</button>'
     +       '</div>'
     +   '</div>'
-    +'</li>';
+    + '</li>';
 }
 
 function getUnbanUserHTML(element, path_header) {
@@ -939,7 +1196,7 @@ function getUnbanUserHTML(element, path_header) {
     +       '</div>'
     +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="user/' + element.username + '">'  + element.name + '</a></div>'
     +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
-    +           '<button type="button" class="btn btn-success btn-sm" id="' + element.id +'" data-toggle="modal" data-target="#unbanModal">'
+    +           '<button type="button" class="unban_user btn btn-success btn-sm" id="' + element.id +'" data-toggle="modal" data-target="#unbanModal">'
     +               '<i class="fas fa-user-times"></i> Unban User'
     +           '</button>'
     +       '</div>'
@@ -977,20 +1234,24 @@ function updateActiveClansSearch() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     reply.forEach(function(element) {
-        users.innerHTML += '<li class="p-2 ml-3">'
-            +   '<div class="d-flex align-items-center row">'
-            +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
-            +           '<img width="50" class="border img-fluid rounded-circle border" alt="Clan" src="' + path_header + '/clanImgs/'+element.id+'.jpg' + '">'
-            +       '</div>'
-            +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="clan/' + element.id + '">' + element.name + '</a></div>'
-            +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
-            +           '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#clanBanModal">'
-            +               '<i class="fas fa-user-times"></i> Ban Clan'
-            +           '</button>'
-            +       '</div>'
-            +   '</div>'
-            +'</li>'
+        users.innerHTML += getActiveClanHTML(element, path_header);
     });
+}
+
+function getActiveClanHTML(element, path_header) {
+    return '<li class="p-2 ml-3" data-id="' + element.id + '">'
+    +   '<div class="d-flex align-items-center row">'
+    +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+    +           '<img width="50" class="border img-fluid rounded-circle border" alt="Clan" src="' + path_header + '/clanImgs/'+ element.id+'.jpg' + '">'
+    +       '</div>'
+    +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="clan/' + element.id + '">' + element.name + '</a></div>'
+    +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
+    +           '<button type="button" class="ban_clan btn btn-danger btn-sm" data-toggle="modal" data-target="#clanBanModal">'
+    +               '<i class="fas fa-user-times"></i> Ban Clan'
+    +           '</button>'
+    +       '</div>'
+    +   '</div>'
+    +'</li>';
 }
 
 function updateBannedsClansSearch() {
@@ -1004,21 +1265,31 @@ function updateBannedsClansSearch() {
 
 
     reply.forEach(function(element) {
-        users.innerHTML += '<li class="p-2 ml-3">'
-            +   '<div class="d-flex align-items-center row">'
-            +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
-            +           '<img width="50" class="border img-fluid rounded-circle border" alt="Clan" src="' + path_header + '/clanImgs/'+element.id+'.jpg' + '">'
-            +       '</div>'
-            +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="clan/' + element.id + '">' + element.name + '</a></div>'
-            +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
-            +           '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#clanUnbanModal">'
-            +               '<i class="fas fa-user-times"></i> Unban Clan'
-            +           '</button>'
-            +       '</div>'
-            +   '</div>'
-            +'</li>'
+        users.innerHTML += getUnbanClanHTML(element, path_header);
+    });
+
+    let adminUnbanClansModal = document.querySelectorAll('.unban_clan');
+    [].forEach.call(adminUnbanClansModal, function (clan) {
+        clan.addEventListener('click', setClanUnbanModalID);
     });
 }
+
+function getUnbanClanHTML(element, path_header) {
+    return '<li class="p-2 ml-3" data-id="' + element.id + '">'
+    +   '<div class="d-flex align-items-center row">'
+    +       '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+    +           '<img width="50" class="border img-fluid rounded-circle border" alt="Clan" src="' + path_header + '/clanImgs/'+element.id+'.jpg' + '">'
+    +       '</div>'
+    +       '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="clan/' + element.id + '">' + element.name + '</a></div>'
+    +       '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
+    +           '<button type="button" class="unban_clan btn btn-success btn-sm" id="' + element.id + '" data-toggle="modal" data-target="#clanUnbanModal">'
+    +               '<i class="fas fa-user-times"></i> Unban Clan'
+    +           '</button>'
+    +       '</div>'
+    +   '</div>'
+    +'</li>';
+}
+
 // ---------------------------------------------------------------------------------------------------------------------//
 
 function activeAdminsSearch() {
@@ -1051,26 +1322,29 @@ function updateActiveAdminsSearch() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     reply.forEach(function(element) {
-        let button = "";
-            if(element.id == userID) button = '<button type="button" class="btn btn-danger btn-sm" disabled>';
-            else button = '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#removePermModal">';
-            
-        users.innerHTML +=
-            '<li class="p-2 ml-3">'
-    +            '<div class="d-flex align-items-center row">'
-    +                '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
-    +                    '<img width="50" class="border img-fluid rounded-circle border"'
-    +                      'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp">'
-    +                '</div>'
-    +                '<div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="⁄user/' + element.username + '">' + element.name + '</a></div>'
-    +                '<div class="col-4 col-sm-4 col-md-4 px-0 text-right">'
-    +                    button
-    +                        '<i class="fas fa-user-times"></i> Remove Permissions'
-    +                    '</button>'
-    +                '</div>'
-    +           '</div>'
-    +        '</li>';
+        users.innerHTML += getActiveAdminPermissionsHTML(element, path_header, userID)
     });
+}
+
+function getActiveAdminPermissionsHTML(element, path_header, userID) {
+    let button = "";
+    if(element.id == userID) button = '<button type="button" class="btn btn-danger btn-sm" disabled>';
+    else button = '<button type="button" class="rm_permissions btn btn-danger btn-sm" id="' + element.id + '" data-toggle="modal" data-target="#removePermModal">';
+
+    return '<li class="p-2 ml-3" data-id="' + element.id + '">'
+        +            '<div class="d-flex align-items-center row">'
+        +                '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+        +                    '<img width="50" class="border img-fluid rounded-circle border"'
+        +                      'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp">'
+        +                '</div>'
+        +                '<div class="col-5 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="⁄user/' + element.username + '">' + element.name + '</a></div>'
+        +                '<div class="col-4 col-sm-4 col-md-4 px-0 text-right">'
+        +                    button
+        +                        '<i class="fas fa-user-times"></i> Remove Permissions'
+        +                    '</button>'
+        +                '</div>'
+        +           '</div>'
+        +        '</li>';
 }
 
 function updatePotentialAdminsSearch() {
@@ -1096,7 +1370,7 @@ function updatePotentialAdminsSearch() {
         +                '<a class="no-hover standard-text" href="user/' + element.username + '">' + element.name + '</a>'
         +            '</div>'
         +            '<div class="col-2 col-sm-3 col-md-3 px-0 text-right">'
-        +                '<input type="checkbox">'
+        +                '<input class="checks" name="new-admin" type="radio">'
         +                '<span class="checkmark"></span>'
         +            '</div>'
         +        '</div>'

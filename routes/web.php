@@ -43,8 +43,10 @@ Route::get('/api/deleteClan/{clan_id}', 'ClanController@delete');
 
 Route::put('/api/banUser/{id}', 'BlockedController@createBanUser');
 Route::put('/api/banClan/{id}', 'BlockedController@createBanClan');
+Route::put('/api/addPermissions/{id}', 'UserController@addPermissions');
 Route::delete('/api/unbanUser/{id}', 'BlockedController@deletebanUser');
 Route::delete('/api/unbanClan/{id}', 'BlockedController@deletebanClan');
+Route::delete('/api/removePermissions/{id}', 'UserController@removePermissions');
 
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');

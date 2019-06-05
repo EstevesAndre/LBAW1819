@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Blocked;
+use App\Clan;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,14 @@ class BlockedController extends Controller
     }
     
     public function createBanClan(Request $request, $id) {
-
+        $block = new Blocked();
+        $block->clan = $id;
+        $block->admin = Auth::user()->id;
+        $block->date = $request->input('endDate') == -1? null : $request->input('endDate');
+        $block->motive = $request->input('motive');
+        $block->save();
+        
+        return response()->json(['blocked' => $block, 'clan' => Clan::find($id)]);
     }
 
     public function deletebanUser(Request $request, $id) {
@@ -38,6 +46,11 @@ class BlockedController extends Controller
     }
 
     public function deletebanClan(Request $request, $id) {
+        if(Auth::user()->is_admin == FALSE)
+            return response()->json(['deleted' => false, 'status' => $status ]);
         
+        $status = Blocked::where('clan', $id)->whereNull('user_id')->first()->delete();
+
+        return response()->json(['deleted' => true, 'status' => $status, 'clan' => Clan::find($id)]);
     }
 }
