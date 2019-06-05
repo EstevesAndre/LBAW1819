@@ -120,6 +120,8 @@ function addEventListeners() {
     let cancelFriendShip = document.querySelector('.friend-cancel');
     if(cancelFriendShip) cancelFriendShip.addEventListener('click', cancelFriendShipRequest);
 
+    let answerFriendShip = document.querySelector('.friend-accept, .friend-decline');
+    if(answerFriendShip) answerFriendShip.addEventListener('click', answerFriendShipRequest);
 }
 
 function encodeForAjax(data) {
@@ -554,6 +556,20 @@ function cancelFriendShipRequest(e){
     let friend_id = parseInt(e.target.closest('.friend-cancel').getAttribute('data-id'));
 
     sendAjaxRequest('post', '/api/cancelFriend/' + friend_id, null, cancelledFriendHandler);
+}
+
+function answerFriendShipRequest(e){
+    console.log('answer');
+
+    let friend_id = parseInt(e.target.closest('.friend-decline').getAttribute('data-id'));
+    let accepted = 0;
+
+    if(friend_id == null){
+        friend_id = parseInt(e.target.closest('.friend-accept').getAttribute('data-id'));
+        accepted = 1;
+    }
+   
+    // sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendHandler);
 }
 
 
@@ -1498,3 +1514,28 @@ function cancelledFriendHandler(){
     if(newEvent) newEvent.addEventListener('click', sendFriendShipRequest);
 
 }
+
+// function answeredFriendHandler(){
+//     let reply = JSON.parse(this.responseText);
+//     let old_button = document.querySelector('.friend-remove');
+//     let friend = document.querySelector('.friend-remove').getAttribute('data-id');
+//     let new_button = "";
+    
+//     if(reply.accepted){
+//         new_button =  '<button type="button" class="friend-remove col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '">'
+//         + 'Remove Friendship <i class="fas fa-user-times"></i>'
+//         + '</button>';
+
+//         old_button.outerHTML = new_button;
+
+//         let newEvent = document.querySelector('.friend-add');
+//         if(newEvent) newEvent.addEventListener('click', sendFriendShipRequest);
+//     }
+//     else{
+//         new_button =  '<button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="' + friend + '" disabled> '
+//         + '<i class="fas fa-user-slash"></i>'
+//         + '</button>';
+
+//         old_button.outerHTML = new_button;
+//     }    
+// }
