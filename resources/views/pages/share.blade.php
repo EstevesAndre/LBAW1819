@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', "{$share->user->name} Share")
+
 @section('content')
 
 <div class="modal shareModal fade" id="sharePostModal-{{ $share->post()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">

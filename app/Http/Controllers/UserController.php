@@ -189,6 +189,7 @@ class UserController extends Controller
     public function cancelFriendRequest($friend){
 
         $is_friend = Auth::user()->sent($friend)->delete();
+        return response()->json(['friend' => $friend]); 
     }
 
     public function answerFriendRequest($friend, $accepted){

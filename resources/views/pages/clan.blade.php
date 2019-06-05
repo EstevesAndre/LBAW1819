@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Clan')
+@section('pageTitle', $clan->name)
 
 @section('content')
 
