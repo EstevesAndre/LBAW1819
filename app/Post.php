@@ -44,8 +44,4 @@ class Post extends Model
     public function share() {
         return $this->hasMany('App\Share', 'post_id', 'id');
     }
-
-    public function sharedByMe($id) {
-        return $this->hasOne('App\Share', 'post_id', 'id')->where('user_id', $id);
-    }
 }
