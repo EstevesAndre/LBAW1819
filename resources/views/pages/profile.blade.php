@@ -112,10 +112,13 @@
                         <p class="text-center"><b><small>{{ $user->name }} has 0 publications!</small></b></p>
                     @else
                         <div id="posts-list">
-                            @each('partials.post', $user->posts()->orderBy('date', 'desc')->skip(0)->take(5)->get(), 'post')
-                            @if($user->posts()->count() > 5)
-                                <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                        @foreach($user->posts()->take(5) as $p)
+                            @if($p->id != null)
+                                @include('partials.post', ['post' => $p])
+                            @else
+                                @include('partials.share', ['share' => $p])
                             @endif
+                        @endforeach
                         </div>
                     @endif
                 </div>
