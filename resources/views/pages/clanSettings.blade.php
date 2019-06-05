@@ -95,7 +95,7 @@
                         @if($members->count() > 0)    
                             <div class="d-flex justify-content-center mb-3 mr-3">
                                 <div class="searchbar">
-                                    <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                                    <input class="search_input search_input_fixed" onkeyup="searchActiveClanUsers({{$clan->id}})" type="text" name="" placeholder="Search...">
                                     <div class="search_icon"><i class="fas fa-search"></i></div>
                                 </div>
                             </div>
@@ -114,8 +114,7 @@
                                 data-target="#addMembersModal">
                                 <i class="fas fa-envelope"></i> Invite Users
                             </button>
-                            <button type="button" class="btn btn-danger" data-toggle="modal"
-                                data-target="#removeClanModal">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeClanModal">
                                 <i class="fas fa-ban"></i> Delete Clan
                             </button>
                         </div>
@@ -124,19 +123,19 @@
                         @if($blocked->count() > 0)
                             <div class="d-flex justify-content-center mb-3 mr-3">
                                 <div class="searchbar">
-                                    <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                                    <input class="search_input search_input_fixed" onkeyup="searchBannedClanUsers({{$clan->id}})" type="text" name="" placeholder="Search...">
                                     <div class="search_icon"><i class="fas fa-search"></i></div>
                                 </div>
                             </div>
-
-                            <ul class="banned pl-0 shadow-lg users-list">
-                                @each('partials.clanSettingsBlocked', $blocked, 'blocked')
-                                @if($blocked->count() > 7)
-                                    <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                                @endif
-                            </ul>
-                        @else
-                            <h5 class="my-5 text-center">There are no banned users</h5>
+                        @endif
+                        <ul class="banned pl-0 shadow-lg users-list">
+                            @each('partials.clanSettingsBlocked', $blocked, 'blocked')
+                            @if($blocked->count() > 7)
+                                <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                            @endif
+                        </ul>
+                        @if($blocked->count() == 0)
+                            <h5 class="no-banned my-5 text-center">There are no banned users</h5>
                         @endif
                     </div>
                 </div>
@@ -196,7 +195,7 @@
                 </select>
                 <p class="ml-2 mt-2 error-msg"></p>
                 <button type="button" data-dismiss="modal" class="btn btn-secondary mt-3 mx-2 float-right">Close!</button>
-                <button type="button" id="" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
+                <button type="button" data-dismiss="modal" id="" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
             </div>
         </div>
     </div>

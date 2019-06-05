@@ -164,8 +164,33 @@ class ClanController extends Controller
                 ->limit(7)
                 ->get();
         }
-
+        
         return $members;
+    }
+
+    public function getActiveClanUsersSearch(Request $request, $id) {
+
+        $clan = Clan::find($id);
+        $search = $request->input('search');
+
+        $members = null;
+        if($search == '')
+        {
+            $members = $clan->members()
+                ->orderBy('xp', 'DESC')
+                ->limit(7)
+                ->get();
+        }
+        else
+        {
+            $members = $clan->members()
+                ->where('name', 'like', '%'. $search. '%')
+                ->orderBy('xp', 'DESC')
+                ->limit(7)
+                ->get();
+        }
+        
+        return response()->json(['users' => $members, 'userID' => Auth::user()->id]); 
     }
 
     public function inviteUsers(Request $request, $clan_id){
@@ -238,5 +263,9 @@ class ClanController extends Controller
     public function leaveClan($user){
         DB::table('user_clans')->where('user_id',$user)->delete();
         return redirect('home');
+    }
+
+    public function getBannedClanUsersSearch(Request $request) {
+        return Blocked::where('clan', Auth::user()->id)->get();
     }
 }
