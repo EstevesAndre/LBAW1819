@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -49,8 +50,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        print_r($data);
-
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -64,15 +63,27 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        print_r($data);
-        
-        return User::create([
-            'name' => $data['name'],
+    protected function create(Request $data)
+    {    
+        $dec1 = rand(0, 1);
+        $dec2 = rand(0, 1);
+            
+        $user = User::create([
+            'username' => $data['name'],
+            'name' => $data['char_name'],
+            'birthdate' => $data['birthday'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'gender' => $dec1 == 1 ? $data['emotional'] : $data['outness'],
+            'race' => $data['happiness'],
+            'class' => $dec2 == 1 ? $data['angriness'] : $data['best'],
         ]);
+
+        $user->save();
+
+        Auth::login($user);
+
+        return redirect('home');
     }
 
     public function createCharacter(Request $data){

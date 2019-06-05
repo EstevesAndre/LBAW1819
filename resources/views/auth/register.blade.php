@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Register')
+
 @section('content')
 <br />
 <br />
