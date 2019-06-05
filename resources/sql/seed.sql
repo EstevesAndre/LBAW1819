@@ -560,8 +560,6 @@ VALUES ('2019-03-15 03:51:37', 'What is it with this weather?!', FALSE, 3, NULL)
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-03-18 02:16:49', 'Cant sleep right now! Whats wrong with me!', TRUE, 2, 3);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
-VALUES ('2019-04-21 19:05:58', 'Finished gym sesh for today! This one was hard...', FALSE, 19, 3);
-INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-04-28 19:05:58', 'my first post ever', FALSE, 21, NULL);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-04-28 21:05:58', 'my second post', FALSE, 21, NULL);

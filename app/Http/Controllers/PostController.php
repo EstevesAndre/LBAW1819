@@ -40,7 +40,10 @@ class PostController extends Controller
 
         $post->save();
 
-        return $post;
+        return response()->json([
+            'post' => $post,
+            'user' => Auth::user()
+        ]);
     }
 
     public function delete(Request $request, $id) 

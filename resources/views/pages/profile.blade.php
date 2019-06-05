@@ -93,13 +93,30 @@
 
             <div class="mt-4 tab-content" id="content">
                 <div class="text-left tab-pane fade active show" id="activity" role="tabpanel" aria-labelledby="actibity-tab">
-                    @if($user->posts()->count() === 0) 
+                    @if(Auth::user()->id === $user->id)
+                        <div class="cardbox-comments d-flex align-items-center">
+                            <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#postModal">
+                                Create a new Post
+                            </button>
+                            <div class="search-comment" data-toggle="modal" data-target="#postModal">
+                                <input placeholder="  New publication..." type="text" class="w-100">
+                            </div>
+                            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">
+                                    <i class="fas fa-question-circle"></i>
+                            </button>
+                        </div>
+                    @endif
+                    @if($user->posts()->count() === 0 && Auth::user()->id === $user->id) 
                         <p class="text-center"><b><small>{{ $user->name }}, you have 0 publications!</small></b></p>
+                    @elseif($user->posts()->count() === 0)
+                        <p class="text-center"><b><small>{{ $user->name }} has 0 publications!</small></b></p>
                     @else
-                        @each('partials.post', $user->posts()->orderBy('date', 'desc')->skip(0)->take(5)->get(), 'post')
-                        @if($user->posts()->count() > 5)
-                            <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                        @endif
+                        <div id="posts-list">
+                            @each('partials.post', $user->posts()->orderBy('date', 'desc')->skip(0)->take(5)->get(), 'post')
+                            @if($user->posts()->count() > 5)
+                                <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                            @endif
+                        </div>
                     @endif
                 </div>
                 <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
@@ -140,4 +157,40 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+@if(Auth::user()->id === $user->id)
+<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="postModalLabel">Create Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="clanID" value="-1">
+                <div class="row align-items-center w-100 mx-2">
+                    <div class="col-sm-12 col-md-4 mt-3">
+                        <a href="/user/{{ Auth::user()->username }}">
+                            <img width="95" class="img-fluid border rounded-circle mb-3" 
+                            src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}"
+                            alt="User"></a>
+                        <p>{{ Auth::user()->name }}</p>
+                    </div>
+                    <div class="col-sm-12 col-md-8 pr-5 form-group">
+                        <textarea class="form-control post-content text-left mt-3 w-100" rows="6" placeholder="Write your publication here..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="float-right btn btn-secondary m-3">Add Image</button>
+                <button type="submit" class="float-right btn btn-dark my-3 create" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">Post</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
