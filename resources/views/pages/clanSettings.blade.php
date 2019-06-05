@@ -195,9 +195,9 @@
                     <option value="365">1 year</option>
                     <option value="-1">Forever</option>
                 </select>
-                <p class="ml-2 mt-2 error-msg"></p>
+                <p class="text-center mt-2 mb-0 error-msg">&nbsp</p>
                 <button type="button" data-dismiss="modal" class="btn btn-secondary mt-3 mx-2 float-right">Close!</button>
-                <button type="button" data-dismiss="modal" id="" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
+                <button type="button" id="" class="ban_modal btn btn-danger mt-3 float-right">Ban!</button>
             </div>
         </div>
     </div>
