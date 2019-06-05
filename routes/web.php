@@ -22,6 +22,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 Route::get('index', 'Auth\LoginController@showIndexPage');
+Route::post('createChar', 'Auth\RegisterController@createCharacter');
 
 // API
 Route::delete('/api/like/{id}', 'LikeController@delete');
@@ -54,6 +55,8 @@ Route::post('/api/sendFriend/{friend}', 'UserController@sendFriendRequest');
 Route::post('/api/cancelFriend/{friend}', 'UserController@cancelFriendRequest');
 Route::put('/api/answerFriend/{friend}+{accepted}', 'UserController@answerFriendRequest');
 
+Route::get('/api/leaveClan/{user}', 'ClanController@leaveClan');
+
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
 Route::get('faqs', 'PublicController@showFaqsPage');
@@ -82,6 +85,7 @@ Route::post('/api/getPotentialAdminsSearch', 'AdminController@getPotentialAdmins
 // Posts
 Route::get('posts', 'PostController@list');
 Route::get('post/{id}', 'PostController@show');
+Route::get('share/{post_id}_{user_id}', 'ShareController@show');
 
 // Users
 Route::get('user/{username}', 'UserController@show');

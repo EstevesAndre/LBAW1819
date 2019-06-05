@@ -17,7 +17,7 @@
             </div>
         </div>
         <br />
-        <form class="text-left mb-3" method="POST" action="{{ route('register') }}">
+        <form class="text-left mb-3" method="POST" action="/createChar">
             {{ csrf_field() }}
 
             <div class="form-group">
