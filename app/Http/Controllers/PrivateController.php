@@ -197,4 +197,8 @@ class PrivateController extends Controller
 
         return view('pages.search', ['search' => $data['search'], 'users' => $users, 'posts' =>$posts]);
     }
+
+    public function getFeed($offset){
+
+    }
 }

@@ -8,12 +8,14 @@
     <div class="container justify-content-center fullscreen-3-4 my-5">
         <h1><b>Results Found for <u>{{$search}}</u></b></h1><br>
         <div class="d-flex justify-content-center mb-4 mr-3">
-            <div class="searchbar">
-                <input type ="text" class="search_input search_input_fixed" name="search" placeholder="Search..." required>
-                <button type="submit" class="search_icon btn btn-dark btn-circle">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+            <form class="my-2 ml-4 mr-4" method="GET" action="/search">
+                <div class="searchbar">
+                    <input type ="text" class="search_input" name="search" placeholder="Search..." required>
+                    <button type="submit" class="search_icon btn btn-dark btn-circle">
+                            <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
         </div>
         <ul class="d-flex justify-content-center mt-3 nav nav-tabs" id="clan-tabs" role="tablist">
             <li class="nav-item">

@@ -54,6 +54,7 @@ Route::delete('/api/removeFriend/{friend}', 'UserController@removeFriend');
 Route::put('/api/sendFriend/{friend}', 'UserController@sendFriendRequest');
 Route::delete('/api/cancelFriend/{friend}', 'UserController@cancelFriendRequest');
 Route::put('/api/answerFriend/{friend}+{accepted}', 'UserController@answerFriendRequest');
+Route::get('/api/getFeed/{offset}', 'UserController@getFeed');
 
 Route::get('/api/leaveClan/{user}', 'ClanController@leaveClan');
 
