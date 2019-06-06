@@ -61,22 +61,6 @@ function addEventListeners() {
     let scrool = document.getElementById('chatScroll');
     if (scrool) scrool.scrollTop = scrool.scrollHeight;
 
-    let hasChat = document.querySelector('.has-chat');
-
-    if (hasChat != null) {
-        let auth_id = document.querySelector('.has-chat').id;
-        let friend_id = document.querySelector('.friend-chat').id;
-
-        Echo.private('chat' + auth_id) //TODO add receiver id to channel name
-            .listen('MessageSent', (e) => {
-                if (e.sender == friend_id) {
-                    let message_area = document.querySelector('#chatScroll');
-                    message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text + '</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
-
-                }
-            });
-    }
-
     let openBanModal = document.querySelectorAll('.ban_member');
     [].forEach.call(openBanModal, function (member) {
         member.addEventListener('click', setBanModalID);
@@ -155,7 +139,31 @@ function addEventListeners() {
         answer.addEventListener('click', answerClanRPRequest);
     });
 
+    let messageBox = document.getElementById("message-box");
+    messageBox.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("send-button").click();
+        }
+    });
 
+    let hasChat = document.querySelector('.has-chat');
+
+    if (hasChat != null) {
+        let auth_id = document.querySelector('.has-chat').id;
+        let friend_id = document.querySelector('.friend-chat').id;
+
+        // it doest work
+        // Echo.private('chat' + auth_id) //TODO add receiver id to channel name
+        //     .listen('MessageSent', (e) => {
+        //         if (e.sender == friend_id) {
+        //             let message_area = document.querySelector('#chatScroll');
+        //             message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text + '</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
+
+        //         }
+        //     });
+    }
 }
 
 function encodeForAjax(data) {
@@ -797,6 +805,7 @@ function addedCommentHandler() {
 function addedMessageHandler() {
 
     let message = JSON.parse(this.responseText);
+    console.log(message);
     let message_area = document.getElementById('chatScroll');
     message_area.innerHTML += getChatMessage(message.message_text, message.date.substring(0,10), message.date.substring(11,19));
     message_area.scrollTop = message_area.scrollHeight;
@@ -814,7 +823,7 @@ function updatedChatHandler() {
     let path = friend_img.getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
-    friend_id.setAttribute('id', reply.friend_info.id);
+    friend_id.setAttribute('data-id', reply.friend_info.id);
     friend_names.setAttribute('href', '/user/' + reply.friend_info.username);
     friend_names.innerHTML = reply.friend_info.name;
     friend_img.setAttribute('src', path_header + '/avatars/' + reply.friend_info.race + "_" + reply.friend_info.class + '_' + reply.friend_info.gender + '.bmp');
@@ -826,8 +835,7 @@ function updatedChatHandler() {
         message_area.innerHTML += getChatMessage(reply.messages[i].message_text, reply.messages[i].date.substring(0,10), reply.messages[i].date.substring(11,19));
     }
 
-    let scrool = document.getElementById('chatScroll');
-    if (scrool) scrool.scrollTop = scrool.scrollHeight;
+    message_area.scrollTop = message_area.scrollHeight;
 }
 
 function getChatMessage(text, date1, date2) {
