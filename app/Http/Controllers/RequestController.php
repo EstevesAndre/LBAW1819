@@ -14,13 +14,11 @@ class RequestController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        
         $sent = Auth::user()->allSent()->get();
 
         $received =Auth::user()->allRequested()->get();
 
         $clans = Auth::user()->allClanRequests()->get();
-
 
         return view('pages.friendRequests', ['sent' => $sent, 'received' => $received, 'clans' => $clans]);
     }
