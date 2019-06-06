@@ -75,7 +75,7 @@
                         <div class="d-flex justify-content-center mx-2 align-items-center">
                             <div class="btn-group my-2">
                                 <button type="button" class="btn btn-secondary rounded-circle" onclick="window.location='{{ url('/friendRequests') }}'" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="fas fa-user-friends"></i>
+                                    aria-expanded="false"><i class="fas fa-user-friends"></i> (0)
                                 </button>
                             </div>
                             <div class="btn-group mr-1">
