@@ -163,10 +163,7 @@ CREATE TABLE blockeds (
 CREATE TABLE reports (
     id SERIAL PRIMARY KEY,
     sender INTEGER NOT NULL REFERENCES "users" (id),
-    admin INTEGER  NOT NULL REFERENCES "users" (id),
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    report_text VARCHAR(250),
-    comment_id INTEGER REFERENCES comments (id),
     post_id INTEGER REFERENCES posts (id),
     motive motiveEnum NOT NULL
 );
@@ -206,40 +203,40 @@ CREATE INDEX messages_search ON "messages" USING GIN (to_tsvector('english', mes
 -- TRIGGERS and UDFs
 -----------------------------------------
 
-CREATE FUNCTION verifyReportAdmin() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    IF EXISTS (
-        SELECT *
-        FROM "users"
-        WHERE "users".id = New.admin AND "users".is_admin = FALSE
-    ) 
-    THEN RAISE EXCEPTION 'Only an Admin (with permissions) can handle an user report.';
-    END IF;
-    RETURN New;
-END
-$BODY$
-LANGUAGE plpgsql;
+-- CREATE FUNCTION verifyReportAdmin() RETURNS TRIGGER AS
+-- $BODY$
+-- BEGIN
+--     IF EXISTS (
+--         SELECT *
+--         FROM "users"
+--         WHERE "users".id = New.admin AND "users".is_admin = FALSE
+--     ) 
+--     THEN RAISE EXCEPTION 'Only an Admin (with permissions) can handle an user report.';
+--     END IF;
+--     RETURN New;
+-- END
+-- $BODY$
+-- LANGUAGE plpgsql;
 
-CREATE TRIGGER verifyReportAdmin
-    BEFORE INSERT OR UPDATE ON reports
-    FOR EACH ROW
-    EXECUTE PROCEDURE verifyReportAdmin();
+-- CREATE TRIGGER verifyReportAdmin
+--     BEFORE INSERT OR UPDATE ON reports
+--     FOR EACH ROW
+--     EXECUTE PROCEDURE verifyReportAdmin();
 
-CREATE FUNCTION verifyBlockingAdmin() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    IF EXISTS (
-        SELECT *
-        FROM "users"
-        WHERE "users".id = New.admin AND "users".is_admin = FALSE
-    ) 
-    THEN RAISE EXCEPTION 'Only an Admin (with permissions) can block an user.';
-    END IF;
-    RETURN New;
-END
-$BODY$
-LANGUAGE plpgsql;
+-- CREATE FUNCTION verifyBlockingAdmin() RETURNS TRIGGER AS
+-- $BODY$
+-- BEGIN
+--     IF EXISTS (
+--         SELECT *
+--         FROM "users"
+--         WHERE "users".id = New.admin AND "users".is_admin = FALSE
+--     ) 
+--     THEN RAISE EXCEPTION 'Only an Admin (with permissions) can block an user.';
+--     END IF;
+--     RETURN New;
+-- END
+-- $BODY$
+-- LANGUAGE plpgsql;
 
 -- CREATE TRIGGER verifyBlockingAdmin
 --     BEFORE INSERT OR UPDATE ON blockeds
@@ -767,26 +764,18 @@ INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (9, NULL, 4, '
 INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (18, NULL, 4, '2019-03-31 05:16:33', 'Inappropriate behaviour');
 
 
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-03-21 07:22:16', 'This user used abusive content', NULL, 2, 'Abusive content');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-02-09 23:02:30', 'Abusive user', 21, NULL,'Inappropriate behaviour');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-03-04 13:22:03', 'color skin', 21, NULL, 'Racism');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-04-02 13:23:18', 'He/She sent me abusive content', NULL, 3, 'Abusive content');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-03-19 13:07:04', 'This user must be banned!', 21, NULL,'Inappropriate behaviour');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-03-27 12:22:02', 'Abusive user!!', NULL, 1,'Inappropriate behaviour');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-02-09 23:02:30', 'He said abusive words', 21, NULL, 'Abusive content');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-02-22 23:02:20', 'Soooo inappropriate', NULL, 2,'Inappropriate behaviour');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-03-27 12:22:02', 'Inappropriate content', NULL, 3,'Abusive content');
-INSERT INTO reports(sender, admin, "date", report_text, comment_id, post_id, motive) 
-VALUES(1, 4, '2019-03-13 15:07:02', 'Content not permited', NULL, 1,'Abusive content');
+INSERT INTO reports(sender, "date", post_id, motive) 
+VALUES(1,'2019-03-21 07:22:16', 2, 'Abusive content');
+INSERT INTO reports(sender, "date", post_id, motive) 
+VALUES(1, '2019-04-02 13:23:18', 3, 'Abusive content');
+INSERT INTO reports(sender, "date", post_id, motive) 
+VALUES(1, '2019-03-27 12:22:02', 1,'Inappropriate behaviour');
+INSERT INTO reports(sender, "date", post_id, motive) 
+VALUES(1, '2019-02-22 23:02:20', 2,'Inappropriate behaviour');
+INSERT INTO reports(sender, "date", post_id, motive) 
+VALUES(1, '2019-03-27 12:22:02', 3,'Racism');
+INSERT INTO reports(sender, "date", post_id, motive) 
+VALUES(1, '2019-03-13 15:07:02', 1,'Abusive content');
 
 
 --INSERT INTO notifications("date", request_id, message_id, comment_id, like_post_id, like_user_id, share_post_id, share_user_id, has_been_seen) 

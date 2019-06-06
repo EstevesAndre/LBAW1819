@@ -63,7 +63,6 @@
                         <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"
                             aria-expanded="false"><i class="fas fa-ellipsis-h"></i></button>
                         <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu">
-                            <a class="dropdown-item" href="#">Report</a>
                             @if($share->user()->get()[0]->id == Auth::user()->id || Auth::user()->is_admin)
                                 <a class="dropdown-item" data-toggle="modal" data-target="#deleteShareModal-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}">Delete</a>
                             @endif
