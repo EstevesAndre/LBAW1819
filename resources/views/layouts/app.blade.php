@@ -130,7 +130,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class=" navbar-nav mr-auto">
                             <li class="nav-item align-self-center">
-                                <a class="nav-link index-nav active" href="{{ url('/about') }}">Get Started!</a>
+                                <a class="nav-link index-nav" href="{{ url('/about') }}">Get Started!</a>
                             </li>
                             <li class="nav-item align-self-center">
                                 <a class="nav-link index-nav" href="{{ url('/faqs') }}">FAQs</a>
