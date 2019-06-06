@@ -170,6 +170,11 @@ function addEventListeners() {
         //         }
         //     });
     }
+
+    let report = document.querySelectorAll('.reportModal .report');
+    [].forEach.call(report, function (answer) {
+        answer.addEventListener('click', reportPostRequest);
+    });
 }
 
 function encodeForAjax(data) {
@@ -658,6 +663,25 @@ function answerClanRPRequest(e) {
     }
 
     sendAjaxRequest('put', '/api/answerClan/' + clan_id + '+' + accepted, null, answeredClanRPHandler);
+}
+
+function reportPostRequest(e){
+    console.log('reported');
+
+    let post_id = e.target.closest('.reportModal').getAttribute('data-id');
+
+    
+    let motives = document.querySelectorAll('.reportModal .form-check-input');
+    let checkedMotive = "";
+    //get checked motive
+    for (let i = 0; i < motives.length; i++) {
+        if (motives[i].checked) {
+            checkedMotive = motives[i].value;
+            break;
+        }
+    }
+
+    sendAjaxRequest('post', '/api/report/' + post_id, { motive: checkedMotive}, reportedHandler);
 }
 
 
@@ -1901,4 +1925,15 @@ function answeredClanRPHandler() {
         clan_received.removeChild(ul);
         clan_received.innerHTML = '<p class="text-center mt-3 mb-0 standard-text">There are no clan requests!</p>';
     }
+}
+
+function reportedHandler(){
+    let reply = JSON.parse(this.responseText);
+
+    console.log(reply.has_report);
+
+    if(reply.has_report)
+        $('#report-repeated').modal('show');
+    else
+        $('#report-success').modal('show');
 }

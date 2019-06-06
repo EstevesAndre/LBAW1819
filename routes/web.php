@@ -58,6 +58,10 @@ Route::put('/api/answerClan/{clan}+{accepted}', 'UserController@answerClanReques
 
 Route::get('/api/leaveClan/{user}', 'ClanController@leaveClan');
 
+
+Route::post('/api/report/{post_id}', 'PostController@report');
+
+
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
 Route::get('faqs', 'PublicController@showFaqsPage');

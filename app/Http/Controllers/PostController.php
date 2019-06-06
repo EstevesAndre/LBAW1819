@@ -7,6 +7,7 @@ use App\Like;
 use App\Comment;
 use App\Share;
 use App\User;
+use App\Report;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -80,5 +81,28 @@ class PostController extends Controller
         return redirect()->action(
             'ShareController@show', ['post_id' => $share->post_id, 'user_id' => $share->user_id]
         );
+    }
+
+    public function report(Request $request, $post_id) {
+
+
+        $db_report = Report::where('sender',  Auth::user()->id)->where('post_id', $post_id)->get();
+
+        $has_report = 0;
+
+        if($db_report->isEmpty()){
+
+            $report = new Report();
+            $report->sender = Auth::user()->id;
+            $report->post_id = $post_id;
+            $report->motive = $request->input('motive');
+            $report->save();
+
+        }
+        else{
+            $has_report = 1;
+        }
+
+        return response()->json(['has_report' => $has_report]); 
     }
 }
