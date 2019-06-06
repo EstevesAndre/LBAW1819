@@ -24,7 +24,7 @@ class PostsTableSeeder extends Seeder
             $date = new DateTime(date('Y-m-d H:i:s', $val));
 
             $bool_rand = rand(0,1);
-            $boolean = $bool_rand = 1 ? TRUE:FALSE;
+            $boolean = $bool_rand = 1 ? FALSE:FALSE;
             
             $users = DB::select('SELECT id FROM users');
             $user_id = rand(1,count($users));
