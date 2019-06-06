@@ -33,7 +33,7 @@
             @if (Auth::check())
                 <nav class="bg-secondary fixed-top navbar navbar-expand-lg fixed-nav">
                     <a class="navbar-brand" href="{{ url('/home') }}">
-                        <img src="{{ asset('assets/logoWhite.png') }}" width="40" height="40" alt="icon">
+                        <img src="{{ asset('assets/logoWhite.png') }}" width="48" height="48" alt="icon">
                         <a class="nav-link index-nav" href="{{ url('/home') }}">AlterEgo</a>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

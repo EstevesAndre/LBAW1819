@@ -807,14 +807,14 @@ function addedMessageHandler() {
     let message = JSON.parse(this.responseText);
     console.log(message);
     let message_area = document.getElementById('chatScroll');
-    message_area.innerHTML += getChatMessage(message.message_text, message.date.substring(0, 10), message.date.substring(11, 19));
+    message_area.innerHTML += getChatMessage(true, null, message.message_text, message.date.substring(0, 10), message.date.substring(11, 19));
     message_area.scrollTop = message_area.scrollHeight;
 }
 
 function updatedChatHandler() {
 
     let reply = JSON.parse(this.responseText);
-    console.log(reply.friend_info.id);
+    console.log(reply);
 
     let friend_id = document.querySelector('.friend-chat');
     let friend_names = document.querySelector('.friend-chat a');
@@ -832,22 +832,42 @@ function updatedChatHandler() {
     message_area.innerHTML = "";
 
     for (let i = 0; i < reply.messages.length; i++) {
-        message_area.innerHTML += getChatMessage(reply.messages[i].message_text, reply.messages[i].date.substring(0, 10), reply.messages[i].date.substring(11, 19));
+        message_area.innerHTML += getChatMessage(reply.friend_info.id == reply.messages[i].receiver, reply.friend_info, reply.messages[i].message_text, reply.messages[i].date.substring(0, 10), reply.messages[i].date.substring(11, 19));
     }
 
     message_area.scrollTop = message_area.scrollHeight;
 }
 
-function getChatMessage(text, date1, date2) {
-    return '<div class="my-3 outgoing_msg">'
-        + '<div class="sent_msg w-50 text-right mr-2">'
-        + '<p>' + text + '</p>'
-        + '<span class="text-right mt-0 pt-0 time_date">' + date1
-        + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + date2
-        + '&nbsp&nbsp'
-        + '</span>'
-        + '</div>'
-        + '</div>';
+function getChatMessage(isOutgoing, friend_info, text, date1, date2) {
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+    
+    if(isOutgoing)
+        return '<div class="my-3 outgoing_msg">'
+                + '<div class="sent_msg w-50 text-right mr-2">'
+                    + '<p>' + text + '</p>'
+                    + '<span class="text-right mt-0 pt-0 time_date">' + date1
+                        + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + date2
+                        + '&nbsp&nbsp'
+                    + '</span>'
+                + '</div>'
+            + '</div>';
+    else 
+        return '<div class="my-3 incoming_msg">'
+                + '<div class="incoming_msg_img">'
+                     + '<img src="' + path_header + '/avatars/' + friend_info.race + '_' + friend_info.class + '_' + friend_info.gender + '.bmp" alt="logo" width="25" class="ml-2 border img-fluid rounded-circle">'
+                + '</div>'
+                + '<div class="received_msg">'
+                    + '<div class="received_withd_msg">'
+                        + '<p>' + text + '</p>'
+                        + '<span class="mt-0 pt-0 time_date">' + date1
+                            + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + date2
+                            + '&nbsp&nbsp'
+                        + '</span>'
+                    + '</div>'
+                + '</div>'
+            + '</div>';
 }
 
 addEventListeners();

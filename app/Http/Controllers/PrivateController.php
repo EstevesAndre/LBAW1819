@@ -80,7 +80,7 @@ class PrivateController extends Controller
         $list = $list->sort(function ($a, $b) {
             if(strtotime($a->date) > strtotime($b->date))
                 return -1;
-            else 
+            else
                 return 1;
         });
 
