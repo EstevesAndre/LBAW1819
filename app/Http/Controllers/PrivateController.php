@@ -60,8 +60,10 @@ class PrivateController extends Controller
         return view('pages.home', ['posts' => $retrieve_list]);
     }
 
-    public function seeMoreHome($cur_page){
+    public function seeMoreHome($offset){
         
+        $friendIDs = Auth::user()->friendIDs()->get();
+
         $posts = Post::whereIn('user_id', $friendIDs)->get();//->orderBy('date', 'DESC')->paginate(3);
         
         $shares = Share::whereIn('user_id', $friendIDs)->get();
@@ -87,13 +89,36 @@ class PrivateController extends Controller
             }
         });
 
-        $retrieve_list = collect([]);
+        $retrieve_posts = collect([]);
+        $retrieve_likes = collect([]);
+        $retrieve_comments = collect([]);
+        $retrieve_shares = collect([]);
+        $retrieve_users = collect([]);
 
         for($i = $offset; $i < $offset + 3; $i++){
-            $retrieve_list = $retrieve_list->push($list[$i]);
+            $retrieve_posts = $retrieve_posts->push($list[$i]);
+            
+            if($list[$i]->id === NULL){
+                $retrieve_likes = $retrieve_likes->push($list[$i]->post()->get()->like()->count());
+                $retrieve_comments = $retrieve_comments->push($list[$i]->post()->get()->comment()->count());
+                $retrieve_shares = $retrieve_shares->push($list[$i]->post()->get()->share()->count());
+            }
+            else{
+                $retrieve_likes = $retrieve_likes->push($list[$i]->like()->count());
+                $retrieve_comments = $retrieve_comments->push($list[$i]->comment()->count());
+                $retrieve_shares = $retrieve_shares->push($list[$i]->share()->count());
+            }
+
+            $retrieve_users = $retrieve_users->push($list[$i]->user()->get());
         }
 
-        return response()->json(['posts' => $retrieve_list]); 
+        return ['posts' => $retrieve_posts, 
+                'likes' => $retrieve_likes, 
+                'comments' => $retrieve_comments, 
+                'shares' => $retrieve_shares,
+                'users' => $retrieve_users, 
+                'user' => Auth::user()
+                ]; 
     }
 
     public function showLeaderboard() 
