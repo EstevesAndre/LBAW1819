@@ -75,12 +75,16 @@ div.left-color {
     height: 90.9%;
 }
 
+.height-94 {
+    height: 93%;
+}
+
 .height-85 {
     height: 85%;
 }
 
 .height-5 {
-    height: 5%;;
+    height: 5%;
 }
 
 .dropdown-navbar:hover {
@@ -153,6 +157,26 @@ input:hover, textarea:hover {
     width: 94%;
 }
 
+.w-89 {
+    width: 89%;
+}
+
+.h-8 {
+    height: 8%;
+}
+
+.h-84 {
+    height: 84%;
+}
+
+.h-10 {
+    height: 10%;
+}
+
+.h-90 {
+    height: 90%;
+}
+
 .min-width-75 {
     min-width: 100%;
 }
@@ -180,6 +204,20 @@ input:hover, textarea:hover {
     overflow-y: scroll;
     top: 0;
     bottom: 0;
+}
+
+.parent {
+    position: relative;
+}
+
+.fixed-at-bottom {
+    position: absolute;
+    bottom: 0%;
+}
+
+.fixed-at-top {
+    position: absolute;
+    top: 0%;
 }
 
 textarea {
@@ -533,7 +571,7 @@ a.friend-list {
     }
 
     .hgt {
-        height: 100%;
+        height: 98%;
     }
 }
 

@@ -70,7 +70,7 @@ function addEventListeners() {
         Echo.private('chat' + auth_id) //TODO add receiver id to channel name
             .listen('MessageSent', (e) => {
                 if (e.sender == friend_id) {
-                    let message_area = document.querySelector('#chat-body');
+                    let message_area = document.querySelector('#chatScroll');
                     message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text + '</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
 
                 }
@@ -253,9 +253,14 @@ function sendAddMessageRequest(e) {
 function updateChatRequest(e) {
     e.preventDefault();
     console.log("Update chat request");
-    let friend_id = e.target.closest("a.friend-list").getAttribute('data-id');
+    let clicked = e.target.closest("a.friend-list");
+    let current = document.querySelector('a.friend-list.active');
+    let friend_id = clicked.getAttribute('data-id');
 
-    sendAjaxRequest('post', '/api/update_chat/' + friend_id, null, updatedChatHandler);
+    current.classList.remove('active');
+    clicked.classList.add('active');
+
+   sendAjaxRequest('post', '/api/update_chat/' + friend_id, null, updatedChatHandler);
 }
 
 function setBanModalID(e) {
@@ -779,6 +784,7 @@ function addedMessageHandler() {
 function updatedChatHandler() {
 
     let reply = JSON.parse(this.responseText);
+    console.log(reply);
 
     let friend_id = document.querySelector('.friend-chat');
     let friend_names = document.querySelector('.friend-chat a');
@@ -794,18 +800,11 @@ function updatedChatHandler() {
 
     let message_area = document.querySelector('#chatScroll');
     message_area.innerHTML = "";
-    
-    if(reply.messages.length > 7)
-        message_area.innerHTML = '<div class="text-center">'
-        +   '<button type="button" class="btn btn-sm bg-secondary border-0 rounded-circle my-1">'
-        +        '<i class="fas fa-chevron-up"></i>'
-        +   '</button>'
-        + '</div>';
-
 
     for (let i = 0; i < reply.messages.length; i++) {
         message_area.innerHTML += getChatMessage(reply.messages[i].message_text, reply.messages[i].date.substring(0,10), reply.messages[i].date.substring(11,19));
     }
+
     let scrool = document.getElementById('chatScroll');
     if (scrool) scrool.scrollTop = scrool.scrollHeight;
 }
