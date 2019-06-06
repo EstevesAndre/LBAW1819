@@ -26,7 +26,7 @@ class PrivateController extends Controller
 
         $friendIDs = Auth::user()->friendIDs()->get();
         
-        $posts = Post::whereIn('user_id', $friendIDs)->get();
+        $posts = Post::whereIn('user_id', $friendIDs)->get();//->orderBy('date', 'DESC')->paginate(3);
         
         $shares = Share::whereIn('user_id', $friendIDs)->get();
         
