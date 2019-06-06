@@ -138,7 +138,7 @@ class PrivateController extends Controller
         {
             $users = DB::table('users')
             ->select('username', 'name', 'xp', 'race', 'class', 'gender')
-            ->where('name', 'like', '%' . $search . '%')
+            ->where('name', 'ilike', '%' . $search . '%')
             ->orderBy('xp', 'DESC')
             ->limit(5)
             ->get();
@@ -153,13 +153,13 @@ class PrivateController extends Controller
         $clans = null;
         if($search == '')
         {
-            $clans = Clan::where('name', 'like', '%' . $search . '%')
+            $clans = Clan::where('name', 'ilike', '%' . $search . '%')
             ->limit(5)
             ->offset(3)
             ->get();
         }
         else {
-            $clans = Clan::where('name', 'like', '%' . $search . '%')
+            $clans = Clan::where('name', 'ilike', '%' . $search . '%')
                 ->limit(5)
                 ->get();
         }
@@ -181,7 +181,7 @@ class PrivateController extends Controller
         else 
         {
             $users = Auth::user()->friends()
-            ->where('name', 'like', '%' . $search . '%')
+            ->where('name', 'ilike', '%' . $search . '%')
             ->orderBy('xp', 'DESC')
             ->limit(5)
             ->get();
