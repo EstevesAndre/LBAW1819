@@ -28,7 +28,7 @@
                 <i class="left fas fa-search"></i>
             </div>
             <div class="friend-chat border rounded hgt" data-id="{{ $friends[0]->id }}">
-                <div class="h-100 scroolable parent">
+                <div class="h-100 parent">
                     <div class="fixed-at-top p-3 w-100 border rounded text-left tab-content chat-content" id="nav-tabContent">
                         <div class="tab-pane fade show active">
                             <img src="{{ asset('assets/avatars/'.$friends[0]->race.'_'.$friends[0]->class.'_'.$friends[0]->gender.'.bmp') }}" alt="logo" width="25" class="border img-fluid rounded-circle">
@@ -39,18 +39,21 @@
                             </button>
                         </div>
                     </div>
-                    <div id="chatScroll">
-                        @each('partials.message', Auth::user()->friendChatMessages($friends[0]->id), 'message')
+                    <div id="chatScroll" class="fixed-at-top pt-4 chat-margins scroolable">
+                            @each('partials.message', $messages, 'message')
                     </div>
                     <div class="fixed-at-bottom bg-white border-top w-100 send-message p-0 d-flex align-items-center" id="message-send">
                         <input type="text" class="m-2 border w-89 no-outline" id="message-box" placeholder="Write a message here..." required>
-                        <button type="submit" class="btn btn-primary m-1 float-right rounded-circle" id="send-button">&#9993;</button>
+                        <button type="submit" class="btn btn-primary float-right mr-2" id="send-button"><i class="fas fa-envelope"></i></button>
                     </div>
                 </div>
             </div>  
         </div>
     </div>
 </div>
+
+{{ $messages->count() }}
+
 <!-- Modal -->
 <div class="modal fade" id="chat_helpModal" tabindex="-1" role="dialog" aria-labelledby="chat_helpModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -49,9 +49,9 @@
                             </li>
                             <li class="nav-item align-self-center">
                                 @if(!Auth::user()->clan()->get()->isEmpty())
-                                <a class="nav-link index-nav" href="{{ url('/clan') }}">Clan</a>
+                                    <a class="nav-link index-nav" href="{{ url('/clan') }}">Clan</a>
                                 @else 
-                                <a class="nav-link index-nav" href="{{ url('/createClanPage') }}">Clan</a>
+                                    <a class="nav-link index-nav" href="{{ url('/createClanPage') }}">Create a Clan</a>
                                 @endif
                             </li>
                             <li class="nav-item align-self-center">
@@ -97,15 +97,18 @@
                             <div class="btn-group ml-2 my-2">
                                 <button type="button" class="btn btn-secondary dropdown-toggle rounded-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary">
-                                    <a class="no-hover index-nav" href="{{ url('/createClanPage') }}">
-                                        <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
-                                    </a>
+                                    @if(Auth::user()->clan()->get()->isEmpty())
+                                        <a class="no-hover index-nav" href="{{ url('/createClanPage') }}">
+                                            <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
+                                        </a>
+                                    @endif
+                                    @if(Auth::user()->clan()->get()->isEmpty() && Auth::user()->is_admin)
+                                        <div class="dropdown-divider"></div>
+                                    @endif
                                     @if (Auth::user()->is_admin)
-                                    <div class="dropdown-divider"></div>
-                                    <a class="no-hover index-nav" href="{{ url('/administrator') }}">
-                                        <button class="dropdown-item dropdown-navbar" type="button">Administrator</button>
-                                    </a>
-                                    @else
+                                        <a class="no-hover index-nav" href="{{ url('/administrator') }}">
+                                            <button class="dropdown-item dropdown-navbar" type="button">Administrator</button>
+                                        </a>
                                     @endif
                                     <div class="dropdown-divider"></div>
                                     <form method="GET" action="{{ route('logout') }}">

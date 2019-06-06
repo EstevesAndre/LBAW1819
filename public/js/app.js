@@ -140,7 +140,7 @@ function addEventListeners() {
     });
 
     let messageBox = document.getElementById("message-box");
-    messageBox.addEventListener("keyup", function(event) {
+    if(messageBox) messageBox.addEventListener("keyup", function(event) {
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             event.preventDefault();
@@ -151,8 +151,8 @@ function addEventListeners() {
     let hasChat = document.querySelector('.has-chat');
 
     if (hasChat != null) {
-        let auth_id = document.querySelector('.has-chat').id;
-        let friend_id = document.querySelector('.friend-chat').id;
+        // let auth_id = document.querySelector('.has-chat').id;
+        // let friend_id = document.querySelector('.friend-chat').id;
 
         // it doest work
         // Echo.private('chat' + auth_id) //TODO add receiver id to channel name

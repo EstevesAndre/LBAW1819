@@ -130,20 +130,19 @@ class User extends Authenticatable
 
     public function friendChatMessages($friendID) {
 
-        $thisMessages = $this->messages($friendID);
+        $thisMessages = $this->messages($friendID)->get();
 
         $friend = User::find($friendID);
-        $friendMessages = $friend->messages($this->id);
-
+        $friendMessages = $friend->messages($this->id)->get();
         
         $messages = [];
-        foreach($thisMessages->get() as $message)
+        foreach($thisMessages as $message)
             array_push($messages, $message->id);
-        foreach($friendMessages->get() as $friend)
-            array_push($messages, $message->id);
+        foreach($friendMessages as $friend)
+            array_push($messages, $friend->id);
 
-        return Message::select('*')
-            ->whereIn('id', $messages)
+        return Message::whereIn('id', $messages)
+            ->orderBy('date')
             ->get();
     }
 

@@ -31,22 +31,22 @@
            
             <div class="tab-pane fade active show" id="users" role="tabpanel" aria-labelledby="users-tab">
                @if($users->isEmpty())
-                <h1><b>No Users Found for {{$search}}</b></h1> 
+                    <h1><b>No Users Found for {{$search}}</b></h1> 
                @else
-                <ul class="pl-0 shadow-lg users-list">
-                    @each('partials.searchUsers', $users, 'user')
-                </ul>
-                <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                    <ul class="pl-0 shadow-lg users-list">
+                        @each('partials.searchUsers', $users, 'user')
+                    </ul>
+                    <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                 @endif
             </div>
             <div class="text-left tab-pane fade border-0 show" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                 @if($posts->isEmpty())
-                <h1><b>No Posts Found for {{$search}}</b></h1>
+                    <h1><b>No Posts Found for {{$search}}</b></h1>
                 @else 
-                <ul class="pl-0 shadow-lg users-list">
-                    @each('partials.searchPosts', $posts, 'post')
-                </ul>
-                <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                    <ul class="pl-0 shadow-lg users-list">
+                        @each('partials.searchPosts', $posts, 'post')
+                    </ul>
+                    <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                 @endif
             </div>
 

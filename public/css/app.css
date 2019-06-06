@@ -224,6 +224,11 @@ input:hover, textarea:hover {
     top: 0%;
 }
 
+.chat-margins {
+    margin-top: 11.6% !important;
+    margin-bottom: 10% !important;
+}
+
 textarea {
     resize: none;
 }
@@ -837,13 +842,13 @@ img{ max-width:100%;}
   width: 92%;
  }
  .received_withd_msg p {
-  background: #ebebeb none repeat scroll 0 0;
-  border-radius: 3px;
-  color: #646464;
-  font-size: 14px;
-  margin: 0;
-  padding: 5px 10px 5px 12px;
-  width: 100%;
+    background: #dcdde0 none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #646464;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
 }
 .time_date {
   color: #747474;

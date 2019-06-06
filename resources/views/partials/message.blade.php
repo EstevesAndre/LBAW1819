@@ -1,6 +1,8 @@
 @if($message->receiver == Auth::user()->id)
     <div class="my-3 incoming_msg">
-        <div class="incoming_msg_img"> <img src="{{ asset('assets/logo.png') }}"> </div>
+        <div class="incoming_msg_img">
+            <img src="{{ asset('assets/avatars/'.$message->user()->get()[0]->race.'_'.$message->user()->get()[0]->class.'_'.$message->user()->get()[0]->gender.'.bmp') }}" alt="logo" width="25" class="ml-2 border img-fluid rounded-circle"> 
+        </div>
         <div class="received_msg">
             <div class="received_withd_msg">
                 <p>{{$message->message_text}}</p>

@@ -225,8 +225,8 @@ class PrivateController extends Controller
         if (!Auth::check()) return redirect('/login');
         if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
-        $users = User::where('name', 'ilike', '%'.$data['search'].'%')->orWhere('username', 'ilike','%'.$data['search'].'%')->get();
-        $posts = Post::where('content', 'ilike', '%'.$data['search'].'%')->get();
+        $users = User::where('name', 'ilike', '%'.$data['search'].'%')->orWhere('username', 'ilike','%'.$data['search'].'%')->limit(10)->get();
+        $posts = Post::where('content', 'ilike', '%'.$data['search'].'%')->limit(10)->get();
 
         return view('pages.search', ['search' => $data['search'], 'users' => $users, 'posts' =>$posts]);
     }

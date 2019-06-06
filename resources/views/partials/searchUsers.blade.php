@@ -7,7 +7,11 @@
             </div>
             <div class="col-6 col-sm-5 col-md-6 pr-1 text-left">{{$user->name}}</div>
             <div class="col-3 col-sm-4 col-md-4 px-0 text-right search-info">
-                <div><i class="fas fa-users"></i> <span>Clan: hey</span></div>
+                @if($user->clan()->get()->isEmpty())
+                    <div><i class="fas fa-users"></i> <span>No clan</span></div>
+                @else
+                    <div><i class="fas fa-users"></i> <span>Clan: {{ $user->clan()->get()[0]->name }}</span></div>
+                @endif
             <div><i class="fas fa-flag"></i> <span>Race: {{$user->race}}</span></div>
             </div>
         </div>
