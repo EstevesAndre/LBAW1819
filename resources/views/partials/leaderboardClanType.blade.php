@@ -1,31 +1,44 @@
-<div class="leaders mb-5 row mx-1">
-    @if($clan->count() >= 2)
+{{$clans[1]->xp}}
+{{-- <div class="leaders mb-5 row mx-1">
+    @if($clans->count() >= 2)
         <div class="second-place">
             <img src="{{ asset('assets/silver.png') }}" alt="logo" class="img-fluid rounded">
             <div class="podium">
-                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clan[1]->id.'.jpg')}}" alt="Clan">
-                <p class="m-0">{{ $clan[1]->name }}</p>     
-                <p>{{ $clan[1]->xp }} XP</p> 
+                @if(file_exists('assets/clanImgs/'.$clans[1].clan->id.'.png'))
+                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clans[1].clan->id.'.png')}}" alt="Clan">
+                @else
+                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/logo.png')}}" alt="Clan">
+                @endif
+                <p class="m-0">{{ $clans[1].clan->name }}</p>     
+                <p>{{ $clans[1].xp) }} XP</p> 
             </div>
         </div>
     @endif
-    @if($clan->count() >= 1)
+    @if($clans->count() >= 1)
         <div class="first-place">
             <img src="{{ asset('assets/gold.png') }}" alt="logo" class="img-fluid rounded">
             <div class="podium">     
-                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clan[0]->id.'.jpg')}}" alt="Clan">
-                <p class="m-0">{{ $clan[0]->name }}</p>     
-                <p>{{ $clan[0]->xp }} XP</p> 
+                @if(file_exists('assets/clanImgs/'.$clans[0]->pull('clan')->id.'.png'))
+                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clans[0]->pull('clan')->id.'.png')}}" alt="Clan">
+                @else
+                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/logo.png')}}" alt="Clan">
+                @endif
+                <p class="m-0">{{ $clans[0]->pull('clan')->name }}</p>     
+                <p>{{ $clans[0]->pull('xp') }} XP</p> 
             </div>
         </div>
     @endif
-    @if($clan->count() >= 3)
+    @if($clans->count() >= 3)
         <div class="third-place">
             <img src="{{ asset('assets/bronze.png') }}" alt="logo" class="img-fluid rounded">
-            <div class="podium">     
-                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clan[2]->id.'.jpg')}}" alt="Clan">
-                <p class="m-0">{{ $clan[2]->name }}</p>     
-                <p>{{ $clan[2]->xp }} XP</p> 
+            <div class="podium">
+                @if(file_exists('assets/clanImgs/'.$clans[2]->pull('clan')->id.'.png'))
+                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/clanImgs/'.$clans[2]->pull('clan')->id.'.png')}}" alt="Clan">
+                @else
+                <img width="200" class="img-fluid border rounded-circle" src="{{ asset('assets/logo.png')}}" alt="Clan">
+                @endif
+                <p class="m-0">{{ $clans[2]->pull('clan')->name }}</p>     
+                <p>{{ $clans[2]->pull('xp') }} XP</p> 
             </div>
         </div>
     @endif
@@ -40,9 +53,9 @@
     </div>
 
     <ol start="4" class="list pl-0 shadow-lg">
-        @each('partials.leaderboardClanElement', $clan->slice(3,5), 'clan')
-        @if($clan->count() > 3+5)
+        @each('partials.leaderboardClanElement', $clans->slice(3,5), $clan)
+        @if($clans->count() > 3+5)
             <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
         @endif
     </ol>
-@endif
+@endif --}}
