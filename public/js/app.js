@@ -1028,6 +1028,11 @@ function banUserHandler() {
     [].forEach.call(adminUnbanUsersModal, function (user) {
         user.addEventListener('click', setUserUnbanModalID);
     });
+
+    let prev_btns = document.querySelectorAll('button.ban_user[id="' + reply.blocked.user_id + '"]');
+    prev_btns.forEach(function(prev_btn) {
+        prev_btn.outerHTML = '<button type="button" class="ban_user btn btn-danger btn-sm" disabled><i class="fas fa-user-times"></i> User Already Banned</button>';
+    });
 }
 
 function unbanUserHandler() {
