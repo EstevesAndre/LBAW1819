@@ -26,6 +26,11 @@ body {
     overflow: hidden;
 }
 
+.img-posts {
+    width:100%;
+    max-width:300px;
+}
+
 .bg-grey {
     background-color: rgb(228, 226, 222);;
 }

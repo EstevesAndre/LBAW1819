@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="box-link no-hover" href="/share/{{ $share->post()->get()[0]->id }}_{{ $share->user()->get()[0]->id }}"><div class="cardbox-item mx-3 mb-2">{{ $share->content }}</div></a>
+                <div class="cardbox-item mx-3 mb-2">{{ $share->content }}</div>
                 
                 <a class="box-link no-hover" href="/post/{{ $share->post()->get()[0]->id }}">
                     @include('partials.post', ['post' => $share->post()->get()[0]])

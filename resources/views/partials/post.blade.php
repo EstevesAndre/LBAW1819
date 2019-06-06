@@ -80,11 +80,15 @@
                 </div>
             </div>
         </div>
-        <a class="box-link no-hover" href="/post/{{ $post->id }}"><div class="cardbox-item mx-3 mb-2">{{ $post->content }}</div></a>
-        @if($post->has_img)
-            <img class="img-fluid" width="200" src="{{ asset('assets/postImgs/'.$post->id.'.png') }}" alt="Post Image">
-        @endif
-        <div class="cardbox-base">
+        <a class="box-link no-hover" href="/post/{{ $post->id }}">
+            <div class="cardbox-item mx-3 mb-2">{{ $post->content }}</div>
+            @if($post->has_img)
+                <div class="text-center">
+                    <img class="img-posts" src="{{ asset('assets/postImgs/'.$post->id.'.png') }}" alt="Post Image">
+                </div>
+            @endif
+        </a>
+        <div class="cardbox-base text-left">
             <ul class="fst mx-3 mb-1">
                 @if(count($post->like()->where('user_id','=',Auth::user()->id)->get()) == 0)
                     <li><a><i class="fa fa-thumbs-up"></i></a></li>
