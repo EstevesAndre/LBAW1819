@@ -51,20 +51,49 @@ class PrivateController extends Controller
             }
         });
 
-        return view('pages.home', ['posts' => $list]);
+        $retrieve_list = collect([]);
+
+        for($i = 0; $i < 3; $i++){
+            $retrieve_list = $retrieve_list->push($list[$i]);
+        }
+
+        return view('pages.home', ['posts' => $retrieve_list]);
     }
 
     public function seeMoreHome($cur_page){
         
-        $friendIDs = Auth::user()->friendIDs()->get();
+        $posts = Post::whereIn('user_id', $friendIDs)->get();//->orderBy('date', 'DESC')->paginate(3);
         
-        Paginator::currentPageResolver(function () use ($cur_page) {
-            return $cur_page;
+        $shares = Share::whereIn('user_id', $friendIDs)->get();
+        
+        $list = collect([]);
+
+        foreach($posts as $post) {
+            $list = $list->push($post);
+        }
+
+        foreach($shares as $share) {
+            $list = $list->push($share);
+        }
+
+        $list = $list->sort(function ($a, $b) {
+            if(strtotime($a->date) > strtotime($b->date))
+            {
+                return -1;
+            }
+            else 
+            {
+                return 1;
+            }
         });
 
-        $posts = Post::whereIn('user_id', $friendIDs)->orderBy('date', 'DESC')->simplePaginate(3);
+        $retrieve_list = collect([]);
 
-        return response()->json(['posts' => $posts]); 
+        for($i = $offset; $i < $offset + 3; $i++){
+            $retrieve_list = $retrieve_list->push($list[$i]);
+        }
+
+        return response()->json(['posts' => $retrieve_list]); 
     }
 
     public function showLeaderboard() 
@@ -196,9 +225,5 @@ class PrivateController extends Controller
         $posts = Post::where('content', 'like', '%'.$data['search'].'%')->get();
 
         return view('pages.search', ['search' => $data['search'], 'users' => $users, 'posts' =>$posts]);
-    }
-
-    public function getFeed($offset){
-
     }
 }

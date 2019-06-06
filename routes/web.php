@@ -41,7 +41,7 @@ Route::put('/api/banMember/{id}', 'ClanController@banMember');
 Route::put('/api/unbanMember/{user_id}+{clan_id}', 'ClanController@unbanMember');
 Route::post('/api/inviteUsers/{clan_id}', 'ClanController@inviteUsers');
 Route::get('/api/deleteClan/{clan_id}', 'ClanController@delete');
-Route::get('/api/seeMoreHome/{cur_page}', 'PrivateController@seeMoreHome');
+Route::get('/api/seeMoreHome/{offset}', 'PrivateController@seeMoreHome');
 
 Route::put('/api/banUser/{id}', 'BlockedController@createBanUser');
 Route::put('/api/banClan/{id}', 'BlockedController@createBanClan');
@@ -54,8 +54,6 @@ Route::delete('/api/removeFriend/{friend}', 'UserController@removeFriend');
 Route::put('/api/sendFriend/{friend}', 'UserController@sendFriendRequest');
 Route::delete('/api/cancelFriend/{friend}', 'UserController@cancelFriendRequest');
 Route::put('/api/answerFriend/{friend}+{accepted}', 'UserController@answerFriendRequest');
-Route::get('/api/getFeed/{offset}', 'UserController@getFeed');
-
 Route::get('/api/leaveClan/{user}', 'ClanController@leaveClan');
 
 // Public Pages
