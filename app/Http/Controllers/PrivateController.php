@@ -7,6 +7,7 @@ use App\Post;
 use App\Share;
 use App\Clan;
 use App\Blocked;
+use App\Like;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,7 @@ class PrivateController extends Controller
 
         $friendIDs = Auth::user()->friendIDs()->get();
         
-        $posts = Post::whereIn('user_id', $friendIDs)->get();//->orderBy('date', 'DESC')->paginate(3);
+        $posts = Post::whereIn('user_id', $friendIDs)->get();
         
         $shares = Share::whereIn('user_id', $friendIDs)->get();
         
@@ -44,13 +45,9 @@ class PrivateController extends Controller
 
         $list = $list->sort(function ($a, $b) {
             if(strtotime($a->date) > strtotime($b->date))
-            {
                 return -1;
-            }
             else 
-            {
                 return 1;
-            }
         });
 
         $retrieve_list = collect([]);
@@ -62,9 +59,12 @@ class PrivateController extends Controller
         return view('pages.home', ['posts' => $retrieve_list]);
     }
 
-    public function seeMoreHome($cur_page){
-        
-        $posts = Post::whereIn('user_id', $friendIDs)->get();//->orderBy('date', 'DESC')->paginate(3);
+    public function seeMoreHome($offset){
+        $init = intval($offset);
+
+        $friendIDs = Auth::user()->friendIDs()->get();
+
+        $posts = Post::whereIn('user_id', $friendIDs)->get();
         
         $shares = Share::whereIn('user_id', $friendIDs)->get();
         
@@ -80,22 +80,20 @@ class PrivateController extends Controller
 
         $list = $list->sort(function ($a, $b) {
             if(strtotime($a->date) > strtotime($b->date))
-            {
                 return -1;
-            }
             else 
-            {
                 return 1;
-            }
         });
 
-        $retrieve_list = collect([]);
-
-        for($i = $offset; $i < $offset + 3; $i++){
-            $retrieve_list = $retrieve_list->push($list[$i]);
+        $retrieve = collect([]);
+        for($i = $init; $i < $init + 3, $i < count($list); $i++){
+            if($list[$i]->id === NULL)
+                $retrieve = $retrieve->push(Share::where('user_id', $list[$i]->user_id)->where('post_id', $list[$i]->post_id)->get());
+            else
+                $retrieve = $retrieve->push(Post::where('id', $list[$i]->id)->get());
         }
 
-        return response()->json(['posts' => $retrieve_list]); 
+        return $retrieve;
     }
 
     public function showLeaderboard() 

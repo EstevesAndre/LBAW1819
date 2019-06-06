@@ -142,7 +142,7 @@
                 </nav>  
             @endif
         </header>
-        <section id="content" class="mh-91">
+        <section id="content" class="h-100">
             @yield('content')
         </section>
          <!-- Modal -->

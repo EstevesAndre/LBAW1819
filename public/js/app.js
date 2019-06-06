@@ -70,7 +70,7 @@ function addEventListeners() {
         Echo.private('chat' + auth_id) //TODO add receiver id to channel name
             .listen('MessageSent', (e) => {
                 if (e.sender == friend_id) {
-                    let message_area = document.querySelector('#chat-body');
+                    let message_area = document.querySelector('#chatScroll');
                     message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text + '</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
 
                 }
@@ -149,6 +149,13 @@ function addEventListeners() {
     [].forEach.call(answerFriendShipRequestPage, function (answer) {
         answer.addEventListener('click', answerFriendShipRPRequest);
     });
+
+    let answerClanRequestPage = document.querySelectorAll('.friend-answer-rp .clan-accept,.friend-answer-rp .clan-decline');
+    [].forEach.call(answerClanRequestPage, function (answer) {
+        answer.addEventListener('click', answerClanRPRequest);
+    });
+
+
 }
 
 function encodeForAjax(data) {
@@ -253,9 +260,14 @@ function sendAddMessageRequest(e) {
 function updateChatRequest(e) {
     e.preventDefault();
     console.log("Update chat request");
-    let friend_id = e.target.closest("a.friend-list").getAttribute('data-id');
+    let clicked = e.target.closest("a.friend-list");
+    let current = document.querySelector('a.friend-list.active');
+    let friend_id = clicked.getAttribute('data-id');
 
-    sendAjaxRequest('post', '/api/update_chat/' + friend_id, null, updatedChatHandler);
+    current.classList.remove('active');
+    clicked.classList.add('active');
+
+   sendAjaxRequest('post', '/api/update_chat/' + friend_id, null, updatedChatHandler);
 }
 
 function setBanModalID(e) {
@@ -629,6 +641,22 @@ function answerFriendShipRPRequest(e){
     sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendRPHandler);
 }
 
+function answerClanRPRequest(e){
+
+    let clan_id = 0;
+    let accepted = 0;
+
+    if(e.target.closest('.clan-decline') == null){
+        clan_id = parseInt(e.target.closest('.clan-accept').getAttribute('data-id'));
+        accepted = 1;
+    }
+    else{
+        clan_id = parseInt(e.target.closest('.clan-decline').getAttribute('data-id'));
+    }
+
+    sendAjaxRequest('put', '/api/answerClan/' + clan_id + '+' + accepted, null, answeredClanRPHandler);
+}
+
 
 
 // Handlers
@@ -779,6 +807,7 @@ function addedMessageHandler() {
 function updatedChatHandler() {
 
     let reply = JSON.parse(this.responseText);
+    console.log(reply.friend_info.id);
 
     let friend_id = document.querySelector('.friend-chat');
     let friend_names = document.querySelector('.friend-chat a');
@@ -794,18 +823,11 @@ function updatedChatHandler() {
 
     let message_area = document.querySelector('#chatScroll');
     message_area.innerHTML = "";
-    
-    if(reply.messages.length > 7)
-        message_area.innerHTML = '<div class="text-center">'
-        +   '<button type="button" class="btn btn-sm bg-secondary border-0 rounded-circle my-1">'
-        +        '<i class="fas fa-chevron-up"></i>'
-        +   '</button>'
-        + '</div>';
-
 
     for (let i = 0; i < reply.messages.length; i++) {
         message_area.innerHTML += getChatMessage(reply.messages[i].message_text, reply.messages[i].date.substring(0,10), reply.messages[i].date.substring(11,19));
     }
+
     let scrool = document.getElementById('chatScroll');
     if (scrool) scrool.scrollTop = scrool.scrollHeight;
 }
@@ -1911,3 +1933,22 @@ function answeredFriendRPHandler(){
     document.querySelector('#received-tab span').innerHTML = count -1;
 }
 
+
+function answeredClanRPHandler(){
+    let reply = JSON.parse(this.responseText);
+
+    let accepted = reply.accepted;
+    let clan_id = reply.clan;
+
+    if(accepted == 1){
+        window.location.href = "/clan";
+    }
+    else{
+        let old_div = document.querySelector('.clan-received-r');
+        let answered = document.querySelector('.friend-answer-rp[data-id="' + clan_id + '"]');
+        old_div.removeChild(answered);
+    }
+
+    let count = parseInt(document.querySelector('#clan-received-tab span').innerHTML);
+    document.querySelector('#clan-received-tab span').innerHTML = count -1;
+}

@@ -90,6 +90,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null);
     }
 
+    public function allClanRequests() {
+        return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null)->whereNotNull('clan_id');
+    }
+
     public function allSent() {
         return $this->hasMany('App\Request', 'sender', 'id')->where('has_accepted', null);;
     }

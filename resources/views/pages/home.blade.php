@@ -92,56 +92,43 @@
     </div>
 </div>
 @endsection
-<!-- <script type="text/javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script type="text/javascript">
     var start = 3;
     var working = false;
-    // $(document).ready(function() {
-    //         $.ajax({
-    //                 type: "GET",
-    //                 url: "/seeMoreHome/"+start,
-    //                 processData: false,
-    //                 contentType: "application/json",
-    //                 data: '',
-    //                 success: function(r) {
-    //                         r = JSON.parse(r)
-    //                         for (var i = 0; i < r.length; i++) {
-    //                                 $('body').append("<div><h1>DEU LOAD DO POST</h1></div>")
-    //                         }
-    //                         start += 3;
-    //                 },
-    //                 error: function(r) {
-    //                         console.log("Something went wrong!");
-    //                 }
-    //         })
-    // })
     $(window).scroll(function() {
-        console.log("Entrei");
-            if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
-                console.log("Same");
-                    if (working == false) {
-                            working = true;
-                            $.ajax({
-                                    type: "GET",
-                                    url: "/seeMoreHome/"+start,
-                                    processData: false,
-                                    contentType: "application/json",
-                                    data: '',
-                                    success: function(r) {
-                                            r = JSON.parse(r)
-                                            for (var i = 0; i < r.length; i++) {
-                                                    $('body').append("<div><h1>DEU LOAD DO POST</h1></div>")
-                                            }
-                                            start += 3;
-                                            setTimeout(function() {
-                                                    working = false;
-                                            }, 4000)
-                                    },
-                                    error: function(r) {
-                                            console.log("Something went wrong!");
-                                    }
-                            });
+        if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
+            if (working == false) {
+                working = true;
+                console.log(start);
+                $.ajax({
+                    type: "GET",
+                    url: "/api/seeMoreHome/"+start,
+                    processData: false,
+                    contentType: "application/json",
+                    data: '',
+                    success: function(ret) {
+                        console.log(ret);
+                        for (var i = 0; i < ret.length; i++) 
+                        {
+                            let cur_post = ret[i][0];
+                            if(cur_post.id != null){ //load posts
+                                $('#posts-list').append("<div><h1>DEU LOAD DO POST</h1>"+ cur_post.content  +"</div>")
+                            }
+                            else{ //load shares
+                                $('#posts-list').append("<div><h1>DEU LOAD DO SHARE</h1>"+ cur_post.content  +"</div>")
+                            }
+                        }
+                        start += 3;
+                        setTimeout(function() {
+                                working = false;
+                        }, 4000)
+                    },
+                    error: function(r) {
+                        console.log("Something went wrong!");
                     }
+                });
             }
-    })
+        }
+    });
 </script>
- -->

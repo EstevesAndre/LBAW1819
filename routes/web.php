@@ -54,6 +54,8 @@ Route::delete('/api/removeFriend/{friend}', 'UserController@removeFriend');
 Route::put('/api/sendFriend/{friend}', 'UserController@sendFriendRequest');
 Route::delete('/api/cancelFriend/{friend}', 'UserController@cancelFriendRequest');
 Route::put('/api/answerFriend/{friend}+{accepted}', 'UserController@answerFriendRequest');
+Route::put('/api/answerClan/{clan}+{accepted}', 'UserController@answerClanRequest');
+
 Route::get('/api/leaveClan/{user}', 'ClanController@leaveClan');
 
 // Public Pages
