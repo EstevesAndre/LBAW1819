@@ -27,7 +27,7 @@ Route::post('createChar', 'Auth\RegisterController@createCharacter');
 // API
 Route::delete('/api/like/{id}', 'LikeController@delete');
 Route::put('/api/like/{id}', 'LikeController@create');
-Route::put('/api/post', 'PostController@create');
+Route::post('/api/post', 'PostController@create');
 Route::delete('/api/post/{id}', 'PostController@delete');
 Route::post('/api/createClan', 'ClanController@create');
 Route::post('/api/notifications', 'PrivateController@getNotifications');

@@ -30,21 +30,31 @@ class PostController extends Controller
     {
         $post = new Post();
         $post->content = $request->input('content');
-        $post->has_img = false;
+        if($request->hasFile('has_img')){
+            $post->has_img = false;
+        }
+        else{
+            $post->has_img = false;
+        }
+        
         $post->user_id = Auth::user()->id;
         
         if($request->input('clanID') !== "-1")
-            $post->clan_id = $request->input('clanID');
+            $post->clan_id = $request->input('clan_id');
         else
             $post->clan_id = null;
 
         $post->save();
         $post->refresh();
 
-        return response()->json([
-            'post' => $post,
-            'user' => Auth::user()
-        ]);
+        if ($request->hasFile('has_img')) {
+            $image = $request->file('has_img');
+            $name = $post->id.'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/assets/postImgs');
+            $image->move($destinationPath, $name);
+        }
+
+        return view('pages.post', ['post' => $post]);
     }
 
     public function delete(Request $request, $id) 

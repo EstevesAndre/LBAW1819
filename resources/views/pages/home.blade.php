@@ -27,23 +27,22 @@
                     <div class="modal-body">
                         <input type="hidden" name="clanID" value="-1">
                         <div class="row align-items-center w-100 mx-2">
-                            <div class="col-sm-12 col-md-4 mt-3">
-                                <a href="/user/{{ Auth::user()->username }}">
-                                    <img width="95" class="img-fluid border rounded-circle mb-3" 
-                                    src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}"
-                                    alt="User"></a>
-                                <p>{{ Auth::user()->name }}</p>
-                            </div>
-                            <div class="col-sm-12 col-md-8 pr-5 form-group">
-                                <textarea class="form-control post-content text-left mt-3 w-100" rows="6" placeholder="Write your publication here..."></textarea>
-                            </div>
+                            <form class="form-inline p-2"  method="post" action="/api/post" enctype="multipart/form-data">  
+                                <div class="col-sm-12 col-md-4 mt-3">
+                                    <a href="/user/{{ Auth::user()->username }}">
+                                        <img width="95" class="img-fluid border rounded-circle mb-3" 
+                                        src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}"
+                                        alt="User"></a>
+                                    <p>{{ Auth::user()->name }}</p>
+                                </div>
+                                <div class="col-sm-12 col-md-8 pr-5 form-group">
+                                    <textarea class="form-control post-content text-left mt-3 w-100" name="content" rows="6" placeholder="Write your publication here..."></textarea>
+                                </div>
+                                <input type="hidden" name="clan_id" value="-1">
+                                <input type="file" name="post_img" accept="image/png" class="form-control-file input-file mt-2" id="clanImage">AddImage</input>
+                                <button type="submit" class="float-right btn btn-dark my-3 create" data-dismiss="modal" aria-label="Post">Post</button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="float-right btn btn-secondary m-3">Add Image</input>
-                        <button type="submit" class="float-right btn btn-dark my-3 create" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">Post</span>
-                        </button>
                     </div>
                 </div>
             </div>
