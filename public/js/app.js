@@ -82,6 +82,11 @@ function addEventListeners() {
         user.addEventListener('click', setUserBanModalID);
     });
 
+    let adminReportDismiss = document.querySelectorAll('.dismiss');
+    [].forEach.call(adminReportDismiss, function (user) {
+        user.addEventListener('click', adminReportDismissRequest);
+    });
+
     let adminUnbanUsersModal = document.querySelectorAll('.unban_user');
     [].forEach.call(adminUnbanUsersModal, function (user) {
         user.addEventListener('click', setUserUnbanModalID);
@@ -305,6 +310,14 @@ function setUserBanModalID(e) {
     modal_msg.innerHTML = "&nbsp";
 
     modalSubmit.addEventListener('click', sendBanUserRequest);
+}
+
+function adminReportDismissRequest (e){
+    e.preventDefault();
+
+    let id = e.target.closest('button.dismiss').getAttribute('id');
+    
+    sendAjaxRequest('delete', '/api/deleteReport/' + id, null, dismissReportHandler);
 }
 
 function setUserUnbanModalID(e) {
@@ -1119,6 +1132,14 @@ function removePermissionsHandler() {
 
     if (removed == null) return; // error occurred
     active_admins.removeChild(removed);
+}
+
+function dismissReportHandler() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let entry = document.querySelector('li[data-id="report' + reply.id + '"]');
+    entry.parentElement.removeChild(entry);
 }
 
 function addPermissionsHandler() {

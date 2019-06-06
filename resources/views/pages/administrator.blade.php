@@ -28,6 +28,11 @@
                 id="v-pills-administrators-tab" data-toggle="pill" href="#v-pills-administrators" role="tab" 
                 aria-controls="v-pills-administrators" aria-selected="false">Manage Administrators</a>
             </li>
+            <li class="nav-item mx-2">
+                <a class="nav-link bg-secondary text-white text-center my-2" 
+                id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" 
+                aria-controls="v-pills-reports" aria-selected="false">Manage Reports</a>
+            </li>
         </ul>
         <div class="clan-page-info">
             <div class="tab-content" id="v-pills-tabContent">
@@ -147,6 +152,14 @@
                     </div>
                     <ul class="admins-active pl-2 shadow-lg users-list">
                         @each('partials.adminActiveAdminsList', $admins, 'user')
+                    </ul>
+                </div>
+                {{-- manage-reports --}}
+                <div class="mt-3 tab-pane fade" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
+                    {{-- <h4 class="text-center">Manage Reports</h4> --}}
+  
+                    <ul class="admins-active pl-2 shadow-lg users-list">
+                        @each('partials.adminReportList', $reports, 'report')
                     </ul>
                 </div>
                 {{-- home --}}

@@ -58,6 +58,7 @@ Route::put('/api/answerClan/{clan}+{accepted}', 'UserController@answerClanReques
 
 Route::get('/api/leaveClan/{user}', 'ClanController@leaveClan');
 
+Route::delete('/api/deleteReport/{id}', 'AdminController@deleteReport');
 
 Route::post('/api/report/{post_id}', 'PostController@report');
 
