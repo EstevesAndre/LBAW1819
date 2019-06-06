@@ -946,6 +946,7 @@ function updateClansLeaderboardSearch() {
     let img = document.querySelector('#nav-user-img');
     let path = img.getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
+    console.log(path_header);
 
     reply.forEach(function (element) {
         list.innerHTML +=
@@ -953,7 +954,7 @@ function updateClansLeaderboardSearch() {
             '<li class="ml-3">' +
             '<div class="d-flex align-items-center row">' +
             '<div class="col-2 col-sm-1 friend-img">' +
-            '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/clanImgs/' + element.id + '.png" alt="Clan">' +
+            '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/logo.png" alt="Clan">' +
             '</div>' +
             '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
             '</div>' +
