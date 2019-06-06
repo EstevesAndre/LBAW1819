@@ -149,6 +149,13 @@ function addEventListeners() {
     [].forEach.call(answerFriendShipRequestPage, function (answer) {
         answer.addEventListener('click', answerFriendShipRPRequest);
     });
+
+    let answerClanRequestPage = document.querySelectorAll('.friend-answer-rp .clan-accept,.friend-answer-rp .clan-decline');
+    [].forEach.call(answerClanRequestPage, function (answer) {
+        answer.addEventListener('click', answerClanRPRequest);
+    });
+
+
 }
 
 function encodeForAjax(data) {
@@ -632,6 +639,22 @@ function answerFriendShipRPRequest(e){
     }
    
     sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendRPHandler);
+}
+
+function answerClanRPRequest(e){
+
+    let clan_id = 0;
+    let accepted = 0;
+
+    if(e.target.closest('.clan-decline') == null){
+        clan_id = parseInt(e.target.closest('.clan-accept').getAttribute('data-id'));
+        accepted = 1;
+    }
+    else{
+        clan_id = parseInt(e.target.closest('.clan-decline').getAttribute('data-id'));
+    }
+
+    sendAjaxRequest('put', '/api/answerClan/' + clan_id + '+' + accepted, null, answeredClanRPHandler);
 }
 
 
@@ -1910,3 +1933,22 @@ function answeredFriendRPHandler(){
     document.querySelector('#received-tab span').innerHTML = count -1;
 }
 
+
+function answeredClanRPHandler(){
+    let reply = JSON.parse(this.responseText);
+
+    let accepted = reply.accepted;
+    let clan_id = reply.clan;
+
+    if(accepted == 1){
+        window.location.href = "/clan";
+    }
+    else{
+        let old_div = document.querySelector('.clan-received-r');
+        let answered = document.querySelector('.friend-answer-rp[data-id="' + clan_id + '"]');
+        old_div.removeChild(answered);
+    }
+
+    let count = parseInt(document.querySelector('#clan-received-tab span').innerHTML);
+    document.querySelector('#clan-received-tab span').innerHTML = count -1;
+}

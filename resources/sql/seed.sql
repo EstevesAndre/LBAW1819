@@ -457,7 +457,7 @@ VALUES('rui.patricio@gmail.com', 'ruiWolves', '_n@6EEs6', 'John Michael', '1998-
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
 VALUES('beto.gr@gmail.com', 'Bebeto', 'K8c4)-Tx' , 'Andrew Esteves', '1997-03-18', 'Human', 'Wizard', 'Male', 124, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
-VALUES('sa.ze@hotmail.com', 'Zezocas', '!8Y,yZ^', 'Francisco Filipe', '1997-03-18', 'Human', 'Fighter', 'Male', 2030, FALSE);
+VALUES('sa.ze@hotmail.com', 'Zezocas', '$2y$12$m8f/MWb5VFOGvlpLK8sDluUrqKiBm8m.f3RGxsRycmWNkrFG5Iteu', 'Francisco Filipe', '1997-03-18', 'Human', 'Fighter', 'Male', 2030, FALSE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 
 VALUES('pepe.oficial@gmail.com', 'Pepe123', '`/Fsa2g%', 'Lewis Silva', '1997-03-18', 'Elf', 'Wizard', 'Male', 1540, TRUE);
 INSERT INTO "users"(email, username, password, name, birthdate, race, class, gender, xp, is_admin) 

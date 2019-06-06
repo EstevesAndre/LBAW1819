@@ -92,15 +92,12 @@
     </div>
 </div>
 @endsection
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script type="text/javascript">
     var start = 3;
     var working = false;
     $(window).scroll(function() {
-        console.log("Entrei");
             if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
-                console.log("Same");
                     if (working == false) {
                             working = true;
                             $.ajax({
