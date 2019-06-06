@@ -13,7 +13,7 @@ class RequestController extends Controller
     public function show()
     {
         if (!Auth::check()) return redirect('/login');
-
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
         
         $sent = Auth::user()->allSent()->get();
 

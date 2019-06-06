@@ -836,6 +836,12 @@ img{ max-width:100%;}
     cursor:pointer;  
 }
 
+.stop
+{
+    font-size: 20rem;
+    color: red;
+}
+
 @media (max-width: 576px) {
     .btn-ban > span {
         display: none;

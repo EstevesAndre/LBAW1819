@@ -20,6 +20,7 @@ class UserController extends Controller
     public function show($username)
     {
         if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $user = User::where('username', $username)->first();
         

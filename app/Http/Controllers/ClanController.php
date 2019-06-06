@@ -16,6 +16,7 @@ class ClanController extends Controller
     public function showCreateClanPage()
     {
         if (!Auth::check()) return redirect('/login');       
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
         
         $exists = TRUE;
 
@@ -28,6 +29,7 @@ class ClanController extends Controller
     public function show() 
     {
         if (!Auth::check()) return redirect('/login');       
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
         
         if(Auth::user()->clan()->get()->isEmpty()) {
             return view('pages.createClan');
@@ -59,6 +61,7 @@ class ClanController extends Controller
     public function showClanSettings(){
         
         if (!Auth::check()) return redirect('/login');  
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
         
         $clan = Auth::user()->clan()->get()[0];  
 
