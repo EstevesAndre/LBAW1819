@@ -93,6 +93,9 @@
                     </div>
                 </div>
                 <div class="cardbox-item mx-3">{{ $post->content }}</div>
+                @if($post->has_img)
+                <img class="img-fluid" width="250" src="{{ asset('assets/postImgs/'.$post->id.'.png') }}" alt="Post Image">
+                 @endif
                 <div class="cardbox-base">
                     <ul class="fst mx-3 mb-1">
                         @if(count($post->like()->where('user_id','=',Auth::user()->id)->get()) == 0)

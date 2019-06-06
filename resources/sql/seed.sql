@@ -533,11 +533,11 @@ INSERT INTO user_clans(user_id, clan_id) VALUES(21, 6);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-02-11 13:41:32', 'Clan news tomorrow', TRUE, 1, NULL);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
-VALUES ('2019-03-21 17:30:31', 'My clan is too strong. Proud on being Default!', FALSE, 3, NULL);
+VALUES ('2019-03-21 17:30:31', 'My clan is too strong. Proud on being Default!', TRUE, 3, NULL);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-01-13 12:22:20', 'Great practice today boys!', FALSE, 15, NULL);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
-VALUES ('2019-03-15 02:31:27', 'I believe in god! What about you', TRUE, 20, 2);
+VALUES ('2019-03-15 02:31:27', 'I believe in god! What about you', FALSE, 20, 2);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
 VALUES ('2019-02-17 04:16:04', 'This looks like a good spaghetti!', TRUE, 14, 2);
 INSERT INTO posts ("date", content, has_img, user_id, clan_id) 
