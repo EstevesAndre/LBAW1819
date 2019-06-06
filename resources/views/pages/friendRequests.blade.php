@@ -14,21 +14,21 @@
         </h1>
         <div>
             <ul class="nav nav-pills nav-fill py-3 border-bottom">
-                <li class="nav-item my-2">
+                <li class="nav-item m-2">
                     @if($sent->count() !== 0)
                         <a class="tab-title nav-link active text-white bg-secondary" id="sent-tab" data-toggle="tab" href="#sent" role="tab" aria-controls="sent" aria-selected="true">Requests Sent (<span class="not-zero">{{ $sent->count() }}</span>)</a>
                     @else
                         <a class="tab-title nav-link text-white bg-secondary" id="sent-tab" data-toggle="tab" href="#sent" role="tab" aria-controls="sent" aria-selected="true">Requests Sent (0)</a>
                     @endif
                 </li>
-                <li class="nav-item my-2">
+                <li class="nav-item m-2">
                         @if($received->count() !== 0)
                             <a class="tab-title nav-link text-white bg-secondary" id="received-tab" data-toggle="tab" href="#received" role="tab" aria-controls="received" aria-selected="false">Requests Received (<span class="not-zero">{{ $received->count() }}</span>)</a>
                         @else
                             <a class="tab-title nav-link text-white bg-secondary" id="received-tab" data-toggle="tab" href="#received" role="tab" aria-controls="received" aria-selected="false">Requests Received (0)</a>
                         @endif
                     </li>
-                <li class="nav-item my-2">
+                <li class="nav-item m-2">
                     @if($clans->count() !== 0)
                         <a class="tab-title nav-link text-white bg-secondary" id="clan-received-tab" data-toggle="tab" href="#clan-received" role="tab" aria-controls="clan-received" aria-selected="false">Clan Requests (<span class="not-zero">{{ $clans->count() }}</span>)</a>
                     @else

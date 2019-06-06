@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-sm-12 col-lg-9 align-self-center">
                     <div class="basic-info">
-                        <h2 class="mt-2"><b>{{ $user->name }}</b>
+                        <h2 class="text-left mb-3 mt-2"><b>{{ $user->name }}</b>
                             <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#profile_helpModal">
                                 <i class="fas fa-question-circle"></i>
                             </button>
@@ -182,9 +182,9 @@
             <div class="modal-body">
                 <input type="hidden" name="clanID" value="-1">
                 <div class="row align-items-center w-100 mx-2">
-                    <div class="col-sm-12 col-md-4 mt-3">
+                    <div class="col-sm-12 col-md-4 mt-3 text-center">
                         <a href="/user/{{ Auth::user()->username }}">
-                            <img width="95" class="img-fluid border rounded-circle mb-3" 
+                            <img width="125" class="img-fluid border rounded-circle mb-3" 
                             src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}"
                             alt="User"></a>
                         <p>{{ Auth::user()->name }}</p>

@@ -63,11 +63,11 @@
                     <a class="tab-title nav-link" id="leaderboard-tab" data-toggle="tab" href="#leaderboard"
                         role="tab" aria-controls="leaderboard" aria-selected="false">Leaderboard</a>
                 </li>
-            </ul>     
+            </ul>
             <div class="mt-4 tab-content" id="content">
-                <div class="text-left tab-pane fade active show" id="forum" role="tabpanel" aria-labelledby="forum-tab">
-                    <div class="cardbox-comments d-flex align-items-center">
-                        <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#postModal">
+                <div class="text-center tab-pane fade active show" id="forum" role="tabpanel" aria-labelledby="forum-tab">
+                    <div class="cardbox-comments align-items-center">
+                        <button type="button" class="btn btn-lg btn-dark mr-2" data-toggle="modal" data-target="#postModal">
                             Create a new post
                         </button>
                         <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">
