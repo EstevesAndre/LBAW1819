@@ -874,7 +874,7 @@ img{ max-width:100%;}
     cursor:pointer;  
 }
 
-.stop
+.stop>i
 {
     font-size: 20rem;
     color: red;
