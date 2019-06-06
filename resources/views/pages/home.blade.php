@@ -24,10 +24,9 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <input type="hidden" name="clanID" value="-1">
-                        <div class="row align-items-center w-100 mx-2">
-                            <form class="form-inline p-2"  method="post" action="/api/post" enctype="multipart/form-data">  
+                    <div class="modal-body pb-0">
+                        <div class="row align-items-center d-flex">
+                            <form class="form-inline p-2 mb-0"  method="post" action="/api/post" enctype="multipart/form-data">  
                                 {{csrf_field()}}
                                 <div class="col-sm-12 col-md-4 mt-3">
                                     <a href="/user/{{ Auth::user()->username }}">
@@ -36,12 +35,14 @@
                                         alt="User"></a>
                                     <p>{{ Auth::user()->name }}</p>
                                 </div>
-                                <div class="col-sm-12 col-md-8 pr-5 form-group">
-                                    <textarea class="form-control post-content text-left mt-3 w-100" name="content" rows="6" placeholder="Write your publication here..."></textarea>
+                                <div class="col-sm-12 col-md-8 form-group align-self-center">
+                                    <div class="row align-items-center">
+                                        <textarea class="form-control post-content text-left mt-3 mx-3 w-100" name="content" rows="6" placeholder="Write your publication here..."></textarea>
+                                        <input type="hidden" name="clan_id" value="-1">
+                                        <div class="col-9 col-md-9"><input type="file" name="has_img" accept="image/png" class="form-control-file input-file mt-2" id="clanImage"></div>
+                                        <div class="col-3 col-md-3"><button type="submit" class="float-right btn btn-dark my-2 create" aria-label="Post">Post</button></div>
+                                    </div>
                                 </div>
-                                <input type="hidden" name="clan_id" value="-1">
-                                <input type="file" name="has_img" accept="image/png" class="form-control-file input-file mt-2" id="clanImage">AddImage
-                                <button type="submit" class="float-right btn btn-dark my-3 create" aria-label="Post">Post</button>
                             </form>
                         </div>
                     </div>

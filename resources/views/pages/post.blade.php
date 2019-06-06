@@ -125,12 +125,12 @@
                             src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}"
                             alt="Avatar"></a>
                     </span>
-                    <div class="search-comment">
-                        <input placeholder="Write a comment..." type="text">
-                        <button><i class="fas fa-share-square"></i></button>
+                    <div class="search-comment d-flex align-items-center">
+                        <input placeholder="Write a comment..." id="comment-box" type="text" required>
+                        <button type="submit" class="btn btn-primary border rounded-circle" id="send-comment"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
-                <div class="container comments">
+                <div class="container comments pb-2">
                     @each('partials.comment', $post->comment()->orderBy('date','desc')->skip(0)->take(7)->get() , 'comment')
                 </div>
                 @if($post->comment()->count() > 7)

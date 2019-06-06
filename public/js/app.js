@@ -145,6 +145,15 @@ function addEventListeners() {
         }
     });
 
+    let commentBox = document.getElementById("comment-box");
+    if(commentBox) commentBox.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("send-comment").click();
+        }
+    });
+
     let hasChat = document.querySelector('.has-chat');
 
     if (hasChat != null) {
@@ -706,7 +715,7 @@ function deletedCommentHandler() {
         let comment = JSON.parse(this.responseText);
 
         let commentHTML = document.querySelector('div.comment[id="' + comment.id + '"]');
-        commentHTML.innerHTML = '';
+        commentHTML.outerHTML = '';
     }
 }
 
@@ -748,19 +757,19 @@ function addedCommentHandler() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
     console.log(comment_area);
     comment_area.innerHTML =
-        '<div class="d-flex align-items-center comment" id="' + comment.id + '">'
-        + '<span class="comment-avatar float-left mr-2">'
-        + '<a href="/user/' + comment.username + '">'
-        + '<img class="rounded-circle bg-warning" src="' + path_header + '/avatars/' + comment.race + '_' + comment.class + '_' + comment.gender + '.bmp" alt="Avatar">'
-        + '</a>'
-        + '</span>'
-        + '<div class="w-90 comment-data pl-1 pr-0">'
-        + '<p class="pt-3">' + comment.comment_text + '</p>'
-        + '</div>'
-        + '<span class="ml-2 delete-comment" id="' + comment.id + '">'
-        + '<a><i class="fas fa-times"></i></a>'
-        + '</span>'
-        + '</div>';
+            '<div class="d-flex align-items-center comment my-2" id="' + comment.id + '">'
+            + '<span class="comment-avatar float-left mr-2">'
+                + '<a href="/user/' + comment.username + '">'
+                    + '<img class="img-fluid border rounded-circle" src="' + path_header + '/avatars/' + comment.race + '_' + comment.class + '_' + comment.gender + '.bmp" alt="Avatar">'
+                + '</a>'
+            + '</span>'
+            + '<div class="w-90 comment-data pl-1 pr-0">'
+                + '<p class="border pt-3">' + comment.comment_text + '</p>'
+            + '</div>'
+            + '<span class="ml-2 delete-comment" id="' + comment.id + '">'
+                + '<a><i class="fas fa-times"></i></a>'
+            + '</span>'
+          + '</div>';
 
     comment_area.innerHTML += current_comms;
 
