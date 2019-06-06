@@ -88,7 +88,7 @@
                 </div>
             @endif
         </a>
-        <div class="cardbox-base text-left">
+        <div class="cardbox-base text-center">
             <ul class="fst mx-3 mb-1">
                 @if(count($post->like()->where('user_id','=',Auth::user()->id)->get()) == 0)
                     <li><a><i class="fa fa-thumbs-up"></i></a></li>

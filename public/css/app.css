@@ -507,6 +507,7 @@ textarea.form-control:focus {
 }
 
 .post { 
+    width: 85%;
     -webkit-transition: 0.5s;
     transition: 0.7s; 
 }
