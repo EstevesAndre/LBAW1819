@@ -507,7 +507,6 @@ textarea.form-control:focus {
 }
 
 .post { 
-    width: 85%;
     -webkit-transition: 0.5s;
     transition: 0.7s; 
 }
@@ -569,6 +568,10 @@ a.friend-list {
         left: 50%;
         /* bring your own prefixes */
         transform: translate(-50%, -50%);
+    }
+
+    .post { 
+        width: 88%;
     }
 
     b {
