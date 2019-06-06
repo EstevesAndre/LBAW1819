@@ -28,9 +28,9 @@
                 <i class="left fas fa-search"></i>
             </div>
             <div class="friend-chat border rounded hgt" data-id="{{ $friends[0]->id }}">
-                <div class="h-100 scroolable parent">
+                <div class="h-100 scroolable parent mobile-height">
                     <div class="fixed-at-top p-3 w-100 border rounded text-left tab-content chat-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-1-list">
+                        <div class="tab-pane fade show active">
                             <img src="{{ asset('assets/avatars/'.$friends[0]->race.'_'.$friends[0]->class.'_'.$friends[0]->gender.'.bmp') }}" alt="logo" width="25" class="border img-fluid rounded-circle">
                             <a href="/user/{{ $friends[0]->username }}">{{ $friends[0]->name }}</a>
                             <!-- Button trigger modal -->
@@ -39,7 +39,7 @@
                             </button>
                         </div>
                     </div>
-                    <div id="chatScroll mobile-height">
+                    <div id="chatScroll">
                         @each('partials.message', Auth::user()->friendChatMessages($friends[0]->id), 'message')
                     </div>
                     <div class="fixed-at-bottom bg-white border-top w-100 send-message p-0 d-flex align-items-center" id="message-send">

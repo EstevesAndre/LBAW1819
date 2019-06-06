@@ -18,11 +18,6 @@
                 </div>
             </div>
             <div id="chatScroll" class="h-80 scroolable">
-                <div class="text-center">
-                    <button type="button" class="btn btn-sm bg-secondary border-0 rounded-circle my-1">
-                        <i class="fas fa-chevron-up"></i>
-                    </button>
-                </div>
                 @each('partials.message', Auth::user()->friendChatMessages($friends[0]->id), 'message')
             </div>
             <div class="bg-white border-top border-left w-100 send-message p-0 d-flex align-items-center" id="message-send">
