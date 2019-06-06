@@ -106,7 +106,26 @@ class PrivateController extends Controller
 
         $allClans = Clan::all();
 
-        return view('pages.leaderboard', ['allClans' => $allClans, 'global' => $allUsers, 'friends' => $userFriends]);
+        $allXP = collect([]);
+
+        foreach($allClans as $clan){
+            $allXP = $allXP->push($clan->getXP());
+        }
+
+        $clanAllInfo = array();
+
+        for($i = 0; $i < count($allClans); $i++){
+           array_push( $clanAllInfo, array($allClans[$i],$allXP[$i]));
+        }
+
+        usort($clanAllInfo, function ($a, $b) {
+            if($a[1] > $b[1])
+                return -1;
+            else
+                return 1;
+        });        
+
+        return view('pages.leaderboard', ['clans' => $clanAllInfo, 'global' => $allUsers, 'friends' => $userFriends]);
     }
 
     public function showChat() 
