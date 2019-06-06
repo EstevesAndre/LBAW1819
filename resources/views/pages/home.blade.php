@@ -98,47 +98,38 @@
     var start = 3;
     var working = false;
     $(window).scroll(function() {
-        console.log("Entrei");
-            if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
-                console.log("Same");
-                    if (working == false) {
-                            working = true;
-                            $.ajax({
-                                    type: "GET",
-                                    url: "/api/seeMoreHome/"+start,
-                                    processData: false,
-                                    contentType: "application/json",
-                                    data: '',
-                                    success: function(r) {
-                                            // r = JSON.parse(r);
-                                            
-                                            for (var i = 0; i < r.posts.length; i++) {
-                                                
-                                                let cur_post = r.posts[i];
-                                                let like_count = r.likes[i];
-                                                let comment_count = r.comments[i];
-                                                let share_count =r. shares[i];
-                                                let post_owner = r.users[i];
-                                                console.log(cur_post);
-                                                if(cur_post.id != null){ //load posts
-                                                    $('#posts-list').append("<div><h1>DEU LOAD DO POST</h1></div>")
-                                                 }
-                                                 else{ //load shares
-                                                    $('#posts-list').append("<div><h1>DEU LOAD DO SHARE</h1></div>")
-                                                 }
-                                            }
-                                                    
-                                            start += 3;
-                                            setTimeout(function() {
-                                                    working = false;
-                                            }, 4000)
-                                    },
-                                    error: function(r) {
-                                            console.log("Something went wrong!");
-                                    }
-                            });
+        if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
+            if (working == false) {
+                working = true;
+                console.log(start);
+                $.ajax({
+                    type: "GET",
+                    url: "/api/seeMoreHome/"+start,
+                    processData: false,
+                    contentType: "application/json",
+                    data: '',
+                    success: function(ret) {
+                        console.log(ret);
+                        for (var i = 0; i < ret.length; i++) 
+                        {
+                            let cur_post = ret[i][0];
+                            if(cur_post.id != null){ //load posts
+                                $('#posts-list').append("<div><h1>DEU LOAD DO POST</h1>"+ cur_post.content  +"</div>")
+                            }
+                            else{ //load shares
+                                $('#posts-list').append("<div><h1>DEU LOAD DO SHARE</h1>"+ cur_post.content  +"</div>")
+                            }
+                        }
+                        start += 3;
+                        setTimeout(function() {
+                                working = false;
+                        }, 4000)
+                    },
+                    error: function(r) {
+                        console.log("Something went wrong!");
                     }
+                });
             }
-    })
+        }
+    });
 </script>
- -->

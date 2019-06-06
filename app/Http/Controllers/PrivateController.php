@@ -6,6 +6,7 @@ use App\User;
 use App\Post;
 use App\Share;
 use App\Clan;
+use App\Like;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,7 @@ class PrivateController extends Controller
 
         $friendIDs = Auth::user()->friendIDs()->get();
         
-        $posts = Post::whereIn('user_id', $friendIDs)->get();//->orderBy('date', 'DESC')->paginate(3);
+        $posts = Post::whereIn('user_id', $friendIDs)->get();
         
         $shares = Share::whereIn('user_id', $friendIDs)->get();
         
@@ -42,13 +43,9 @@ class PrivateController extends Controller
 
         $list = $list->sort(function ($a, $b) {
             if(strtotime($a->date) > strtotime($b->date))
-            {
                 return -1;
-            }
             else 
-            {
                 return 1;
-            }
         });
 
         $retrieve_list = collect([]);
@@ -61,10 +58,11 @@ class PrivateController extends Controller
     }
 
     public function seeMoreHome($offset){
-        
+        $init = intval($offset);
+
         $friendIDs = Auth::user()->friendIDs()->get();
 
-        $posts = Post::whereIn('user_id', $friendIDs)->get();//->orderBy('date', 'DESC')->paginate(3);
+        $posts = Post::whereIn('user_id', $friendIDs)->get();
         
         $shares = Share::whereIn('user_id', $friendIDs)->get();
         
@@ -80,45 +78,20 @@ class PrivateController extends Controller
 
         $list = $list->sort(function ($a, $b) {
             if(strtotime($a->date) > strtotime($b->date))
-            {
                 return -1;
-            }
             else 
-            {
                 return 1;
-            }
         });
 
-        $retrieve_posts = collect([]);
-        $retrieve_likes = collect([]);
-        $retrieve_comments = collect([]);
-        $retrieve_shares = collect([]);
-        $retrieve_users = collect([]);
-
-        for($i = $offset; $i < $offset + 3; $i++){
-            $retrieve_posts = $retrieve_posts->push($list[$i]);
-            
-            if($list[$i]->id === NULL){
-                $retrieve_likes = $retrieve_likes->push($list[$i]->post()->get()->like()->count());
-                $retrieve_comments = $retrieve_comments->push($list[$i]->post()->get()->comment()->count());
-                $retrieve_shares = $retrieve_shares->push($list[$i]->post()->get()->share()->count());
-            }
-            else{
-                $retrieve_likes = $retrieve_likes->push($list[$i]->like()->count());
-                $retrieve_comments = $retrieve_comments->push($list[$i]->comment()->count());
-                $retrieve_shares = $retrieve_shares->push($list[$i]->share()->count());
-            }
-
-            $retrieve_users = $retrieve_users->push($list[$i]->user()->get());
+        $retrieve = collect([]);
+        for($i = $init; $i < $init + 3, $i < count($list); $i++){
+            if($list[$i]->id === NULL)
+                $retrieve = $retrieve->push(Share::where('user_id', $list[$i]->user_id)->where('post_id', $list[$i]->post_id)->get());
+            else
+                $retrieve = $retrieve->push(Post::where('id', $list[$i]->id)->get());
         }
 
-        return ['posts' => $retrieve_posts, 
-                'likes' => $retrieve_likes, 
-                'comments' => $retrieve_comments, 
-                'shares' => $retrieve_shares,
-                'users' => $retrieve_users, 
-                'user' => Auth::user()
-                ]; 
+        return $retrieve;
     }
 
     public function showLeaderboard() 
