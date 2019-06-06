@@ -13,25 +13,15 @@ class RequestController extends Controller
     public function show()
     {
         if (!Auth::check()) return redirect('/login');
-
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
         
         $sent = Auth::user()->allSent()->get();
 
-        // $sent = DB::table('requests')
-        //     ->where('type','friendRequest')
-        //     ->where('sender',Auth::user()->id)
-        //     ->where('has_accepted', null)
-        //     ->get();
-
         $received =Auth::user()->allRequested()->get();
 
+        $clans = Auth::user()->allClanRequests()->get();
 
-        // $received = DB::table('requests')
-        //     ->where('type','friendRequest')
-        //     ->where('receiver',Auth::user()->id)
-        //     ->where('has_accepted', null)
-        //     ->get();
 
-        return view('pages.friendRequests', ['sent' => $sent, 'received' => $received]);
+        return view('pages.friendRequests', ['sent' => $sent, 'received' => $received, 'clans' => $clans]);
     }
 }

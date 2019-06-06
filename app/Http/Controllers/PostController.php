@@ -17,6 +17,7 @@ class PostController extends Controller
     public function show($id)
     {
         if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $post = Post::find($id);
         if($post == null)

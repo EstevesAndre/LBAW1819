@@ -28,6 +28,13 @@
                         <a class="tab-title nav-link" id="received-tab" data-toggle="tab" href="#received" role="tab" aria-controls="received" aria-selected="false">Requests Received</a>
                     @endif
                 </li>
+                <li class="nav-item">
+                        @if($clans->count() !== 0)
+                            <a class="tab-title nav-link text-white bg-danger" id="clan-received-tab" data-toggle="tab" href="#clan-received" role="tab" aria-controls="clan-received" aria-selected="false">Clan Requests (<span>{{ $clans->count() }}</span>)</a>
+                        @else
+                            <a class="tab-title nav-link" id="clan-received-tab" data-toggle="tab" href="#clan-received" role="tab" aria-controls="clan-received" aria-selected="false">Clan Requests</a>
+                        @endif
+                    </li>
             </ul>
 
             <div class="modal fade" id="removeFriendModal" tabindex="-1" role="dialog" aria-labelledby="removeFriendModalLabel" aria-hidden="true">
@@ -73,6 +80,18 @@
                         </ul>
                     @else
                         <p class="text-center mt-3 mb-0 standard-text">There are no received requests!</p>
+                    @endif
+                </div>
+                <div class="tab-pane fade" id="clan-received" role="tabpanel" aria-labelledby="clan-received-tab">
+                    @if($clans->count() !== 0)
+                        <ul class="pl-0 shadow-lg my-3 users-list clan-received-r">
+                            @each('partials.clanRequestReceived', $clans, 'clan')
+                            @if($clans->count() > 5)
+                                <p class="text-center mt-3 mb-0 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
+                            @endif
+                        </ul>
+                    @else
+                        <p class="text-center mt-3 mb-0 standard-text">There are no clan requests!</p>
                     @endif
                 </div>
             </div>

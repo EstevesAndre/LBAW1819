@@ -20,6 +20,7 @@ class UserController extends Controller
     public function show($username)
     {
         if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $user = User::where('username', $username)->first();
         
@@ -168,12 +169,6 @@ class UserController extends Controller
             $can_send = 1;
         }
         
-
-        // $is_friend[0]->has_accepted = false;
-        // $is_friend[0]->update();
-
-        //OR
-
         $is_friend[0]->delete();
                
         return response()->json(['can_send' => $can_send]); 
@@ -220,4 +215,17 @@ class UserController extends Controller
         return response()->json(['accepted' => $accepted, 'friend' => $friend]); 
     }
 
+    public function answerClanRequest($clan, $accepted){
+
+        if($accepted){
+            DB::table('user_clans')->insert(
+                ['user_id' => Auth::user()->id, 'clan_id' => $clan]
+            );
+        }
+        else{
+           \App\Request::where('receiver', Auth::user()->id)->where('clan_id', $clan)->delete();
+        }
+
+        return response()->json(['accepted'=> $accepted, 'clan' => $clan]); 
+    }
 }

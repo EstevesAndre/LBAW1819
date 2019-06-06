@@ -15,6 +15,7 @@ class ShareController extends Controller
     public function show($post_id, $user_id)
     {
         if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $share = Share::where('post_id', '=', $post_id)->where('user_id', '=', $user_id)->get()[0];
         if($share == null)

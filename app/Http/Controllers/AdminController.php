@@ -23,6 +23,8 @@ class AdminController extends Controller
 
         if (!Auth::user()->is_admin) return redirect('/login');
 
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
+
         $allBans = Blocked::all();
         
         $idUserBanned = [];

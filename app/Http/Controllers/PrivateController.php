@@ -6,6 +6,7 @@ use App\User;
 use App\Post;
 use App\Share;
 use App\Clan;
+use App\Blocked;
 use App\Like;
 
 use Illuminate\Http\Request;
@@ -24,6 +25,7 @@ class PrivateController extends Controller
     public function showHome()
     {
         if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $friendIDs = Auth::user()->friendIDs()->get();
         
@@ -97,6 +99,7 @@ class PrivateController extends Controller
     public function showLeaderboard() 
     {
         if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $allUsers = User::orderBy('xp','DESC')->get();
 
@@ -112,6 +115,7 @@ class PrivateController extends Controller
     public function showChat() 
     {
         if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $friends = Auth::user()->friends()->get();
         
@@ -218,10 +222,19 @@ class PrivateController extends Controller
     }
 
     public function showSearchPage(Request $data){
+        if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $users = User::where('name', 'ilike', '%'.$data['search'].'%')->orWhere('username', 'ilike','%'.$data['search'].'%')->get();
         $posts = Post::where('content', 'ilike', '%'.$data['search'].'%')->get();
 
         return view('pages.search', ['search' => $data['search'], 'users' => $users, 'posts' =>$posts]);
+    }
+
+    public function showBannedPage()
+    {
+        if (!Auth::check()) return redirect('/login');
+
+        return view('pages.banned', ['user' => Auth::user(), 'ban' => Auth::user()->ban()->get()[0], 'admin' => Auth::user()->where('id', Auth::user()->ban()->get()[0]->admin)->get()[0]]);
     }
 }
