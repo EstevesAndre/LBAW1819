@@ -21,7 +21,6 @@ class RequestController extends Controller
 
         $clans = Auth::user()->allClanRequests()->get();
 
-
         return view('pages.friendRequests', ['sent' => $sent, 'received' => $received, 'clans' => $clans]);
     }
 }

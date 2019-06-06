@@ -5,7 +5,7 @@
 @section('content')
 
 <br />
-    <br />
+<br />
 <div class="settings container justify-content-center fullscreen-3-4 my-5" data-id="{{$clan->id}}">
     <h1 class="text-center">Clan Settings - {{$clan->name}}  - {{$clan->members()->count()}} 
         <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#clansettings_helpModal">

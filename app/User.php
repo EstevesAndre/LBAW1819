@@ -83,11 +83,11 @@ class User extends Authenticatable
     }
 
     public function sent($id) {
-        return $this->hasOne('App\Request', 'sender', 'id')->where('receiver',$id);
+        return $this->hasOne('App\Request', 'sender', 'id')->where('receiver',$id)->whereNull('clan_id');
     }
 
     public function allRequested() {
-        return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null);
+        return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null)->whereNull('clan_id');
     }
 
     public function allClanRequests() {

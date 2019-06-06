@@ -5,27 +5,19 @@
 @section('content')
 <br />
 <br />
-<div class="ml-4 mr-4 mt-5 text-center standard-text items-centered-vertical fullscreen-3-4">
-    <div class="row align-bottom">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4 align-self-center">
-            <h2>Stop! This account has been banned!</h2>
-            <p class="stop"><i class="fas fa-ban"></i></p>
+<div class="m-4 text-center standard-text">
+    <h1 class="my-5">Stop! This account has been banned!</h1>
+    <div class="row align-bottom items-centered-vertical">
+        <div class="col-12 col-sm-6 mt-4">
+            <div class="stop my-4"><i class="fas fa-ban"></i></div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 align-self-center">
-            <h4>Ban Details</h4>
-            <div class="row mb-4 ml-4 mr-4">
-                <p>Banned User: {{ $user->name }};
-            </div>
-            <div class="row mb-4 ml-4 mr-4">
-                <p>Banned by: {{ $admin->name }};
-            </div>
-            <div class="row mb-4 ml-4 mr-4">
-                <p>Banned because: {{ $ban->motive }};
-            </div>
-            <div class="row mb-4 ml-4 mr-4">
-                <p>Banned until: {{ $ban->date }};
-            </div>
-            <form method="GET" action="{{ route('logout') }}">
+        <div class="text-left col-12 col-sm-6">
+            <h4 class="text-center mb-4"><b>Ban Details</b></h4>
+            <p>Banned User: {{ $user->name }}</p>
+            <p>Banned by: {{ $admin->name }}</p>
+            <p>Banned because: {{ $ban->motive }}</p>
+            <p>Banned until: {{ $ban->date }}</p>
+            <form method="GET" class="text-center" action="{{ route('logout') }}">
                 <button type="submit" class="btn btn-dark">Log out</button>
             </form>
         </div>
