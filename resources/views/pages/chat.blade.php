@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.noFooter')
 
 @section('pageTitle', 'Chat')
 
@@ -51,10 +51,10 @@
                         </div>
                     @endif
                 </div>
-                <div class="border-top send-message d-flex align-items-center" id="message-send">
-                    <input type="text" class="m-2 w-80 border no-outline" id="message-box" placeholder="Write a message here..." required>
-                    <button class="btn btn-link float-right"><i class="fas fa-images icon"></i></button>
-                    <button type="submit" class="btn btn-link no-hover icon float-right" id="send-button">Send <i class="fas fa-angle-right"></i></button>
+                <div class="bg-white border-top border-bottom border-left w-100 send-message p-0 d-flex align-items-center" id="message-send">
+                    <input type="text" class="m-2 border w-85 no-outline" id="message-box" placeholder="Write a message here..." required>
+                    <button type="button" class="btn btn-link float-right rounded-circle"><i class="fas fa-images icon"></i></button>
+                    <button type="submit" class="btn btn-primary m-1 float-right rounded-circle" id="send-button">&#9993;</button>
                 </div>
             </div>  
         </div>
