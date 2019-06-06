@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="float-right btn btn-secondary m-3">Add Image</button>
+                        <input type="button" class="float-right btn btn-secondary m-3">Add Image</input>
                         <button type="submit" class="float-right btn btn-dark my-3 create" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">Post</span>
                         </button>
