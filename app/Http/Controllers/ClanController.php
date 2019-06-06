@@ -155,7 +155,7 @@ class ClanController extends Controller
         else
         {
             $members = $clan->members()
-                ->where('name', 'like', '%'. $search. '%')
+                ->where('name', 'ilike', '%'. $search. '%')
                 ->orderBy('xp', 'DESC')
                 ->limit(7)
                 ->get();
@@ -180,7 +180,7 @@ class ClanController extends Controller
         else
         {
             $members = $clan->members()
-                ->where('name', 'like', '%'. $search. '%')
+                ->where('name', 'ilike', '%'. $search. '%')
                 ->orderBy('xp', 'DESC')
                 ->limit(7)
                 ->get();
@@ -214,7 +214,7 @@ class ClanController extends Controller
         }
 
         $activeClansSearch = Clan::whereNotIn('id', $idClanBanned)
-            ->where('name', 'like', '%' . $search . '%')
+            ->where('name', 'ilike', '%' . $search . '%')
             ->get();
         
         return $activeClansSearch;
@@ -232,7 +232,7 @@ class ClanController extends Controller
         }
 
         $bannedClansSearch = Clan::whereIn('id', $idClanBanned)
-            ->where('name', 'like', '%' . $search . '%')
+            ->where('name', 'ilike', '%' . $search . '%')
             ->get();
         
             return $bannedClansSearch;
@@ -283,7 +283,7 @@ class ClanController extends Controller
         else
         {
             $users = User::whereIn('id', $idUsersBanned)
-                ->where('name', 'like', '%' . $search . '%')
+                ->where('name', 'ilike', '%' . $search . '%')
                 ->get();
         }
 
@@ -314,7 +314,7 @@ class ClanController extends Controller
         else
         {
             $users = User::whereNotIn('id', $idClanMembers)
-                ->where('name', 'like', '%' . $search . '%')
+                ->where('name', 'ilike', '%' . $search . '%')
                 ->limit(8)
                 ->get();
         }
