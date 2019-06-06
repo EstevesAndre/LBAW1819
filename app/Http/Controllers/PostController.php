@@ -62,8 +62,8 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        if($post->user_id != Auth::user()->id)
-            return response()->json(['deleted' => false, 'status' => $status ]);
+        if($post->user_id != Auth::user()->id && !Auth::user()->is_admin)
+            return response()->json(['deleted' => false]);
         
         $post->delete();
         
