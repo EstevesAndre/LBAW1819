@@ -150,4 +150,24 @@ class User extends Authenticatable
         return $this->hasOne('App\Blocked', 'user_id');
     }
 
+    public function getNumRequest(){
+
+        $sent =  $this->allSent()->count();
+
+        $received = $this->allRequested()->count();
+
+        $clans = $this->allClanRequests()->count();
+
+        $numRequests = 0;
+
+        if($this->clan()->count() == 0){
+            $numRequests = $sent + $received +  $clans;
+        }
+        else{
+            $numRequests = $sent + $received;
+        }
+
+        return $numRequests;
+    }   
+
 }
