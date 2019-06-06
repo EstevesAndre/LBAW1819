@@ -28,7 +28,7 @@
                 <i class="left fas fa-search"></i>
             </div>
             <div class="friend-chat border rounded hgt" data-id="{{ $friends[0]->id }}">
-                <div class="h-100 scroolable parent mobile-height">
+                <div class="h-100 scroolable parent">
                     <div class="fixed-at-top p-3 w-100 border rounded text-left tab-content chat-content" id="nav-tabContent">
                         <div class="tab-pane fade show active">
                             <img src="{{ asset('assets/avatars/'.$friends[0]->race.'_'.$friends[0]->class.'_'.$friends[0]->gender.'.bmp') }}" alt="logo" width="25" class="border img-fluid rounded-circle">
