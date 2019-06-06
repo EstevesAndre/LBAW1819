@@ -79,23 +79,23 @@ class User extends Authenticatable
     }
 
     public function requested($id) {
-        return $this->hasOne('App\Request', 'receiver', 'id')->where('sender',$id);
+        return $this->hasOne('App\Request', 'receiver', 'id')->where('sender',$id)->where('type','friendRequest');
     }
 
     public function sent($id) {
-        return $this->hasOne('App\Request', 'sender', 'id')->where('receiver',$id)->whereNull('clan_id');
+        return $this->hasOne('App\Request', 'sender', 'id')->where('receiver',$id)->where('type','friendRequest');
     }
 
     public function allRequested() {
-        return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null)->whereNull('clan_id');
+        return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null)->where('type','friendRequest');
     }
 
     public function allClanRequests() {
-        return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null)->whereNotNull('clan_id');
+        return $this->hasMany('App\Request', 'receiver', 'id')->where('has_accepted', null)->where('type','clanRequest');
     }
 
     public function allSent() {
-        return $this->hasMany('App\Request', 'sender', 'id')->where('has_accepted', null);;
+        return $this->hasMany('App\Request', 'sender', 'id')->where('has_accepted', null)->where('type','friendRequest');
     }
     
     public function friends() {

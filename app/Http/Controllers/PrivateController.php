@@ -52,8 +52,11 @@ class PrivateController extends Controller
 
         $retrieve_list = collect([]);
 
-        for($i = 0; $i < 3; $i++){
-            $retrieve_list = $retrieve_list->push($list[$i]);
+        for($i = 0; $i < 3, $i < count($list); $i++){
+            if($list[$i]->id === NULL)
+                $retrieve_list = $retrieve_list->push(Share::where('user_id', $list[$i]->user_id)->where('post_id', $list[$i]->post_id)->get());
+            else
+                $retrieve_list = $retrieve_list->push(Post::where('id', $list[$i]->id)->get());
         }
 
         return view('pages.home', ['posts' => $retrieve_list]);
