@@ -57,7 +57,7 @@
                 <div class="infinite-scroll">
                     <div id="posts-list">
                         @foreach($posts as $p)
-                            @if($p->id != null)
+                            @if($p->id !== null)
                                 @if($p->clan_id == null || (!Auth::user()->clan()->get()->isEmpty() && $p->clan_id == Auth::user()->clan()->get()[0]->id))
                                     @include('partials.post', ['post' => $p])
                                 @endif
