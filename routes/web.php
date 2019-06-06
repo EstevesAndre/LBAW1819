@@ -70,7 +70,7 @@ Route::get('chat', 'PrivateController@showChat');
 Route::get('friendRequests', 'RequestController@show');
 Route::get('createCharacter', 'PrivateController@showCreateCharacter');
 Route::get('search', 'PrivateController@showSearchPage');
-
+Route::get('banned', 'PrivateController@showBannedPage');
 
 // Searchs
 Route::post('/api/getLeaderboardGlobalSearch', 'PrivateController@getLeaderboardGlobalSearch');

@@ -797,11 +797,9 @@ function addedCommentHandler() {
 function addedMessageHandler() {
 
     let message = JSON.parse(this.responseText);
-    let message_area = document.querySelector('#chatScroll');
+    let message_area = document.getElementById('chatScroll');
     message_area.innerHTML += getChatMessage(message.message_text, message.date.substring(0,10), message.date.substring(11,19));
-
-    let scrool = document.getElementById('chatScroll');
-    if (scrool) scrool.scrollTop = scrool.scrollHeight;
+    message_area.scrollTop = message_area.scrollHeight;
 }
 
 function updatedChatHandler() {
@@ -821,7 +819,7 @@ function updatedChatHandler() {
     friend_names.innerHTML = reply.friend_info.name;
     friend_img.setAttribute('src', path_header + '/avatars/' + reply.friend_info.race + "_" + reply.friend_info.class + '_' + reply.friend_info.gender + '.bmp');
 
-    let message_area = document.querySelector('#chatScroll');
+    let message_area = document.getElementById('chatScroll');
     message_area.innerHTML = "";
 
     for (let i = 0; i < reply.messages.length; i++) {
