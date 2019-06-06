@@ -10,7 +10,7 @@
             </a>
         </div>
         <div class="col-2 col-sm-3 col-md-3 px-0 text-right">
-            <input class="checks" name="new-admin" type="radio">
+            <input class="checks" name="new" type="checkbox">
             <span class="checkmark"></span>
         </div>
     </div>

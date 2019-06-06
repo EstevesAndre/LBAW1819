@@ -72,17 +72,17 @@
                         </div>
                         <div class="d-flex justify-content-center mx-2 align-items-center">
                             <div class="btn-group my-2">
-                                <button type="button" class="btn btn-secondary rounded" onclick="window.location='{{ url('/friendRequests') }}'" data-toggle="dropdown" aria-haspopup="true"
+                                <button type="button" class="btn btn-secondary rounded-circle" onclick="window.location='{{ url('/friendRequests') }}'" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="fas fa-user-friends"></i>
                                 </button>
                             </div>
                             <div class="btn-group mr-1">
-                                <button type="button" class="btn btn-secondary rounded" onclick="window.location='{{ url('/chat') }}'" data-toggle="dropdown" aria-haspopup="true"
+                                <button type="button" class="btn btn-secondary rounded-circle" onclick="window.location='{{ url('/chat') }}'" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="far fa-envelope"></i>
                                 </button>
                             </div>
                             <div class="btn-group mr-3 my-2" id="notifications">
-                                <button type="button" class="btn btn-secondary rounded" data-toggle="dropdown" aria-haspopup="true"
+                                <button type="button" class="btn btn-secondary rounded-circle" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="far fa-bell"></i></button>
                                 <div class="dropdown-menu text-center dropdown-menu-right text-light bg-dark">
                                     You have 0 notifications!
@@ -93,7 +93,7 @@
                                 src="{{ asset('assets/avatars/'.Auth::user()->race.'_'.Auth::user()->class.'_'.Auth::user()->gender.'.bmp') }}" alt="User"></a>
                             <a href="/user/{{ Auth::user()->username }}" class="m-0 no-hover index-nav">{{ Auth::user()->name }}</a>
                             <div class="btn-group ml-2 my-2">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <button type="button" class="btn btn-secondary dropdown-toggle rounded-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary">
                                     <a class="no-hover index-nav" href="{{ url('/createClanPage') }}">
                                         <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>

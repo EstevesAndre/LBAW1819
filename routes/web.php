@@ -45,7 +45,7 @@ Route::get('/api/seeMoreHome/{cur_page}', 'PrivateController@seeMoreHome');
 
 Route::put('/api/banUser/{id}', 'BlockedController@createBanUser');
 Route::put('/api/banClan/{id}', 'BlockedController@createBanClan');
-Route::put('/api/addPermissions/{id}', 'UserController@addPermissions');
+Route::put('/api/addPermissions', 'UserController@addPermissions');
 Route::delete('/api/unbanUser/{id}', 'BlockedController@deletebanUser');
 Route::delete('/api/unbanClan/{id}', 'BlockedController@deletebanClan');
 Route::delete('/api/removePermissions/{id}', 'UserController@removePermissions');
@@ -85,6 +85,7 @@ Route::post('/api/getActiveAdminsSearch', 'AdminController@getActiveAdminsSearch
 Route::post('/api/getPotentialAdminsSearch', 'AdminController@getPotentialAdminsSearch');
 Route::post('/api/getActiveClanUsersSearch/{id}', 'ClanController@getActiveClanUsersSearch');
 Route::post('/api/getBannedClanUsersSearch/{id}', 'ClanController@getBannedClanUsersSearch');
+Route::post('/api/getPotentialClanUsersSearch/{id}', 'ClanController@getPotentialClanUsersSearch');
 
 // Posts
 Route::get('posts', 'PostController@list');

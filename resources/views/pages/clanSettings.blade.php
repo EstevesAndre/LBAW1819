@@ -232,13 +232,12 @@
             <div class="modal-body">
                 <div class="d-flex justify-content-center mb-3 mr-3">
                     <div class="searchbar">
-                        <input class="search_input search_input_fixed" onkeyup="fff()" type="text" name="" placeholder="Search...">
+                        <input class="search_input search_input_fixed" onkeyup="getPotentialClanUsersSearch({{$clan->id}})" type="text" name="" placeholder="Search...">
                         <div class="search_icon"><i class="fas fa-search"></i></div>
                     </div>
                 </div>
-            <ul class="pl-0 users-list invite-list" data-id="{{$clan->id}}">
+                <ul class="pl-0 users-list invite-list" data-id="{{$clan->id}}">
                     @each('partials.userCheckbox', $potentialUsers, 'user')
-                    <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                 </ul>
             </div>
             <div class="modal-footer">

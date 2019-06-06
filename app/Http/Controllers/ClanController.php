@@ -67,19 +67,15 @@ class ClanController extends Controller
         if($owner->id != Auth::user()->id) return;
 
         $members = $clan->members()->get();
-
         $blocked = $clan->blocked()->get();
-        
         $invited = $clan->invited()->get();
 
         $idClanMembers = [];
 
         foreach($members as $member)
             array_push($idClanMembers, $member->id);
-
         foreach($invited as $invite)
             array_push($idClanMembers, $invite->receiver()->get()[0]->id);
-
         foreach($blocked as $block)
             array_push($idClanMembers, $block->user()->get()[0]->id);
 
@@ -200,10 +196,10 @@ class ClanController extends Controller
 
         foreach($invites as $invite){
             DB::table('requests')
-            ->insert(['sender' => $owner, 'receiver' => intval($invite), 'clan_id' => $clan_id, 'type' => 'clanRequest' ,'has_accepted' => NULL]);
+                ->insert(['sender' => $owner, 'receiver' => intval($invite), 'clan_id' => $clan_id, 'type' => 'clanRequest' ,'has_accepted' => NULL]);
         }
         
-        return response()->json(['invited' =>$request->input('invites')]); 
+        return response()->json(['invited' => $request->input('invites')]); 
     }
 
     public function getActiveClansSearch(Request $request) {
@@ -288,6 +284,38 @@ class ClanController extends Controller
         {
             $users = User::whereIn('id', $idUsersBanned)
                 ->where('name', 'like', '%' . $search . '%')
+                ->get();
+        }
+
+        return $users;
+    }
+
+    public function getPotentialClanUsersSearch(Request $request, $id) {
+        $clan = Clan::find($id);
+        $idClanMembers = [];
+        $search = $request->input('search');
+
+        foreach($clan->members()->get() as $member)
+            array_push($idClanMembers, $member->id);
+        foreach($clan->invited()->get() as $invite)
+            array_push($idClanMembers, $invite->receiver()->get()[0]->id);
+        foreach($clan->blocked()->get() as $block)
+            array_push($idClanMembers, $block->user()->get()[0]->id);
+
+        $idClanMembers = array_unique($idClanMembers);
+
+        $users = null;
+        if($search == '')
+        {
+            $users = User::whereNotIn('id', $idClanMembers)
+                    ->limit(8)
+                    ->get();
+        }
+        else
+        {
+            $users = User::whereNotIn('id', $idClanMembers)
+                ->where('name', 'like', '%' . $search . '%')
+                ->limit(8)
                 ->get();
         }
 

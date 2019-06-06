@@ -343,7 +343,7 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="add_permissions btn btn-success"><i class="fas fa-user-plus"></i> Add</button>
+                <button type="button" class="add_permissions btn btn-success"><i class="fas fa-user-plus"></i> Add</button>
             </div>
         </div>
     </div>

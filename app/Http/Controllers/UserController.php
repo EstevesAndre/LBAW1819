@@ -140,13 +140,22 @@ class UserController extends Controller
         return $user;
     }
 
-    public function addPermissions(Request $request, $id) {
-        $user = User::find($id);
+    public function addPermissions(Request $request) {
 
-        $user->is_admin = TRUE;
-        $user->update();
+        $invitedList = $request->input('invites');
+        $invites = explode(",", $invitedList);
 
-        return $user;
+        $inviteIDs = [];
+        foreach($invites as $invite) {
+            array_push($inviteIDs, intval($invite));
+        }
+        foreach($inviteIDs as $invite){
+            $user = User::find($invite);
+            $user->is_admin = TRUE;
+            //$user->update();
+        }
+        
+        return response()->json(['invited' => User::whereIn('id', $inviteIDs)->get()]); 
     }
 
     public function removeFriend($friend){

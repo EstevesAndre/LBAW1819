@@ -37,7 +37,7 @@
             <div class="bg-white border-top border-left w-100 send-message p-0 d-flex align-items-center" id="message-send">
                 <input type="text" class="m-2 border w-75 no-outline" id="message-box" placeholder="Write a message here..."
                     required>
-                <button type="submit" class="btn btn-primary m-1 float-right" id="send-button">&#9993;</button>
+                <button type="submit" class="btn btn-primary m-1 float-right rounded-circle" id="send-button">&#9993;</button>
             </div>
         </div>
     @endif

@@ -436,22 +436,23 @@ function sendRmPermissionsRequest(e) {
 function sendAddAdminPermissionsRequest(e) {
     e.preventDefault();
     
-    let checks = document.querySelectorAll('li.invite-list-user .checks');
-    let checkedUser = "";
+    let checks = document.querySelectorAll('li.invite-list-user input.checks');
 
-    //get checked motive
+    let invited_users = [];
+    let invited_count = 0;
+
     for (let i = 0; i < checks.length; i++) {
         if (checks[i].checked) {
-            checkedUser = checks[i].closest('li.invite-list-user').getAttribute('data-id');
-            break;
+            invited_users.push(checks[i].closest('li.invite-list-user').getAttribute('data-id'));
+            invited_count++;
         }
     }
+    if(invited_count == 0){
+        return;
+    }
 
-    if(checkedUser == "") return;
-
-    sendAjaxRequest('put', '/api/addPermissions/' + checkedUser, null, addPermissionsHandler);
+    sendAjaxRequest('put', '/api/addPermissions',  {invites: invited_users}, addPermissionsHandler);
 }
-
 
 function sendBanMemberRequest(e) {
     e.preventDefault();
@@ -517,7 +518,7 @@ function sendUnBanMemberRequest(e) {
 function addInviteRequest(e){
     e.preventDefault();
 
-    let users = document.querySelectorAll('.invite-list-user input');
+    let users = document.querySelectorAll('.invite-list-user input.checks');
     let clan_id = parseInt(document.querySelector('.invite-list').getAttribute('data-id'));
 
     let invited_users = [];
@@ -525,7 +526,7 @@ function addInviteRequest(e){
 
     for(let i= 0; i < users.length; i++){
         if(users[i].checked){
-            invited_users.push(parseInt(users[i].parentElement.parentElement.parentElement.getAttribute('data-id')));
+            invited_users.push(users[i].closest('li.invite-list-user').getAttribute('data-id'));
             invited_count++;
         }
     }
@@ -534,6 +535,7 @@ function addInviteRequest(e){
         return;
     }
     console.log(invited_users);
+    
     sendAjaxRequest('post', '/api/inviteUsers/' + clan_id, {invites: invited_users}, addedInvitesHandler);
     
 }
@@ -1063,20 +1065,20 @@ function addPermissionsHandler() {
     let reply = JSON.parse(this.responseText);
     console.log(reply);
 
+    let invited_users = reply.invited.split(',');
     let active_admins = document.querySelector('ul.admins-active');
     let not_admins = document.querySelector('ul.not-admin-users');
-
+    
     let img = document.querySelector('#nav-user-img');
     let path = img.getAttribute('src');
     let userID = img.getAttribute('data-id');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
-    let added = not_admins.querySelector('li.invite-list-user[data-id="' + reply.id + '"]');
-    
-    if(added == null) return; // error occurred
-    not_admins.removeChild(added);
-
-    active_admins.insertAdjacentHTML("afterbegin", getActiveAdminPermissionsHTML(reply, path_header, userID));
+    for(let i = 0; i < invited_users.length; i++){
+        let invited = not_admins.querySelector('li.invite-list-user[data-id="' + parseInt(invited_users[i]) + '"]');
+        not_admins.removeChild(invited);
+        active_admins.insertAdjacentHTML("afterbegin", 'OLA');
+    }
 
     let adminRmPermissionsModal = document.querySelectorAll('.rm_permissions');
     [].forEach.call(adminRmPermissionsModal, function (admin) {
@@ -1268,6 +1270,8 @@ function userListHandler(reply, list, path_header) {
 
 function addedInvitesHandler(){
     let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
     let invited_users = reply.invited.split(',');
 
     let invite_list =  document.querySelector('.invite-list');
@@ -1580,6 +1584,15 @@ function potentialAdminsSearch() {
     sendAjaxRequest('post', '/api/getPotentialAdminsSearch', { search: lastSearch }, updatePotentialAdminsSearch);   
 }
 
+function getPotentialClanUsersSearch(clanID) {
+    let currentSearch = document.querySelector('#addMembersModal>div>div>div.modal-body>div>div.searchbar>input').value;
+    if(lastSearch == currentSearch)
+        return;
+    lastSearch = currentSearch;
+
+    sendAjaxRequest('post', '/api/getPotentialClanUsersSearch/' + clanID, { search: lastSearch }, updatePotentialClanUsersSearch);   
+}
+
 function updateActiveAdminsSearch() {
     let reply = JSON.parse(this.responseText);
 
@@ -1634,23 +1647,43 @@ function updatePotentialAdminsSearch() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     reply.forEach(function(element) {
-        users.innerHTML += 
-            '<li class="invite-list-user p-2 ml-3" data-id="' + element.id + '">'
-        +        '<div class="d-flex align-items-center row">'
-        +           '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
-        +                '<img width="40" class="border img-fluid rounded-circle border" alt="User"'
-        +                    'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp">'
-        +            '</div>'
-        +            '<div class="col-7 col-sm-6 col-md-7 pr-1 text-left">'
-        +                '<a class="no-hover standard-text" href="user/' + element.username + '">' + element.name + '</a>'
-        +            '</div>'
-        +            '<div class="col-2 col-sm-3 col-md-3 px-0 text-right">'
-        +                '<input class="checks" name="new-admin" type="radio">'
-        +                '<span class="checkmark"></span>'
-        +            '</div>'
-        +        '</div>'
-        +    '</li>'
+        users.innerHTML += getUserCheckboxHTML(element, path_header);
     });
+}
+
+
+function updatePotentialClanUsersSearch() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let users = document.querySelector('#addMembersModal>div>div>div.modal-body>ul');
+    users.innerHTML = "";
+
+    let img = document.querySelector('#nav-user-img');
+    let path = img.getAttribute('src');
+    let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+    reply.forEach(function(element) {
+        users.innerHTML += getUserCheckboxHTML(element, path_header);
+    });
+}
+
+function getUserCheckboxHTML(element, path_header) {
+    return '<li class="invite-list-user p-2 ml-3" data-id="' + element.id + '">'
+    +        '<div class="d-flex align-items-center row">'
+    +           '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
+    +                '<img width="40" class="border img-fluid rounded-circle border" alt="User"'
+    +                    'src="' + path_header + '/avatars/' + element.race + '_' + element.class + '_' + element.gender + '.bmp">'
+    +            '</div>'
+    +            '<div class="col-7 col-sm-6 col-md-7 pr-1 text-left">'
+    +                '<a class="no-hover standard-text" href="user/' + element.username + '">' + element.name + '</a>'
+    +            '</div>'
+    +            '<div class="col-2 col-sm-3 col-md-3 px-0 text-right">'
+    +                '<input class="checks" name="new" type="radio">'
+    +                '<span class="checkmark"></span>'
+    +            '</div>'
+    +        '</div>'
+    +    '</li>';
 }
 // ---------------------------------------------------------------------------------------------------------------------//
 
