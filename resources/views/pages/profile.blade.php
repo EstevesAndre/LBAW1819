@@ -5,7 +5,7 @@
 @section('content')
 
 <br />
-<div class="mt-5 row text-center fullscreen standard-text">
+<div class="profile mt-5 row text-center fullscreen standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 mb-4 activity">
         <div class="container mt-3 bg-white rounded shadow-lg">
             <div class="row align-items-center py-3">
