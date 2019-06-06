@@ -8,74 +8,81 @@
 <div class="profile mt-5 row text-center fullscreen standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 mb-4 activity">
         <div class="container mt-3 bg-white rounded shadow-lg">
-            <div class="row align-items-center py-3">
-                <div class="col-sm-12 col-lg-2 align-self-center">
+            <div class="row align-items-center py-5">
+                <div class="col-sm-12 col-lg-3 align-self-center">
                     <a href="/user/{{ $user->username }}">
                         <img width="90" class="img-fluid border rounded-circle" 
                             src="{{ asset('assets/avatars/'.$user->race.'_'.$user->class.'_'.$user->gender.'.bmp') }}" 
                         alt="User">
                     </a>
                 </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="text-left basic-info">
-                        <h2><b>{{ $user->name }}</b>
+                <div class="col-sm-12 col-lg-9 align-self-center">
+                    <div class="basic-info">
+                        <h2 class="mt-2"><b>{{ $user->name }}</b>
                             <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#profile_helpModal">
                                 <i class="fas fa-question-circle"></i>
                             </button>
                         </h2>
-                        <div class="row align-items-top py-3">
-                            <div>
-                                <p class="mt-0 mb-4">Birthdate: <small>{{ $user->birthdate }}</small></p>
-                                <div class="mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
-                                <div class="profilemt-1"><i class="fas fa-ankh"></i> Class: {{ $user->class }}</div>
-                            </div>
-                            <div class="ml-5">
-                                @if($clan === null) 
-                                    @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
-                                        <div class="col-sm-12"><i class="fas fa-users"></i> No clan</div>
+                        <div class="container">
+                            <div class="row text-left">
+                                <div class="col-12 col-sm-6 col-md-6">
+                                    <div class="mt-1"><i class="fas fa-birthday-cake"></i> Birthdate: <small>{{ $user->birthdate }}</small></div>
+                                    <div class="mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
+                                    <div class="profile mt-1"><i class="fas fa-ankh"></i> Class: {{ $user->class }}</div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-6">
+                                    @if($clan === null) 
+                                        @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
+                                            <div class="mt-1"><i class="fas fa-users"></i> No clan</div>
+                                        @else
+                                            <div class="mt-1"><i class="fas fa-users"></i><a href="/createClanPage"> Join a clan</a></div>
+                                        @endif
                                     @else
-                                        <div class="col-sm-12"><i class="fas fa-users"></i><a href="/createClanPage"> Join a clan</a></div>
+                                        <div class="mt-1"><i class="fas fa-users"></i> Clan: <a href='/clan'>{{ $clan->name }}</a></div>
                                     @endif
-                                @else
-                                    <div class="col-sm-12"><i class="fas fa-users"></i> Clan: <a href='/clan'>{{ $clan->name }}</a></div>
-                                @endif
-
-                                <p class="mt-0 mb-4"><small></small></p>
-
-                                <div class="col-sm-12"><i class="fas fa-level-up-alt"></i> Level: {{ floor($user->xp/100) }}</div>
-                                <div class="profile col-sm-12"><i class="fas fa-coins"></i> xP: {{ $user->xp }}</div>
+                                    <div class="mt-1"><i class="fas fa-level-up-alt"></i> Level: {{ floor($user->xp/100) }}</div>
+                                    <div class="profile mt-1"><i class="fas fa-coins"></i> xP: {{ $user->xp }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-4 text-left mt-2 py-3">
+                <div class="col-sm-12 col-md-16 text-left mt-2">
                     <div class="row text-center mx-1">
                         @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
                             @if($status == 0) <!-- received request refused ->  ADD AS FRIEND -->
-                                <button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="{{$user->id}}"> 
-                                    Add as Friend <i class="fas fa-user-plus"></i>
-                                </button>
+                                <div class="text-center w-100">        
+                                    <button type="button" class="friend-add friend-width col-sm-12 mt-3 btn btn-outline-success" data-id="{{$user->id}}"> 
+                                        Add as Friend <i class="fas fa-user-plus"></i>
+                                    </button>
+                                </div>
                             @elseif($status == 1) <!-- //sent request refused BLOCKED REQUEST -->
-                                <button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="{{$user->id}}" disabled> 
-                                    Friendship blocked <i class="fas fa-user-slash"></i>
-                                </button>
+                                <div class="text-center w-100">    
+                                    <button type="button" class="col-sm-12 friend-width mt-3 btn btn-secondary" data-id="{{$user->id}}" disabled> 
+                                        Friendship blocked <i class="fas fa-user-slash"></i>
+                                    </button>
+                                </div>
                             @elseif($status == 2) <!-- //sent request pending CANCEL REQUEST  -->
-                                <button type="button" class="friend-cancel col-sm-12 mt-5 btn btn-danger" data-id="{{$user->id}}"> 
-                                    Cancel Request <i class="fas fa-times"></i>
-                                </button>
+                                <div class="text-center w-100">
+                                    <button type="button" class="friend-cancel friend-width col-sm-12 mt-3 btn btn-danger" data-id="{{$user->id}}"> 
+                                        Cancel Request <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
                             @elseif($status == 3) <!-- //received request pending  ANSWER REQUEST -->
                                 <div class="friend-answers text-center w-100">
-                                    <button type="button" class="friend-accept w-50 col-sm-12 mt-5 btn btn-success" data-id="{{$user->id}}"> 
+                                    <button type="button" class="friend-accept friend-width col-sm-12 mt-3 btn btn-success" data-id="{{$user->id}}"> 
                                         Accept <i class="fas fa-check"></i>
                                     </button>
-                                    <button type="button" class="friend-decline w-50 col-sm-12 mt-2 btn btn-danger" data-id="{{$user->id}}">   
+                                    <button type="button" class="friend-decline friend-width col-sm-12 mt-2 btn btn-danger" data-id="{{$user->id}}">   
                                         Decline <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                             @elseif($status == 4) <!-- //are friends REMOVE FRIENDSHIP -->
-                                <button type="button" class="friend-remove col-sm-12 mt-5 btn btn-outline-danger" data-id="{{$user->id}}"> 
-                                    Remove Friendship <i class="fas fa-user-times"></i>
-                                </button>
+                                <div class="text-center w-100">
+                                    <button type="button" class="friend-width friend-remove col-sm-12 mt-3 btn btn-outline-danger" data-id="{{$user->id}}"> 
+                                        Remove Friendship <i class="fas fa-user-times"></i>
+                                    </button>
+                                </div>
                             @endif
                         @endif
                     </div>
@@ -93,12 +100,11 @@
                         aria-controls="friends" aria-selected="false">Friends List</a>
                 </li>
             </ul>
-
             <div class="mt-4 tab-content" id="content">
-                <div class="text-left tab-pane fade active show" id="activity" role="tabpanel" aria-labelledby="actibity-tab">
+                <div class="text-center tab-pane fade active show" id="activity" role="tabpanel" aria-labelledby="actibity-tab">
                     @if(Auth::user()->id === $user->id)
-                        <div class="cardbox-comments d-flex align-items-center">
-                            <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#postModal">
+                        <div class="cardbox-comments align-self-center">
+                            <button type="button" class="btn btn-lg btn-dark mr-2" data-toggle="modal" data-target="#postModal">
                                 Create a new post
                             </button>
                             <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">

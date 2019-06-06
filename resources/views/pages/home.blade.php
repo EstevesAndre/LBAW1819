@@ -6,8 +6,8 @@
 <br />
 <div class="mt-5 pt-3 row text-center fullscreen standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 activity">
-        <div class="cardbox-comments d-flex align-items-center">
-            <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#postModal">
+        <div class="cardbox-comments align-self-center">
+            <button type="button" class="btn btn-lg btn-dark mr-2" data-toggle="modal" data-target="#postModal">
                 Create a new post
             </button>
             <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">

@@ -652,6 +652,10 @@ a.friend-list {
     .rt-border {
         border-right: 4px solid #f4f4f4;
     }
+
+    .friend-width {
+        width: 50%;
+    }
 }
 
 /**********/

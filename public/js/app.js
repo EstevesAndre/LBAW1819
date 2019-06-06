@@ -1766,11 +1766,11 @@ function removedFriendHandler() {
 
     let reply = JSON.parse(this.responseText);
     let old_button = document.querySelector('.friend-remove');
-    let friend = document.querySelector('.friend-remove').getAttribute('data-id');
+    let friend = old_button.getAttribute('data-id');
     let new_button = "";
 
     if (reply.can_send) {
-        new_button = '<button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '">'
+        new_button = '<button type="button" class="friend-add friend-width col-sm-12 mt-3 btn btn-outline-success" data-id="' + friend + '">'
             + 'Add as Friend <i class="fas fa-user-plus"></i>'
             + '</button>';
 
@@ -1780,7 +1780,7 @@ function removedFriendHandler() {
         if (newEvent) newEvent.addEventListener('click', sendFriendShipRequest);
     }
     else {
-        new_button = '<button type="button" class="col-sm-12 mt-5 btn btn-secondary" data-id="' + friend + '" disabled> '
+        new_button = '<button type="button" class="col-sm-12 mt-3 btn btn-secondary" data-id="' + friend + '" disabled> '
             + 'Friendship blocked <i class="fas fa-user-slash"></i>'
             + '</button>';
 
@@ -1797,8 +1797,8 @@ function removedFriendHandler() {
 
 function sentFriendHandler() {
     let old_button = document.querySelector('.friend-add');
-    let friend = document.querySelector('.friend-add').getAttribute('data-id');
-    let new_button = '<button type="button" class="friend-cancel col-sm-12 mt-5 btn btn-danger" data-id="' + friend + '"> '
+    let friend = old_button.getAttribute('data-id');
+    let new_button = '<button type="button" class="friend-cancel friend-width col-sm-12 mt-3 btn btn-danger" data-id="' + friend + '"> '
         + 'Cancel Request <i class="fas fa-times"></i>'
         + '</button>';
 
@@ -1811,8 +1811,8 @@ function sentFriendHandler() {
 
 function cancelledFriendHandler() {
     let old_button = document.querySelector('.friend-cancel');
-    let friend = document.querySelector('.friend-cancel').getAttribute('data-id');
-    let new_button = '<button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '"> '
+    let friend = old_button.getAttribute('data-id');
+    let new_button = '<button type="button" class="friend-add friend-width col-sm-12 mt-3 btn btn-outline-success" data-id="' + friend + '"> '
         + 'Add as Friend <i class="fas fa-user-plus"></i>'
         + '</button>';
 
@@ -1900,7 +1900,7 @@ function answeredFriendHandler() {
     let new_button = "";
 
     if (parseInt(reply.accepted)) {
-        new_button = '<button type="button" class="friend-remove col-sm-12 mt-5 btn btn-outline-danger" data-id="' + friend + '">'
+        new_button = '<button type="button" class="friend-remove friend-width col-sm-12 mt-3 btn btn-outline-danger" data-id="' + friend + '">'
             + 'Remove Friendship <i class="fas fa-user-times"></i>'
             + '</button>';
 
@@ -1918,7 +1918,7 @@ function answeredFriendHandler() {
 
     }
     else {
-        new_button = '<button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="' + friend + '">'
+        new_button = '<button type="button" class="friend-add col-sm-12 friend-width mt-3 btn btn-outline-success" data-id="' + friend + '">'
             + 'Add as Friend <i class="fas fa-user-plus"></i>'
             + '</button>';
 
