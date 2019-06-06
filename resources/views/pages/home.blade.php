@@ -92,28 +92,11 @@
     </div>
 </div>
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script type="text/javascript">
     var start = 3;
     var working = false;
-    // $(document).ready(function() {
-    //         $.ajax({
-    //                 type: "GET",
-    //                 url: "/seeMoreHome/"+start,
-    //                 processData: false,
-    //                 contentType: "application/json",
-    //                 data: '',
-    //                 success: function(r) {
-    //                         r = JSON.parse(r)
-    //                         for (var i = 0; i < r.length; i++) {
-    //                                 $('body').append("<div><h1>DEU LOAD DO POST</h1></div>")
-    //                         }
-    //                         start += 3;
-    //                 },
-    //                 error: function(r) {
-    //                         console.log("Something went wrong!");
-    //                 }
-    //         })
-    // })
     $(window).scroll(function() {
         console.log("Entrei");
             if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
@@ -122,15 +105,29 @@
                             working = true;
                             $.ajax({
                                     type: "GET",
-                                    url: "/seeMoreHome/"+start,
+                                    url: "/api/seeMoreHome/"+start,
                                     processData: false,
                                     contentType: "application/json",
                                     data: '',
                                     success: function(r) {
-                                            r = JSON.parse(r)
-                                            for (var i = 0; i < r.length; i++) {
-                                                    $('body').append("<div><h1>DEU LOAD DO POST</h1></div>")
+                                            // r = JSON.parse(r);
+                                            
+                                            for (var i = 0; i < r.posts.length; i++) {
+                                                
+                                                let cur_post = r.posts[i];
+                                                let like_count = r.likes[i];
+                                                let comment_count = r.comments[i];
+                                                let share_count =r. shares[i];
+                                                let post_owner = r.users[i];
+                                                console.log(cur_post);
+                                                if(cur_post.id != null){ //load posts
+                                                    $('#posts-list').append("<div><h1>DEU LOAD DO POST</h1></div>")
+                                                 }
+                                                 else{ //load shares
+                                                    $('#posts-list').append("<div><h1>DEU LOAD DO SHARE</h1></div>")
+                                                 }
                                             }
+                                                    
                                             start += 3;
                                             setTimeout(function() {
                                                     working = false;
