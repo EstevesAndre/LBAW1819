@@ -92,7 +92,7 @@
     </div>
 </div>
 @endsection
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     var start = 3;
     var working = false;
     // $(document).ready(function() {
@@ -144,4 +144,4 @@
             }
     })
 </script>
-
+ -->
