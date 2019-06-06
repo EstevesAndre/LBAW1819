@@ -31,7 +31,7 @@ class PostController extends Controller
         $post = new Post();
         $post->content = $request->input('content');
         if($request->hasFile('has_img')){
-            $post->has_img = false;
+            $post->has_img = true;
         }
         else{
             $post->has_img = false;
@@ -39,7 +39,7 @@ class PostController extends Controller
         
         $post->user_id = Auth::user()->id;
         
-        if($request->input('clanID') !== "-1")
+        if($request->input('clan_id') !== "-1")
             $post->clan_id = $request->input('clan_id');
         else
             $post->clan_id = null;
