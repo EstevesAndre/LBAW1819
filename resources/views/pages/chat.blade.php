@@ -4,7 +4,7 @@
 
 @section('content')
 <br />
-<div class="has-chat container mt-2 pt-3 height-94">
+<div class="has-chat container mt-3 pt-3 height-94">
     <div class="row standard-text border rounded h-100">
         <div class="left-desktop col-sm-4 bg-light h-100 pt-4">
             <div class="h-100 scroolable">
@@ -39,7 +39,7 @@
                             </button>
                         </div>
                     </div>
-                    <div id="chatScroll" class="fixed-at-top pt-4 chat-margins scroolable">
+                    <div id="chatScroll" class="w-100 fixed-at-top pt-4 chat-margins scroolable">
                             @each('partials.message', $messages, 'message')
                     </div>
                     <div class="fixed-at-bottom bg-white border-top w-100 send-message p-0 d-flex align-items-center" id="message-send">
@@ -51,9 +51,6 @@
         </div>
     </div>
 </div>
-
-{{ $messages->count() }}
-
 <!-- Modal -->
 <div class="modal fade" id="chat_helpModal" tabindex="-1" role="dialog" aria-labelledby="chat_helpModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
