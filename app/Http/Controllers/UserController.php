@@ -221,6 +221,11 @@ class UserController extends Controller
             DB::table('user_clans')->insert(
                 ['user_id' => Auth::user()->id, 'clan_id' => $clan]
             );
+
+            $request = \App\Request::where('receiver', Auth::user()->id)->where('clan_id', $clan)->get();
+            
+            $request[0]->has_accepted = true;
+            $request[0]->update();
         }
         else{
            \App\Request::where('receiver', Auth::user()->id)->where('clan_id', $clan)->delete();
