@@ -114,7 +114,9 @@
                         <div id="posts-list">
                         @foreach($user->posts()->take(5) as $p)
                             @if($p->id != null)
-                                @include('partials.post', ['post' => $p])
+                                @if($p->clan_id == null || (!Auth::user()->clan()->get()->isEmpty() && $p->clan_id == Auth::user()->clan()->get()[0]->id))
+                                    @include('partials.post', ['post' => $p])
+                                @endif
                             @else
                                 @include('partials.share', ['share' => $p])
                             @endif
