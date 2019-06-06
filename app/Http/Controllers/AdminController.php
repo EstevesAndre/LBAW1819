@@ -63,7 +63,7 @@ class AdminController extends Controller
 
         $adminsSearch = User::where('is_admin',TRUE)
             ->whereNotIn('id', $idUserBanned)
-            ->where('name', 'like', '%'.$search.'%')
+            ->where('name', 'ilike', '%'.$search.'%')
             ->get();
 
         return $adminsSearch;
@@ -82,7 +82,7 @@ class AdminController extends Controller
 
         $potentialAdminsSearch = User::where('is_admin',FALSE)
             ->whereNotIn('id', $idUserBanned)
-            ->where('name', 'like', '%'.$search.'%')
+            ->where('name', 'ilike', '%'.$search.'%')
             ->limit(7)
             ->get();
 

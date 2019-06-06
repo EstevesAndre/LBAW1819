@@ -82,7 +82,7 @@ class UserController extends Controller
         else
         {
             $users = $user->friends()
-                ->where('name', 'like', '%' . $search . '%')
+                ->where('name', 'ilike', '%' . $search . '%')
                 ->orderBy('xp', 'DESC')
                 ->limit(5)
                 ->get();
@@ -107,7 +107,7 @@ class UserController extends Controller
         }
 
         $activeUsersSearch = User::whereNotIn('id', $idUserBanned)
-                    ->where('name', 'like', '%' . $search . '%')
+                    ->where('name', 'ilike', '%' . $search . '%')
                     ->get();
 
         return $activeUsersSearch;
@@ -125,7 +125,7 @@ class UserController extends Controller
         }
 
         $bannedUsersSearch = User::whereIn('id', $idUserBanned)
-                    ->where('name', 'like', '%' . $search . '%')
+                    ->where('name', 'ilike', '%' . $search . '%')
                     ->get();
 
         return $bannedUsersSearch;

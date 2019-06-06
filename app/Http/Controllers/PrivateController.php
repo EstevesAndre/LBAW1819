@@ -167,7 +167,7 @@ class PrivateController extends Controller
         {
             $users = DB::table('users')
             ->select('username', 'name', 'xp', 'race', 'class', 'gender')
-            ->where('name', 'like', '%' . $search . '%')
+            ->where('name', 'ilike', '%' . $search . '%')
             ->orderBy('xp', 'DESC')
             ->limit(5)
             ->get();
@@ -182,13 +182,13 @@ class PrivateController extends Controller
         $clans = null;
         if($search == '')
         {
-            $clans = Clan::where('name', 'like', '%' . $search . '%')
+            $clans = Clan::where('name', 'ilike', '%' . $search . '%')
             ->limit(5)
             ->offset(3)
             ->get();
         }
         else {
-            $clans = Clan::where('name', 'like', '%' . $search . '%')
+            $clans = Clan::where('name', 'ilike', '%' . $search . '%')
                 ->limit(5)
                 ->get();
         }
@@ -210,7 +210,7 @@ class PrivateController extends Controller
         else 
         {
             $users = Auth::user()->friends()
-            ->where('name', 'like', '%' . $search . '%')
+            ->where('name', 'ilike', '%' . $search . '%')
             ->orderBy('xp', 'DESC')
             ->limit(5)
             ->get();
@@ -221,8 +221,8 @@ class PrivateController extends Controller
 
     public function showSearchPage(Request $data){
 
-        $users = User::where('name', 'like', '%'.$data['search'].'%')->orWhere('username', 'like','%'.$data['search'].'%')->get();
-        $posts = Post::where('content', 'like', '%'.$data['search'].'%')->get();
+        $users = User::where('name', 'ilike', '%'.$data['search'].'%')->orWhere('username', 'ilike','%'.$data['search'].'%')->get();
+        $posts = Post::where('content', 'ilike', '%'.$data['search'].'%')->get();
 
         return view('pages.search', ['search' => $data['search'], 'users' => $users, 'posts' =>$posts]);
     }
