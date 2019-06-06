@@ -102,8 +102,6 @@ class PrivateController extends Controller
 
         $allUsers = User::orderBy('xp','DESC')->get();
 
-        $userClan = Auth::user()->clan()->get()[0];
-
         $userFriends = Auth::user()->friends()->get();
 
         $allClans = Clan::all();
