@@ -28,6 +28,7 @@
                         <input type="hidden" name="clanID" value="-1">
                         <div class="row align-items-center w-100 mx-2">
                             <form class="form-inline p-2"  method="post" action="/api/post" enctype="multipart/form-data">  
+                                {{csrf_field()}}
                                 <div class="col-sm-12 col-md-4 mt-3">
                                     <a href="/user/{{ Auth::user()->username }}">
                                         <img width="95" class="img-fluid border rounded-circle mb-3" 
@@ -39,8 +40,8 @@
                                     <textarea class="form-control post-content text-left mt-3 w-100" name="content" rows="6" placeholder="Write your publication here..."></textarea>
                                 </div>
                                 <input type="hidden" name="clan_id" value="-1">
-                                <input type="file" name="post_img" accept="image/png" class="form-control-file input-file mt-2" id="clanImage">AddImage</input>
-                                <button type="submit" class="float-right btn btn-dark my-3 create" data-dismiss="modal" aria-label="Post">Post</button>
+                                <input type="file" name="has_img" accept="image/png" class="form-control-file input-file mt-2" id="clanImage">AddImage
+                                <button type="submit" class="float-right btn btn-dark my-3 create" aria-label="Post">Post</button>
                             </form>
                         </div>
                     </div>
