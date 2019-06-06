@@ -14,14 +14,6 @@
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 align-self-center">
             <h4>Sign Up For Free</h4>
-            <div class="row mb-4 ml-4 mr-4">
-                <div class="col-sm-6 col-md-12 col-lg-6 mt-3 mb-3">
-                    <button type="button" class="btn-rd btn btn-outline-danger w-100 h-100">Sign up with Google</button>
-                </div>
-                <div class="col-sm-6 col-md-12 col-lg-6 mt-3 mb-3">
-                    <button type="button" class="btn-rd btn btn-outline-primary w-100">Sign up with Facebook</button>
-                </div>
-            </div>
             <p class="text-left mr-4 ml-4">Username must be 1 to 20 characters, containing only letters a to z,
                 numbers 0 to 9, hyphens, or underscores, and cannot include any inappropriate terms.</p>
 
@@ -60,8 +52,5 @@
             <span class="text-center">Already have an AlterEgo account? <a href="{{ url('/login') }}">Login</a></span>
         </div>
     </div>
-</div>
-<div class="mx-4 mt-5 text-center standard-text">
-    <h2>AlterEgo</h2>
 </div>
 @endsection

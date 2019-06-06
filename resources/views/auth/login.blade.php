@@ -10,16 +10,6 @@
         <img src="{{ asset('assets/logo.png') }}" width="25%" alt="icon">
         <h2><b>AlterEgo</b></h2>
         <br />
-        <div class="row mb-4">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
-                <button type="button" class="btn btn-rd btn-outline-danger w-100 h-100">Login with Google</button>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-2 mb-2">
-                <button type="button" class="btn btn-rd btn-outline-primary w-100 h-100">Login with
-                    Facebook</button>
-            </div>
-        </div>
-        <br />
         <form class="text-left mb-3" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
 

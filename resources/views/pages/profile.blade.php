@@ -23,32 +23,33 @@
                                 <i class="fas fa-question-circle"></i>
                             </button>
                         </h2>
-                        <p class="mt-0 mb-4">Birthdate: <small>{{ $user->birthdate }}</small></p>
-                    </div>
-                    <div class="text-left">
-                        LVL {{ floor($user->xp/100) }}
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
-                                role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                style="width: 75%">
+                        <div class="row align-items-top py-3">
+                            <div>
+                                <p class="mt-0 mb-4">Birthdate: <small>{{ $user->birthdate }}</small></p>
+                                <div class="mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
+                                <div class="profilemt-1"><i class="fas fa-ankh"></i> Class: {{ $user->class }}</div>
                             </div>
-                            {{ $user->xp }} XP
+                            <div class="ml-5">
+                                @if($clan === null) 
+                                    @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
+                                        <div class="col-sm-12"><i class="fas fa-users"></i> No clan</div>
+                                    @else
+                                        <div class="col-sm-12"><i class="fas fa-users"></i><a href="/createClanPage"> Join a clan</a></div>
+                                    @endif
+                                @else
+                                    <div class="col-sm-12"><i class="fas fa-users"></i> Clan: <a href='/clan'>{{ $clan->name }}</a></div>
+                                @endif
+
+                                <p class="mt-0 mb-4"><small></small></p>
+
+                                <div class="col-sm-12"><i class="fas fa-level-up-alt"></i> Level: {{ floor($user->xp/100) }}</div>
+                                <div class="profile col-sm-12"><i class="fas fa-coins"></i> xP: {{ $user->xp }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-4 text-left mt-2 py-3">
                     <div class="row text-center mx-1">
-                        @if($clan === null) 
-                            @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
-                                <div class="col-sm-12"><i class="fas fa-users"></i> No clan</div>
-                            @else
-                                <div class="col-sm-12"><i class="fas fa-users"></i><a href="/createClanPage"> Join a clan</a></div>
-                            @endif
-                        @else
-                            <div class="col-sm-12"><i class="fas fa-users"></i> Clan: <a href='/clan'>{{ $clan->name }}</a></div>
-                        @endif
-                        <div class="col-sm-12 mt-1"><i class="fas fa-flag"></i> Race: {{ $user->race }}</div>
-                        <div class="profile col-sm-12 mt-1"><i class="fas fa-ankh"></i> Class: {{ $user->class }}</div>
                         @if(Auth::user()->id != $user->id) <!-- Add verification to check if the authenticated user is already friend of this user->id -->
                             @if($status == 0) <!-- received request refused ->  ADD AS FRIEND -->
                                 <button type="button" class="friend-add col-sm-12 mt-5 btn btn-outline-success" data-id="{{$user->id}}"> 
@@ -98,11 +99,8 @@
                     @if(Auth::user()->id === $user->id)
                         <div class="cardbox-comments d-flex align-items-center">
                             <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#postModal">
-                                Create a new Post
+                                Create a new post
                             </button>
-                            <div class="search-comment" data-toggle="modal" data-target="#postModal">
-                                <input placeholder="  New publication..." type="text" class="w-100">
-                            </div>
                             <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">
                                     <i class="fas fa-question-circle"></i>
                             </button>
