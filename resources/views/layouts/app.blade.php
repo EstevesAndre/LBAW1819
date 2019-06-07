@@ -75,18 +75,34 @@
                         <div class="d-flex justify-content-center mx-2 align-items-center">
                             <div class="btn-group my-2">
                                 <button type="button" class="btn btn-secondary rounded-circle" onclick="window.location='{{ url('/friendRequests') }}'" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="fas fa-user-friends"></i> (<span class="not-zero">{{Auth::user()->getNumRequest()}}</span>)
+                                    aria-expanded="false"><i class="fas fa-user-friends"></i>
+                                    @if(Auth::user()->getNumRequest() == 0)
+                                        (<span>0</span>)
+                                    @else
+                                        (<span class="not-zero">{{Auth::user()->getNumRequest()}}</span>)
+                                    @endif
                                 </button>
                             </div>
                             <div class="btn-group mr-1">
                                 <button type="button" class="btn btn-secondary rounded-circle" onclick="window.location='{{ url('/chat') }}'" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="far fa-envelope"></i>
+                                    @if(Auth::user()->getUnreadMessagesNumber() == 0)
+                                        (<span>0</span>)
+                                    @else
+                                        (<span class="not-zero">{{Auth::user()->getUnreadMessagesNumber()}}</span>)
+                                    @endif
                                 </button>
                             </div>
                             <div class="btn-group mr-3 my-2" id="notifications">
                                 <button type="button" class="btn btn-secondary rounded-circle" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="far fa-bell"></i></button>
-                                <div class="dropdown-menu text-center dropdown-menu-right text-light bg-dark">
+                                    aria-expanded="false"><i class="far fa-bell"></i>
+                                    @if(Auth::user()->getNotificationsNumber() == 0)
+                                        (<span>0</span>)
+                                    @else
+                                        (<span class="not-zero">{{Auth::user()->getNotificationsNumber()}}</span>)
+                                    @endif
+                                </button>
+                                <div class="dropdown-menu text-center dropdown-menu-right text-light bg-secondary">
                                     You have 0 notifications!
                                 </div>
                             </div>

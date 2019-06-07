@@ -10,7 +10,6 @@ class Notification extends Model
     public $timestamps  = false;
     protected $table = 'notifications';
    
-
     public function userLiked() {
         return $this->belongsTo('App\User', 'like_user_id', 'id');
     }
@@ -18,7 +17,4 @@ class Notification extends Model
     public function userShared() {
         return $this->belongsTo('App\User', 'share_user_id', 'id');
     }
-
-    
-
 }

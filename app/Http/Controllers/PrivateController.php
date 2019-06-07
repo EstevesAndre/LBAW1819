@@ -8,6 +8,8 @@ use App\Share;
 use App\Clan;
 use App\Blocked;
 use App\Like;
+use App\Notification;
+use App\Comment;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -122,27 +124,7 @@ class PrivateController extends Controller
     }
 
     public function getNotifications() {
-
-        $commentNotifications = DB::select('SELECT "users".name, posts.id as postid, comments.id as commentid
-                                            FROM notifications INNER JOIN comments ON (notifications.comment_id = comments.id) 
-                                                               INNER JOIN posts ON (comments.post_id = posts.id)
-                                                               INNER JOIN "users" ON (comments.user_id = "users".id)
-                                            WHERE notifications.comment_id IS NOT NULL AND 
-                                                  posts.user_id = :ID ORDER BY notifications."date" asc', ['ID' => Auth::user()->id]);
-
-        $likeNotifications = DB::select('SELECT *
-                                         FROM notifications INNER JOIN posts ON (notifications.like_post_id = posts.id)
-                                         WHERE notifications.like_post_id IS NOT NULL AND
-                                               notifications.like_user_id IS NOT NULL AND
-                                               posts.user_id = :ID  ORDER BY notifications."date" asc', ['ID' => Auth::user()->id]);
-                                               
-        $shareNotifications = DB::select('SELECT *
-                                         FROM notifications INNER JOIN posts ON (notifications.share_post_id = posts.id)
-                                         WHERE notifications.share_post_id IS NOT NULL AND
-                                               notifications.share_user_id IS NOT NULL AND
-                                               posts.user_id = :ID  ORDER BY notifications."date" asc', ['ID' => Auth::user()->id]);  
-
-        return ['comments' => $commentNotifications, 'likes' => $likeNotifications, 'shares' => $shareNotifications];
+        return Auth::user()->getNotifications();
     }
 
     public function showCreateCharacter() {

@@ -746,27 +746,29 @@ function deletedCommentHandler() {
 function userNotificationsHandler() {
     let response = JSON.parse(this.responseText);
     let notificationsArea = document.querySelector('#notifications > .dropdown-menu');
-
+    console.log(response);
     notificationsArea.innerHTML = "";
 
-    let notifications = response.comments.length + response.likes.length + response.shares.length;
-
-    if (notifications == 0) {
+    if (response.length == 0) {
         notificationsArea.innerHTML += "You have 0 notifications!";
         return;
     }
 
-    for (let i = 0; i < response.comments.length; i++) {
-        notificationsArea.innerHTML += '<a class="no-hover index-nav" href="/post/' + response.comments[i].postid + '#' + response.comments[i].commentid + '"> <button class="dropdown-item dropdown-navbar" type="button">' + response.comments[i].name + ' commented your post.</button> </a>';
-    }
+    response.forEach(element => {
+        switch(element.type) {
+            case 'COMMENT':
+                notificationsArea.innerHTML += '<a class="no-hover index-nav dropdown-item dropdown-navbar" href="/post/' + element.post_id + '#' + element.comment_id + '"> <div class="text-left">' + element.user_name + ' commented your post.</div> </a>';
+            break;
+            case 'LIKE':
+                notificationsArea.innerHTML += '<a class="no-hover index-nav dropdown-item dropdown-navbar" href="/post/' + element.post_id + '"> <div class="text-left">' + element.user_name + ' liked your post.</div> </a>';
+            break;
+            case 'SHARE':
+                notificationsArea.innerHTML += '<a class="no-hover index-nav dropdown-item dropdown-navbar" href="/share/' + element.post_id + '_' + element.user_id + '"> <div class="text-left">' + element.user_name + ' shared your post.</div> </a>';
+            break;
+        }
+    });
 
-    for (let i = 0; i < response.likes.length; i++) {
-        notificationsArea.innerHTML += '<a class="no-hover index-nav" href="/post/' + response.comments[i].postid + '"> <button class="dropdown-item dropdown-navbar" type="button">' + response.comments[i].name + ' liked your post.</button> </a>';
-    }
-
-    for (let i = 0; i < response.shares.length; i++) {
-        notificationsArea.innerHTML += '<a class="no-hover index-nav" href="/post/' + response.comments[i].postid + '"> <button class="dropdown-item dropdown-navbar" type="button">' + response.comments[i].name + ' shared your post.</button> </a>';
-    }
+    document.querySelector('#notifications>button').innerHTML = '<i class="far fa-bell"></i> (<span>0</span>)';
 }
 
 function addedCommentHandler() {

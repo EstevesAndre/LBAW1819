@@ -170,4 +170,52 @@ class User extends Authenticatable
         return $numRequests;
     }   
 
+    public function getUnreadMessagesNumber() {
+        $friends = $this->friends()->get();
+
+        $count = 0;
+
+        foreach($friends as $friend) {
+            $messages = $friend->messages($this->id)->orderBy('date')->get();
+
+            if(!$messages->isEmpty())
+                if($messages[0]->has_been_seen === FALSE)
+                    $count++;
+        }
+
+        return $count;
+    }
+
+    public function getNotificationsNumber() {
+        return $this->getNotifications()->count();
+    }
+
+    public function getNotifications() {
+        $list = collect([]);
+
+        $commentNotifications = DB::select('SELECT "users".name, notifications.date as "date", posts.id as post_id, comments.id as comment_id
+                                            FROM notifications INNER JOIN comments ON (notifications.comment_id = comments.id) 
+                                                               INNER JOIN posts ON (comments.post_id = posts.id)
+                                                               INNER JOIN "users" ON (comments.user_id = "users".id)
+                                            WHERE notifications.comment_id IS NOT NULL AND 
+                                                  posts.user_id = :ID ORDER BY notifications."date" asc', ['ID' => $this->id]);
+        foreach($commentNotifications as $elem) {
+            $list = $list->push([ 'type' => 'COMMENT', 'post_id' => $elem->post_id, 'comment_id' => $elem->comment_id, 'user_name' => $elem->name]);
+        }
+        
+        $likeNotifications = Notification::whereNotNull('like_post_id')->where('like_user_id', '!=', $this->id)->where('has_been_seen', FALSE)->orderBy('date','DESC')->limit(4)->get();      
+        foreach($likeNotifications as $elem) {
+            $userPosts = Post::where('user_id', $this->id);
+            if(!$userPosts->where('id', $elem->like_post_id)->get()->isEmpty());
+                $list = $list->push([ 'type' => 'LIKE', 'post_id' => $elem->like_post_id, 'user_name' => User::find($elem->like_user_id)->name]);
+        }
+        $shareNotifications = Notification::whereNotNull('share_post_id')->where('has_been_seen', FALSE)->orderBy('date','DESC')->limit(4)->get();
+        foreach($shareNotifications as $elem) {
+            $userPosts = Post::where('user_id', $this->id);
+            if(!$userPosts->where('id', $elem->share_post_id)->get()->isEmpty())
+                $list = $list->push([ 'type' => 'SHARE', 'user_id' => $elem->share_user_id, 'post_id' => $elem->share_post_id, 'user_name' => User::find($elem->share_user_id)->name]);
+        }
+
+        return $list;
+    }
 }

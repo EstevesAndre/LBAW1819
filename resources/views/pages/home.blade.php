@@ -51,7 +51,6 @@
         </div>
         <!-- POSTS -->
         <section id="posts" data-count="1">
-           
             @if($posts->count() == 0)
                 <p class="text-center"><b><small>No posts to be seen!</small></b></p>
             @else
