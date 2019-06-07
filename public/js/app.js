@@ -171,7 +171,7 @@ function addEventListeners() {
         answer.addEventListener('click', reportPostRequest);
     });
 
-    let buttonLinks = document.querySelectorAll('button.a-link');
+    let buttonLinks = document.querySelectorAll('button.a-link, div.a-link');
     [].forEach.call(buttonLinks, function (link) {
         link.addEventListener('click', function () {
             window.location.href = this.getAttribute('value');
@@ -1207,7 +1207,7 @@ function updateClansLeaderboardSearch() {
 
     reply.forEach(function (element) {
         list.innerHTML +=
-            '<button type="button" class="text-left list-group-item border-0 list-group-item-action">' +
+            '<div class="text-left list-group-item border-0 list-group-item-action">' +
             '<li class="ml-3">' +
             '<div class="d-flex align-items-center row">' +
             '<div class="col-2 col-sm-1 friend-img">' +
@@ -1216,7 +1216,7 @@ function updateClansLeaderboardSearch() {
             '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
             '</div>' +
             '</li>' +
-            '</button>';
+            '</div>';
     });
 }
 
@@ -1234,7 +1234,7 @@ function updateLeaderboardSearch() {
 
     reply.users.forEach(function (element) {
         list.innerHTML +=
-            '<button data-id="/user/' + element.username + '" type="button" class="text-left list-group-item border-0 list-group-item-action">' +
+            '<div value="/user/' + element.username + '" class="a-link text-left list-group-item border-0 list-group-item-action">' +
             '<li class="ml-3">' +
             '<div class="d-flex align-items-center row">' +
             '<div class="col-2 col-sm-1 friend-img">' +
@@ -1246,13 +1246,13 @@ function updateLeaderboardSearch() {
             '<div class="col-3 col-sm-5 text-right">' + element.xp + '</div>' +
             '</div>' +
             '</li>' +
-            '</button>';
+            '</div>';
     });
 
-    let friendList = document.querySelectorAll('#leaderboard-content>div.to_link ol>button');
+    let friendList = document.querySelectorAll('#leaderboard-content>div.to_link ol>div');
     [].forEach.call(friendList, function (friend) {
         friend.addEventListener('click', function () {
-            window.location.href = this.getAttribute('data-id');
+            window.location.href = this.getAttribute('value');
         });
     });
 }
@@ -1556,7 +1556,7 @@ function updateClanUsersLeaderboardSearch() {
 
     reply.forEach(function (element) {
         list.innerHTML +=
-            '<button data-id="/user/' + element.username + '" type="button" class="text-left list-group-item border-0 list-group-item-action">' +
+            '<div value="/user/' + element.username + '" class="a-link text-left list-group-item border-0 list-group-item-action">' +
             '<li class="ml-3">' +
             '<div class="d-flex align-items-center row">' +
             '<div class="col-2 col-sm-1 friend-img">' +
@@ -1568,13 +1568,13 @@ function updateClanUsersLeaderboardSearch() {
             '<div class="col-3 col-sm-5 text-right">' + element.xp + '</div>' +
             '</div>' +
             '</li>' +
-            '</button>';
+            '</div>';
     });
 
-    let friendList = document.querySelectorAll('#leaderboard>ol>button');
+    let friendList = document.querySelectorAll('#leaderboard>ol>div');
     [].forEach.call(friendList, function (friend) {
         friend.addEventListener('click', function () {
-            window.location.href = this.getAttribute('data-id');
+            window.location.href = this.getAttribute('value');
         });
     });
 }

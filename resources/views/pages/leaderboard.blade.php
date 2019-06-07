@@ -9,18 +9,15 @@
     <div class="col-sm-12 col-md-8 col-lg-9 mb-4 activity">
 
         <div class="clan-page-info">
-            <ul class="d-flex justify-content-center mt-3 nav nav-tabs" id="clan-tabs" role="tablist">
+            <ul class="d-flex justify-content-center mt-3 nav nav-tabs" id="clan-tabs">
                 <li class="nav-item">
-                    <a class="tab-title nav-link active" id="global-tab" data-toggle="tab" href="#global" role="tab"
-                        aria-controls="forum" aria-selected="true">Global</a>
+                    <a class="tab-title nav-link active" id="global-tab" data-toggle="tab" href="#global">Global</a>
                 </li>
                 <li class="nav-item">
-                    <a class="tab-title nav-link" id="clan-tab" data-toggle="tab" href="#clan" role="tab"
-                        aria-controls="members" aria-selected="false">Clans</a>
+                    <a class="tab-title nav-link" id="clan-tab" data-toggle="tab" href="#clan">Clans</a>
                 </li>
                 <li class="nav-item">
-                    <a class="tab-title nav-link" id="friends-tab" data-toggle="tab" href="#friends" role="tab"
-                        aria-controls="leaderboard" aria-selected="false">Friends</a>
+                    <a class="tab-title nav-link" id="friends-tab" data-toggle="tab" href="#friends">Friends</a>
                 </li>
             </ul>
             <button type="button" class="float-right border-0 btn btn-default btn-circle leader-boards-help" data-toggle="tooltip" data-placement="auto" data-html="true">
