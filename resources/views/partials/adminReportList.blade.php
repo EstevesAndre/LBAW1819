@@ -10,14 +10,14 @@
         </div>
         <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
             @if($report->post()->get()[0]->user()->get()[0]->ban()->get()->isEmpty() == Auth::user()->id)
-                <button type="button" class="ban_user btn btn-danger btn-sm" id="{{ $report->post()->get()[0]->user()->get()[0]->id }}" data-toggle="modal" data-target="#banModal">
+                <button type="button" class="ban_user btn btn-danger btn-sm" data-id="{{ $report->post()->get()[0]->user()->get()[0]->id }}" data-toggle="modal" data-target="#banModal">
                 <i class="fas fa-user-times"></i> Ban User
             @else
-                <button type="button" class="ban_user btn btn-danger btn-sm" disabled>
+                <button type="button" class="ban_user btn btn-danger btn-sm" data-id="{{ $report->post()->get()[0]->user()->get()[0]->id }}" disabled>
                 <i class="fas fa-user-times"></i> User Already Banned
             @endif
             </button>
-            <button type="button" id="{{$report->id}}" class="dismiss btn btn-success btn-sm"><i class="fas fa-check"></i> Dismiss</button>
+            <button type="button" data-id="{{$report->id}}" class="dismiss btn btn-success btn-sm"><i class="fas fa-check"></i> Dismiss</button>
         </div>
     </div>
 </li>

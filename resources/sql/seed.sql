@@ -765,7 +765,6 @@ INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (7, NULL, 4, '
 INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (9, NULL, 4, '2019-03-23 12:13:20', 'Inappropriate behaviour');
 INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (18, NULL, 4, '2019-03-31 05:16:33', 'Inappropriate behaviour');
 
-
 INSERT INTO reports(sender, "date", post_id, motive) 
 VALUES(1,'2019-03-21 07:22:16', 2, 'Abusive content');
 INSERT INTO reports(sender, "date", post_id, motive) 

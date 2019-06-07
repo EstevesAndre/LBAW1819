@@ -176,16 +176,28 @@ class UserController extends Controller
         $allBans = Blocked::all();
         
         $idUserBanned = [];
+
         foreach($allBans as $banned) {
-            if(!($banned->user()->get()->isEmpty()))
+            if(!($banned->user()->get()->isEmpty())) {
                 array_push($idUserBanned, $banned->user_id);
+            }
         }
 
         $bannedUsersSearch = User::whereIn('id', $idUserBanned)
                     ->where('name', 'ilike', '%' . $search . '%')
                     ->get();
+        
+        $dates = [];
+        foreach($bannedUsersSearch as $user) {
+            foreach($allBans as $banned) {
+                if(!($banned->user()->get()->isEmpty()) && $banned->user_id == $user->id) {
+                    array_push($dates, $banned->date);
+                    break;
+                }
+            }
+        }
 
-        return $bannedUsersSearch;
+        return response()->json(['users' => $bannedUsersSearch, 'dates' => $dates]);
     }
 
     public function removePermissions(Request $request, $id) {

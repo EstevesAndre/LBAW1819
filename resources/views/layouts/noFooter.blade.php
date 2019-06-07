@@ -35,6 +35,10 @@
                     <a class="navbar-brand" href="{{ url('/home') }}">
                         <img src="{{ asset('assets/logoWhite.png') }}" width="48" height="48" alt="icon">
                     </a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="border-0 btn btn-default rounded-circle nav-help" data-toggle="tooltip" data-placement="auto" data-html="true">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
                     <a class="nav-link index-nav" href="{{ url('/home') }}">AlterEgo</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,10 +60,6 @@
                             <li class="nav-item align-self-center">
                                 <a class="nav-link index-nav" href="{{ url('/leaderboard') }}">Leaderboards</a>
                             </li>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="border-0 btn btn-default rounded-circle nav-help" data-toggle="tooltip" data-placement="auto" data-html="true">
-                                <i class="fas fa-question-circle"></i>
-                            </button>
                         </ul>
                         <div class="d-flex justify-content-center mr-2">
                             <form class="my-2 ml-4 mr-4" method="GET" action="/search">

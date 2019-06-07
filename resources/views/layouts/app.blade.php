@@ -36,12 +36,15 @@
                     <a class="navbar-brand" href="{{ url('/home') }}">
                         <img src="{{ asset('assets/logoWhite.png') }}" width="40" height="40" alt="icon">
                     </a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="border-0 btn btn-default rounded-circle nav-help" data-toggle="tooltip" data-placement="auto" data-html="true">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
                     <a class="nav-link index-nav" href="{{ url('/home') }}">AlterEgo</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-bars hamburger-icon"></i>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item align-self-center">
@@ -57,12 +60,8 @@
                             <li class="nav-item align-self-center">
                                 <a class="nav-link index-nav" href="{{ url('/leaderboard') }}">Leaderboards</a>
                             </li>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="border-0 btn btn-default rounded-circle nav-help" data-toggle="tooltip" data-placement="auto" data-html="true">
-                                <i class="fas fa-question-circle"></i>
-                            </button>
                         </ul>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center float-right">
                             <form class="my-2 ml-4 mr-4" method="GET" action="/search">
                                 <div class="searchbar">
                                     <input type ="text" class="search_input" name="search" placeholder="Search..." required>
@@ -114,20 +113,14 @@
                                 <button type="button" class="btn btn-secondary dropdown-toggle rounded-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary">
                                     @if(Auth::user()->clan()->get()->isEmpty())
-                                        <a class="no-hover index-nav" href="{{ url('/createClanPage') }}">
-                                            <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
-                                        </a>
-                                    @endif
-                                    @if(Auth::user()->clan()->get()->isEmpty() && Auth::user()->is_admin)
+                                        <button class="a-link dropdown-item dropdown-navbar" value="{{ url('/createClanPage') }}" type="button">Create Clan</button>
                                         <div class="dropdown-divider"></div>
                                     @endif
                                     @if (Auth::user()->is_admin)
-                                        <a class="no-hover index-nav" href="{{ url('/administrator') }}">
-                                            <button class="dropdown-item dropdown-navbar" type="button">Administrator</button>
-                                        </a>
+                                        <button class="a-link dropdown-item dropdown-navbar" value="{{ url('/administrator') }}" type="button">Administrator</button>
+                                        <div class="dropdown-divider"></div>
                                     @endif
-                                    <div class="dropdown-divider"></div>
-                                    <form method="GET" action="{{ route('logout') }}">
+                                    <form method="GET" class="mb-0" action="{{ route('logout') }}">
                                         <button type="submit" class="dropdown-item dropdown-navbar">Log out</button>
                                     </form>
                                 </div>
