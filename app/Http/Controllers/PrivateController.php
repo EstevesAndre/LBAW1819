@@ -52,14 +52,14 @@ class PrivateController extends Controller
                 return 1;
         });
         
-        return view('pages.home', ['posts' => $list->take(3)]);
+        return view('pages.home', ['posts' => $list]);
     }
 
     public function seeMoreHome($offset){
         $init = intval($offset);
 
         $friendIDs = Auth::user()->friendIDs()->get();
-
+        
         $posts = Post::whereIn('user_id', $friendIDs)->get();
         
         $shares = Share::whereIn('user_id', $friendIDs)->get();
@@ -74,27 +74,20 @@ class PrivateController extends Controller
             $list = $list->push($share);
         }
 
-        $list = $list->sort(function ($a, $b) {
-            if($a->date > $b->date)
-                return -1;
-            else
-                return 1;
-        });
-
         $retrieve = collect([]);
-        for($i = $init; $i < $init + 3, $i < count($list); $i++){
-            if($list[$i]->id === NULL) //('share', Share,Post,User_Share, User_Post, Auth::user)
+        foreach($list as $li){
+            if($li->id === NULL) //('share', Share,Post,User_Share, User_Post, Auth::user)
                 $retrieve = $retrieve->push(array('share', 
-                                                  $list[$i],
-                                                  $list[$i]->post()->get(), 
-                                                  $list[$i]->user()->get(),
-                                                  $list[$i]->post()->get()[0]->user()->get(), 
+                                                  $li,
+                                                  $li->post()->get(), 
+                                                  $li->user()->get(),
+                                                  $li->post()->get()[0]->user()->get(), 
                                                   Auth::user()));
             else //('post', Post,User)
                 $retrieve = $retrieve->push(
                             array('post', 
-                                $list[$i], 
-                                $list[$i]->user()->get()
+                                $li, 
+                                $li->user()->get()
                             )
                 );
         }

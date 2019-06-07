@@ -207,7 +207,7 @@
 <script type="text/javascript">
     var start = 3;
     var working = false;
-    var id = this.href.substring(this.href.lastIndexOf('/') + 1);
+    var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
     $(window).scroll(function() {
         if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
             if (working == false) {
@@ -220,7 +220,10 @@
                     contentType: "application/json",
                     data: '',
                     success: function(ret) {
-                        for (var i = 0; i < ret.length; i++) 
+                        ret.sort(function(a, b) {
+                            return a[1]['date'] < b[1]['date'];
+                        });
+                        for (var i = start; i < start + 3, i < ret.length; i++) 
                         {
                             let cur_post = ret[i];
                             let post_img = document.querySelector('.cardbox-heading>.media>div>a>img');

@@ -63,7 +63,7 @@ class ClanController extends Controller
         $posts = Auth::user()->clan()->get()[0]->posts()->orderBy('date', 'desc')->get();
 
         $retrieve = collect([]);
-        for($i = $init; $i < $init + 3, $i < count($posts); $i++){
+        for($i = 0; $i < count($posts); $i++){
             $retrieve = $retrieve->push(
                         array('post', 
                             $posts[$i], 
@@ -71,13 +71,6 @@ class ClanController extends Controller
                         )
             );
         }
-
-        $list = $list->sort(function ($a, $b) {
-            if($a->date > $b->date)
-                return -1;
-            else 
-                return 1;
-        });
         
         return $retrieve;
     }
