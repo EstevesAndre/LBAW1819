@@ -2197,7 +2197,7 @@ function reportedHandler(){
 }
 
 function getPostHTML(user, post, path_header) {
-    return ''
+    retorno = ''
         + '<div class="modal postModal fade" id="deletePostModal-' + post.id + '" data-id="' + post.id + '" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">'
         + '<div class="modal-dialog" role="document">'
         + '<div class="modal-content">'
@@ -2248,9 +2248,15 @@ function getPostHTML(user, post, path_header) {
         + '</div>'
         + '</div>'
         + '<a class="box-link no-hover" href="post/' + post.id + '">'
-        + '<div class="cardbox-item mx-3">' + post.content + '</div>'
-        + '</a>'
-        + '<div class="cardbox-base">'
+        + '<div class="cardbox-item mx-3">' + post.content + '</div>';
+
+        if(post.has_img){
+            retorno +=  '<div class="text-center">'
+                        + '<img class="img-posts" src="assets/postImgs/' + post.id + '.png" alt="Post Image">'
+                        + '</div>';
+        }
+        retorno += '</a>'
+        + '<div class="cardbox-base text-center">'
         + '<ul class="fst mx-3 mb-1">'
         + '<li><a><i class="fa fa-thumbs-up"></i></a></li>'
         + '<li><a><span>0</span></a></li>'
@@ -2264,6 +2270,8 @@ function getPostHTML(user, post, path_header) {
         + '</div>'
         + '</div>'
         + '</div>';
+
+        return retorno;
 }
 
 function getShareHTML(share, post, user_share, user_post, user, path_header) {
