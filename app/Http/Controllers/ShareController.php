@@ -33,6 +33,14 @@ class ShareController extends Controller
         if($share->user_id != Auth::user()->id && !Auth::user()->is_admin)
             return response()->json(['deleted' => false]);
         
+        $user = User::find($share->user_id);
+        $user->xp = $user->xp - 10;
+        $user->save();
+
+        $owner = User::find($share->post()->get()[0]->user()->get()[0]->id);
+        $owner->xp = $owner->xp - 20;
+        $owner->save();
+
         $share->delete();
         
         return $share;
