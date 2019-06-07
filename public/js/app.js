@@ -170,6 +170,9 @@ function addEventListeners() {
     [].forEach.call(report, function (answer) {
         answer.addEventListener('click', reportPostRequest);
     });
+
+    let morePosts = document.querySelector('div.more-user-posts');
+    if(morePosts) morePosts.addEventListener('click', sendMorePostsRequest);
 }
 
 function addHelpDeskText() {
@@ -944,15 +947,15 @@ function deletedShareHandler() {
     console.log("Share deleted - status: " + this.status);
     let reply = JSON.parse(this.responseText);
     console.log(reply);
-    // if (this.status == 200) {
-    //     let share = JSON.parse(this.responseText);
+    if (this.status == 200) {
+        let share = JSON.parse(this.responseText);
 
-    //     let shareHTML = document.querySelector('div.share[data-id="' + share.id + '"]');
-    //     shareHTML.innerHTML = '';
-    // }
+        let shareHTML = document.querySelector('div.share[data-id="' + share.post_id + "-" + share.user_id + '"]');
+        shareHTML.innerHTML = '';
+    }
 
-    // if (window.location.href.includes("share"))
-    //     window.location.href = '../home';
+    if (window.location.href.includes("share"))
+        window.location.href = '../home';
 }
 
 function deletedCommentHandler() {
@@ -2331,4 +2334,25 @@ function getShareHTML(share, post, user_share, user_post, path_header) {
         + '</div>'
         + '</div>'
         + '</div>';
+}
+
+function sendMorePostsRequest(e) {
+    let offset = e.target.closest('div.crs').getAttribute('data-id');
+
+    sendAjaxRequest('post', '/api/getMoreUserPosts/' + offset, null, updateUserPostsHandler);
+}
+
+function updateUserPostsHandler() {
+    let reply = JSON.parse(this.responseText);
+
+    reply = reply.sort(function(a, b){
+        var keyA = new Date(a.date),
+            keyB = new Date(b.date);
+        // Compare the 2 dates
+        if(keyA < keyB) return 1;
+        if(keyA > keyB) return -1;
+        return 0;
+    });
+
+    console.log(reply);
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Blocked;
+use App\Post;
+use App\Share;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -161,7 +163,7 @@ class UserController extends Controller
         foreach($inviteIDs as $invite){
             $user = User::find($invite);
             $user->is_admin = TRUE;
-            //$user->update();
+            $user->update();
         }
         
         return response()->json(['invited' => User::whereIn('id', $inviteIDs)->get()]); 
@@ -237,5 +239,52 @@ class UserController extends Controller
         }
 
         return response()->json(['accepted'=> $accepted, 'clan' => $clan]); 
+    }
+
+    public function getMoreUserPosts(Request $request, $offset) {
+
+        $init = intval($offset);
+        $posts = Post::where('user_id', Auth::user()->id)->get();
+        $shares = Share::where('user_id', Auth::user()->id)->get();
+        $list = collect([]);
+
+        foreach($posts as $post) {
+            $list = $list->push($post);
+        }
+        foreach($shares as $share) {
+            $list = $list->push($share);
+        }
+
+        $list = $list->sort(function ($a, $b) {
+            if(strtotime($a->date) > strtotime($b->date))
+                return -1;
+            else
+                return 1;
+        });
+
+        $retrieve = collect([]);
+        for($i = $init; $i < $init + 3, $i < count($list); $i++){
+            if($list[$i]->id === NULL) //('share', Share,Post,User_Share, User_Post)
+                $retrieve = $retrieve->push(
+                        array('share', 
+                            Share::where('user_id', 
+                            $list[$i]->user_id)->where('post_id', 
+                            $list[$i]->post_id)->get(), 
+                            $list[$i]->post(), 
+                            $list[$i]->user()->get(),
+                            $list[$i]->post()->get()[0]->user()->get()
+                        )
+                );
+            else //('post', Post,User)
+                $retrieve = $retrieve->push(
+                            array('post', 
+                                Post::where('id', 
+                                $list[$i]->id)->get(), 
+                                $list[$i]->user()->get()
+                            )
+                );
+        }
+
+        return $retrieve;
     }
 }

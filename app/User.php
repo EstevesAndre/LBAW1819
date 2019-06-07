@@ -51,14 +51,11 @@ class User extends Authenticatable
 
         $list = $list->sort(function ($a, $b) {
             if(strtotime($a->date) > strtotime($b->date))
-            {
                 return -1;
-            }
             else 
-            {
                 return 1;
-            }
         });
+
         return $list;
     }
 

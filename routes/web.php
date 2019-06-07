@@ -96,6 +96,7 @@ Route::post('/api/getPotentialAdminsSearch', 'AdminController@getPotentialAdmins
 Route::post('/api/getActiveClanUsersSearch/{id}', 'ClanController@getActiveClanUsersSearch');
 Route::post('/api/getBannedClanUsersSearch/{id}', 'ClanController@getBannedClanUsersSearch');
 Route::post('/api/getPotentialClanUsersSearch/{id}', 'ClanController@getPotentialClanUsersSearch');
+Route::post('/api/getMoreUserPosts/{offset}', 'UserController@getMoreUserPosts');
 
 // Posts
 Route::get('posts', 'PostController@list');
