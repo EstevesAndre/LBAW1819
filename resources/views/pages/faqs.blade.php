@@ -144,7 +144,9 @@
                     <li>
                         Post information in a forum that only other clan members can access.
                     </li>
-                    Access a list of all member of the clan.
+                    <li>
+                        Access a list of all member of the clan.
+                    </li>
                     <li>
                         Access a leaderboard containing all the users ordered by Experience Points (XP).
                     </li>
