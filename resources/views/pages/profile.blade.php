@@ -19,7 +19,7 @@
                 <div class="col-sm-12 col-lg-9 align-self-center">
                     <div class="basic-info">
                         <h2 class="text-left mb-3 mt-2"><b>{{ $user->name }}</b>
-                            <button type="button" class="border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#profile_helpModal">
+                            <button type="button" class="border-0 btn btn-default btn-circle profile-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                                 <i class="fas fa-question-circle"></i>
                             </button>
                         </h2>
@@ -107,7 +107,7 @@
                             <button type="button" class="btn btn-lg btn-dark mr-2" data-toggle="modal" data-target="#postModal">
                                 Create a new post
                             </button>
-                            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">
+                            <button type="button" class="border-0 btn btn-default rounded-circle profile-feed-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                                     <i class="fas fa-question-circle"></i>
                             </button>
                         </div>

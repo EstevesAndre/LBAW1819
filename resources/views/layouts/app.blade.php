@@ -58,7 +58,7 @@
                                 <a class="nav-link index-nav" href="{{ url('/leaderboard') }}">Leaderboards</a>
                             </li>
                             <!-- Button trigger modal -->
-                            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#nav_helpModal">
+                            <button type="button" class="border-0 btn btn-default rounded-circle nav-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                                 <i class="fas fa-question-circle"></i>
                             </button>
                         </ul>

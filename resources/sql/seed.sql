@@ -708,17 +708,17 @@ VALUES(3, 1, '2019-03-09 09:35:34', 'Yeah i know. I apologized right after. My b
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
 VALUES(13, 8, '2019-04-24 16:41:18', 'Sorry onlysaw it now, but couldnt go anyway', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(18, 19, '2019-03-27 19:24:15', 'Wanna make a barbecue with the boys?', TRUE);
+VALUES(18, 19, '2019-03-27 19:24:15', 'Wanna make a barbecue with the boys?', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(18, 19, '2019-03-27 19:25:05', 'We can see whats the best day to do it (with no matches nearby) and schedule one', TRUE);
+VALUES(18, 19, '2019-03-27 19:25:05', 'We can see whats the best day to do it (with no matches nearby) and schedule one', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(19, 18, '2019-03-27 19:25:45', 'I say YES!', TRUE);
+VALUES(19, 18, '2019-03-27 19:25:45', 'I say YES!', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(18, 19, '2019-03-27 19:26:24', 'Are we the only ones organizing?', TRUE);
+VALUES(18, 19, '2019-03-27 19:26:24', 'Are we the only ones organizing?', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(19, 18, '2019-03-27 19:28:13', 'Dont know but we can do it anyway.', TRUE);
+VALUES(19, 18, '2019-03-27 19:28:13', 'Dont know but we can do it anyway.', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(19, 18, '2019-03-27 19:28:55', 'I just threw this idea to see if you were down', TRUE);
+VALUES(19, 18, '2019-03-27 19:28:55', 'I just threw this idea to see if you were down', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
 VALUES(18, 19, '2019-03-27 19:30:15', 'Im already down! xD', FALSE);
 

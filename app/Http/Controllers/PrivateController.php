@@ -136,6 +136,10 @@ class PrivateController extends Controller
         $friends = Auth::user()->friends()->get();
         
         $selFriendMessages = Auth::user()->friendChatMessages($friends->first()->id);
+        foreach($selFriendMessages as $friend_message){
+            $friend_message->has_been_seen =true;
+            $friend_message->update();
+        }
 
         return view('pages.chat', ['user' => Auth::user()->id, 'friends' => $friends, 'messages' => $selFriendMessages]);
     }

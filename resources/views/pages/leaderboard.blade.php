@@ -23,7 +23,7 @@
                         aria-controls="leaderboard" aria-selected="false">Friends</a>
                 </li>
             </ul>
-            <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#leaderboard_helpModal">
+            <button type="button" class="float-right border-0 btn btn-default btn-circle leader-boards-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                     <i class="fas fa-question-circle"></i>
             </button>
 
