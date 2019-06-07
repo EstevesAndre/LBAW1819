@@ -1015,13 +1015,13 @@ function userNotificationsHandler() {
     response.forEach(element => {
         switch(element.type) {
             case 'COMMENT':
-                notificationsArea.innerHTML += '<div class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="comment" data-id="' + element.id + '"  href="/post/' + element.post_id + '#' + element.comment_id + '"> <div class="text-left">' + element.user_name + ' commented your post.</div> </div>';
+                notificationsArea.innerHTML += '<div class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="comment" data-id="' + element.id + '"  value="/post/' + element.post_id + '#' + element.comment_id + '"> <div class="text-left">' + element.user_name + ' commented your post.</div> </div>';
             break;
             case 'LIKE':
-                notificationsArea.innerHTML += '<a class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="like" data-id="' + element.id + '" href="/post/' + element.post_id + '"> <div class="text-left">' + element.user_name + ' liked your post.</div> </a>';
+                notificationsArea.innerHTML += '<a class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="like" data-id="' + element.id + '" value="/post/' + element.post_id + '"> <div class="text-left">' + element.user_name + ' liked your post.</div> </a>';
             break;
             case 'SHARE':
-                notificationsArea.innerHTML += '<a class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="share" data-id="' + element.id + '" href="/share/' + element.post_id + '_' + element.user_id + '"> <div class="text-left">' + element.user_name + ' shared your post.</div> </a>';
+                notificationsArea.innerHTML += '<a class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="share" data-id="' + element.id + '" value="/share/' + element.post_id + '_' + element.user_id + '"> <div class="text-left">' + element.user_name + ' shared your post.</div> </a>';
             break;
         }
     });
@@ -1142,12 +1142,12 @@ addHelpDeskText();
 function sendSeenNotification(e) {
     let id = e.target.closest('.notification-seen').getAttribute('data-id');
     sendAjaxRequest('post', '/api/notificationSeen/' + id, null, seenNotificationHandler);
+    window.location.href = e.target.closest('.notification-seen').getAttribute('value');
 }
 
 function seenNotificationHandler() {
     let reply = JSON.parse(this.responseText);
-
-console.log(reply);
+    console.log(reply);
 }
 
 let lastSearch = "";

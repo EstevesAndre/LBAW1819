@@ -1,9 +1,9 @@
 @if($post->user_id == Auth::user()->id || Auth::user()->is_admin || ($post->clan_id != null && $post->clan()->get()[0]->owner()->get()[0]->id == Auth::user()->id))
-    <div class="modal postModal fade" id="deletePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+    <div class="modal postModal fade" id="deletePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel-{{ $post->id }}" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="removePostModalLabel">Delete post</h5>
+                    <h5 class="modal-title" id="deletePostModalLabel-{{ $post->id }}">Delete post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -25,11 +25,11 @@
 @endif
 
 @if($post->clan_id === null) 
-    <div class="modal shareModal fade" id="sharePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removeShareModalLabel" aria-hidden="true">
+    <div class="modal shareModal fade" id="sharePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="sharePostModalLabel-{{ $post->id }}" aria-hidden="true">
         <div class="modal-dialog align-center" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="removeShareModalLabel">Share post</h5>
+                    <h5 class="modal-title" id="sharePostModalLabel-{{ $post->id }}">Share post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -48,11 +48,11 @@
     </div>
 @endif
 
-<div class="modal reportModal fade" id="reportPostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="reportPostModalLabel" aria-hidden="true">
+<div class="modal reportModal fade" id="reportPostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="reportPostModalLabel-{{ $post->id }}" aria-hidden="true">
     <div class="modal-dialog align-center" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="reportPostModalLabel">Report post</h5>
+                <h5 class="modal-title" id="reportPostModalLabel-{{ $post->id }}">Report post</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -60,13 +60,13 @@
             <div class="modal-body text-left">
                     <p>Why are you reporting this post?</p>
                     <div class="form-check">
-                        <input class="form-check-input" name="motive" type="radio" value="Inappropriate behaviour" id="defaultCheck1" required>Inappropriate behaviour
+                        <input class="form-check-input" name="motive" type="radio" value="Inappropriate behaviour" id="defaultCheck1-{{ $post->id }}" required>Inappropriate behaviour
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="motive" type="radio" value="Abusive content" id="defaultCheck2" required>Abusive content
+                        <input class="form-check-input" name="motive" type="radio" value="Abusive content" id="defaultCheck2-{{ $post->id }}" required>Abusive content
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="motive" type="radio" value="Racism" id="defaultCheck3" required>Racism
+                        <input class="form-check-input" name="motive" type="radio" value="Racism" id="defaultCheck3-{{ $post->id }}" required>Racism
                     </div>
                 <div class="float-right">
                     <button type="submit" data-dismiss="modal" class="report btn btn-danger">Report</button>

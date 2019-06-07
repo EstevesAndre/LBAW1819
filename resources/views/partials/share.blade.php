@@ -1,8 +1,8 @@
-<div class="modal shareModal fade" id="sharePostModal-{{ $share->post()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+<div class="modal shareModal fade" id="sharePostModal-{{ $share->post()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="sharePostModalLabel-{{ $share->post()->get()[0]->id }}" aria-hidden="true">
     <div class="modal-dialog align-center" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="removePostModalLabel">Share post</h5>
+                <h5 class="modal-title" id="sharePostModalLabel-{{ $share->post()->get()[0]->id }}">Share post</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -20,11 +20,11 @@
     </div>
 </div>
 @if($share->user_id == Auth::user()->id || Auth::user()->is_admin)
-    <div class="modal sharedPostModal fade" id="deleteShareModal-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removeShareModalLabel" aria-hidden="true">
+    <div class="modal sharedPostModal fade" id="deleteShareModal-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteShareModalLabel-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="removeShareModalLabel">Delete share</h5>
+                    <h5 class="modal-title" id="deleteShareModalLabel-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}">Delete share</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

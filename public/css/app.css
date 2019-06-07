@@ -195,7 +195,7 @@ input:hover, textarea:hover {
     padding-bottom: 2%;
 }
 
-.txt, .crs, div.a-link {
+.txt, .crs, div.a-link, .notification-seen {
     cursor: pointer;
 }
 
