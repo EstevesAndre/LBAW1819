@@ -109,14 +109,16 @@
                         for (var i = 0; i < ret.length; i++) 
                         {
                             let cur_post = ret[i];
+                            let post_img = document.querySelector('.cardbox-heading>.media>div>a>img');
+                            let path =  post_img.getAttribute('src');
+                            let path_header = path.substr(0, path.indexOf("/avatars/"));
                             if(cur_post[0] == 'post'){ //load posts
-                                let post_img = document.querySelector('.cardbox-heading>.media>div>a>img');
-                                let path =  post_img.getAttribute('src');
-                                let path_header = path.substr(0, path.indexOf("/avatars/"));
+                                
                                 $('#posts-list').append( getPostHTML(cur_post[2][0],cur_post[1][0], path_header));
                             }
                             else{ //load shares
-                                $('#posts-list').append("<div><h1>DEU LOAD DO SHARE</h1>"+ cur_post.content  +"</div>")
+                                console.log(cur_post);
+                                $('#posts-list').append( getShareHTML(cur_post[1][0],cur_post[2][0], cur_post[3][0], cur_post[4][0], cur_post[5], path_header));
                             }
                         }
                         start += 3;
