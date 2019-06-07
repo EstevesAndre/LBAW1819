@@ -98,9 +98,8 @@ class UserController extends Controller
 
         foreach($friend_messages as $friend_message){
             $friend_message->has_been_seen =true;
+            $friend_message->update();
         }
-
-        $friend_messages->update();
 
         return ['friend_info' => User::find($id), 'messages' => Auth::user()->friendChatMessages($id)];
     }
