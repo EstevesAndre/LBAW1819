@@ -128,7 +128,6 @@
                             @endif
                         @endforeach
                         </div>
-                        <div class="crs more-user-posts" data-id="5">See more <i class="fas fa-angle-down"></i></div>
                     @endif
                 </div>
                 <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
