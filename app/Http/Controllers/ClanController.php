@@ -38,21 +38,28 @@ class ClanController extends Controller
         $clan = Auth::user()->clan()->get()->first();
         $members = $clan->members()->get();
         $leaders = $clan->members()->orderBy('xp', 'desc')->get();
-        $posts = $clan->posts()->orderBy('date', 'desc')->limit(5)->get();
+        $posts = $clan->posts()->orderBy('date', 'desc')->limit(3)->get();
 
         return view('pages.clan', ['clan' => $clan, 'members' => $members, 'leaders' => $leaders, 'posts' => $posts]);
     }
 
-    public function showClan(Request $request, $id) {
-        if (!Auth::check()) return redirect('/login');
-        if (!Auth::user()->is_admin) return redirect('clan');
+    public function seeMoreClan($offset) {
 
-        $clan = Clan::find($id);
-        $members = $clan->members()->get();
-        $leaders = $clan->members()->orderBy('xp', 'desc')->get();
-        $posts = $clan->posts()->orderBy('date', 'desc')->limit(5)->get();
+        $init = intval($offset);
 
-        return view('pages.clan', ['clan' => $clan, 'members' => $members, 'leaders' => $leaders, 'posts' => $posts]);
+        $posts = Auth::user()->clan()->get()[0]->posts()->orderBy('date', 'desc')->get();
+
+        $retrieve = collect([]);
+        for($i = $init; $i < $init + 3, $i < count($posts); $i++){
+            $retrieve = $retrieve->push(
+                        array('post', 
+                            $posts[$i], 
+                            $posts[$i]->user()->get()
+                        )
+            );
+        }
+
+        return $retrieve;
     }
 
     public function create(Request $request)

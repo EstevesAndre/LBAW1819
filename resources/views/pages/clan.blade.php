@@ -224,13 +224,8 @@
                             let post_img = document.querySelector('.cardbox-heading>.media>div>a>img');
                             let path =  post_img.getAttribute('src');
                             let path_header = path.substr(0, path.indexOf("/avatars/"));
-                            if(cur_post[0] == 'post'){ //load posts
                                 
-                                $('#posts-list').append( getPostHTML(cur_post[2][0],cur_post[1][0], path_header));
-                            }
-                            else{ //load shares
-                                $('#posts-list').append( getShareHTML(cur_post[1][0],cur_post[2][0], cur_post[3][0], cur_post[4][0], cur_post[5], path_header));
-                            }
+                            $('#posts-list').append( getPostHTML(cur_post[2][0],cur_post[1], path_header));
                         }
                         start += 3;
                         setTimeout(function() {
