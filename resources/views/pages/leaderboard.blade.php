@@ -37,10 +37,10 @@
                 </div>
 
                 <div class="tab-pane fade" id="clan" role="tabpanel" aria-labelledby="clan-tab">
-                    @if($allClans === null)
+                    @if($clans === null)
                         <p class="text-center py-2 bg-white">Join a clan or create one</p>
                     @else
-                        @include('partials.leaderboardClanType', [ 'clan' => $allClans, 'function' => 'updateSearchClan'])
+                        @include('partials.leaderboardClanType', [ 'clan' => $clans, 'function' => 'updateSearchClan'])
                     @endif
                 </div>
 

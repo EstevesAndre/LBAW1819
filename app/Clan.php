@@ -37,4 +37,16 @@ class Clan extends Model
     public function ban() {
         return $this->hasOne('App\Blocked', 'clan');
     }
+
+    public function getXP(){
+        
+        $members = $this->members()->get();
+        $clan_xp = 0;
+        
+        foreach($members as $member){
+            $clan_xp += $member->xp;
+        }
+
+        return $clan_xp;
+    }
 }

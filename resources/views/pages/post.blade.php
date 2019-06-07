@@ -202,9 +202,6 @@
                 <div class="container comments pb-2">
                     @each('partials.comment', $post->comment()->orderBy('date','desc')->skip(0)->take(7)->get() , 'comment')
                 </div>
-                @if($post->comment()->count() > 7)
-                    <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                @endif
             </div>
         </div>
     </div>

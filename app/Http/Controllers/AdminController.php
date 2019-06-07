@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Blocked;
 use App\Clan;
+use App\Report;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,12 +46,15 @@ class AdminController extends Controller
         $admins = User::where('is_admin',TRUE)->whereNotIn('id', $idUserBanned)->get();
         $potentialAdmins = User::where('is_admin', FALSE)->whereNotIn('id', $idUserBanned)->limit(7)->get();
 
+        $reports = Report::orderBy('date', 'DESC')->get();
+
         return view('pages.administrator', ['activeUsers' => $activeUsers, 
                                             'bannedUsers' => $bannedUsers, 
                                             'activeClans' => $activeClans, 
                                             'bannedClans' => $bannedClans, 
                                             'admins' => $admins, 
-                                            'potentialAdmins' => $potentialAdmins]);
+                                            'potentialAdmins' => $potentialAdmins,
+                                            'reports' => $reports]);
     }
 
     public function getActiveAdminsSearch(Request $request) {
@@ -89,5 +93,14 @@ class AdminController extends Controller
             ->get();
 
         return $potentialAdminsSearch;
+    }
+
+    public function deleteReport(Request $request, $id) {
+        if(Auth::user()->is_admin == FALSE)
+            return response()->json(['deleted' => false, 'status' => $status, 'id' => $id ]);
+        
+        $status = Report::where('id', $id)->first()->delete();
+
+        return response()->json(['deleted' => true, 'status' => $status, 'id' => $id]);
     }
 }

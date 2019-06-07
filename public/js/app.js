@@ -1,20 +1,5 @@
 function addEventListeners() {
 
-    //--------------------------------------------------------INFINITE SCROLLING----------------------------------------------------------------
-    // $('ul.pagination').hide();
-    // $(function() {
-    //     $('.infinite-scroll').jscroll({
-    //         autoTrigger: true,
-    //         loadingHtml: '<img class="center-block" src="/assets/loading.gif" alt="Loading..." />',
-    //         padding: 0,
-    //         nextSelector: '.pagination li.active + li a',
-    //         contentSelector: 'div.infinite-scroll',
-    //         callback: function() {
-    //             $('ul.pagination').remove();
-    //         }
-    //     });
-    // });
-
     let deleteLike = document.querySelectorAll('li>a>i.fa-thumbs-up.active');
     [].forEach.call(deleteLike, function (like) {
         like.addEventListener('click', sendDeleteLikeRequest);
@@ -80,6 +65,11 @@ function addEventListeners() {
     let adminBanUsersModal = document.querySelectorAll('.ban_user');
     [].forEach.call(adminBanUsersModal, function (user) {
         user.addEventListener('click', setUserBanModalID);
+    });
+
+    let adminReportDismiss = document.querySelectorAll('.dismiss');
+    [].forEach.call(adminReportDismiss, function (user) {
+        user.addEventListener('click', adminReportDismissRequest);
     });
 
     let adminUnbanUsersModal = document.querySelectorAll('.unban_user');
@@ -305,6 +295,14 @@ function setUserBanModalID(e) {
     modal_msg.innerHTML = "&nbsp";
 
     modalSubmit.addEventListener('click', sendBanUserRequest);
+}
+
+function adminReportDismissRequest (e){
+    e.preventDefault();
+
+    let id = e.target.closest('button.dismiss').getAttribute('id');
+    
+    sendAjaxRequest('delete', '/api/deleteReport/' + id, null, dismissReportHandler);
 }
 
 function setUserUnbanModalID(e) {
@@ -935,6 +933,7 @@ function updateClansLeaderboardSearch() {
     let img = document.querySelector('#nav-user-img');
     let path = img.getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
+    console.log(path_header);
 
     reply.forEach(function (element) {
         list.innerHTML +=
@@ -942,7 +941,7 @@ function updateClansLeaderboardSearch() {
             '<li class="ml-3">' +
             '<div class="d-flex align-items-center row">' +
             '<div class="col-2 col-sm-1 friend-img">' +
-            '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/clanImgs/' + element.id + '.png" alt="Clan">' +
+            '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/logo.png" alt="Clan">' +
             '</div>' +
             '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
             '</div>' +
@@ -1015,6 +1014,11 @@ function banUserHandler() {
     let adminUnbanUsersModal = document.querySelectorAll('.unban_user');
     [].forEach.call(adminUnbanUsersModal, function (user) {
         user.addEventListener('click', setUserUnbanModalID);
+    });
+
+    let prev_btns = document.querySelectorAll('button.ban_user[id="' + reply.blocked.user_id + '"]');
+    prev_btns.forEach(function(prev_btn) {
+        prev_btn.outerHTML = '<button type="button" class="ban_user btn btn-danger btn-sm" disabled><i class="fas fa-user-times"></i> User Already Banned</button>';
     });
 }
 
@@ -1121,6 +1125,14 @@ function removePermissionsHandler() {
 
     if (removed == null) return; // error occurred
     active_admins.removeChild(removed);
+}
+
+function dismissReportHandler() {
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+
+    let entry = document.querySelector('li[data-id="report' + reply.id + '"]');
+    entry.parentElement.removeChild(entry);
 }
 
 function addPermissionsHandler() {
