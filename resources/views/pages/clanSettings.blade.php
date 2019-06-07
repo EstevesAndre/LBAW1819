@@ -104,9 +104,6 @@
                             
                             <ul class="active pl-2 shadow-lg users-list">
                                 @each('partials.clanSettingsMembers', $members->take(7), 'member')
-                                @if($members->count() > 7)
-                                    <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                                @endif
                             </ul>
                         @else
                             <h5 class="my-5 text-center">There are no active users</h5>
@@ -132,9 +129,6 @@
                         @endif
                         <ul class="banned pl-0 shadow-lg users-list">
                             @each('partials.clanSettingsBlocked', $blocked, 'blocked')
-                            @if($blocked->count() > 7)
-                                <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                            @endif
                         </ul>
                         @if($blocked->count() == 0)
                             <h5 class="no-banned my-5 text-center">There are no banned users</h5>

@@ -63,9 +63,6 @@
                                 
                                 <ul class="users-active pl-0 shadow-lg users-list">
                                     @each('partials.adminActiveUserList', $activeUsers->take(7), 'user')
-                                    @if($activeUsers->count() > 7)
-                                        <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                                    @endif
                                 </ul>
                             @else
                                 <h5 class="my-5 text-center">There are no active users</h5>
@@ -82,9 +79,6 @@
 
                                 <ul class="users-banned pl-0 shadow-lg users-list">
                                     @each('partials.adminBannedUserList', $bannedUsers, 'user')
-                                    @if($bannedUsers->count() > 7)
-                                        <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                                    @endif
                                 </ul>
                             @else
                                 <h5 class="my-5 text-center">There are no banned users</h5>
