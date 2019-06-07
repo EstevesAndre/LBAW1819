@@ -171,10 +171,16 @@ function addEventListeners() {
         answer.addEventListener('click', reportPostRequest);
     });
 
-    let buttonLinks = document.querySelectorAll('button.a-link, div.a-link');
+    let buttonLinks = document.querySelectorAll('button.a-link');
     [].forEach.call(buttonLinks, function (link) {
         link.addEventListener('click', function () {
             window.location.href = this.getAttribute('value');
+        });
+    });
+    let liLinks = document.querySelectorAll('div.a-link');
+    [].forEach.call(liLinks, function (link) {
+        link.addEventListener('click', function () {
+            window.location.href = this.getAttribute('data-id');
         });
     });
 
@@ -1207,16 +1213,14 @@ function updateClansLeaderboardSearch() {
 
     reply.forEach(function (element) {
         list.innerHTML +=
-            '<div class="text-left list-group-item border-0 list-group-item-action">' +
-            '<li class="ml-3">' +
-            '<div class="d-flex align-items-center row">' +
-            '<div class="col-2 col-sm-1 friend-img">' +
-            '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/logo.png" alt="Clan">' +
-            '</div>' +
-            '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
-            '</div>' +
-            '</li>' +
-            '</div>';
+            '<li class="text-left list-group-item border-0 list-group-item-action">' +
+                '<div class="d-flex align-items-center row">' +
+                '<div class="col-2 col-sm-1 friend-img">' +
+                '<img width="200" class="img-fluid border rounded-circle" src="' + path_header + '/logo.png" alt="Clan">' +
+                '</div>' +
+                '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
+                '</div>' +
+            '</li>';
     });
 }
 
@@ -1228,31 +1232,30 @@ function updateLeaderboardSearch() {
     list.innerHTML = "";
 
     let img = document.querySelector('#leaderboard-content>.active .second-place>.podium>img');
-
     let path = img.getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     reply.users.forEach(function (element) {
         list.innerHTML +=
-            '<div value="/user/' + element.username + '" class="a-link text-left list-group-item border-0 list-group-item-action">' +
-            '<li class="ml-3">' +
-            '<div class="d-flex align-items-center row">' +
-            '<div class="col-2 col-sm-1 friend-img">' +
-            '<img src="' + path_header + '/avatars/' +
-            element.race + '_' + element.class + '_' + element.gender + '.bmp"' + 'alt=logo' +
-            ' class="border bg-light img-fluid rounded-circle">' +
-            '</div>' +
-            '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
-            '<div class="col-3 col-sm-5 text-right">' + element.xp + '</div>' +
-            '</div>' +
-            '</li>' +
-            '</div>';
+            '<li class="ml-4 mr-3 py-2">' +
+                '<div data-id="/user/' + element.username + '" class="a-link">' +
+                '<div class="d-flex align-items-center row">' +
+                '<div class="col-2 col-sm-1 friend-img">' +
+                '<img src="' + path_header + '/avatars/' +
+                element.race + '_' + element.class + '_' + element.gender + '.bmp"' + 'alt=logo' +
+                ' class="border bg-light img-fluid rounded-circle">' +
+                '</div>' +
+                '<div class="col-7 col-sm-6 text-left">' + element.name + '</div>' +
+                '<div class="col-3 col-sm-5 text-right">' + element.xp + '</div>' +
+                '</div>' +
+                '</div>' +
+            '</li>';
     });
 
-    let friendList = document.querySelectorAll('#leaderboard-content>div.to_link ol>div');
+    let friendList = document.querySelectorAll('#leaderboard-content>div.to_link ol>li>div.a-link');
     [].forEach.call(friendList, function (friend) {
         friend.addEventListener('click', function () {
-            window.location.href = this.getAttribute('value');
+            window.location.href = this.getAttribute('data-id');
         });
     });
 }
