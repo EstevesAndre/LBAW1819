@@ -50,7 +50,7 @@ class ClanController extends Controller
         $posts = Auth::user()->clan()->get()[0]->posts()->orderBy('date', 'desc')->get();
 
         $retrieve = collect([]);
-        for($i = $init; $i < $init + 3, $i < count($posts); $i++){
+        for($i = $init; $i < $init + 2, $i < count($posts); $i++){
             $retrieve = $retrieve->push(
                         array('post', 
                             $posts[$i], 

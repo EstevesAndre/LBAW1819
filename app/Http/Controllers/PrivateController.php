@@ -82,7 +82,7 @@ class PrivateController extends Controller
         });
 
         $retrieve = collect([]);
-        for($i = $init; $i < $init + 3, $i < count($list); $i++){
+        for($i = $init; $i < $init + 2, $i < count($list); $i++){
             if($list[$i]->id === NULL) //('share', Share,Post,User_Share, User_Post, Auth::user)
                 $retrieve = $retrieve->push(array('share', 
                                                   $list[$i],
