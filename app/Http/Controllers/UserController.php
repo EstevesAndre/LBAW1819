@@ -70,12 +70,12 @@ class UserController extends Controller
         return view('pages.profile', ['user' => $user, 'friends' => $friends, 'clan' => $userClan, 'status' => $status]);
     }
 
-    public function seeMoreProfile($offset)
+    public function seeMoreProfile($offset, $id)
     {
         $init = intval($offset);
-        $posts = Post::where('user_id', Auth::user()->id)->get();
+        $posts = Post::where('user_id', $id)->get();
         
-        $shares = Share::where('user_id', Auth::user()->id)->get();
+        $shares = Share::where('user_id', $id)->get();
         
         $list = collect([]);
 

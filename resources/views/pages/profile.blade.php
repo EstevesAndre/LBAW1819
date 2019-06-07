@@ -208,6 +208,7 @@
 <script type="text/javascript">
     var start = 3;
     var working = false;
+    var id = this.href.substring(this.href.lastIndexOf('/') + 1);
     $(window).scroll(function() {
         if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
             if (working == false) {
@@ -215,7 +216,7 @@
                 working = true;
                 $.ajax({
                     type: "GET",
-                    url: "/api/seeMoreProfile/"+start,
+                    url: "/api/seeMoreProfile/"+start+ "+" + id,
                     processData: false,
                     contentType: "application/json",
                     data: '',

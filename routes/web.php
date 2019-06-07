@@ -43,7 +43,7 @@ Route::put('/api/unbanMember/{user_id}+{clan_id}', 'ClanController@unbanMember')
 Route::post('/api/inviteUsers/{clan_id}', 'ClanController@inviteUsers');
 Route::get('/api/deleteClan/{clan_id}', 'ClanController@delete');
 Route::get('/api/seeMoreHome/{offset}', 'PrivateController@seeMoreHome');
-Route::get('/api/seeMoreProfile/{offset}', 'UserController@seeMoreProfile');
+Route::get('/api/seeMoreProfile/{offset}+{id}', 'UserController@seeMoreProfile');
 Route::get('/api/seeMoreClan/{offset}', 'ClanController@seeMoreClan');
 
 Route::put('/api/banUser/{id}', 'BlockedController@createBanUser');
