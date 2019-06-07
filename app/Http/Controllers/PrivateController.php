@@ -46,7 +46,7 @@ class PrivateController extends Controller
         }
 
         $list = $list->sort(function ($a, $b) {
-            if(strtotime($a->date) > strtotime($b->date))
+            if($a->date > $b->date)
                 return -1;
             else 
                 return 1;
@@ -75,14 +75,14 @@ class PrivateController extends Controller
         }
 
         $list = $list->sort(function ($a, $b) {
-            if(strtotime($a->date) > strtotime($b->date))
+            if($a->date > $b->date)
                 return -1;
             else
                 return 1;
         });
 
         $retrieve = collect([]);
-        for($i = $init; $i < $init + 2, $i < count($list); $i++){
+        for($i = $init; $i < $init + 3, $i < count($list); $i++){
             if($list[$i]->id === NULL) //('share', Share,Post,User_Share, User_Post, Auth::user)
                 $retrieve = $retrieve->push(array('share', 
                                                   $list[$i],
