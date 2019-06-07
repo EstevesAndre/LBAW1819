@@ -43,6 +43,10 @@ class ClanController extends Controller
         return view('pages.clan', ['clan' => $clan, 'members' => $members, 'leaders' => $leaders, 'posts' => $posts]);
     }
 
+    public function showMoreClan($offset){
+        
+    }
+
     public function create(Request $request)
     {
         $clan = new Clan();

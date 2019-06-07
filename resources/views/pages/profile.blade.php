@@ -118,7 +118,7 @@
                         <p class="text-center"><b><small>{{ $user->name }} has 0 publications!</small></b></p>
                     @else
                         <div id="posts-list">
-                        @foreach($user->posts()->take(5) as $p)
+                        @foreach($user->posts()->take(3) as $p)
                             @if($p->id != null)
                                 @if($p->clan_id == null || (!Auth::user()->clan()->get()->isEmpty() && $p->clan_id == Auth::user()->clan()->get()[0]->id))
                                     @include('partials.post', ['post' => $p])
@@ -227,10 +227,10 @@
                             let path_header = path.substr(0, path.indexOf("/avatars/"));
                             if(cur_post[0] == 'post'){ //load posts
                                 
-                                $('#posts-list').append( getPostHTML(cur_post[2][0],cur_post[1][0], path_header));
+                                $('#posts-list').append( getPostHTML(cur_post[2][0],cur_post[1], path_header));
                             }
                             else{ //load shares
-                                $('#posts-list').append( getShareHTML(cur_post[1][0],cur_post[2][0], cur_post[3][0], cur_post[4][0], cur_post[5], path_header));
+                                $('#posts-list').append( getShareHTML(cur_post[1],cur_post[2][0], cur_post[3][0], cur_post[4][0], cur_post[5], path_header));
                             }
                         }
                         start += 3;

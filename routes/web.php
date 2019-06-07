@@ -44,6 +44,7 @@ Route::post('/api/inviteUsers/{clan_id}', 'ClanController@inviteUsers');
 Route::get('/api/deleteClan/{clan_id}', 'ClanController@delete');
 Route::get('/api/seeMoreHome/{offset}', 'PrivateController@seeMoreHome');
 Route::get('/api/seeMoreProfile/{offset}', 'UserController@seeMoreProfile');
+Route::get('/api/seeMoreClan/{offset}', 'UserController@seeMoreClan');
 
 Route::put('/api/banUser/{id}', 'BlockedController@createBanUser');
 Route::put('/api/banClan/{id}', 'BlockedController@createBanClan');

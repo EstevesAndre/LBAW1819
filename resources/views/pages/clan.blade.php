@@ -213,7 +213,7 @@
                 working = true;
                 $.ajax({
                     type: "GET",
-                    url: "/api/seeMoreHome/"+start,
+                    url: "/api/seeMoreClan/"+start,
                     processData: false,
                     contentType: "application/json",
                     data: '',
