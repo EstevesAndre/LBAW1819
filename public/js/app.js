@@ -2197,7 +2197,7 @@ function reportedHandler(){
 }
 
 function getPostHTML(user, post, path_header) {
-    let retorno =  ''
+    return ''
         + '<div class="modal postModal fade" id="deletePostModal-' + post.id + '" data-id="' + post.id + '" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">'
         + '<div class="modal-dialog" role="document">'
         + '<div class="modal-content">'
@@ -2248,15 +2248,8 @@ function getPostHTML(user, post, path_header) {
         + '</div>'
         + '</div>'
         + '<a class="box-link no-hover" href="post/' + post.id + '">'
-        + '<div class="cardbox-item mx-3">' + post.content + '</div>';
-
-        if(post.has_img){
-            retorno += '<div class="text-center">'
-            + '<img class="img-posts" src="assets/postImgs/' + post.id + '.png" alt="Post Image">'
-            + '</div>'
-        }
-        
-        retorno += '</a>'
+        + '<div class="cardbox-item mx-3">' + post.content + '</div>'
+        + '</a>'
         + '<div class="cardbox-base">'
         + '<ul class="fst mx-3 mb-1">'
         + '<li><a><i class="fa fa-thumbs-up"></i></a></li>'
@@ -2271,8 +2264,6 @@ function getPostHTML(user, post, path_header) {
         + '</div>'
         + '</div>'
         + '</div>';
-
-        return retorno;
 }
 
 function getShareHTML(share, post, user_share, user_post, user, path_header) {
@@ -2345,7 +2336,7 @@ function getShareHTML(share, post, user_share, user_post, user, path_header) {
     + '</div>'
     + '<div class="media-body ml-1 align-self-center">' 
     + '<p class="text-dark m-0 user-link">'
-    + '<a class="user-link" href="/user/' + user_share.username + '">' + user_share.name + '</a> shared a post from '
+    + '<a class="user-link" href="/user/' + user_share.username + '">' + user_share.name + '</a> shared a post from'
     + '<a class="user-link" href="/user/' + user_post.username + '}">' + user_post.name + '</a>'
     + '</p>'
     + '<small><span><i class="icon ion-md-time mt-0"></i>' + share.date.substring(0, 19) + '</span></small>'

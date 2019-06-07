@@ -28,27 +28,29 @@
         </div>
     </div>
 </div>
-<div class="modal shareModal fade" id="sharePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
-    <div class="modal-dialog align-center" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="removePostModalLabel">Share post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/api/share/{{$post->id}}">
-                    {{csrf_field()}}
-                    <textarea class="rounded border-secondary w-100" rows="4" placeholder="Write your share message..." name="content"></textarea>
-                    <div class="float-right">
-                        <button type="submit" class="btn btn-success">Share</button>
-                    </div>
-                </form>
+@if($post->clan_id !== null) 
+    <div class="modal shareModal fade" id="sharePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+        <div class="modal-dialog align-center" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removePostModalLabel">Share post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/api/share/{{$post->id}}">
+                        {{csrf_field()}}
+                        <textarea class="rounded border-secondary w-100" rows="4" placeholder="Write your share message..." name="content"></textarea>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success">Share</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endif
 
 <div class="modal reportModal fade" id="reportPostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="reportPostModalLabel" aria-hidden="true">
     <div class="modal-dialog align-center" role="document">
