@@ -27,7 +27,7 @@
 </div>
 <br />
 @if($share->user()->get()[0]->id == Auth::user()->id || Auth::user()->is_admin)
-    <div class="modal postModal fade" id="deleteShareModal-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removeShareModalLabel" aria-hidden="true">
+    <div class="modal sharedPostModal fade" id="deleteShareModal-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removeShareModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,7 +53,7 @@
 @endif
 <div class="mt-5 row text-center fullscreen-3-4 m-0 standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 activity">
-        <div class="container post mt-4 mb-2 p-0" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}">
+        <div class="container share mt-4 mb-2 p-0" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}">
             <div class="cardbox text-left shadow-lg bg-white">
                 <div class="cardbox-heading">
                     <div class="dropdown float-right mt-3 mr-3">

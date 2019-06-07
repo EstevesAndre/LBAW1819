@@ -36,6 +36,11 @@ function addEventListeners() {
         delPost.addEventListener('click', sendDeletePostRequest);
     });
 
+    let sharedPostModal = document.querySelectorAll('div.SharedPostModal>div>div>div.modal-body>div>button.btn-danger');
+    [].forEach.call(sharedPostModal, function (delShare) {
+        delShare.addEventListener('click', sendDeleteShareRequest);
+    });
+
     let deleteComment = document.querySelectorAll('.delete-comment>a>i');
     [].forEach.call(deleteComment, function (delCom) {
         delCom.addEventListener('click', sendDeleteCommentRequest);
@@ -228,6 +233,17 @@ function sendDeletePostRequest(e) {
         return;
 
     sendAjaxRequest('delete', '/api/post/' + post_id, null, deletedPostHandler);
+}
+
+function sendDeleteShareRequest(e) {
+    console.log("Share delete request");
+    
+    let share_id = this.closest('div.sharedPostModal').getAttribute('data-id');
+
+    if (share_id == null)
+        return;
+
+    sendAjaxRequest('delete', '/api/share/' + share_id, null, deletedShareHandler);
 }
 
 function sendDeleteCommentRequest(e) {
@@ -742,6 +758,20 @@ function deletedPostHandler() {
     }
 
     if (window.location.href.includes("post"))
+        window.location.href = '../home';
+}
+
+function deletedShareHandler() {
+    console.log("Share deleted - status: " + this.status);
+
+    if (this.status == 200) {
+        let share = JSON.parse(this.responseText);
+
+        let shareHTML = document.querySelector('div.share[data-id="' + share.id + '"]');
+        shareHTML.innerHTML = '';
+    }
+
+    if (window.location.href.includes("share"))
         window.location.href = '../home';
 }
 
