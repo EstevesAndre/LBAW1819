@@ -117,7 +117,6 @@
                                 $('#posts-list').append( getPostHTML(cur_post[2][0],cur_post[1][0], path_header));
                             }
                             else{ //load shares
-                                console.log(cur_post);
                                 $('#posts-list').append( getShareHTML(cur_post[1][0],cur_post[2][0], cur_post[3][0], cur_post[4][0], cur_post[5], path_header));
                             }
                         }

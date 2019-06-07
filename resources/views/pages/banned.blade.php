@@ -16,7 +16,7 @@
             <p>Banned User: {{ $user->name }}</p>
             <p>Banned by: {{ $admin->name }}</p>
             <p>Banned because: {{ $ban->motive }}</p>
-            <p>Banned until: {{ $ban->date }}</p>
+            <p>Banned until: {{ substr($ban->date,0,19) }}</p>
             <form method="GET" class="text-center" action="{{ route('logout') }}">
                 <button type="submit" class="btn btn-dark">Log out</button>
             </form>
