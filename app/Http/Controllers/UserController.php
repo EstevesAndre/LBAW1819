@@ -73,9 +73,12 @@ class UserController extends Controller
     public function seeMoreProfile($offset, $id)
     {
         $init = intval($offset);
-        $posts = Post::where('user_id', $id)->get();
+
+        $real_id = User::where('username', $id)->get()[0]->id;
+
+        $posts = Post::where('user_id', $real_id)->get();
         
-        $shares = Share::where('user_id', $id)->get();
+        $shares = Share::where('user_id', $real_id)->get();
         
         $list = collect([]);
 
@@ -87,15 +90,8 @@ class UserController extends Controller
             $list = $list->push($share);
         }
 
-        $list = $list->sort(function ($a, $b) {
-            if($a->date > $b->date)
-                return -1;
-            else
-                return 1;
-        });
-
         $retrieve = collect([]);
-        for($i = $init; $i < $init + 3, $i < count($list); $i++){
+        for($i = 0; $i < count($list); $i++){
             if($list[$i]->id === NULL) //('share', Share,Post,User_Share, User_Post, Auth::user)
                 $retrieve = $retrieve->push(array('share', 
                                                   $list[$i],

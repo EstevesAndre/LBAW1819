@@ -218,7 +218,10 @@
                     contentType: "application/json",
                     data: '',
                     success: function(ret) {
-                        for (var i = 0; i < ret.length; i++) 
+                        ret.sort(function(a, b) {
+                            return a[1]['date'] < b[1]['date'];
+                        });
+                        for (var i = start; i < start + 3, i < ret.length; i++) 
                         {
                             let cur_post = ret[i];
                             let post_img = document.querySelector('.cardbox-heading>.media>div>a>img');
