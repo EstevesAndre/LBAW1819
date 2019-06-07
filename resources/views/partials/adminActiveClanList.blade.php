@@ -8,7 +8,7 @@
             {{ $clan->name }}
         </div>
         <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-            <button type="button" class="ban_clan btn btn-danger btn-sm" id="{{ $clan->id }}" data-toggle="modal" data-target="#clanBanModal">
+            <button type="button" class="ban_clan btn btn-danger btn-sm" data-id="{{ $clan->id }}" data-toggle="modal" data-target="#clanBanModal">
                 <i class="fas fa-user-times"></i> Ban Clan
             </button>
         </div>

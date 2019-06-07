@@ -6,11 +6,7 @@
 <br>
 <br>
 <div class="container justify-content-center my-5">
-    <h1 class="text-center"><b>Administrator's Page</b>
-        <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#clan_helpModal">
-            <i class="fas fa-question-circle"></i>
-        </button>
-    </h1>
+    <h1 class="text-center"><b>Administrator's Page</b></h1>
     <div class="admin-content my-4">
         <ul class="nav nav-pills nav-fill pb-3 border-bottom">
             <li class="nav-item mx-2">
@@ -56,7 +52,7 @@
                             @if($activeUsers->count() > 0)    
                                 <div class="d-flex justify-content-center mb-3 mr-3">
                                     <div class="searchbar">
-                                        <input class="search_input search_input_fixed" onkeyup="activeUsersSearch()" type="text" name="" placeholder="Search...">
+                                        <input class="search_input search_input_fixed" onkeyup="activeUsersSearch()" type="text" placeholder="Search...">
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
@@ -72,7 +68,7 @@
                             @if($bannedUsers->count() > 0)
                                 <div class="d-flex justify-content-center mb-3 mr-3">
                                     <div class="searchbar">
-                                        <input class="search_input search_input_fixed" onkeyup="bannedUsersSearch()" type="text" name="" placeholder="Search...">
+                                        <input class="search_input search_input_fixed" onkeyup="bannedUsersSearch()" type="text" placeholder="Search...">
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
@@ -105,7 +101,7 @@
                             @if($activeClans->count() > 0)
                                 <div class="d-flex justify-content-center mb-3 mr-3">
                                     <div class="searchbar">
-                                        <input class="search_input search_input_fixed" onkeyup="activeClansSearch()" type="text" name="" placeholder="Search...">
+                                        <input class="search_input search_input_fixed" onkeyup="activeClansSearch()" type="text" placeholder="Search...">
                                         <div class="search_icon"><i class="fas fa-search"></i></div>
                                     </div>
                                 </div>
@@ -119,7 +115,7 @@
                         <div class="tab-pane fade" id="banned-clans" role="tabpanel" aria-labelledby="banned-clans-tab">
                             <div class="d-flex justify-content-center mb-3 mr-3">
                                 <div class="searchbar">
-                                    <input class="search_input search_input_fixed" onkeyup="bannedClansSearch()" type="text" name="" placeholder="Search...">
+                                    <input class="search_input search_input_fixed" onkeyup="bannedClansSearch()" type="text" placeholder="Search...">
                                     <div class="search_icon"><i class="fas fa-search"></i></div>
                                 </div>
                             </div>
@@ -140,7 +136,7 @@
                     </div>
                     <div class="d-flex justify-content-center mb-3 mr-3" id="admins-content">
                         <div class="searchbar">
-                            <input class="search_input search_input_fixed" onkeyup="activeAdminsSearch()" type="text" name="" placeholder="Search...">
+                            <input class="search_input search_input_fixed" onkeyup="activeAdminsSearch()" type="text" placeholder="Search...">
                             <div class="search_icon"><i class="fas fa-search"></i></div>
                         </div>
                     </div>
@@ -166,24 +162,6 @@
         </div>
     </div>
 </div>
-
-<!-- Clan Help Modal -->
-<div class="modal fade" id="clan_helpModal" tabindex="-1" role="dialog" aria-labelledby="clan_helpModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="clan_helpModalLabel">Clan Help</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            This is the administation page.
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Users Ban Modal -->
 <div class="modal fade" id="banModal" tabindex="-1" role="dialog" aria-labelledby="banModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -219,7 +197,7 @@
                 </select>
                 <p class="text-center mt-2 mb-0 msg-response">&nbsp</p>
                 <button type="button" data-dismiss="modal" class="btn btn-secondary mt-2 mx-2 float-right">Close!</button>
-                <button type="button" class="btn-ban-modal btn btn-danger mt-2 float-right"><i class="fas fa-user-times"></i> Ban!</button>
+                <button type="button" data-id="&nbsp" class="btn-ban-modal btn btn-danger mt-2 float-right"><i class="fas fa-user-times"></i> Ban!</button>
             </div>
         </div>
     </div>
@@ -238,7 +216,7 @@
                 <p>Are you sure that you want to unban this user?</p>
                 <p>His/her ban ends <small class="end-date"></small></p>
                 <div class="float-right">
-                    <button type="button" id="" data-dismiss="modal" class="btn-unban-modal btn btn-success">Yes</button>
+                    <button type="button" data-id="&nbsp" data-dismiss="modal" class="btn-unban-modal btn btn-success">Yes</button>
                     <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
@@ -300,7 +278,7 @@
                 <p>Are you sure that you want to unban this clan?</p>
                 <p>This ban ends <small class="end-date"></small></p>
                 <div class="float-right">
-                    <button type="button" id="" data-dismiss="modal" class="btn-unban-clan-modal btn btn-success">Yes</button>
+                    <button type="button" data-id="&nbsp" data-dismiss="modal" class="btn-unban-clan-modal btn btn-success">Yes</button>
                     <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
@@ -321,7 +299,7 @@
             <div class="modal-body">
                 <p>Are you sure that you want to remove admin permissions?</p>
                 <div class="float-right">
-                    <button type="button" id="" data-dismiss="modal" class="btn-rm-permissions-modal btn btn-success">Yes</button>
+                    <button type="button" data-id="&nbsp" data-dismiss="modal" class="btn-rm-permissions-modal btn btn-success">Yes</button>
                     <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
@@ -341,7 +319,7 @@
             <div class="modal-body">
                 <div class="d-flex justify-content-center mb-3 mr-3">
                     <div class="searchbar">
-                        <input class="search_input search_input_fixed" onkeyup="potentialAdminsSearch()" type="text" name="" placeholder="Search...">
+                        <input class="search_input search_input_fixed" onkeyup="potentialAdminsSearch()" type="text" placeholder="Search...">
                         <div class="search_icon"><i class="fas fa-search"></i></div>
                     </div>
                 </div>

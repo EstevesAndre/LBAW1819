@@ -9,7 +9,7 @@
             @if($user->id == Auth::user()->id)
                 <button type="button" class="btn btn-danger btn-sm" disabled>
             @else
-                <button type="button" class="rm_permissions btn btn-danger btn-sm" id="{{$user->id}}" data-toggle="modal" data-target="#removePermModal">
+                <button type="button" class="rm_permissions btn btn-danger btn-sm" data-id="{{$user->id}}" data-toggle="modal" data-target="#removePermModal">
             @endif
                 <i class="fas fa-user-times"></i> Remove Permissions
             </button>

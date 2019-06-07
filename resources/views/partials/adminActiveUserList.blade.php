@@ -9,7 +9,7 @@
             @if($user->id == Auth::user()->id)
                 <button type="button" class="ban_user btn btn-danger btn-sm" disabled>
             @else
-                <button type="button" class="ban_user btn btn-danger btn-sm" id="{{ $user->id }}" data-toggle="modal" data-target="#banModal">
+                <button type="button" class="ban_user btn btn-danger btn-sm" data-id="{{ $user->id }}" data-toggle="modal" data-target="#banModal">
             @endif
                 <i class="fas fa-user-times"></i> Ban User
             </button>

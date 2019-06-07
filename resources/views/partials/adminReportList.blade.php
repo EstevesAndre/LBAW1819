@@ -5,8 +5,8 @@
             src="{{ asset('assets/avatars/'.$report->post()->get()[0]->user()->get()[0]->race.'_'.$report->post()->get()[0]->user()->get()[0]->class.'_'.$report->post()->get()[0]->user()->get()[0]->gender.'.bmp') }}">
         </div>
         <div class="col-6 col-sm-5 col-md-6 pr-1 text-left">
-            <a class="no-hover standard-text" href="post/{{ $report->post()->get()[0]->id}}">Post by </a>
-            <a class="no-hover standard-text" href="user/{{ $report->post()->get()[0]->user()->get()[0]->username}}">{{ $report->post()->get()[0]->user()->get()[0]->name }}</a>
+            <a class="no-hover standard-text" href="post/{{ $report->post()->get()[0]->id}}">Post </a>by
+            <a class="no-hover standard-text" href="user/{{ $report->post()->get()[0]->user()->get()[0]->username}}"> {{ $report->post()->get()[0]->user()->get()[0]->name }}</a>
         </div>
         <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
             @if($report->post()->get()[0]->user()->get()[0]->ban()->get()->isEmpty() == Auth::user()->id)
