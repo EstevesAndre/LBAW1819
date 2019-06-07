@@ -43,6 +43,18 @@ class ClanController extends Controller
         return view('pages.clan', ['clan' => $clan, 'members' => $members, 'leaders' => $leaders, 'posts' => $posts]);
     }
 
+    public function showClan(Request $request, $id) {
+        if (!Auth::check()) return redirect('/login');
+        if (!Auth::user()->is_admin) return redirect('clan');
+
+        $clan = Clan::find($id);
+        $members = $clan->members()->get();
+        $leaders = $clan->members()->orderBy('xp', 'desc')->get();
+        $posts = $clan->posts()->orderBy('date', 'desc')->limit(5)->get();
+
+        return view('pages.clan', ['clan' => $clan, 'members' => $members, 'leaders' => $leaders, 'posts' => $posts]);
+    }
+
     public function create(Request $request)
     {
         $clan = new Clan();
