@@ -93,6 +93,15 @@ class UserController extends Controller
     }
 
     public function getFriendsMessages(Request $request, $id) {
+
+        $friend_messages = Auth::user()->friendChatMessages($id);
+
+        foreach($friend_messages as $friend_message){
+            $friend_message->has_been_seen =true;
+        }
+
+        $friend_messages->update();
+
         return ['friend_info' => User::find($id), 'messages' => Auth::user()->friendChatMessages($id)];
     }
 

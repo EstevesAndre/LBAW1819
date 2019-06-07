@@ -1,20 +1,5 @@
 function addEventListeners() {
 
-    //--------------------------------------------------------INFINITE SCROLLING----------------------------------------------------------------
-    // $('ul.pagination').hide();
-    // $(function() {
-    //     $('.infinite-scroll').jscroll({
-    //         autoTrigger: true,
-    //         loadingHtml: '<img class="center-block" src="/assets/loading.gif" alt="Loading..." />',
-    //         padding: 0,
-    //         nextSelector: '.pagination li.active + li a',
-    //         contentSelector: 'div.infinite-scroll',
-    //         callback: function() {
-    //             $('ul.pagination').remove();
-    //         }
-    //     });
-    // });
-
     let deleteLike = document.querySelectorAll('li>a>i.fa-thumbs-up.active');
     [].forEach.call(deleteLike, function (like) {
         like.addEventListener('click', sendDeleteLikeRequest);
