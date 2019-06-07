@@ -13,12 +13,16 @@
                     <i class="left fas fa-search"></i>
                 </div>
                 <div class="list-group text-left" id="list-tab" role="tablist">
+                    @if(!$friends->isEmpty())
                     <a class="friend-list list-group-item list-group-item-action active" data-id="{{ $friends[0]->id }}">
                         <img src="{{ asset('assets/avatars/'.$friends[0]->race.'_'.$friends[0]->class.'_'.$friends[0]->gender.'.bmp') }}"
                          alt="logo" width="25" class="border img-fluid rounded-circle">
                     {{ $friends[0]->name }}
                     </a>
-                    @each('partials.chatFriend', $friends->slice(1,10), 'user')    
+                    @each('partials.chatFriend', $friends->slice(1,10), 'user') 
+                    @else
+                        <div class="text-center py-5">You have 0 friends!</div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -27,6 +31,7 @@
                 <input type="text" class="m-2 border w-90 no-outline search-box" placeholder="Search a friend here..." required>
                 <i class="left fas fa-search"></i>
             </div>
+            @if(!$friends->isEmpty())
             <div class="friend-chat border rounded hgt" data-id="{{ $friends[0]->id }}">
                 <div class="h-100 parent">
                     <div class="fixed-at-top p-3 w-100 border rounded text-left tab-content chat-content" id="nav-tabContent">
@@ -47,7 +52,10 @@
                         <button type="submit" class="btn btn-primary float-right mr-2" id="send-button"><i class="fas fa-envelope"></i></button>
                     </div>
                 </div>
-            </div>  
+            </div>
+            @else
+            <h2 class="text-center py-5">Sorry bro...</h2>
+            @endif 
         </div>
     </div>
 </div>

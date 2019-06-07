@@ -66,7 +66,6 @@
                             @endif
                         @endforeach
                     </div>
-                   {{-- {{$posts->links()}} --}}
                 </div>
             @endif
         </section>
@@ -98,8 +97,8 @@
     $(window).scroll(function() {
         if ($(this).scrollTop() + 1 >= $('body').height() - $(window).height()) {
             if (working == false) {
+                console.log("LOADING");
                 working = true;
-                console.log(start);
                 $.ajax({
                     type: "GET",
                     url: "/api/seeMoreHome/"+start,
@@ -107,12 +106,14 @@
                     contentType: "application/json",
                     data: '',
                     success: function(ret) {
-                        console.log(ret);
                         for (var i = 0; i < ret.length; i++) 
                         {
-                            let cur_post = ret[i][0];
-                            if(cur_post.id != null){ //load posts
-                                $('#posts-list').append("<div><h1>DEU LOAD DO POST</h1>"+ cur_post.content  +"</div>")
+                            let cur_post = ret[i];
+                            if(cur_post[0] == 'post'){ //load posts
+                                let post_img = document.querySelector('.cardbox-heading>.media>div>a>img');
+                                let path =  post_img.getAttribute('src');
+                                let path_header = path.substr(0, path.indexOf("/avatars/"));
+                                $('#posts-list').append( getPostHTML(cur_post[2][0],cur_post[1][0], path_header));
                             }
                             else{ //load shares
                                 $('#posts-list').append("<div><h1>DEU LOAD DO SHARE</h1>"+ cur_post.content  +"</div>")

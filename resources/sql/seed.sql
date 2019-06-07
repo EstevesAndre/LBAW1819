@@ -652,59 +652,59 @@ VALUES(3, 4, '2019-01-14 12:42:20', 'Dont know if i can...');
 
 
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(4, 14, '2019-02-11 13:41:32', 'Hey, i added you as admin because i cant keep this up alone', TRUE);
+VALUES(4, 14, '2019-02-11 13:41:32', 'Hey, i added you as admin because i cant keep this up alone', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(4, 14, '2019-02-11 13:43:07', 'Ill give more hints later on how to be an admin', TRUE);
+VALUES(4, 14, '2019-02-11 13:43:07', 'Ill give more hints later on how to be an admin', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(14, 4, '2019-02-11 13:47:12', 'Ah nice!', TRUE);
+VALUES(14, 4, '2019-02-11 13:47:12', 'Ah nice!', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(14, 4, '2019-02-11 13:47:54', 'You can teach me tomorrow', TRUE);
+VALUES(14, 4, '2019-02-11 13:47:54', 'You can teach me tomorrow', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(4, 14, '2019-02-11 13:48:22', 'Yeah yeah we can talk in the practice', TRUE);
+VALUES(4, 14, '2019-02-11 13:48:22', 'Yeah yeah we can talk in the practice', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(14, 4, '2019-02-11 13:48:44', 'Its a deal xD', TRUE);
+VALUES(14, 4, '2019-02-11 13:48:44', 'Its a deal xD', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(4, 14, '2019-02-11 13:49:12', 'See you tomorrow!', TRUE);
+VALUES(4, 14, '2019-02-11 13:49:12', 'See you tomorrow!', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(14, 4, '2019-02-11 13:49:32', 'Yeah bye!', TRUE);
+VALUES(14, 4, '2019-02-11 13:49:32', 'Yeah bye!', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
 VALUES(5, 16, '2019-01-27 19:34:41', 'Im just letting you know that im NOT the goalkeeper tomorrow', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(17, 2, '2019-03-04 12:43:45', 'We had a good session today', TRUE);
+VALUES(17, 2, '2019-03-04 12:43:45', 'We had a good session today', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(2, 17, '2019-03-04 12:44:15', 'Yeah a pretty cool one', TRUE);
+VALUES(2, 17, '2019-03-04 12:44:15', 'Yeah a pretty cool one', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(2, 17, '2019-03-04 12:44:52', 'Bu there will be more next week', TRUE);
+VALUES(2, 17, '2019-03-04 12:44:52', 'Bu there will be more next week', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(17, 2, '2019-03-04 12:46:10', 'True', TRUE);
+VALUES(17, 2, '2019-03-04 12:46:10', 'True', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(10, 9, '2019-03-18 02:16:49', 'M10better_thanCR7 enviou um GIF', TRUE);
+VALUES(10, 9, '2019-03-18 02:16:49', 'M10better_thanCR7 enviou um GIF', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(9, 10, '2019-03-18 02:17:31', 'I cant see the gif', TRUE);
+VALUES(9, 10, '2019-03-18 02:17:31', 'I cant see the gif', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(10, 9, '2019-03-18 02:18:23', 'Hehehe theres no gif. We cant even send gifs', TRUE);
+VALUES(10, 9, '2019-03-18 02:18:23', 'Hehehe theres no gif. We cant even send gifs', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(9, 10, '2019-03-18 02:18:47', 'Dont talk to me. Never again!', TRUE);
+VALUES(9, 10, '2019-03-18 02:18:47', 'Dont talk to me. Never again!', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
 VALUES(5, 17, '2019-02-01 16:14:34', 'The dinners at 20:30. Youve been warned', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(12, 5, '2019-01-01 22:38:58', 'Saw you at the mall today', TRUE);
+VALUES(12, 5, '2019-01-01 22:38:58', 'Saw you at the mall today', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(5, 12, '2019-01-01 22:39:23', 'Yeah, my wife made me go!', TRUE);
+VALUES(5, 12, '2019-01-01 22:39:23', 'Yeah, my wife made me go!', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(5, 12, '2019-01-01 22:39:54', 'But it was alright. Not that bad', TRUE);
+VALUES(5, 12, '2019-01-01 22:39:54', 'But it was alright. Not that bad', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(5, 12, '2019-01-01 22:40:28', 'Same here xD', TRUE);
+VALUES(5, 12, '2019-01-01 22:40:28', 'Same here xD', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
 VALUES(8, 13, '2019-02-17 17:27:22', 'Wanna go swim tomorrow morning?', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(1, 3, '2019-03-09 09:35:34', 'Youre crazy.You cant make those kind of challenges at practices', TRUE);
+VALUES(1, 3, '2019-03-09 09:35:34', 'Youre crazy.You cant make those kind of challenges at practices', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(1, 3, '2019-03-09 09:35:34', 'You can injury someone', TRUE);
+VALUES(1, 3, '2019-03-09 09:35:34', 'You can injury someone', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(1, 3, '2019-03-09 09:35:34', 'Be more careful please', TRUE);
+VALUES(1, 3, '2019-03-09 09:35:34', 'Be more careful please', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
-VALUES(3, 1, '2019-03-09 09:35:34', 'Yeah i know. I apologized right after. My bad', TRUE);
+VALUES(3, 1, '2019-03-09 09:35:34', 'Yeah i know. I apologized right after. My bad', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
 VALUES(13, 8, '2019-04-24 16:41:18', 'Sorry onlysaw it now, but couldnt go anyway', FALSE);
 INSERT INTO messages(sender, receiver, "date", message_text, has_been_seen) 
@@ -756,6 +756,8 @@ INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VA
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 16, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (21, 17, 6, 'clanRequest', '2019-04-02 17:02:11', TRUE);
 INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (19, 18, null, 'friendRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (5, 17, null, 'friendRequest', '2019-04-02 17:02:11', TRUE);
+INSERT INTO requests(sender, receiver, clan_id, "type", "date", has_accepted) VALUES (17, 2, null, 'friendRequest', '2019-04-02 17:02:11', TRUE);
 
 INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (13, NULL, 4, '2019-03-21 07:22:16', 'Racism');
 INSERT INTO blockeds(user_id, clan, admin, "date", motive) VALUES (15, NULL, 4, '2019-04-01 21:42:32', 'Inappropriate behaviour');

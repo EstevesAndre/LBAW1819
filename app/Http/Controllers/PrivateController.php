@@ -52,12 +52,7 @@ class PrivateController extends Controller
                 return 1;
         });
 
-        $retrieve_list = collect([]);
-
-        for($i = 0; $i < 3, $i < count($list); $i++)
-            $retrieve_list = $retrieve_list->push($list[$i]);
-
-        return view('pages.home', ['posts' => $retrieve_list]);
+        return view('pages.home', ['posts' => $list->take(3)]);
     }
 
     public function seeMoreHome($offset){
@@ -88,10 +83,10 @@ class PrivateController extends Controller
 
         $retrieve = collect([]);
         for($i = $init; $i < $init + 3, $i < count($list); $i++){
-            if($list[$i]->id === NULL)
-                $retrieve = $retrieve->push(Share::where('user_id', $list[$i]->user_id)->where('post_id', $list[$i]->post_id)->get());
-            else
-                $retrieve = $retrieve->push(Post::where('id', $list[$i]->id)->get());
+            if($list[$i]->id === NULL) //('share', Share,Post,User_Share, User_Post)
+                $retrieve = $retrieve->push(array('share', Share::where('user_id', $list[$i]->user_id)->where('post_id', $list[$i]->post_id)->get(), $list[$i]->post() , $list[$i]->user()->get(),$list[$i]->post()->get()[0]->user()->get()));
+            else //('post', Post,User)
+                $retrieve = $retrieve->push(array('post', Post::where('id', $list[$i]->id)->get(), $list[$i]->user()->get()));
         }
 
         return $retrieve;
@@ -136,8 +131,13 @@ class PrivateController extends Controller
         if (!Auth::user()->ban()->get()->isEmpty()) return redirect('/banned');
 
         $friends = Auth::user()->friends()->get();
-        
-        $selFriendMessages = Auth::user()->friendChatMessages($friends->first()->id);
+
+        $selFriendMessages = collect([]);
+
+        if(!$friends->isEmpty()){
+            $selFriendMessages = Auth::user()->friendChatMessages($friends->first()->id);
+        }
+
         foreach($selFriendMessages as $friend_message){
             $friend_message->has_been_seen =true;
             $friend_message->update();
