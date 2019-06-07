@@ -27,7 +27,7 @@ class ShareController extends Controller
     public function delete(Request $request, $id) 
     {
         $ids = explode("-", $id);
-
+        
         $share = Share::where('post_id', $ids[0])->where('user_id', $ids[1])->get()[0];
 
         if($share->user_id != Auth::user()->id && !Auth::user()->is_admin)

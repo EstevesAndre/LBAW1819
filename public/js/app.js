@@ -21,7 +21,7 @@ function addEventListeners() {
         delPost.addEventListener('click', sendDeletePostRequest);
     });
 
-    let sharedPostModal = document.querySelectorAll('div.SharedPostModal>div>div>div.modal-body>div>button.btn-danger');
+    let sharedPostModal = document.querySelectorAll('div.sharedPostModal button.btn-delete-share');
     [].forEach.call(sharedPostModal, function (delShare) {
         delShare.addEventListener('click', sendDeleteShareRequest);
     });
@@ -942,16 +942,17 @@ function deletedPostHandler() {
 
 function deletedShareHandler() {
     console.log("Share deleted - status: " + this.status);
+    let reply = JSON.parse(this.responseText);
+    console.log(reply);
+    // if (this.status == 200) {
+    //     let share = JSON.parse(this.responseText);
 
-    if (this.status == 200) {
-        let share = JSON.parse(this.responseText);
+    //     let shareHTML = document.querySelector('div.share[data-id="' + share.id + '"]');
+    //     shareHTML.innerHTML = '';
+    // }
 
-        let shareHTML = document.querySelector('div.share[data-id="' + share.id + '"]');
-        shareHTML.innerHTML = '';
-    }
-
-    if (window.location.href.includes("share"))
-        window.location.href = '../home';
+    // if (window.location.href.includes("share"))
+    //     window.location.href = '../home';
 }
 
 function deletedCommentHandler() {

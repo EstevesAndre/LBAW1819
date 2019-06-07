@@ -51,7 +51,7 @@ class PrivateController extends Controller
             else 
                 return 1;
         });
-
+        
         return view('pages.home', ['posts' => $list->take(3)]);
     }
 

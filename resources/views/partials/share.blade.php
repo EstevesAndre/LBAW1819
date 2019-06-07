@@ -32,7 +32,7 @@
                 <div class="modal-body">
                     <p class="text-left">Are you sure you want to delete this share?</p>
                     <div class="float-right">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="btn-delete-share btn btn-danger" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">Yes</span>
                         </button>
                         <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close">
@@ -44,7 +44,7 @@
         </div>
     </div>
 @endif
-<div class="container share mt-4 mb-2 p-0" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}">
+<div class="container post share mt-4 mb-2 p-0" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}">
     <div class="cardbox text-left shadow-lg bg-white">
         <div class="cardbox-heading">
             <div class="dropdown float-right mt-3 mr-3">
