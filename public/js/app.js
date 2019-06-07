@@ -194,7 +194,8 @@ function addHelpDeskText() {
     let chatHelp = document.querySelector('.chat-help');
 
 
-    if(navHelp) navHelp.title = "<p>" +
+    if(navHelp) navHelp.title = 
+                    "<p class='text-left pl-3'>" +
                     "Is your first time as an AlterEgo member? Are you lost? Don't worry! " +
                     "At this navigation bar you can access all website pages and features you need." +
                     "</p>" +
@@ -223,7 +224,7 @@ function addHelpDeskText() {
 
     if (feedHelp) {
         feedHelp.title = 
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Welcome to the Feed! Here you can see all your friends posts and interact with them! " +
                     "Now you're a member of our community! Don't be shy... Feel free to:" +
                     "</p>" +
@@ -237,7 +238,9 @@ function addHelpDeskText() {
     
     if (friendRequestsHelp) {
         friendRequestsHelp.title = 
-                    "<p>This page will keep you informed about all made/received friend requests till now.</p>" +
+                    "<p class='text-left pl-3'>" +
+                    "This page will keep you informed about all made/received friend requests till now." +
+                    "</p>" +
                     "<ul class='list-group text-left pl-3'>" +
                     "   <li>Sent requests: in case you want to cancel one.</li>" +
                     "   <li>Received requests: in case you want to answer one.</li>" +
@@ -248,7 +251,7 @@ function addHelpDeskText() {
 
     if (clanHelp) {
         clanHelp.title = 
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Congratulations! You joined a clan! Everything is better in a group right?<br>" +
                     "This is your clan's private page. Here you can interact with the other members of the clan. " +
                     "</p>" +
@@ -262,7 +265,7 @@ function addHelpDeskText() {
 
     if (clanSettingsHelp) {
         clanSettingsHelp.title = 
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "As the owner of the clan you are in charge of doing its management (settings and members)." +
                     "</p>" +
                     "<ul class='list-group text-left pl-3'>" +
@@ -273,7 +276,7 @@ function addHelpDeskText() {
 
     if (clanFeedHelp) {
         clanFeedHelp.title = 
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Welcome to your clan feed! Here you can:" +
                     "</p>" +
                     "<ul class='list-group text-left pl-3'>" +
@@ -284,7 +287,7 @@ function addHelpDeskText() {
 
     if (clanCreateHelp) {
         clanCreateHelp.title =
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Do you feel ready do start your own clan? Are you a strong leader? " +
                     "Go Ahead! All you need to do is to:" +
                     "</p>" +
@@ -299,7 +302,7 @@ function addHelpDeskText() {
     
     if (leaderBoardsHelp) {
         leaderBoardsHelp.title = 
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Welcome to the Honor room of AlterEgo! " +
                     "Here you can see the most legendary characters of the game." +
                     "</p>" +
@@ -312,7 +315,7 @@ function addHelpDeskText() {
   
     if (profileHelp) {
         profileHelp.title =
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Right now you are in your personal page. " +
                     "Here you can find all the relevant information about you." +
                     "</p>" +
@@ -328,7 +331,7 @@ function addHelpDeskText() {
 
     if (profileFeedHelp) {
         profileFeedHelp.title = 
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Welcome to your own feed! Here you can:" +
                     "</p>" +
                     "<ul class='list-group text-left pl-3'>" +
@@ -340,7 +343,7 @@ function addHelpDeskText() {
 
     if (postHelp) {
         postHelp.title =
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "This is a post page. Here you can see the post overview:" +
                     "</p>" +
                     "<ul class='list-group text-left pl-3'>" +
@@ -349,7 +352,7 @@ function addHelpDeskText() {
                     "<li>Likes, Comments and Shares</li>" +
                     "</ul>" +
                     "<br>" +
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Now that you have seen the complete post don't be affraid of showing your feedback:" +
                     "</p>" +
                     "<ul class='list-group text-left pl-3'>" +
@@ -361,7 +364,7 @@ function addHelpDeskText() {
 
     if (chatHelp) {
         chatHelp.title = 
-                    "<p>" +
+                    "<p class='text-left pl-3'>" +
                     "Don't live this experience alone! Talk with the other AlterEgo members! " +
                     "All you have to do is:" +
                     "</p>" +
