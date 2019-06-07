@@ -2379,4 +2379,20 @@ function updateUserPostsHandler() {
     });
 
     console.log(reply);
+
+    for (var i = 0; i < reply.length; i++) 
+    {
+        let current = reply[i];
+        let postsList = document.querySelector('#posts-list');
+        let img = document.querySelector('#nav-user-img');
+        let path = img.getAttribute('src');
+        let path_header = path.substr(0, path.indexOf("/avatars/"));
+
+        // if(current[0] == 'post'){ //load posts
+        //     postsList.innerHTML += getPostHTML(current[2][0],current[1][0], path_header);
+        // }
+        // else{ //load shares
+        //     postsList.innerHTML += getShareHTML(current[1][0],current[2][0], current[3][0], current[4][0], current[5], path_header);
+        // }
+    }
 }

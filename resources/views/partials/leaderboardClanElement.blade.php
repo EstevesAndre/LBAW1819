@@ -9,7 +9,7 @@
                 @endif
             </div>
             <div class="col-7 col-sm-6 text-left">{{ $clan[0]->name }}</div>
-            <div class="col-7 col-sm-5 text-left">{{ $clan[1] }}</div>
+            <div class="col-7 col-sm-5 text-right">{{ $clan[1] }}</div>
         </div>
     </li>
 </button>

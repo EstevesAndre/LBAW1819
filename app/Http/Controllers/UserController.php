@@ -309,24 +309,22 @@ class UserController extends Controller
         });
 
         $retrieve = collect([]);
-        for($i = $init; $i < $init + 3, $i < count($list); $i++){
-            if($list[$i]->id === NULL) //('share', Share,Post,User_Share, User_Post)
+        for($i = $init; $i < $init + 3 && $i < count($list); $i++){
+            if($list[$i]->id === NULL) //('share', Share,Post,User_Share, User_Post, Auth::user)
                 $retrieve = $retrieve->push(
                         array('share', 
-                            Share::where('user_id', 
-                            $list[$i]->user_id)->where('post_id', 
-                            $list[$i]->post_id)->get(), 
-                            $list[$i]->post(), 
-                            $list[$i]->user()->get(),
-                            $list[$i]->post()->get()[0]->user()->get()
+                            $list[$i], 
+                            $list[$i]->post()->get()[0], 
+                            $list[$i]->user()->get()[0],
+                            $list[$i]->post()->get()[0]->user()->get()[0], 
+                            Auth::user()
                         )
                 );
             else //('post', Post,User)
                 $retrieve = $retrieve->push(
                             array('post', 
-                                Post::where('id', 
-                                $list[$i]->id)->get(), 
-                                $list[$i]->user()->get()
+                                $list[$i], 
+                                $list[$i]->user()->get()[0]
                             )
                 );
         }

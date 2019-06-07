@@ -60,11 +60,8 @@ Route::put('/api/answerFriend/{friend}+{accepted}', 'UserController@answerFriend
 Route::put('/api/answerClan/{clan}+{accepted}', 'UserController@answerClanRequest');
 
 Route::get('/api/leaveClan/{user}', 'ClanController@leaveClan');
-
 Route::delete('/api/deleteReport/{id}', 'AdminController@deleteReport');
-
 Route::post('/api/report/{post_id}', 'PostController@report');
-
 
 // Notifications
 Route::post('/api/notificationSeen/{id}', 'PrivateController@notificationSeen');
@@ -111,6 +108,7 @@ Route::get('user/{username}', 'UserController@show');
 // Clan
 Route::get('createClanPage', 'ClanController@showCreateClanPage');
 Route::get('clan', 'ClanController@show');
+Route::get('clan/{id}', 'ClanController@showClan');
 Route::get('clanSettings', 'ClanController@showClanSettings');
 
 // Admin

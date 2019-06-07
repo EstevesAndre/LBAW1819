@@ -38,7 +38,7 @@
                                             <div class="mt-1"><i class="fas fa-users"></i><a href="/createClanPage"> Join a clan</a></div>
                                         @endif
                                     @else
-                                        <div class="mt-1"><i class="fas fa-users"></i> Clan: <a href='/clan'>{{ $clan->name }}</a></div>
+                                    <div class="mt-1"><i class="fas fa-users"></i> Clan: <a href='/clan/{{$clan->id}}'>{{ $clan->name }}</a></div>
                                     @endif
                                     <div class="mt-1"><i class="fas fa-level-up-alt"></i> Level: {{ floor($user->xp/100) }}</div>
                                     <div class="profile mt-1"><i class="fas fa-coins"></i> xP: {{ $user->xp }}</div>
@@ -128,6 +128,7 @@
                             @endif
                         @endforeach
                         </div>
+                        {{-- <div class="crs more-user-posts" data-id="3">See more <i class="fas fa-angle-down"></i></div> --}}
                     @endif
                 </div>
                 <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
