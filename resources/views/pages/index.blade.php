@@ -9,7 +9,7 @@
     <div class="row align-bottom">
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4 align-self-center">
             <h2>Motivate yourself to achieve your goals</h2>
-            <img src="{{ asset('assets/logo.png') }}" width="50%" alt="icon">
+            <img src="{{ asset('assets/logo.png') }}" class="w-50" alt="icon">
             <h5>Welcome to AlterEgo!!</h5>
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 align-self-center">
@@ -21,7 +21,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <input type="username" class="form-control" name="name" id="username" placeholder="Username" required autofocus>
+                    <input type="text" class="form-control" name="name" id="username" placeholder="Username" required autofocus>
                     @if ($errors->has('username'))
                         <span class="error">
                             {{ $errors->first('username') }}
