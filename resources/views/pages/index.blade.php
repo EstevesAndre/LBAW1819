@@ -5,7 +5,7 @@
 @section('content')
 <br />
 <br />
-<div class="ml-4 mr-4 mt-5 text-center standard-text items-centered-vertical fullscreen-3-4">
+<div class="ml-4 mr-4 mt-5 text-center standard-text pt-5">
     <div class="row align-bottom">
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-4 align-self-center">
             <h2>Motivate yourself to achieve your goals</h2>

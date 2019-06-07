@@ -16,23 +16,23 @@
             <ul class="nav nav-pills nav-fill py-3 border-bottom">
                 <li class="nav-item m-2">
                     @if($sent->count() !== 0)
-                        <a class="tab-title nav-link active text-white bg-secondary" id="sent-tab" data-toggle="tab" href="#sent" role="tab" aria-controls="sent" aria-selected="true">Requests Sent (<span class="not-zero">{{ $sent->count() }}</span>)</a>
+                        <a class="tab-title nav-link active text-white bg-secondary" id="sent-tab" data-toggle="tab" href="#sent">Requests Sent (<span class="not-zero">{{ $sent->count() }}</span>)</a>
                     @else
-                        <a class="tab-title nav-link text-white bg-secondary" id="sent-tab" data-toggle="tab" href="#sent" role="tab" aria-controls="sent" aria-selected="true">Requests Sent (0)</a>
+                        <a class="tab-title nav-link text-white bg-secondary" id="sent-tab" data-toggle="tab" href="#sent">Requests Sent (0)</a>
                     @endif
                 </li>
                 <li class="nav-item m-2">
                         @if($received->count() !== 0)
-                            <a class="tab-title nav-link text-white bg-secondary" id="received-tab" data-toggle="tab" href="#received" role="tab" aria-controls="received" aria-selected="false">Requests Received (<span class="not-zero">{{ $received->count() }}</span>)</a>
+                            <a class="tab-title nav-link text-white bg-secondary" id="received-tab" data-toggle="tab" href="#received">Requests Received (<span class="not-zero">{{ $received->count() }}</span>)</a>
                         @else
-                            <a class="tab-title nav-link text-white bg-secondary" id="received-tab" data-toggle="tab" href="#received" role="tab" aria-controls="received" aria-selected="false">Requests Received (0)</a>
+                            <a class="tab-title nav-link text-white bg-secondary" id="received-tab" data-toggle="tab" href="#received">Requests Received (0)</a>
                         @endif
                     </li>
                 <li class="nav-item m-2">
                     @if($clans->count() !== 0)
-                        <a class="tab-title nav-link text-white bg-secondary" id="clan-received-tab" data-toggle="tab" href="#clan-received" role="tab" aria-controls="clan-received" aria-selected="false">Clan Requests (<span class="not-zero">{{ $clans->count() }}</span>)</a>
+                        <a class="tab-title nav-link text-white bg-secondary" id="clan-received-tab" data-toggle="tab" href="#clan-received">Clan Requests (<span class="not-zero">{{ $clans->count() }}</span>)</a>
                     @else
-                        <a class="tab-title nav-link text-white bg-secondary" id="clan-received-tab" data-toggle="tab" href="#clan-received" role="tab" aria-controls="clan-received" aria-selected="false">Clan Requests (0)</a>
+                        <a class="tab-title nav-link text-white bg-secondary" id="clan-received-tab" data-toggle="tab" href="#clan-received">Clan Requests (0)</a>
                     @endif
                 </li>
             </ul>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="mt-4 tab-content" id="content">
-                <div class="text-left tab-pane fade active show" id="sent" role="tabpanel" aria-labelledby="sent-tab">
+                <div class="text-left tab-pane fade active show" id="sent">
                     @if($sent->count() !== 0)                   
                         <ul class="pl-0 shadow-lg py-2 mt-3 users-list sent-r">
                             @each('partials.requestSent', $sent, 'request')
@@ -67,7 +67,7 @@
                         <p class="text-center mt-3 mb-0 standard-text">There are no sent requests!</p>
                     @endif
                 </div>
-                <div class="tab-pane fade" id="received" role="tabpanel" aria-labelledby="received-tab">
+                <div class="tab-pane fade" id="received">
                     @if($received->count() !== 0)
                         <ul class="pl-0 shadow-lg py-2 users-list received-r">
                             @each('partials.requestReceived', $received, 'request')
@@ -76,7 +76,7 @@
                         <p class="text-center mt-3 mb-0 standard-text">There are no received requests!</p>
                     @endif
                 </div>
-                <div class="tab-pane fade" id="clan-received" role="tabpanel" aria-labelledby="clan-received-tab">
+                <div class="tab-pane fade" id="clan-received">
                     @if($clans->count() !== 0)
                         <ul class="pl-0 shadow-lg py-2 users-list clan-received-r">
                             @each('partials.clanRequestReceived', $clans, 'clan')
@@ -89,21 +89,5 @@
         </div>
     </div>
     @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
-</div>
-<!-- Modal -->
-<div class="modal fade" id="friendrequests_helpModal" tabindex="-1" role="dialog" aria-labelledby="friendrequests_helpModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="friendrequests_helpModalLabel">Friend Requests Help</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            This is the friend requests pages.
-            </div>
-        </div>
-    </div>
 </div>
 @endsection

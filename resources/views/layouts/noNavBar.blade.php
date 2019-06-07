@@ -29,7 +29,7 @@
     </head>
     <body>
         <main class="h-100">
-            <section id="content" class="mh-91">
+            <section id="conten" class="mh-91">
                 @yield('content')
             </section>
             <footer class="bg-secondary py-2 mt-5">

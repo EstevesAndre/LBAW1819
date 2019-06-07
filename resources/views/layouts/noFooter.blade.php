@@ -155,25 +155,9 @@
                 </nav>  
             @endif
         </header>
-        <section id="content" class="h-100">
+        <section id="conten" class="h-100">
             @yield('content')
         </section>
-         <!-- Modal -->
-         <div class="modal fade" id="nav_helpModal" tabindex="-1" role="dialog" aria-labelledby="nav_helpModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="nav_helpModalLabel">Navbar Help</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                        This is the navbar.
-                        </div>
-                    </div>
-                </div>
-            </div>
         </main>
     </body>
 </html>
