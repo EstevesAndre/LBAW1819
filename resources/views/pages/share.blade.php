@@ -4,11 +4,11 @@
 
 @section('content')
 
-<div class="modal shareModal fade" id="sharePostModal-{{ $share->post()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+<div class="modal shareModal fade" id="shareShareModal-{{ $share->post()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removeShareModalLabel" aria-hidden="true">
     <div class="modal-dialog align-center" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="removePostModalLabel">Share post</h5>
+                <h5 class="modal-title" id="removeShareModalLabel">Share post</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -27,11 +27,11 @@
 </div>
 <br />
 @if($share->user()->get()[0]->id == Auth::user()->id || Auth::user()->is_admin)
-    <div class="modal sharedPostModal fade" id="deleteShareModal-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removeShareModalLabel" aria-hidden="true">
+    <div class="modal sharedPostModal fade" id="deleteShareModal-{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" data-id="{{ $share->post()->get()[0]->id }}-{{ $share->user()->get()[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="removeShareModalLabel22" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="removeShareModalLabel">Delete share</h5>
+                    <h5 class="modal-title" id="removeShareModalLabel22">Delete share</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -92,27 +92,12 @@
                 </div>
                 <div class="cardbox-item mx-3 mb-2">{{ $share->content }}</div>
                 
-                <a class="box-link no-hover" href="/post/{{ $share->post()->get()[0]->id }}">
+                <div class="a-link" data-id="/post/{{ $share->post()->get()[0]->id }}">
                     @include('partials.post', ['post' => $share->post()->get()[0]])
-                </a>
+                </div>
             </div>
         </div>   
         @include('partials.chatSideBar', ['friends' => Auth::user()->friends()->get() ])
-    </div>
-    <div class="modal fade" id="post_helpModal" tabindex="-1" role="dialog" aria-labelledby="post_helpModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="post_helpModalLabel">Share Help</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                This is the share page.
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 @endsection
