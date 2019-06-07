@@ -88,7 +88,7 @@ class UserController extends Controller
         }
 
         $list = $list->sort(function ($a, $b) {
-            if(strtotime($a->date) > strtotime($b->date))
+            if($a->date > $b->date)
                 return -1;
             else
                 return 1;

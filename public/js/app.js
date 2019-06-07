@@ -2248,7 +2248,7 @@ function getPostHTML(user, post, path_header) {
         + '</div>'
         + '</div>'
         + '</div>'
-        + '<a class="box-link no-hover" href="post/' + post.id + '">'
+        + '<a class="box-link no-hover" href="../post/' + post.id + '">'
         + '<div class="cardbox-item mx-3">' + post.content + '</div>';
 
         if(post.has_img){
