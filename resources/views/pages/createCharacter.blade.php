@@ -11,7 +11,7 @@
             <form class="text-left" method="POST" action="/register">
                 {{ csrf_field() }}
                 <div class="text-center">
-                    <img class="rounded" src="{{ asset('assets/logo.png') }}" width="15%" alt="icon">
+                    <img class="rounded w-15" src="{{ asset('assets/logo.png') }}" alt="icon">
                 </div>
                 <h3 class="text-center mt-5 mb-5">Please answer the following questions to generate your character</h3>
                 <div class="form-group mx-auto">
@@ -25,32 +25,32 @@
                     <div class="personality_questions align-self-center">
                         <div class="row align-self-center">
                             <div class="col-md-4 form-group">
-                                <label for="rather">Do you get angry very easily?</label><br>
+                                <label>Do you get angry very easily?</label><br>
                                 <label><input type="radio" name="angriness" value="Fighter" required> Oh Yeah!</label><br>
                                 <label><input type="radio" name="angriness" value="Wizard"> Some Times</label><br>
                                 <label><input type="radio" name="angriness" value="Rogue"> Rarely</label><br>
                                 <label><input type="radio" name="angriness" value="Healer"> Never</label><br>
                             </div>
                             <div class="col-md-4 form-group">
-                                <label for="rather">Do you experience your emotions intensely?</label><br>
+                                <label>Do you experience your emotions intensely?</label><br>
                                 <label><input type="radio" name="emotional" value="Female" required> Yes</label><br>
                                 <label><input type="radio" name="emotional" value="Male"> No</label><br>
                             </div>
                             <div class="col-md-4 form-group">
-                                <label for="rather">Do you see yourself as an introvert or extrovert?</label><br>
+                                <label>Do you see yourself as an introvert or extrovert?</label><br>
                                 <label><input type="radio" name="outness" value="Female" required> Introvert</label><br>
                                 <label><input type="radio" name="outness" value="Male"> Extrovert</label><br>
                             </div>
                         </div>
                         <div class="row align-self-center">
                             <div class="col-md-4 form-group">
-                                <label for="rather">Do you make friends easily?</label><br>
+                                <label>Do you make friends easily?</label><br>
                                 <label><input type="radio" name="happiness" value="Dwarf" required> For Sure!</label><br>
                                 <label><input type="radio" name="happiness" value="Human"> Sort of</label><br>
                                 <label><input type="radio" name="happiness" value="Elf"> I have trouble</label><br>
                             </div>
                             <div class="col-md-4 form-group">
-                                <label for="rather">Choose the one that best describes you?</label><br>
+                                <label>Choose the one that best describes you?</label><br>
                                 <label><input type="radio" name="best" value="Fighter" required> Risk Taker</label><br>
                                 <label><input type="radio" name="best" value="Wizard"> Lazy</label><br>
                                 <label><input type="radio" name="best" value="Healer"> Loyal</label><br>

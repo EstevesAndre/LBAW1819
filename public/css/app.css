@@ -181,6 +181,10 @@ input:hover, textarea:hover {
     height: 90%;
 }
 
+.w-15 {
+    width: 15%;
+}
+
 .min-width-75 {
     min-width: 100%;
 }
