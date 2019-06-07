@@ -114,8 +114,6 @@
                         <div id="posts-list">
                             @each('partials.post', $posts, 'post')
                         </div>
-                        <br />
-                        <p class="text-center standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                     @endif
                 </div>
                 <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
@@ -127,9 +125,6 @@
                     </div>
                     <ul class="pl-0">
                         @each('partials.userList', $members->take(10), 'user')
-                        @if($members->count() > 10) 
-                            <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                        @endif
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="leaderboard" role="tabpanel" aria-labelledby="leaderboard-tab">
@@ -165,9 +160,6 @@
                                 </li>
                             </button>
                         @endfor
-                        @if($members->count() > 8)
-                            <p class="text-center py-2 bg-white standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                        @endif
                     </ol>
                 </div>
             </div>

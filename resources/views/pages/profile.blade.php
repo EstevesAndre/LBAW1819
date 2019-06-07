@@ -142,9 +142,6 @@
                         </div>
                         <ul class="list pl-0">
                             @each('partials.userList', $friends->take(5), 'user')
-                            @if($friends->count() > 5) 
-                                <p class="text-center mt-4 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
-                            @endif
                         </ul>
                     @endif
                 </div>

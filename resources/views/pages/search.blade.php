@@ -36,7 +36,6 @@
                     <ul class="pl-0 shadow-lg users-list">
                         @each('partials.searchUsers', $users, 'user')
                     </ul>
-                    <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                 @endif
             </div>
             <div class="text-left tab-pane fade border-0 show" id="posts" role="tabpanel" aria-labelledby="posts-tab">
@@ -46,7 +45,6 @@
                     <ul class="pl-0 shadow-lg users-list">
                         @each('partials.searchPosts', $posts, 'post')
                     </ul>
-                    <p class="text-center py-2 standard-text"><span>See more </span><i class="fas fa-caret-down"></i></p>
                 @endif
             </div>
 

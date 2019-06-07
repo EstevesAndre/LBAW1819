@@ -53,8 +53,5 @@
 
     <ol start="4" class="list pl-0 shadow-lg">
         @each('partials.leaderboardClanElement', array_slice($clans,3,5), 'clan')
-        @if(count($clans) > 3+5)
-            <p class="text-center py-2 bg-white"><span>See more </span><i class="fas fa-caret-down"></i></p>
-        @endif
     </ol>
 @endif
