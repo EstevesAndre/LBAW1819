@@ -239,4 +239,12 @@ class PrivateController extends Controller
 
         return view('pages.banned', ['user' => Auth::user(), 'ban' => Auth::user()->ban()->get()[0], 'admin' => Auth::user()->where('id', Auth::user()->ban()->get()[0]->admin)->get()[0]]);
     }
+
+    public function notificationSeen(Request $request, $id) {
+        $notification = Notification::find($id);
+        $notification->has_been_seen = TRUE;
+        $notification->update();
+
+        return $notification;
+    }
 }
