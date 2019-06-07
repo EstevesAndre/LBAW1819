@@ -73,9 +73,9 @@ class UserController extends Controller
     public function seeMoreProfile($offset)
     {
         $init = intval($offset);
-        $posts = Post::where('user_id', $Auth::user()->id)->get();
+        $posts = Post::where('user_id', Auth::user()->id)->get();
         
-        $shares = Share::whereIn('user_id', $Auth::user()->id)->get();
+        $shares = Share::where('user_id', Auth::user()->id)->get();
         
         $list = collect([]);
 
