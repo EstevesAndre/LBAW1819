@@ -203,7 +203,7 @@
 </div>
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script type="text/javascript">
+<script>
     var start = 3;
     var working = false;
     $(window).scroll(function() {

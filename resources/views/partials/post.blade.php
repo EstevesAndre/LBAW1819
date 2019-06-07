@@ -76,7 +76,7 @@
     </div>
 </div>
 
-<div class="modal" id="report-success" tabindex="-1" role="dialog">
+<div class="modal" id="report-success-{{ $post->id }}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -95,8 +95,8 @@
         </div>
     </div>
 </div>
-    
-<div class="modal" id="report-repeated" tabindex="-1" role="dialog">
+
+<div class="modal" id="report-repeated-{{ $post->id }}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

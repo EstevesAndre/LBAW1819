@@ -101,7 +101,7 @@
                 </li>
             </ul>
             <div class="mt-4 tab-content" id="content">
-                <div class="text-center tab-pane fade active show" id="activity" role="tabpanel" aria-labelledby="actibity-tab">
+                <div class="text-center tab-pane fade active show" id="activity">
                     @if(Auth::user()->id === $user->id)
                         <div class="cardbox-comments align-self-center">
                             <button type="button" class="btn btn-lg btn-dark mr-2" data-toggle="modal" data-target="#postModal">
@@ -137,7 +137,7 @@
                     @else
                         <div class="d-flex justify-content-center mb-3 mr-3">
                             <div class="searchbar">
-                                <input class="search_input search_input_fixed" onkeyup="updateFriendList({{$user->id}})" type="text" name="" placeholder="Search...">
+                                <input class="search_input search_input_fixed" onkeyup="updateFriendList({{$user->id}})" type="text" placeholder="Search...">
                                 <div class="search_icon"><i class="fas fa-search"></i></div>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
 </div>
 @endif
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script type="text/javascript">
+<script>
     var start = 3;
     var working = false;
     var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
