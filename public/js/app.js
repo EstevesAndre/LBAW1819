@@ -193,7 +193,7 @@ function addHelpDeskText() {
     let chatHelp = document.querySelector('.chat-help');
 
 
-    navHelp.title = "<p>" +
+    if(navHelp) navHelp.title = "<p>" +
                     "Is your first time as an AlterEgo member? Are you lost? Don't worry! " +
                     "At this navigation bar you can access all website pages and features you need." +
                     "</p>" +
@@ -220,7 +220,7 @@ function addHelpDeskText() {
                     "   <i class='fas fa-caret-down'></i> Create clan or logout" +
                     "<a>";
 
-    if (feedHelp !== null) {
+    if (feedHelp) {
         feedHelp.title = 
                     "<p>" +
                     "Welcome to the Feed! Here you can see all your friends posts and interact with them! " +
@@ -234,7 +234,7 @@ function addHelpDeskText() {
                     "</ul>"; 
     }
     
-    if (friendRequestsHelp !== null) {
+    if (friendRequestsHelp) {
         friendRequestsHelp.title = 
                     "<p>This page will keep you informed about all made/received friend requests till now.</p>" +
                     "<ul class='list-group text-left pl-3'>" +
@@ -245,7 +245,7 @@ function addHelpDeskText() {
     }
     
 
-    if (clanHelp !== null) {
+    if (clanHelp) {
         clanHelp.title = 
                     "<p>" +
                     "Congratulations! You joined a clan! Everything is better in a group right?<br>" +
@@ -259,7 +259,7 @@ function addHelpDeskText() {
                     "</ul>";
     }
 
-    if (clanSettingsHelp !== null) {
+    if (clanSettingsHelp) {
         clanSettingsHelp.title = 
                     "<p>" +
                     "As the owner of the clan you are in charge of doing its management (settings and members)." +
@@ -270,7 +270,7 @@ function addHelpDeskText() {
                     "</ul>";
     }
 
-    if (clanFeedHelp !== null) {
+    if (clanFeedHelp) {
         clanFeedHelp.title = 
                     "<p>" +
                     "Welcome to your clan feed! Here you can:" +
@@ -281,7 +281,7 @@ function addHelpDeskText() {
                     "</ul>";
     }
     
-    if (leaderBoardsHelp !== null) {
+    if (leaderBoardsHelp) {
         leaderBoardsHelp.title = 
                     "<p>" +
                     "Welcome to the Honor room of AlterEgo! " +
@@ -294,7 +294,7 @@ function addHelpDeskText() {
                     "</ul>";
     }
   
-    if (profileHelp !== null) {
+    if (profileHelp) {
         profileHelp.title =
                     "<p>" +
                     "Right now you are in your personal page. " +
@@ -310,7 +310,7 @@ function addHelpDeskText() {
                     "</ul>";
     }
 
-    if (profileFeedHelp !== null) {
+    if (profileFeedHelp) {
         profileFeedHelp.title = 
                     "<p>" +
                     "Welcome to your own feed! Here you can:" +
@@ -322,7 +322,7 @@ function addHelpDeskText() {
                     "</ul>";
     }
 
-    if (postHelp !== null) {
+    if (postHelp) {
         postHelp.title =
                     "<p>" +
                     "This is a post page. Here you can see the post overview:" +
@@ -343,7 +343,7 @@ function addHelpDeskText() {
                     "</ul>";
     }
 
-    if (chatHelp !== null) {
+    if (chatHelp) {
         chatHelp.title = 
                     "<p>" +
                     "Don't live this experience alone! Talk with the other AlterEgo members! " +
