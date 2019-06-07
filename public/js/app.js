@@ -186,6 +186,7 @@ function addHelpDeskText() {
     let clanHelp = document.querySelector('.clan-help');
     let clanSettingsHelp = document.querySelector('.clan-settings-help');
     let clanFeedHelp = document.querySelector('.clan-feed-help');
+    let clanCreateHelp = document.querySelector('.create-clan-help');
     let leaderBoardsHelp = document.querySelector('.leader-boards-help');
     let profileHelp = document.querySelector('.profile-help');
     let profileFeedHelp = document.querySelector('.profile-feed-help');
@@ -279,6 +280,21 @@ function addHelpDeskText() {
                     "<li>Post something to be seen by the clan</li>" +
                     "<li>See all clan posts</li>" +
                     "</ul>";
+    }
+
+    if (clanCreateHelp) {
+        clanCreateHelp.title =
+                    "<p>" +
+                    "Do you feel ready do start your own clan? Are you a strong leader? " +
+                    "Go Ahead! All you need to do is to:" +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "<li>Choose a clan name.</li>" +
+                    "<li>Write a great description of your clan (purposes, what it represents, ...).</li>" +
+                    "<li>Choose an image (optional).</li>" +
+                    "<li>Click create and start adding members to your cause!</li>" +
+                    "</ul>"
+
     }
     
     if (leaderBoardsHelp) {
