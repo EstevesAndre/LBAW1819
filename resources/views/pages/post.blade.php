@@ -126,7 +126,7 @@
             <div class="cardbox text-left shadow-lg bg-white">
                 <div class="cardbox-heading">
                     <div class="dropdown float-right mt-3 mr-3">
-                        <button type="button" class="float-right border-0 btn btn-default btn-circle" data-toggle="modal" data-target="#post_helpModal">
+                        <button type="button" class="float-right border-0 btn btn-default btn-circle post-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                                 <i class="fas fa-question-circle"></i>
                         </button>
                         <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"

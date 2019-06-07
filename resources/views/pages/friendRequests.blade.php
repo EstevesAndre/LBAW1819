@@ -8,7 +8,7 @@
 <div class="mt-5 row text-center fullscreen standard-text">
     <div class="col-sm-12 col-md-8 col-lg-9 my-3 activity">
         <h1 class="text-left"><b>Friend Requests</b>
-            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#friendrequests_helpModal">
+            <button type="button" class="border-0 btn btn-default rounded-circle friend-requests-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                     <i class="fas fa-question-circle"></i>
             </button>
         </h1>

@@ -10,7 +10,7 @@
             <button type="button" class="btn btn-lg btn-dark mr-2" data-toggle="modal" data-target="#postModal">
                 Create a new post
             </button>
-            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">
+            <button type="button" class="border-0 btn btn-default rounded-circle feed-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                     <i class="fas fa-question-circle"></i>
             </button>
         </div>

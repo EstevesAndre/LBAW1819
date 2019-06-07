@@ -8,7 +8,7 @@
 <br />
 <div class="settings container justify-content-center fullscreen-3-4 my-5" data-id="{{$clan->id}}">
     <h1 class="text-center">Clan Settings - {{$clan->name}}  - {{$clan->members()->count()}} 
-        <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#clansettings_helpModal">
+        <button type="button" class="border-0 btn btn-default rounded-circle clan-settings-help" data-toggle="tooltip" data-placement="auto" data-html="true">
             <i class="fas fa-question-circle"></i>
         </button>
     </h1>

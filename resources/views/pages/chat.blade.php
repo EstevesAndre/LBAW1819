@@ -34,7 +34,7 @@
                             <img src="{{ asset('assets/avatars/'.$friends[0]->race.'_'.$friends[0]->class.'_'.$friends[0]->gender.'.bmp') }}" alt="logo" width="25" class="border img-fluid rounded-circle">
                             <a href="/user/{{ $friends[0]->username }}">{{ $friends[0]->name }}</a>
                             <!-- Button trigger modal -->
-                            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#nav_helpModal">
+                            <button type="button" class="border-0 btn btn-default rounded-circle chat-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                                 <i class="fas fa-question-circle"></i>
                             </button>
                         </div>
