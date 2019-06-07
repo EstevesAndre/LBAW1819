@@ -619,6 +619,9 @@ function answerFriendShipRequest(e) {
         friend_id = parseInt(e.target.closest('.friend-decline').getAttribute('data-id'));
     }
 
+    let notNumber = document.querySelector('#friendsNot>button>span');
+    notNumber.innerHTML = (parseInt(notNumber.innerHTML) - 1);
+
     sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendHandler);
 }
 
@@ -626,6 +629,9 @@ function cancelFriendShipRPRequest(e) {
     console.log('cancel2');
 
     let friend_id = parseInt(e.target.closest('.friend-cancel').getAttribute('data-id'));
+    
+    let notNumber = document.querySelector('#friendsNot>button>span');
+    notNumber.innerHTML = (parseInt(notNumber.innerHTML) - 1);
 
     sendAjaxRequest('delete', '/api/cancelFriend/' + friend_id, null, cancelledFriendRPHandler);
 }
@@ -643,6 +649,9 @@ function answerFriendShipRPRequest(e) {
     else {
         friend_id = parseInt(e.target.closest('.friend-decline').getAttribute('data-id'));
     }
+
+    let notNumber = document.querySelector('#friendsNot>button>span');
+    notNumber.innerHTML = (parseInt(notNumber.innerHTML) - 1);
 
     sendAjaxRequest('put', '/api/answerFriend/' + friend_id + '+' + accepted, null, answeredFriendRPHandler);
 }
@@ -755,18 +764,22 @@ function userNotificationsHandler() {
     response.forEach(element => {
         switch(element.type) {
             case 'COMMENT':
-                notificationsArea.innerHTML += '<a class="no-hover index-nav dropdown-item dropdown-navbar" href="/post/' + element.post_id + '#' + element.comment_id + '"> <div class="text-left">' + element.user_name + ' commented your post.</div> </a>';
+                notificationsArea.innerHTML += '<div class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="comment" data-id="' + element.id + '"  href="/post/' + element.post_id + '#' + element.comment_id + '"> <div class="text-left">' + element.user_name + ' commented your post.</div> </div>';
             break;
             case 'LIKE':
-                notificationsArea.innerHTML += '<a class="no-hover index-nav dropdown-item dropdown-navbar" href="/post/' + element.post_id + '"> <div class="text-left">' + element.user_name + ' liked your post.</div> </a>';
+                notificationsArea.innerHTML += '<a class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="like" data-id="' + element.id + '" href="/post/' + element.post_id + '"> <div class="text-left">' + element.user_name + ' liked your post.</div> </a>';
             break;
             case 'SHARE':
-                notificationsArea.innerHTML += '<a class="no-hover index-nav dropdown-item dropdown-navbar" href="/share/' + element.post_id + '_' + element.user_id + '"> <div class="text-left">' + element.user_name + ' shared your post.</div> </a>';
+                notificationsArea.innerHTML += '<a class="no-hover notification-seen index-nav dropdown-item dropdown-navbar" type="share" data-id="' + element.id + '" href="/share/' + element.post_id + '_' + element.user_id + '"> <div class="text-left">' + element.user_name + ' shared your post.</div> </a>';
             break;
         }
     });
 
-    document.querySelector('#notifications>button').innerHTML = '<i class="far fa-bell"></i> (<span>0</span>)';
+    //document.querySelector('#notifications>button').innerHTML = '<i class="far fa-bell"></i> (<span>0</span>)';
+    let notificationClick = notificationsArea.querySelectorAll('.notification-seen');
+    [].forEach.call(notificationClick, function (notif) {
+        notif.addEventListener('click', sendSeenNotification);
+    });
 }
 
 function addedCommentHandler() {
@@ -873,6 +886,17 @@ function getChatMessage(isOutgoing, friend_info, text, date1, date2) {
 
 addEventListeners();
 // ---------------------------------------------------------------------------------------------------------------------//
+
+function sendSeenNotification(e) {
+    let id = e.target.closest('.notification-seen').getAttribute('data-id');
+    sendAjaxRequest('post', '/api/notificationSeen/' + id, null, seenNotificationHandler);
+}
+
+function seenNotificationHandler() {
+    let reply = JSON.parse(this.responseText);
+
+console.log(reply);
+}
 
 let lastSearch = "";
 

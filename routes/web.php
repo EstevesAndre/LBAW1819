@@ -63,6 +63,9 @@ Route::delete('/api/deleteReport/{id}', 'AdminController@deleteReport');
 Route::post('/api/report/{post_id}', 'PostController@report');
 
 
+// Notifications
+Route::post('/api/notificationSeen/{id}', 'PrivateController@notificationSeen');
+
 // Public Pages
 Route::get('about', 'PublicController@showAboutPage');
 Route::get('faqs', 'PublicController@showFaqsPage');

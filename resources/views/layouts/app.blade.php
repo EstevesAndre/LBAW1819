@@ -62,7 +62,7 @@
                                 <i class="fas fa-question-circle"></i>
                             </button>
                         </ul>
-                        <div class="d-flex justify-content-center mr-2">
+                        <div class="d-flex justify-content-center">
                             <form class="my-2 ml-4 mr-4" method="GET" action="/search">
                                 <div class="searchbar">
                                     <input type ="text" class="search_input" name="search" placeholder="Search..." required>
@@ -72,8 +72,8 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="d-flex justify-content-center mx-2 align-items-center">
-                            <div class="btn-group my-2">
+                        <div class="d-flex justify-content-center mr-2 align-items-center">
+                            <div class="btn-group my-2" id="friendsNot">
                                 <button type="button" class="btn btn-secondary rounded-circle" onclick="window.location='{{ url('/friendRequests') }}'" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"><i class="fas fa-user-friends"></i>
                                     @if(Auth::user()->getNumRequest() == 0)
