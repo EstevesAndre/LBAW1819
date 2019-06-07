@@ -7,14 +7,14 @@
 <br />
 <div class="mt-5 ml-4 mr-4 fullscreen-3-4">
     <div class="col-md-6 offset-md-3 text-center">
-        <img src="{{ asset('assets/logo.png') }}" width="25%" alt="icon">
+        <img src="{{ asset('assets/logo.png') }}" class="w-25" alt="icon">
         <h2><b>AlterEgo</b></h2>
         <br />
         <form class="text-left mb-3" method="POST" action="/createChar">
             {{ csrf_field() }}
 
             <div class="form-group">
-                <input type="username" class="form-control" name="name" id="username" placeholder="Username" required autofocus>
+                <input type="text" class="form-control mb-2" name="name" id="username" placeholder="Username" required autofocus>
                 @if ($errors->has('username'))
                     <span class="error">
                         {{ $errors->first('username') }}
@@ -22,7 +22,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                <input type="email" class="form-control mb-2" name="email" id="email" placeholder="Email" required>
                 @if ($errors->has('email'))
                     <span class="error">
                         {{ $errors->first('email') }}
@@ -30,7 +30,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                <input type="password" class="form-control mb-2" name="password" id="password" placeholder="Password" required>
                 @if ($errors->has('password'))
                     <span class="error">
                         {{ $errors->first('password') }}
