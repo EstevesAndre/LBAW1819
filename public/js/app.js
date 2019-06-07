@@ -160,7 +160,7 @@ function addEventListeners() {
         //     .listen('MessageSent', (e) => {
         //         if (e.sender == friend_id) {
         //             let message_area = document.querySelector('#chatScroll');
-        //             message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text + '</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
+        //             message_area.innerHTML += '<div class="my-3 outgoing_msg"><div class="sent_msg"><p>' + reply.messages[i].message_text + '</p><span class="text-right mt-0 pt-0 time_date">' + reply.messages[i].date.substring(0, 10) + '&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;' + reply.messages[i].date.substring(11, 19) + '</span></div></div>';
 
         //         }
         //     });
@@ -508,7 +508,7 @@ function setBanModalID(e) {
     modal.setAttribute('id', id);
 
     let modal_error = document.querySelector('#banModal .modal-body .error-msg');
-    modal_error.innerHTML = "&nbsp";
+    modal_error.innerHTML = "&nbsp;";
 
     let banMember = document.querySelector('.ban_modal');
     banMember.addEventListener('click', sendBanMemberRequest);
@@ -522,7 +522,7 @@ function setUserBanModalID(e) {
     modalSubmit.disabled = false;
 
     let modal_msg = document.querySelector('#banModal .modal-body .msg-response');
-    modal_msg.innerHTML = "&nbsp";
+    modal_msg.innerHTML = "&nbsp;";
     
     modalSubmit.addEventListener('click', sendBanUserRequest);
 }
@@ -555,7 +555,7 @@ function setClanBanModalID(e) {
     modalSubmit.disabled = false;
 
     let modal_msg = document.querySelector('#clanBanModal .modal-body .msg-response');
-    modal_msg.innerHTML = "&nbsp";
+    modal_msg.innerHTML = "&nbsp;";
 
     modalSubmit.addEventListener('click', sendBanClanRequest);
 }
@@ -1107,8 +1107,8 @@ function getChatMessage(isOutgoing, friend_info, text, date1, date2) {
                 + '<div class="sent_msg w-50 text-right mr-2">'
                     + '<p>' + text + '</p>'
                     + '<span class="text-right mt-0 pt-0 time_date">' + date1
-                        + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + date2
-                        + '&nbsp&nbsp'
+                        + '&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;' + date2
+                        + '&nbsp;&nbsp;'
                     + '</span>'
                 + '</div>'
             + '</div>';
@@ -1121,8 +1121,8 @@ function getChatMessage(isOutgoing, friend_info, text, date1, date2) {
                     + '<div class="received_withd_msg">'
                         + '<p>' + text + '</p>'
                         + '<span class="mt-0 pt-0 time_date">' + date1
-                            + '&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp' + date2
-                            + '&nbsp&nbsp'
+                            + '&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;' + date2
+                            + '&nbsp;&nbsp;'
                         + '</span>'
                     + '</div>'
                 + '</div>'

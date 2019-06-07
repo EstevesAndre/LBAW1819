@@ -113,20 +113,14 @@
                                 <button type="button" class="btn btn-secondary dropdown-toggle rounded-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right bg-secondary">
                                     @if(Auth::user()->clan()->get()->isEmpty())
-                                        <a class="no-hover index-nav" href="{{ url('/createClanPage') }}">
-                                            <button class="dropdown-item dropdown-navbar" type="button">Create Clan</button>
-                                        </a>
-                                    @endif
-                                    @if(Auth::user()->clan()->get()->isEmpty() && Auth::user()->is_admin)
+                                        <button class="a-link dropdown-item dropdown-navbar" value="{{ url('/createClanPage') }}" type="button">Create Clan</button>
                                         <div class="dropdown-divider"></div>
                                     @endif
                                     @if (Auth::user()->is_admin)
-                                        <a class="no-hover index-nav" href="{{ url('/administrator') }}">
-                                            <button class="dropdown-item dropdown-navbar" type="button">Administrator</button>
-                                        </a>
+                                        <button class="a-link dropdown-item dropdown-navbar" value="{{ url('/administrator') }}" type="button">Administrator</button>
+                                        <div class="dropdown-divider"></div>
                                     @endif
-                                    <div class="dropdown-divider"></div>
-                                    <form method="GET" action="{{ route('logout') }}">
+                                    <form method="GET" class="mb-0" action="{{ route('logout') }}">
                                         <button type="submit" class="dropdown-item dropdown-navbar">Log out</button>
                                     </form>
                                 </div>
