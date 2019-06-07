@@ -8,7 +8,7 @@
             {{ $clan->name }}
         </div>
         <div class="col-3 col-sm-4 col-md-4 px-0 text-right">
-            <button type="button" class="unban_clan btn btn-success btn-sm" data-id="{{ $clan->id }}" ban-end-date="{{ $clan->ban()->get()[0]->date }}" data-toggle="modal" data-target="#clanUnbanModal">
+            <button type="button" class="unban_clan btn btn-success btn-sm" data-id="{{ $clan->id }}" value="{{ $clan->ban()->get()[0]->date }}" data-toggle="modal" data-target="#clanUnbanModal">
                 <i class="fas fa-user-times"></i> Unban Clan
             </button>
         </div>

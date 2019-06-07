@@ -171,6 +171,13 @@ function addEventListeners() {
         answer.addEventListener('click', reportPostRequest);
     });
 
+    let buttonLinks = document.querySelectorAll('button.a-link');
+    [].forEach.call(buttonLinks, function (link) {
+        link.addEventListener('click', function () {
+            window.location.href = this.getAttribute('value');
+        });
+    });
+
     let morePosts = document.querySelector('div.more-user-posts');
     if(morePosts) morePosts.addEventListener('click', sendMorePostsRequest);
 }
@@ -523,7 +530,7 @@ function setUserBanModalID(e) {
 function adminReportDismissRequest (e){
     e.preventDefault();
 
-    let id = e.target.closest('button.dismiss').getAttribute('id');
+    let id = e.target.closest('button.dismiss').getAttribute('data-id');
     
     sendAjaxRequest('delete', '/api/deleteReport/' + id, null, dismissReportHandler);
 }
@@ -535,7 +542,7 @@ function setUserUnbanModalID(e) {
     modalSubmit.setAttribute('data-id', e.target.closest('button.unban_user').getAttribute('data-id'));
     modalSubmit.disabled = false;
 
-    document.querySelector('#unbanModal>div>div>div.modal-body>p>small.end-date').innerHTML = e.target.closest('button.unban_user').getAttribute('ban-end-date');
+    document.querySelector('#unbanModal>div>div>div.modal-body>p>small.end-date').innerHTML = e.target.closest('button.unban_user').getAttribute('value');
 
     modalSubmit.addEventListener('click', sendUnbanUserRequest);
 }
@@ -560,7 +567,7 @@ function setClanUnbanModalID(e) {
     modalSubmit.setAttribute('data-id', e.target.closest('button.unban_clan').getAttribute('data-id'));
     modalSubmit.disabled = false;
 
-    document.querySelector('#clanUnbanModal>div>div>div.modal-body>p>small.end-date').innerHTML = e.target.closest('button.unban_clan').getAttribute('ban-end-date');
+    document.querySelector('#clanUnbanModal>div>div>div.modal-body>p>small.end-date').innerHTML = e.target.closest('button.unban_clan').getAttribute('value');
 
     modalSubmit.addEventListener('click', sendUnbanClanRequest);
 }
@@ -1261,27 +1268,21 @@ function banUserHandler() {
 
     let active_list = document.querySelector('ul.users-active'); //list of active users
     let banned_list = document.querySelector('ul.users-banned'); //list of banned users
-
     let active_banned = active_list.querySelector('li[data-id="' + reply.blocked.user_id + '"]'); //user in active list that was banned
-
-    if (active_banned == null) return; // error occurred
-
-    active_list.removeChild(active_banned);
+    if (active_banned) active_list.removeChild(active_banned);
 
     let img = document.querySelector('#nav-user-img');
     let path = img.getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
-    banned_list.insertAdjacentHTML("afterbegin", getUnbanUserHTML(reply.user, path_header));
+    if(banned_list) banned_list.insertAdjacentHTML("afterbegin", getUnbanUserHTML(reply.user, reply.blocked.date, path_header));
+
+    let reported = document.querySelectorAll('button.ban_user[data-id="' + reply.blocked.user_id + '"]');
+    if(reported) reported.forEach( (element) => element.outerHTML = '<button type="button" class="ban_user btn btn-danger btn-sm" data-id="' + reply.blocked.user_id + '" disabled><i class="fas fa-user-times"></i> User Already Banned</button>');
 
     let adminUnbanUsersModal = document.querySelectorAll('.unban_user');
     [].forEach.call(adminUnbanUsersModal, function (user) {
         user.addEventListener('click', setUserUnbanModalID);
-    });
-
-    let prev_btns = document.querySelectorAll('button.ban_user[id="' + reply.blocked.user_id + '"]');
-    prev_btns.forEach(function(prev_btn) {
-        prev_btn.outerHTML = '<button type="button" class="ban_user btn btn-danger btn-sm" disabled><i class="fas fa-user-times"></i> User Already Banned</button>';
     });
 }
 
@@ -1307,6 +1308,11 @@ function unbanUserHandler() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
     active_list.insertAdjacentHTML("afterbegin", getActiveUserHTML(reply.user, path_header, userID));
+
+    let reported = document.querySelectorAll('#v-pills-reports button.ban_user[data-id="' + reply.user.id + '"]');
+    [].forEach.call(reported, function (element) {
+        element.outerHTML = '<button type="button" class="ban_user btn btn-danger btn-sm" data-id="' + reply.user.id + '" data-toggle="modal" data-target="#banModal"><i class="fas fa-user-times"></i> Ban User</button>';
+    });
 
     let adminBanUsersModal = document.querySelectorAll('.ban_user');
     [].forEach.call(adminBanUsersModal, function (user) {
@@ -1452,7 +1458,7 @@ function banMemberHandler() {
         '</div>' +
         '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="/user/' + banned.username + '">' + banned.name + '</a></div>' +
         '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">' +
-        '<button type="button" class="unban_member btn btn-success btn-sm" id="' + banned.id + '">' +
+        '<button type="button" class="unban_member btn btn-success btn-sm" data-id="' + banned.id + '">' +
         '<i class="fas fa-user-plus"></i> Unban Member' +
         '</button>' +
         '</div>' +
@@ -1760,15 +1766,15 @@ function updateBannedUsersSearch() {
     let reply = JSON.parse(this.responseText);
     console.log(reply);
 
-    let users = document.querySelector('#users-content>div.active>ul');
-    users.innerHTML = "";
+    let usersList = document.querySelector('#users-content>div.active>ul');
+    usersList.innerHTML = "";
 
     let path = document.querySelector('#nav-user-img').getAttribute('src');
     let path_header = path.substr(0, path.indexOf("/avatars/"));
 
-    reply.forEach(function (element) {
-        users.innerHTML += getUnbanUserHTML(element, path_header);
-    });
+    for(let i = 0; i < reply.users.length; i++) {
+        usersList.innerHTML += getUnbanUserHTML(reply.users[i], reply.dates[i], path_header);
+    }
 
     let adminUnbanUsersModal = document.querySelectorAll('.unban_user');
     [].forEach.call(adminUnbanUsersModal, function (user) {
@@ -1797,7 +1803,7 @@ function getActiveUserHTML(element, path_header, userID) {
         + '</li>';
 }
 
-function getUnbanUserHTML(element, path_header) {
+function getUnbanUserHTML(element, date, path_header) {
     return '<li class="p-2 ml-4" data-id="' + element.id + '">'
         + '<div class="d-flex align-items-center row">'
         + '<div class="pl-0 col-2 col-sm-2 col-md-1 friend-img">'
@@ -1806,7 +1812,7 @@ function getUnbanUserHTML(element, path_header) {
         + '</div>'
         + '<div class="col-6 col-sm-5 col-md-6 pr-1 text-left"><a class="no-hover standard-text" href="user/' + element.username + '">' + element.name + '</a></div>'
         + '<div class="col-3 col-sm-4 col-md-4 px-0 text-right">'
-        + '<button type="button" class="unban_user btn btn-success btn-sm" data-id="' + element.id + '" data-toggle="modal" data-target="#unbanModal">'
+        + '<button type="button" class="unban_user btn btn-success btn-sm" data-id="' + element.id + '" value="' + date + '" data-toggle="modal" data-target="#unbanModal">'
         + '<i class="fas fa-user-times"></i> Unban User'
         + '</button>'
         + '</div>'
@@ -1953,7 +1959,7 @@ function updateActiveAdminsSearch() {
 function getActiveAdminPermissionsHTML(element, path_header, userID) {
     let button = "";
     if (element.id == userID) button = '<button type="button" class="btn btn-danger btn-sm" disabled>';
-    else button = '<button type="button" class="rm_permissions btn btn-danger btn-sm" id="' + element.id + '" data-toggle="modal" data-target="#removePermModal">';
+    else button = '<button type="button" class="rm_permissions btn btn-danger btn-sm" data-id="' + element.id + '" data-toggle="modal" data-target="#removePermModal">';
 
     return '<li class="p-2 ml-3" data-id="' + element.id + '">'
         + '<div class="d-flex align-items-center row">'

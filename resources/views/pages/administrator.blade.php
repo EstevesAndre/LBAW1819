@@ -10,24 +10,19 @@
     <div class="admin-content my-4">
         <ul class="nav nav-pills nav-fill pb-3 border-bottom">
             <li class="nav-item mx-2">
-                <a class="nav-link bg-secondary text-white text-center my-2 active" 
-                id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" 
-                aria-controls="v-pills-manage-users" aria-selected="false">Manage Users</a>
+                <a class="nav-link bg-secondary text-white text-center my-2 active" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users">Manage Users</a>
             </li>
             <li class="nav-item mx-2">
                 <a class="nav-link bg-secondary text-white text-center my-2" 
-                id="v-pills-manage-clans-tab" data-toggle="pill" href="#v-pills-manage-clans" role="tab" 
-                aria-controls="v-pills-manage-clans" aria-selected="false">Manage Clans</a>
+                id="v-pills-manage-clans-tab" data-toggle="pill" href="#v-pills-manage-clans">Manage Clans</a>
             </li>
             <li class="nav-item mx-2">
                 <a class="nav-link bg-secondary text-white text-center my-2" 
-                id="v-pills-administrators-tab" data-toggle="pill" href="#v-pills-administrators" role="tab" 
-                aria-controls="v-pills-administrators" aria-selected="false">Manage Administrators</a>
+                id="v-pills-administrators-tab" data-toggle="pill" href="#v-pills-administrators">Manage Administrators</a>
             </li>
             <li class="nav-item mx-2">
                 <a class="nav-link bg-secondary text-white text-center my-2" 
-                id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" 
-                aria-controls="v-pills-reports" aria-selected="false">Manage Reports</a>
+                id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports">Manage Reports</a>
             </li>
         </ul>
         <div class="clan-page-info">
@@ -154,9 +149,9 @@
                 </div>
                 {{-- home --}}
                 <div class="text-center mt-5">
-                    <a class="no-hover index-nav" href="{{ url('home') }}">
-                        <button type="button" class="btn btn-secondary"><i class="fas fa-save"></i> Home</button>
-                    </a>
+                    <button type="button" class="a-link btn btn-secondary" value="{{ url('home') }}">
+                        <i class="fas fa-save"></i> Home
+                    </button>
                 </div>
             </div>
         </div>
@@ -195,9 +190,9 @@
                     <option value="365">1 year</option>
                     <option value="-1">Forever</option>
                 </select>
-                <p class="text-center mt-2 mb-0 msg-response">&nbsp</p>
+                <p class="text-center mt-2 mb-0 msg-response">&amp;nbsp</p>
                 <button type="button" data-dismiss="modal" class="btn btn-secondary mt-2 mx-2 float-right">Close!</button>
-                <button type="button" data-id="&nbsp" class="btn-ban-modal btn btn-danger mt-2 float-right"><i class="fas fa-user-times"></i> Ban!</button>
+                <button type="button" data-id="&amp;nbsp" class="btn-ban-modal btn btn-danger mt-2 float-right"><i class="fas fa-user-times"></i> Ban!</button>
             </div>
         </div>
     </div>
@@ -216,7 +211,7 @@
                 <p>Are you sure that you want to unban this user?</p>
                 <p>His/her ban ends <small class="end-date"></small></p>
                 <div class="float-right">
-                    <button type="button" data-id="&nbsp" data-dismiss="modal" class="btn-unban-modal btn btn-success">Yes</button>
+                    <button type="button" data-id="&amp;nbsp" data-dismiss="modal" class="btn-unban-modal btn btn-success">Yes</button>
                     <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
@@ -257,7 +252,7 @@
                     <option value="365">1 year</option>
                     <option value="-1">Forever</option>
                 </select>
-                <p class="text-center mt-2 mb-0 msg-response">&nbsp</p>
+                <p class="text-center mt-2 mb-0 msg-response">&amp;nbsp</p>
                 <button type="button" data-dismiss="modal" class="btn btn-secondary mt-2 mx-2 float-right">Close!</button>
                 <button type="button" class="btn-ban-clan-modal btn btn-danger mt-2 float-right"><i class="fas fa-user-times"></i> Ban!</button>
             </div>
@@ -278,7 +273,7 @@
                 <p>Are you sure that you want to unban this clan?</p>
                 <p>This ban ends <small class="end-date"></small></p>
                 <div class="float-right">
-                    <button type="button" data-id="&nbsp" data-dismiss="modal" class="btn-unban-clan-modal btn btn-success">Yes</button>
+                    <button type="button" data-id="&amp;nbsp" data-dismiss="modal" class="btn-unban-clan-modal btn btn-success">Yes</button>
                     <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
@@ -299,7 +294,7 @@
             <div class="modal-body">
                 <p>Are you sure that you want to remove admin permissions?</p>
                 <div class="float-right">
-                    <button type="button" data-id="&nbsp" data-dismiss="modal" class="btn-rm-permissions-modal btn btn-success">Yes</button>
+                    <button type="button" data-id="&amp;nbsp" data-dismiss="modal" class="btn-rm-permissions-modal btn btn-success">Yes</button>
                     <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
                 </div>
             </div>
