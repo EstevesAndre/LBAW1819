@@ -29,11 +29,11 @@
     </div>
 </div>
 @if($post->clan_id !== null) 
-    <div class="modal shareModal fade" id="sharePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="removePostModalLabel" aria-hidden="true">
+    <div class="modal shareModal fade" id="sharePostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="sharePostModalLabel" aria-hidden="true">
         <div class="modal-dialog align-center" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="removePostModalLabel">Share post</h5>
+                    <h5 class="modal-title" id="sharePostModalLabel">Share post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -52,11 +52,11 @@
     </div>
 @endif
 
-<div class="modal reportModal fade" id="reportPostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="reportPostModalLabel" aria-hidden="true">
+<div class="modal reportModal fade" id="reportPostModal-{{ $post->id }}" data-id="{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="reportPostModalLabel-{{ $post->id }}" aria-hidden="true">
     <div class="modal-dialog align-center" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="removePostModalLabel">Report post</h5>
+                <h5 class="modal-title" id="reportPostModalLabel-{{ $post->id }}">Report post</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,7 +70,7 @@
                         <input class="form-check-input" name="motive" type="radio" value="Abusive content" id="defaultCheck2" required>Abusive content
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" name="motive" type="radio" value="Racism" id="defaultCheck3"required>Racism
+                        <input class="form-check-input" name="motive" type="radio" value="Racism" id="defaultCheck3" required>Racism
                     </div>
                 <div class="float-right">
                     <button type="submit" data-dismiss="modal" class="report btn btn-danger">Report</button>

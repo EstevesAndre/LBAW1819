@@ -454,7 +454,7 @@ function sendDeleteShareRequest(e) {
 function sendDeleteCommentRequest(e) {
     console.log("Comment delete request");
 
-    let comment_id = this.closest('span.delete-comment').getAttribute('id');
+    let comment_id = this.closest('span.delete-comment').getAttribute('data-id');
 
     if (comment_id == null)
         return;
@@ -996,7 +996,7 @@ function deletedCommentHandler() {
     if (this.status == 200) {
         let comment = JSON.parse(this.responseText);
 
-        let commentHTML = document.querySelector('div.comment[id="' + comment.id + '"]');
+        let commentHTML = document.querySelector('div.comment[data-id="' + comment.id + '"]');
         commentHTML.outerHTML = '';
     }
 }
