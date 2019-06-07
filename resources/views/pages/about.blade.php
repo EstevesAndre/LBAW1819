@@ -5,11 +5,11 @@
 @section('content')
 <div class="row justify-content-center mt-5 ml-4 mr-4 align-self-center">
     <div class="col-md-8 align-self-center text-center">
-        <img src="{{ asset('assets/logo.png') }}" class="img-fluid mt-5 mb-3" width="50%">
+        <img src="{{ asset('assets/logo.png') }}" class="img-fluid mt-5 mb-3 w-50" alt="logo">
     </div>
 
     <div class="col-md-6 mt-5 text-left">
-        <h4 class="font-weight-bold">What is AlterEgo?</h3>
+        <h4 class="font-weight-bold">What is AlterEgo?</h4>
             <p>AlterEgo is a social network site where people can communicate with other people by posting
                 information, sharing information and talking to each other. Unlike other social networks, AlterEgo's
                 user's profiles do not reveal their real identities. Instead, it requires them to create a character
