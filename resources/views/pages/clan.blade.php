@@ -27,7 +27,7 @@
                 <div class="col-sm-12 col-lg-7 my-2 text-left clan-bio">
                     <div class="text-left basic-info">
                         <h2><b>{{ $clan->name }}</b>
-                            <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#clan_helpModal">
+                            <button type="button" class="border-0 btn btn-default rounded-circle clan-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                                 <i class="fas fa-question-circle"></i>
                             </button>
                         </h2>
@@ -70,7 +70,7 @@
                         <button type="button" class="btn btn-lg btn-dark mr-2" data-toggle="modal" data-target="#postModal">
                             Create a new post
                         </button>
-                        <button type="button" class="border-0 btn btn-default rounded-circle" data-toggle="modal" data-target="#home_helpModal">
+                        <button type="button" class="border-0 btn btn-default rounded-circle clan-feed-help" data-toggle="tooltip" data-placement="auto" data-html="true">
                                 <i class="fas fa-question-circle"></i>
                         </button>
                     </div>

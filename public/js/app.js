@@ -21,6 +21,11 @@ function addEventListeners() {
         delPost.addEventListener('click', sendDeletePostRequest);
     });
 
+    let sharedPostModal = document.querySelectorAll('div.SharedPostModal>div>div>div.modal-body>div>button.btn-danger');
+    [].forEach.call(sharedPostModal, function (delShare) {
+        delShare.addEventListener('click', sendDeleteShareRequest);
+    });
+
     let deleteComment = document.querySelectorAll('.delete-comment>a>i');
     [].forEach.call(deleteComment, function (delCom) {
         delCom.addEventListener('click', sendDeleteCommentRequest);
@@ -167,6 +172,191 @@ function addEventListeners() {
     });
 }
 
+function addHelpDeskText() {
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    
+    let navHelp = document.querySelector('.nav-help');
+    let feedHelp = document.querySelector('.feed-help');
+    let friendRequestsHelp = document.querySelector('.friend-requests-help');
+    let clanHelp = document.querySelector('.clan-help');
+    let clanSettingsHelp = document.querySelector('.clan-settings-help');
+    let clanFeedHelp = document.querySelector('.clan-feed-help');
+    let leaderBoardsHelp = document.querySelector('.leader-boards-help');
+    let profileHelp = document.querySelector('.profile-help');
+    let profileFeedHelp = document.querySelector('.profile-feed-help');
+    let postHelp = document.querySelector('.post-help');
+    let chatHelp = document.querySelector('.chat-help');
+
+
+    navHelp.title = "<p>" +
+                    "Is your first time as an AlterEgo member? Are you lost? Don't worry! " +
+                    "At this navigation bar you can access all website pages and features you need." +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "   <li>AlterEgo: the home page</li>" +
+                    "   <li>Profile: your personal page</li>" + 
+                    "   <li>Clan: the page of the clan which you are a member of (in case you joined one)</li>" +
+                    "   <li>LeaderBoards: website podium with highest rated users.</li>" +
+                    "</ul>" +
+                    "<br>" +
+                    "<a>" +
+                    "   <i class='fas fa-user-friends'></i> See friend requests" +
+                    "</a>" + 
+                    "<br>" +
+                    "<a>" +
+                    "   <i class='far fa-envelope'></i> Go to chat" +
+                    "<a>" +
+                    "<br>" +
+                    "<a>" +
+                    "   <i class='far fa-bell'></i> See notifications" +
+                    "<a>" +
+                    "<br>" +
+                    "<a>" +
+                    "   <i class='fas fa-caret-down'></i> Create clan or logout" +
+                    "<a>";
+
+    if (feedHelp !== null) {
+        feedHelp.title = 
+                    "<p>" +
+                    "Welcome to the Feed! Here you can see all your friends posts and interact with them! " +
+                    "Now you're a member of our community! Don't be shy... Feel free to:" +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "   <li>Make your own posts and share your thoughs (click the left button)</li>" +
+                    "   <li>See your friends posts as well as yours (scroll down)</li>" +
+                    "   <li>Like, comment and share any post you want</li>" +
+                    "   <li>Quickly send and receive messages to/from your friends in the sidebar chat (at the right)</li>" +
+                    "</ul>"; 
+    }
+    
+    if (friendRequestsHelp !== null) {
+        friendRequestsHelp.title = 
+                    "<p>This page will keep you informed about all made/received friend requests till now.</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "   <li>Sent requests: in case you want to cancel one.</li>" +
+                    "   <li>Received requests: in case you want to answer one.</li>" +
+                    "   <li>Rejected requests: whose senders cannot friend request you again.</li>" +
+                    "</ul>";
+    }
+    
+
+    if (clanHelp !== null) {
+        clanHelp.title = 
+                    "<p>" +
+                    "Congratulations! You joined a clan! Everything is better in a group right?<br>" +
+                    "This is your clan's private page. Here you can interact with the other members of the clan. " +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "   <li>Forum: see all private posts made by other members and make your owns.</li>" +
+                    "   <li>Members: see a list with all the clan members.</li>" +
+                    "   <li>LeaderBoards: list of highest rated members of the clan (with more xP).</li>" + 
+                    "   <li>Leave clan: if you want to be no longer a part of the clan just click the red button.</li>" +
+                    "</ul>";
+    }
+
+    if (clanSettingsHelp !== null) {
+        clanSettingsHelp.title = 
+                    "<p>" +
+                    "As the owner of the clan you are in charge of doing its management (settings and members)." +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "   <li>General: Edit clan attributes as Name, Bio and Image.</li>" +
+                    "   <li>Manager Users: Ban/Unban a member of the clan, add users to the clan or delete the clan.</li>" +
+                    "</ul>";
+    }
+
+    if (clanFeedHelp !== null) {
+        clanFeedHelp.title = 
+                    "<p>" +
+                    "Welcome to your clan feed! Here you can:" +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "<li>Post something to be seen by the clan</li>" +
+                    "<li>See all clan posts</li>" +
+                    "</ul>";
+    }
+    
+    if (leaderBoardsHelp !== null) {
+        leaderBoardsHelp.title = 
+                    "<p>" +
+                    "Welcome to the Honor room of AlterEgo! " +
+                    "Here you can see the most legendary characters of the game." +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "   <li>Global: Podium with 3 most rated users of the website.</li>" +
+                    "   <li>Clans: Podium with 3 most rated clans of the website.</i>" +
+                    "   <li>Friends: Podium with your 3 most rated friends.</i>" +
+                    "</ul>";
+    }
+  
+    if (profileHelp !== null) {
+        profileHelp.title =
+                    "<p>" +
+                    "Right now you are in your personal page. " +
+                    "Here you can find all the relevant information about you." +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "   <li>Name, Birthdate</li>" +
+                    "   <li>Race, Class</li>" +
+                    "   <li>Clan: if joined any</li>" +
+                    "   <li>Level: ammount of xP</li>" +
+                    "   <li>Activity: posts created and shared by you</li>" +
+                    "   <li>Friends list</li>" +
+                    "</ul>";
+    }
+
+    if (profileFeedHelp !== null) {
+        profileFeedHelp.title = 
+                    "<p>" +
+                    "Welcome to your own feed! Here you can:" +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "<li>Post something with text and/or image</li>" +
+                    "<li>See your previous posts (created or shared)</li>" +
+                    "<li>Send/Receive messages to/from your friends (right chat sidebar)</li>" +
+                    "</ul>";
+    }
+
+    if (postHelp !== null) {
+        postHelp.title =
+                    "<p>" +
+                    "This is a post page. Here you can see the post overview:" +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "<li>Owner of the post</li>" + 
+                    "<li>Content: post's text and/or image</li>" +
+                    "<li>Likes, Comments and Shares</li>" +
+                    "</ul>" +
+                    "<br>" +
+                    "<p>" +
+                    "Now that you have seen the complete post don't be affraid of showing your feedback:" +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "<li>Liking it</li>" +
+                    "<li>Commenting it</li>" +
+                    "<li>Sharing it</li>" +
+                    "</ul>";
+    }
+
+    if (chatHelp !== null) {
+        chatHelp.title = 
+                    "<p>" +
+                    "Don't live this experience alone! Talk with the other AlterEgo members! " +
+                    "All you have to do is:" +
+                    "</p>" +
+                    "<ul class='list-group text-left pl-3'>" +
+                    "<li>Select one of your friends to chat with (in the left list)</li>" +
+                    "<li>Write the message to send (in the textbox below)</li>" +
+                    "<li>" +
+                    "<a><i class='far fa-envelope'></i></a> Click to send!" +
+                    "</li>" +
+                    "</ul>";
+    }
+
+}
+
 function encodeForAjax(data) {
     if (data == null) return null;
     return Object.keys(data).map(function (k) {
@@ -213,6 +403,17 @@ function sendDeletePostRequest(e) {
         return;
 
     sendAjaxRequest('delete', '/api/post/' + post_id, null, deletedPostHandler);
+}
+
+function sendDeleteShareRequest(e) {
+    console.log("Share delete request");
+    
+    let share_id = this.closest('div.sharedPostModal').getAttribute('data-id');
+
+    if (share_id == null)
+        return;
+
+    sendAjaxRequest('delete', '/api/share/' + share_id, null, deletedShareHandler);
 }
 
 function sendDeleteCommentRequest(e) {
@@ -739,6 +940,20 @@ function deletedPostHandler() {
         window.location.href = '../home';
 }
 
+function deletedShareHandler() {
+    console.log("Share deleted - status: " + this.status);
+
+    if (this.status == 200) {
+        let share = JSON.parse(this.responseText);
+
+        let shareHTML = document.querySelector('div.share[data-id="' + share.id + '"]');
+        shareHTML.innerHTML = '';
+    }
+
+    if (window.location.href.includes("share"))
+        window.location.href = '../home';
+}
+
 function deletedCommentHandler() {
     console.log("Comment deleted - status: " + this.status);
 
@@ -885,6 +1100,7 @@ function getChatMessage(isOutgoing, friend_info, text, date1, date2) {
 }
 
 addEventListeners();
+addHelpDeskText();
 // ---------------------------------------------------------------------------------------------------------------------//
 
 function sendSeenNotification(e) {
