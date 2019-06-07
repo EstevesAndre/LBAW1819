@@ -340,7 +340,7 @@ textarea {
     width: 40px !important;
     height: 48px !important;
     padding: 2px;
-    border: px solid #aaa;
+    border: 5px solid #aaa;
 }
 
 .media-body p {

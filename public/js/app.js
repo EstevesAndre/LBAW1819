@@ -455,7 +455,6 @@ function sendDeleteCommentRequest(e) {
     console.log("Comment delete request");
 
     let comment_id = this.closest('span.delete-comment').getAttribute('data-id');
-
     if (comment_id == null)
         return;
 
@@ -997,7 +996,7 @@ function deletedCommentHandler() {
         let comment = JSON.parse(this.responseText);
 
         let commentHTML = document.querySelector('div.comment[data-id="' + comment.id + '"]');
-        commentHTML.outerHTML = '';
+        if(commentHTML) commentHTML.outerHTML = '';
     }
 }
 
@@ -1036,6 +1035,8 @@ function userNotificationsHandler() {
 function addedCommentHandler() {
 
     let comment = JSON.parse(this.responseText);
+    console.log(comment);
+
     let comment_area = document.querySelector('.container.comments');
     document.querySelector('.search-comment input').value = "";
     let comment_img = document.querySelector('.cardbox-heading>.media>div>a>img');
@@ -1045,7 +1046,7 @@ function addedCommentHandler() {
     let path_header = path.substr(0, path.indexOf("/avatars/"));
     console.log(comment_area);
     comment_area.innerHTML =
-            '<div class="d-flex align-items-center comment my-2" id="' + comment.id + '">'
+            '<div class="d-flex align-items-center comment my-2" data-id="' + comment.id + '">'
             + '<span class="comment-avatar float-left mr-2">'
                 + '<a href="/user/' + comment.username + '">'
                     + '<img class="img-fluid border rounded-circle" src="' + path_header + '/avatars/' + comment.race + '_' + comment.class + '_' + comment.gender + '.bmp" alt="Avatar">'
@@ -1054,7 +1055,7 @@ function addedCommentHandler() {
             + '<div class="w-90 comment-data pl-1 pr-0">'
                 + '<p class="border pt-3">' + comment.comment_text + '</p>'
             + '</div>'
-            + '<span class="ml-2 delete-comment" id="' + comment.id + '">'
+            + '<span class="ml-2 delete-comment" data-id="' + comment.id + '">'
                 + '<a><i class="fas fa-times"></i></a>'
             + '</span>'
           + '</div>';
