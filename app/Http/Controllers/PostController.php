@@ -55,7 +55,11 @@ class PostController extends Controller
             $image->move($destinationPath, $name);
         }
 
-        return view('pages.post', ['post' => $post]);
+        $user = User::find($post->user_id);
+        $user->xp = $user->xp + 20;
+        $user->save();
+
+        return redirect("/post/$post->id");
     }
 
     public function delete(Request $request, $id) 
@@ -65,6 +69,11 @@ class PostController extends Controller
         if($post->user_id != Auth::user()->id && !Auth::user()->is_admin)
             return response()->json(['deleted' => false]);
         
+        
+        $user = User::find($post->user_id);
+        $user->xp = $user->xp - 20;
+        $user->save();
+            
         $post->delete();
         
         return $post;
@@ -77,6 +86,14 @@ class PostController extends Controller
         $share->post_id = $id;
         $share->content = $request->input('content');
         $share->save();
+
+        $user = User::find($share->user_id);
+        $user->xp = $user->xp + 10;
+        $user->save();
+
+        $owner = User::find($share->post()->get()[0]->user()->get()[0]->id);
+        $owner->xp = $owner->xp + 20;
+        $owner->save();
 
         return redirect()->action(
             'ShareController@show', ['post_id' => $share->post_id, 'user_id' => $share->user_id]
